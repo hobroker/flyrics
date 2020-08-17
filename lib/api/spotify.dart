@@ -9,18 +9,18 @@ class Spotify {
 
   Spotify();
 
-  Future<bool> isRunning() async {
+  static Future<bool> isRunning() async {
     final String result =
-        await this.shell.runAppleScript(Scripts.isSpotifyRunning);
+        await Shell.runAppleScript(Scripts.isSpotifyRunning);
 
     return result == 'true';
   }
 
-  Future<Track> fetchCurrentTrack() async {
+  static Future<Track> fetchCurrentTrack() async {
     final String result =
-        await this.shell.runAppleScript(Scripts.getCurrentTrack);
-
-    var track = new Track.fromJson(json.decode(result));
+        await Shell.runAppleScript(Scripts.getCurrentTrack);
+    var data = json.decode(result);
+    var track = Track.fromJson(data);
 
     return track;
   }

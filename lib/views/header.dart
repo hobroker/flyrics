@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/constants/sizing.dart';
-import 'package:flyrics/containers/song_details.dart';
+import 'package:flyrics/containers/track_details.dart';
 
 class Header extends StatefulWidget {
   @override
@@ -16,7 +16,7 @@ class _HeaderState extends State<Header> {
       child: Container(
         child: Row(
           children: [
-            SongDetails(),
+            TrackDetails(),
           ],
         ),
       ),

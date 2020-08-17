@@ -1,10 +1,18 @@
 import 'package:flutter/foundation.dart';
+import 'package:flyrics/models/track.dart';
 
 @immutable
 class AppState {
-  final int counter;
+  final bool isRunning;
+  final Track track;
 
-  AppState({this.counter});
+  AppState({
+    this.isRunning,
+    this.track,
+  });
 
-  factory AppState.loading() => AppState(counter: 2);
+  factory AppState.loading() => AppState(
+        isRunning: false,
+        track: null,
+      );
 }

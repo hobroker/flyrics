@@ -6,9 +6,9 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  process_run: ^0.10.12+1
   flutter_redux: ^0.6.0
-  pigeon: ^0.1.4
+  redux_epics: ^0.14.0
+  redux_logging: ^0.4.0
   flutter:
     sdk: flutter
   cupertino_icons: ^0.1.3

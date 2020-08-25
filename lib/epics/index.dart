@@ -8,7 +8,9 @@ import 'refresh.dart';
 
 final epic = combineEpics<AppState>([
   fetchTrackOnStartEpic,
-  refreshCurrentTrackEpic,
+//  refreshCurrentTrackEpic,
+//  onRefreshCurrentTrackEpic,
+//  startRefreshingOnStartEpic,
   checkIsRunningOnStartEpic,
   fetchCurrentTrackEpic,
   fetchArtworkImageAsBytesEpic,

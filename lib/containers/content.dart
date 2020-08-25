@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/selectors/artwork.dart';
-import 'package:flyrics/utils/sizing.dart';
-import 'package:flyrics/views/header_screen.dart';
+import 'package:flyrics/views/content_screen.dart';
 import 'package:redux/redux.dart';
 import 'package:flyrics/models/app_state.dart';
 import 'connector.dart';
 
-class Header extends StatelessWidget {
+class Content extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Connector<_ViewModel>(
@@ -16,8 +15,8 @@ class Header extends StatelessWidget {
         );
       },
       builder: (context, vm) {
-        return HeaderScreen(
-          backgroundColor: vm.backgroundColor ?? UI.primaryColor,
+        return ContentScreen(
+          backgroundColor: vm.backgroundColor,
         );
       },
     );

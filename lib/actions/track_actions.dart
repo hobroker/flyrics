@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flyrics/models/track.dart';
 
 class FetchTrackStartAction {}
+class RefreshTrackAction {}
 
 class FetchTrackSuccessAction {
   final Track track;
@@ -10,17 +11,17 @@ class FetchTrackSuccessAction {
 }
 
 class FetchArtworkBytesSuccessAction {
-  final List<int> artworkBytes;
+  final List<int> bytes;
 
-  FetchArtworkBytesSuccessAction(this.artworkBytes);
+  FetchArtworkBytesSuccessAction(this.bytes);
 }
 
 class FetchArtworkColorsSuccessAction {
-  final Color backgroundColor;
+  final Color dominantColor;
   final Color textColor;
 
   FetchArtworkColorsSuccessAction({
-    this.backgroundColor,
+    this.dominantColor,
     this.textColor,
   });
 }

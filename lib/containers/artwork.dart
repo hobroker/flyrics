@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flyrics/selectors/artwork.dart';
 import 'package:flyrics/utils/sizing.dart';
 import 'package:redux/redux.dart';
-import 'package:flyrics/selectors/track.dart';
 import 'package:flyrics/views/artwork_placeholder.dart';
 import 'package:flyrics/views/artwork_screen.dart';
 import 'package:flyrics/models/app_state.dart';
+import 'connector.dart';
 
 class Artwork extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, _ViewModel>(
+    return Connector<_ViewModel>(
       converter: (Store<AppState> store) {
         return _ViewModel(
           artworkBytes: getTrackArtworkAsBytes(store.state),
-          isArtworkLoaded: isArtworkLoaded(store.state),
+          isArtworkLoaded: shouldDisplayArtwork(store.state),
           fadeColor: getArtworkBackgroundColor(store.state),
         );
       },
@@ -40,4 +40,13 @@ class _ViewModel {
     this.isArtworkLoaded,
     this.fadeColor,
   });
+
+  bool operator ==(other) {
+    return other.isArtworkLoaded == isArtworkLoaded &&
+        other.artworkBytes == artworkBytes &&
+        other.fadeColor == fadeColor;
+  }
+
+  @override
+  int get hashCode => super.hashCode;
 }

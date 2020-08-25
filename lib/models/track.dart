@@ -26,6 +26,10 @@ class Track {
     );
   }
 
+  bool isEmpty() {
+    return id == null;
+  }
+
   bool operator ==(other) {
     return (other is Track && other.id == id);
   }

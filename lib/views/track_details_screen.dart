@@ -27,14 +27,14 @@ class TrackDetailsScreen extends StatelessWidget {
           TextEllipsis(
             text: name,
             style: textStyle.copyWith(
-              fontSize: 16.0,
+              fontSize: 15.0,
               fontWeight: FontWeight.w500,
             ),
           ),
           TextEllipsis(
             text: artist,
             style: textStyle.copyWith(
-              fontSize: 14.0,
+              fontSize: 13.0,
             ),
           ),
         ],

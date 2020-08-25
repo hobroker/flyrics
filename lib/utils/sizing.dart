@@ -7,11 +7,11 @@ class UI {
   double headerHeight = 50;
   double headerWidth;
 
-  static final Color primaryColor = Color(0xff282828);
-  static final Color primaryDarkColor = Color(0xff121212);
-  static final Color darkColor = Color(0xff191414);
-  static final Color accentColoor = Color(0xff62D36E);
-  static final Color textColor = Color(0xffffffff);
+  static const Color primaryColor = Color(0xff282828);
+  static const Color primaryDarkColor = Color(0xff121212);
+  static const Color darkColor = Color(0xff191414);
+  static const Color accentColoor = Color(0xff62D36E);
+  static const Color textColor = Color(0xffffffff);
 
   UI(this.context) {
     var size = MediaQuery.of(this.context).size;

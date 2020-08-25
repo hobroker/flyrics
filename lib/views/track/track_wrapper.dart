@@ -12,7 +12,7 @@ class TrackWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+        padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
         child: Container(
           child: child,
         ),

@@ -33,12 +33,10 @@ class AppDelegate: FlutterAppDelegate {
   }
 
   @objc func togglePopover(_ sender: AnyObject?) {
-    if let button = statusBarItem.button {
-      if popover.isShown {
-        popover.performClose(sender)
-      } else {
-        openPopover()
-      }
+    if popover.isShown {
+      popover.performClose(sender)
+    } else {
+      openPopover()
     }
   }
 

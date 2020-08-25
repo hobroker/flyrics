@@ -6,6 +6,8 @@ class LayoutWrapper extends StatelessWidget {
   final Widget header;
   final Widget body;
   final Widget footer;
+  final double headerMinHeight = 50;
+  final double headerMaxHeight = 75;
 
   LayoutWrapper({
     Key key,
@@ -23,9 +25,9 @@ class LayoutWrapper extends StatelessWidget {
             SliverAppBar(
               floating: true,
               pinned: true,
-              collapsedHeight: 50.0,
+              collapsedHeight: headerMinHeight,
               toolbarHeight: 0,
-              expandedHeight: 80.0,
+              expandedHeight: headerMaxHeight,
               backgroundColor: Colors.transparent,
               flexibleSpace: header,
             ),

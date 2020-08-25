@@ -22,8 +22,6 @@ class ArtworkScreen extends StatelessWidget {
           child: Stack(
             children: [
               Container(
-                width: height,
-                height: height,
                 child: Image.memory(
                   bytes,
                   fit: BoxFit.fill,

@@ -13,14 +13,6 @@ class LyricsPlaceholder extends StatelessWidget {
     this.isAnimated = true,
   }) : super(key: key);
 
-  Widget getPlaceholderLine(context) {
-    return PlaceholderContainer(
-      height: height,
-      isAnimated: isAnimated,
-      width: UI(context).appWidth * randomDoubleBetween(0.6, 0.8),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -34,7 +26,11 @@ class LyricsPlaceholder extends StatelessWidget {
 
           return Container(
             margin: EdgeInsets.only(bottom: 4),
-            child: getPlaceholderLine(context),
+            child: PlaceholderContainer(
+              height: height,
+              isAnimated: isAnimated,
+              width: UI(context).appWidth * randomDoubleBetween(0.6, 0.8),
+            ),
           );
         },
       ),

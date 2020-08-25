@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flyrics/utils/sizing.dart';
 
 class LyricsWrapper extends StatelessWidget {
   final Widget child;
@@ -26,8 +27,11 @@ class LyricsWrapper extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    child,
-                    SizedBox(height: 20),
+                    Container(
+                      padding: EdgeInsets.only(right: 4),
+                      child: child,
+                    ),
+                    SizedBox(height: UI(context).footerHeight),
                   ],
                 ),
               ),

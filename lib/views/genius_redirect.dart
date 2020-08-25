@@ -26,8 +26,8 @@ class GeniusRedirectScreen extends StatelessWidget {
           child: IconButton(
             padding: EdgeInsets.all(0),
             constraints: BoxConstraints(
-              maxWidth: ui.geniusIconSize,
-              maxHeight: ui.geniusIconSize,
+              maxWidth: ui.footerHeight,
+              maxHeight: ui.footerHeight,
             ),
             icon: GeniusIcon(),
             onPressed: openUrl,

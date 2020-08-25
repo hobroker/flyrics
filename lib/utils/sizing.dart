@@ -1,18 +1,5 @@
 import 'package:flutter/material.dart';
 
-double relativeSize(double main, double percent, {double max}) {
-  var result = main * percent;
-  if (max == null) {
-    return result;
-  }
-
-  if (result > max) {
-    result = max;
-  }
-
-  return result;
-}
-
 class UI {
   final BuildContext context;
   double appHeight;
@@ -37,13 +24,18 @@ class UI {
     headerWidth = appWidth;
   }
 
-  double get headerHeight => relativeSize(appWidth, .2, max: 80);
+  double get headerHeight => _relativeSize(appWidth, .18, max: 80);
 
-  double get trackNameFontSize => relativeSize(headerHeight, .25, max: 20);
+  double get footerHeight => _relativeSize(headerHeight, .25, max: 20);
 
-  double get trackArtistFontSize => relativeSize(headerHeight, .2, max: 18);
+  double get trackNameFontSize => _relativeSize(headerHeight, .25, max: 20);
 
-  double get lyricsFontSize => relativeSize(headerHeight, .185, max: 14);
+  double get trackArtistFontSize => _relativeSize(headerHeight, .22, max: 18);
 
-  double get geniusIconSize => relativeSize(headerHeight, .25, max: 20);
+  double get lyricsFontSize => _relativeSize(headerHeight, .2, max: 14);
+}
+
+double _relativeSize(double main, double percent, {double max}) {
+  var result = main * percent;
+  return max == null || result < max ? result : max;
 }

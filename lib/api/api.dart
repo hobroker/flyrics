@@ -6,19 +6,19 @@ import 'spotify_api.dart';
 import 'util_api.dart';
 
 class Api {
-  Secrets _secrets;
   SpotifyApi spotify;
   GeniusApi genius;
-  ShellApi shell;
   UtilApi util;
+  Secrets _secrets;
+  ShellApi _shell;
 
   void init(Secrets secrets) {
     _secrets = secrets;
     var geniusAccessToken = _getSecret('GENIUS_API_KEY');
 
-    shell = ShellApi();
+    _shell = ShellApi();
     util = UtilApi();
-    spotify = SpotifyApi(shell: shell);
+    spotify = SpotifyApi(shell: _shell);
     genius = GeniusApi(accessToken: geniusAccessToken);
   }
 

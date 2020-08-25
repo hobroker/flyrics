@@ -5,7 +5,6 @@ import 'color.dart';
 import 'startup.dart';
 import 'search.dart';
 import 'artwork.dart';
-import 'refresh.dart';
 import 'track.dart';
 
 final appEpic = combineEpics<AppState>([
@@ -14,5 +13,4 @@ final appEpic = combineEpics<AppState>([
   colorEpics,
   startupEpics,
   searchEpics,
-  refreshEpics,
 ]);

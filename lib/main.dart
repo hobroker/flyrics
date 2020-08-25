@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
-
+import 'package:flyrics/timers/track_refresh.dart';
+import 'package:redux/redux.dart';
 import 'utils/secrets.dart';
 import 'actions/app_actions.dart';
 import 'api/api.dart';
 import 'create_store.dart';
 import 'views/app.dart';
+
+void startTimers(Store store) {
+  trackRefresh(
+    store,
+    every: Duration(milliseconds: 1500),
+  );
+}
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,6 +22,9 @@ Future<void> main() async {
 
   runApp(App(
     store: store,
-    onLoad: () => store.dispatch(AppStartedAction()),
+    onLoad: () {
+      startTimers(store);
+      store.dispatch(AppStartedAction());
+    },
   ));
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flyrics/utils/ux.dart';
+import 'package:flyrics/views/artwork/artwork_gradient.dart';
 
 class ArtworkScreen extends StatelessWidget {
   final List<int> bytes;
@@ -30,40 +31,19 @@ class ArtworkScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        var height = constraints.maxHeight;
-        var shadeWidth = height * .75;
-
-        return MouseRegion(
-          cursor: SystemMouseCursors.click,
-          child: GestureDetector(
-            onTap: () => _showImageDialog(context),
-            child: Stack(
-              children: [
-                _imageWidget,
-                Container(
-                  width: shadeWidth,
-                  child: AnimatedContainer(
-                    duration: UX.transitionDuration,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                        colors: [
-                          fadeColor.withOpacity(0.75),
-                          Colors.transparent,
-                        ],
-                        tileMode: TileMode.repeated,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: () => _showImageDialog(context),
+        child: Stack(
+          children: [
+            _imageWidget,
+            ArtworkGradient(
+              fadeColor: fadeColor,
             ),
-          ),
-        );
-      },
+          ],
+        ),
+      ),
     );
   }
 }

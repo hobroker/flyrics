@@ -32,8 +32,8 @@ class TrackDetails extends StatelessWidget {
 }
 
 class _ViewModel {
-  final String name;
-  final String artist;
+  String name;
+  String artist;
   final bool hasTrack;
   final Color textColor;
 
@@ -42,5 +42,8 @@ class _ViewModel {
     this.artist,
     this.hasTrack,
     this.textColor,
-  });
+  }) {
+    this.name = this.name?.replaceAll("", "\u{200B}");
+    this.artist = this.artist?.replaceAll("", "\u{200B}");
+  }
 }

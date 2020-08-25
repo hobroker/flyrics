@@ -6,7 +6,10 @@ import 'package:flyrics/containers/track_details.dart';
 class HeaderScreen extends StatelessWidget {
   final Color backgroundColor;
 
-  HeaderScreen({this.backgroundColor});
+  HeaderScreen({
+    Key key,
+    this.backgroundColor,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flyrics/utils/sizing.dart';
 
 class LyricsWrapper extends StatelessWidget {
   final Widget child;
@@ -14,39 +13,32 @@ class LyricsWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var height = UI(context).appHeight - UI(context).headerHeight;
-
-    return Flexible(
-      child: ConstrainedBox(
-        constraints: BoxConstraints(
-          maxHeight: height,
-          minHeight: height,
-        ),
-        child: Stack(
-          children: [
-            Container(
-              padding: EdgeInsets.only(top: 8, left: 8, right: 4),
-              child: CupertinoScrollbar(
-                thickness: 4,
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      child,
-                      SizedBox(height: 8),
-                    ],
-                  ),
+    return Expanded(
+      child: Stack(
+        children: [
+          Container(
+            padding: EdgeInsets.only(top: 8, left: 8, right: 4),
+            child: CupertinoScrollbar(
+              thickness: 4,
+              thicknessWhileDragging: 8,
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    child,
+                    SizedBox(height: 20),
+                  ],
                 ),
               ),
             ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: footer,
-            )
-          ],
-        ),
+          ),
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: footer,
+          )
+        ],
       ),
     );
   }

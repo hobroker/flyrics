@@ -14,7 +14,6 @@ class LyricsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(bottom: 20),
       child: SelectableText(
         text,
         textAlign: TextAlign.start,

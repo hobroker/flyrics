@@ -20,7 +20,7 @@ class PlaceholderContainer extends StatelessWidget {
     return Connector(
       converter: (store) => _ViewModel(
         backgroundColor: getArtworkColorByIndex(store.state, 1),
-        shineColor: getArtworkColorByIndex(store.state, 2),
+        shineColor: getArtworkColorByIndex(store.state, 0),
       ),
       builder: (context, vm) {
         return PlaceholderShimmerScreeen(

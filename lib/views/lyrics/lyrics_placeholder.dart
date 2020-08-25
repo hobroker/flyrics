@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flyrics/containers/placeholder_container.dart';
 import 'package:flyrics/utils/random.dart';
 import 'package:flyrics/utils/sizing.dart';
-import 'package:flyrics/views/placeholder_shimmer_screen.dart';
 
 class LyricsPlaceholder extends StatelessWidget {
   final double height = 12;
@@ -14,7 +14,7 @@ class LyricsPlaceholder extends StatelessWidget {
   }) : super(key: key);
 
   Widget getPlaceholderLine(context) {
-    return PlaceholderShimmerScreeen(
+    return PlaceholderContainer(
       height: height,
       isAnimated: isAnimated,
       width: UI(context).appWidth * randomDoubleBetween(0.6, 0.8),

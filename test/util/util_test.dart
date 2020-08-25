@@ -10,7 +10,7 @@ void main() {
 
     test('should return false', () {
       var a = 1;
-      expect(keyValueEq({a: 2}), equals(true));
+      expect(keyValueEq({a: 2}), equals(false));
     });
   });
 }

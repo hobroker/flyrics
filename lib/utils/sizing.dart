@@ -24,7 +24,7 @@ class UI {
     headerWidth = appWidth;
   }
 
-  double get headerHeight => _relativeSize(appWidth, .18, max: 80);
+  double get headerHeight => _relativeSize(appWidth, .18, max: 80, min: 50);
 
   double get footerHeight => _relativeSize(headerHeight, .25, max: 20);
 
@@ -32,10 +32,18 @@ class UI {
 
   double get trackArtistFontSize => _relativeSize(headerHeight, .22, max: 18);
 
-  double get lyricsFontSize => _relativeSize(headerHeight, .2, max: 14);
+  double get lyricsFontSize =>
+      _relativeSize(headerHeight, .2, max: 14, min: 12);
 }
 
-double _relativeSize(double main, double percent, {double max}) {
+double _relativeSize(double main, double percent, {double max, double min}) {
   var result = main * percent;
-  return max == null || result < max ? result : max;
+  if (min != null && result < min) {
+    return min;
+  }
+  if (max != null && result > max) {
+    return max;
+  }
+
+  return result;
 }

@@ -9,7 +9,7 @@ class LyricsWrapper extends StatelessWidget {
   LyricsWrapper({
     Key key,
     @required this.child,
-    this.footer,
+    @required this.footer,
   }) : super(key: key);
 
   @override

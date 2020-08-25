@@ -1,24 +1,28 @@
-import 'package:flyrics/api/genius.dart';
-import 'package:flyrics/api/shell.dart';
-import 'package:flyrics/api/spotify.dart';
 import 'package:flyrics/utils/secrets.dart';
+
+import 'genius_api.dart';
+import 'shell_api.dart';
+import 'spotify_api.dart';
+import 'util_api.dart';
 
 class Api {
   Secrets _secrets;
-  Spotify spotify;
-  Genius genius;
-  Shell shell;
-
-  getSecret(String key) => this._secrets.getEnv(key);
+  SpotifyApi spotify;
+  GeniusApi genius;
+  ShellApi shell;
+  UtilApi util;
 
   init(Secrets secrets) {
     this._secrets = secrets;
-    var geniusAccessToken = this.getSecret('GENIUS_API_KEY');
+    var geniusAccessToken = this._getSecret('GENIUS_API_KEY');
 
-    this.shell = Shell();
-    this.spotify = Spotify(shell: this.shell);
-    this.genius = Genius(accessToken: geniusAccessToken);
+    this.shell = ShellApi();
+    this.util = UtilApi();
+    this.spotify = SpotifyApi(shell: this.shell);
+    this.genius = GeniusApi(accessToken: geniusAccessToken);
   }
+
+  String _getSecret(String key) => this._secrets.getEnv(key);
 }
 
 var api = Api();

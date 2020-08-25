@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:flyrics/models/search_result.dart';
 import 'package:http/http.dart' as http;
 
-class Genius {
+class GeniusApi {
   final String accessToken;
 
-  Genius({this.accessToken});
+  GeniusApi({this.accessToken});
 
   Future<List<SearchResult>> search(String query) async {
     var uri = Uri.https('api.genius.com', 'search', {
@@ -23,6 +23,6 @@ class Genius {
   }
 
   Future<String> fetchLyrics(String url) async {
-    return '[]';
+    return url;
   }
 }

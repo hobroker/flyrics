@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 
-class Http {
-  static Future<List<int>> getBytes(String url) async {
+class UtilApi {
+  Future<List<int>> getBytes(String url) async {
     var response = await http.get(url);
 
     return response.bodyBytes;

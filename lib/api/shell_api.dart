@@ -1,6 +1,6 @@
 import 'dart:io';
 
-class Shell {
+class ShellApi {
   Future<String> _exec(String cmd, List<String> args) async {
     try {
       final ProcessResult result = await Process.run(cmd, args);

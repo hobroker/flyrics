@@ -1,7 +1,7 @@
 class FetchLyricsStartAction {
-  final String query;
+  final String url;
 
-  FetchLyricsStartAction(this.query);
+  FetchLyricsStartAction(this.url);
 }
 
 class FetchLyricsSuccessAction {

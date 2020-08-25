@@ -25,7 +25,7 @@ class HeaderScreen extends StatelessWidget {
           children: [
             Expanded(
               child: Container(
-                padding: EdgeInsets.only(top: 5.0, bottom: 5.0, left: 8.0),
+                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
                 child: TrackDetails(),
               ),
             ),

@@ -1,13 +1,13 @@
 import 'dart:convert';
 
 import 'package:flyrics/api/scripts.dart';
-import 'package:flyrics/api/shell.dart';
+import 'package:flyrics/api/shell_api.dart';
 import 'package:flyrics/models/track.dart';
 
-class Spotify {
-  final Shell shell;
+class SpotifyApi {
+  final ShellApi shell;
 
-  Spotify({this.shell});
+  SpotifyApi({this.shell});
 
   Future<bool> isRunning() async {
     final String result = await this.shell.runAppleScript(Scripts.isSpotifyRunning);

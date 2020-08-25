@@ -22,7 +22,7 @@ class TrackDetails extends StatelessWidget {
       builder: (context, vm) {
         return vm.hasTrack
             ? TrackDetailsScreen(
-                name: vm.name,
+                name: 'one one one one one one one one one one one ',
                 artist: vm.artist,
                 textColor: vm.textColor,
               )

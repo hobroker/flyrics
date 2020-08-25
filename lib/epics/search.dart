@@ -32,7 +32,7 @@ Stream<dynamic> fetchLyricsEpic(
         Stream<dynamic> actions, EpicStore<AppState> store) =>
     actions
         .where((action) => action is FetchLyricsStartAction)
-        .map((action) => action.query)
-        .asyncMap((query) => api.genius
-            .fetchLyrics(query)
+        .map((action) => action.url)
+        .asyncMap((url) => api.genius
+            .fetchLyrics(url)
             .then((text) => FetchLyricsSuccessAction(text)));

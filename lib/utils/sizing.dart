@@ -4,7 +4,7 @@ class UI {
   final BuildContext context;
   double appHeight;
   double appWidth;
-  double headerHeight = 50;
+  double headerHeight = 100;
   double headerWidth;
 
   static const Color primaryColor = Color(0xff282828);

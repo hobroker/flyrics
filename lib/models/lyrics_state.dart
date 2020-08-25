@@ -5,7 +5,17 @@ class LyricsState {
   final bool isLoading;
   final String text;
 
-  LyricsState({this.isLoading, this.text});
+  LyricsState({
+    this.isLoading: false,
+    this.text,
+  });
+
+  copyWith({isLoading, text}) {
+    return LyricsState(
+      isLoading: isLoading ?? this.isLoading,
+      text: text ?? this.text,
+    );
+  }
 
   bool operator ==(other) {
     return other is LyricsState &&

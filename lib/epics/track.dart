@@ -1,3 +1,4 @@
+import 'package:flyrics/api/api.dart';
 import 'package:flyrics/api/http.dart';
 import 'package:flyrics/api/spotify.dart';
 import 'package:flyrics/selectors/artwork.dart';
@@ -14,11 +15,13 @@ Stream<dynamic> fetchCurrentTrackEpic(
     actions
         .where((action) => action is FetchTrackStartAction)
         .map((action) => getTrack(store.state))
-        .asyncMap((currentTrack) => Spotify.fetchCurrentTrack().then((track) {
+        .asyncMap((currentTrack) {
+          return api.spotify.fetchCurrentTrack().then((track) {
               if (currentTrack != track) {
                 return FetchTrackSuccessAction(track);
               }
-            }));
+            });
+        });
 
 Stream<dynamic> fetchArtworkImageAsBytesEpic(
         Stream<dynamic> actions, EpicStore<AppState> store) =>

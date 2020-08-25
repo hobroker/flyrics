@@ -6,7 +6,3 @@ final isPlayingReducer = combineReducers<bool>([
     return action.isRunning;
   }),
 ]);
-
-//int _setLoaded(int state, CounterChangedAction action) {
-//  return action.dot;
-//}

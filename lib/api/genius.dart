@@ -1,21 +1,25 @@
-import 'package:flyrics/api/shell.dart';
+import 'dart:convert';
+
 import 'package:flyrics/models/search_result.dart';
-import 'package:flyrics/utils/secrets.dart';
 import 'package:http/http.dart' as http;
 
 class Genius {
-  final shell = new Shell();
+  final String accessToken;
 
-  get accessToken => Secrets.getEnv('GENIUS_API_KEY');
+  Genius({this.accessToken});
 
-  static Future<List<SearchResult>> search(String query) async {
-    var uri = Uri.https('https://api.genius.com', '/search', {
+  Future<List<SearchResult>> search(String query) async {
+    var uri = Uri.https('api.genius.com', 'search', {
       'q': query,
-      'access_token': '',
+      'access_token': this.accessToken,
     });
     var response = await http.get(uri);
-    print(response);
-    return [];
+    var data = json.decode(response.body);
+    var items = data['response']['hits'].map((item) => item['result']);
+    var list = List<SearchResult>.from(
+        items.map((item) => SearchResult.fromJson(item)));
+
+    return list;
   }
 
   static Future<String> getLyrics(String url) async {

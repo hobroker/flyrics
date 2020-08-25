@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flyrics/models/app_state.dart';
 import 'package:flyrics/models/artwork_state.dart';
 
-ArtworkState getArtworkState(AppState state) => state.artworkState;
+ArtworkState getArtworkState(AppState state) => state.artwork;
 
 String getArtworkUrl(AppState state) => getArtworkState(state)?.url;
 
@@ -18,6 +18,6 @@ bool shouldDisplayArtwork(AppState state) =>
     isArtworkLoaded(state) && !shouldUpdateArtwork(state);
 
 Color getArtworkDominantColor(AppState state) =>
-    getArtworkState(state).dominantColor;
+    getArtworkState(state)?.dominantColor;
 
-Color getArtworkTextColor(AppState state) => getArtworkState(state).textColor;
+Color getArtworkTextColor(AppState state) => getArtworkState(state)?.textColor;

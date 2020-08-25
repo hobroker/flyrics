@@ -45,9 +45,10 @@ class GeniusApi {
     var content = json.decode($pageData.attributes['content']);
     var html = content['lyrics_data']['body']['html'];
     var $fragment = parseFragment(html);
+    var text = $fragment.text.replaceAll(RegExp(r'\s+$'), '');
 
     return LyricsModel(
-      text: $fragment.text,
+      text: text,
     );
   }
 

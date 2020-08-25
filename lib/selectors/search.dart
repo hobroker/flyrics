@@ -12,8 +12,10 @@ String getSearchQuery(AppState state) {
 
 SearchState getSearchState(AppState state) => state.search;
 
+bool searchHasResults(AppState state) => state.search.results.isNotEmpty;
+
 SearchResultModel getFirstSearchResult(AppState state) =>
-    getSearchState(state).results.first;
+    searchHasResults(state) ? getSearchState(state).results.first : null;
 
 String getFirstSearchResultUrl(AppState state) =>
-    getFirstSearchResult(state).url;
+    getFirstSearchResult(state)?.url;

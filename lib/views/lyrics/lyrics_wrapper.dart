@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/containers/genius_redirect.dart';
 import 'package:flyrics/utils/sizing.dart';
 
 class LyricsWrapper extends StatelessWidget {
   final Widget child;
+  final Widget footer;
 
   LyricsWrapper({
     Key key,
     @required this.child,
+    this.footer,
   }) : super(key: key);
 
   @override
@@ -22,16 +23,24 @@ class LyricsWrapper extends StatelessWidget {
             maxHeight: height,
             minHeight: height,
           ),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                GeniusRedirect(),
-                child,
-                SizedBox(height: 8),
-              ],
-            ),
+          child: Stack(
+            children: [
+              SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    child,
+                    SizedBox(height: 8),
+                  ],
+                ),
+              ),
+              Positioned(
+                bottom: 0,
+                right: 0,
+                child: footer,
+              )
+            ],
           ),
         ),
       ),

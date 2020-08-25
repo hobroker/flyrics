@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/selectors/artwork.dart';
+import 'package:flyrics/selectors/search.dart';
 import 'package:flyrics/store/connector.dart';
+import 'package:flyrics/utils/conditional.dart';
+import 'package:flyrics/views/empty_widget.dart';
 import 'package:flyrics/views/lyrics/genius_redirect.dart';
 
 class GeniusRedirect extends StatelessWidget {
@@ -8,13 +11,17 @@ class GeniusRedirect extends StatelessWidget {
   Widget build(BuildContext context) {
     return Connector(
       converter: (state) => _ViewModel(
-        url: getArtworkUrl(state),
+        url: getFirstSearchResultUrl(state),
         textColor: getArtworkTextColor(state),
       ),
       builder: (context, vm) {
-        return GeniusRedirectScreen(
-          url: vm.url,
-          iconColor: vm.textColor,
+        return Conditional.single(
+          when: vm.url != null,
+          render: () => GeniusRedirectScreen(
+            url: vm.url,
+            iconColor: vm.textColor,
+          ),
+          fallback: () => EmptyWidget(),
         );
       },
     );

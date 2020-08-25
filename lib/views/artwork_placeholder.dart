@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/containers/placeholder_shimmer.dart';
+import 'package:flyrics/utils/random.dart';
 import 'package:flyrics/utils/sizing.dart';
 
 class ArtworkPlaceholder extends StatelessWidget {
   double getSize(context) {
-    return UI(context).headerHeight * 0.8;
+    return UI(context).headerHeight * randomDoubleBetween(0.7, 0.85);
   }
 
   @override

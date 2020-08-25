@@ -44,8 +44,6 @@ Stream<dynamic> findArtworkColorsEpic(
         ? Colors.black
         : lighten(backgroundColor, 0.5);
 
-    print(textColor);
-
     return FetchArtworkColorsSuccessAction(
       backgroundColor: backgroundColor,
       textColor: textColor,

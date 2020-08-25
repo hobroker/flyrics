@@ -14,7 +14,7 @@ Future<void> main() async {
   var epicMiddleware = new EpicMiddleware(epic);
   var store = Store<AppState>(
     appReducer,
-    initialState: AppState.loading(),
+    initialState: AppState(),
     middleware: [
       epicMiddleware,
 //      new LoggingMiddleware.printer(),

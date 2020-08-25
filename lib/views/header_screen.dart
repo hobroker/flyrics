@@ -13,7 +13,8 @@ class HeaderScreen extends StatelessWidget {
     return SizedBox(
       width: Sizing(context).headerWidth,
       height: Sizing(context).headerHeight,
-      child: Container(
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 300),
         color: this.backgroundColor,
         child: Row(
           children: [

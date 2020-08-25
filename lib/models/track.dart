@@ -7,7 +7,7 @@ class Track {
   final String artist;
   final String artwork;
 
-  Track({
+  const Track({
     this.name,
     this.album,
     this.artist,

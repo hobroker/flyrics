@@ -9,7 +9,10 @@ TrackState getTrackState(AppState state) => state.trackState;
 
 Track getTrack(AppState state) => getTrackState(state).track;
 
-bool hasTrack(AppState state) => getTrack(state) != null;
+bool hasTrack(AppState state) {
+  var track = getTrack(state);
+  return track != null && track.name != null;
+}
 
 String getTrackArtwork(AppState state) => getTrack(state)?.artwork;
 

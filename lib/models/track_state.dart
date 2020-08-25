@@ -9,10 +9,28 @@ class TrackState {
   final Color backgroundColor;
   final Color textColor;
 
-  TrackState({
-    this.track,
+  const TrackState({
+    this.track: const Track(),
     this.artworkBytes,
     this.backgroundColor,
     this.textColor,
   });
+
+  TrackState rebuild(Function fn) {
+    return fn(this);
+  }
+
+  copyWith({
+    track,
+    artworkBytes,
+    backgroundColor,
+    textColor,
+  }) {
+    return TrackState(
+      track: track ?? this.track,
+      artworkBytes: artworkBytes ?? this.artworkBytes,
+      backgroundColor: backgroundColor ?? this.backgroundColor,
+      textColor: textColor ?? this.textColor,
+    );
+  }
 }

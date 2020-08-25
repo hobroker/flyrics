@@ -13,10 +13,13 @@ Stream onSearchStartEpic(Stream actions, store) => actions
     .map((action) => SetLyricsLoadingAction());
 
 Stream onSearchSuccessEpic(Stream actions, store) => actions
-    .where((action) => action is SearchSuccessAction)
-    .where((action) => !activeTrackHasLyrics(store.state))
-    .map((action) => getFirstSearchResultUrl(store.state))
-    .map((url) => FetchLyricsStartAction(url));
+        .where((action) => action is SearchSuccessAction)
+        .where((action) => !activeTrackHasLyrics(store.state))
+        .map((action) => getFirstSearchResultUrl(store.state))
+        .map((url) {
+      var id = getActiveTrackId(store.state);
+      return FetchLyricsStartAction(url, id: id);
+    });
 
 Stream fetchLyricsEpic(Stream actions, store) => actions
         .where((action) => action is FetchLyricsStartAction)

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/actions/app_actions.dart';
 import 'package:flyrics/selectors/artwork.dart';
-import 'package:flyrics/selectors/search.dart';
+import 'package:flyrics/selectors/lyrics.dart';
 import 'package:flyrics/store/connector.dart';
 import 'package:flyrics/utils/conditional.dart';
 import 'package:flyrics/views/empty_widget.dart';
@@ -12,7 +12,7 @@ class GeniusRedirect extends StatelessWidget {
   Widget build(BuildContext context) {
     return Connector(
       converter: (store) {
-        var url = getFirstSearchResultUrl(store.state);
+        var url = getLyricsUrl(store.state);
 
         return _ViewModel(
           url: url,

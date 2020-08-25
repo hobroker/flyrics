@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flyrics/models/lyrics_model.dart';
 import 'package:flyrics/models/search_result_model.dart';
 import 'package:html/parser.dart';
 import 'package:http/http.dart' as http;
@@ -26,7 +25,7 @@ class GeniusApi {
     return list;
   }
 
-  Future<LyricsModel> _fetchLyricsText(url, {int loop = 0}) async {
+  Future<String> _fetchLyricsText(url, {int loop = 0}) async {
     loop++;
 
     var response = await http.get(url);
@@ -47,12 +46,10 @@ class GeniusApi {
     var $fragment = parseFragment(html);
     var text = $fragment.text.replaceAll(RegExp(r'\s+$'), '');
 
-    return LyricsModel(
-      text: text,
-    );
+    return text;
   }
 
-  Future<LyricsModel> fetchLyrics(String url) async {
+  Future<String> fetchLyrics(String url) async {
     var result = await _fetchLyricsText(url);
 
     return result;

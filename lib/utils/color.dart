@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:palette_generator/palette_generator.dart';
 
-import 'load_image.dart';
+import 'image.dart';
 
 Color darken(Color color, [double amount = .1]) {
   assert(amount >= 0 && amount <= 1);

@@ -1,14 +1,13 @@
 import 'package:flyrics/actions/artwork_actions.dart';
 import 'package:flyrics/models/artwork_model.dart';
 import 'package:flyrics/models/state/artwork_state.dart';
-import 'package:flyrics/utils/map.dart';
+import 'package:flyrics/utils/hash_map_extension.dart';
 import 'package:redux/redux.dart';
 
 final artworkStateReducer = combineReducers<ArtworkState>([
   TypedReducer<ArtworkState, FetchArtworkBytesStartAction>((state, action) {
     return state.copyWith(
-      byId: setMapValue(
-          state.byId,
+      byId: state.byId.setValue(
           action.id,
           ArtworkModel(
             url: action.url,
@@ -19,22 +18,20 @@ final artworkStateReducer = combineReducers<ArtworkState>([
   }),
   TypedReducer<ArtworkState, FetchArtworkBytesSuccessAction>((state, action) {
     return state.copyWith(
-      byId: updateMap<String, ArtworkModel>(state.byId, {
-        action.id: (artwork) => artwork.copyWith(
-              bytes: action.bytes,
-            ),
-      }),
+      byId: state.byId.updateValue(
+          action.id, (artwork) => artwork.copyWith(bytes: action.bytes)),
       isLoading: false,
     );
   }),
   TypedReducer<ArtworkState, SetArtworkColorsAction>((state, action) {
     return state.copyWith(
-      byId: updateMap<String, ArtworkModel>(state.byId, {
-        action.id: (artwork) => artwork.copyWith(
-              textColor: action.textColor,
-              colors: action.colors,
-            ),
-      }),
+      byId: state.byId.updateValue(
+        action.id,
+        (artwork) => artwork.copyWith(
+          textColor: action.textColor,
+          colors: action.colors,
+        ),
+      ),
     );
   }),
   TypedReducer<ArtworkState, SetArtworkAsMissingAction>((state, action) {

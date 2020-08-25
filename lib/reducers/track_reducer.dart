@@ -1,6 +1,6 @@
 import 'package:flyrics/actions/track_actions.dart';
 import 'package:flyrics/models/state/track_state.dart';
-import 'package:flyrics/utils/map.dart';
+import 'package:flyrics/utils/hash_map_extension.dart';
 import 'package:redux/redux.dart';
 
 final trackReducer = combineReducers<TrackState>([
@@ -13,7 +13,7 @@ final trackReducer = combineReducers<TrackState>([
     return state.copyWith(
       isLoading: false,
       activeId: action.track.id,
-      byId: setMapValue(state.byId, action.track.id, action.track),
+      byId: state.byId.setValue(action.track.id, action.track),
     );
   }),
   TypedReducer<TrackState, ResetActiveIdAction>((state, action) {

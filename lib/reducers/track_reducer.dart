@@ -15,6 +15,7 @@ final trackReducer = combineReducers<TrackState>([
     byId[id] = action.track;
 
     return state.copyWith(
+      isLoading: false,
       byId: byId,
       activeId: id,
     );

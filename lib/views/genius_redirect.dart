@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flyrics/utils/sizing.dart';
+import 'package:flyrics/views/hover_builder.dart';
+import 'package:flyrics/views/icons/genius_icon.dart';
 
 class GeniusRedirectScreen extends StatelessWidget {
   final Color iconColor;
@@ -15,20 +16,24 @@ class GeniusRedirectScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var ui = UI(context);
-    return Align(
-      alignment: Alignment.centerRight,
-      child: Opacity(
-        opacity: .5,
-        child: IconButton(
-          padding: EdgeInsets.all(0),
-          constraints: BoxConstraints(
-            maxWidth: ui.geniusIconSize,
-            maxHeight: ui.geniusIconSize,
+    return HoverBuilder<double>(
+      value: 0.5,
+      onEnter: (double opacity) => 1.0,
+      builder: (BuildContext context, double opacity) {
+        return AnimatedOpacity(
+          opacity: opacity,
+          duration: UI.transitionDuration,
+          child: IconButton(
+            padding: EdgeInsets.all(0),
+            constraints: BoxConstraints(
+              maxWidth: ui.geniusIconSize,
+              maxHeight: ui.geniusIconSize,
+            ),
+            icon: GeniusIcon(),
+            onPressed: openUrl,
           ),
-          icon: SvgPicture.asset(UI.geniusIcon, color: UI.geniusAccentColor),
-          onPressed: openUrl,
-        ),
-      ),
+        );
+      },
     );
   }
 }

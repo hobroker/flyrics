@@ -28,7 +28,7 @@ class UI {
 
   static String geniusIcon = 'assets/icons/genius.svg';
 
-  static Duration transitionDuration = Duration(milliseconds: 1500);
+  static Duration transitionDuration = Duration(milliseconds: 300);
 
   UI(this.context) {
     var size = MediaQuery.of(context).size;

@@ -21,7 +21,7 @@ final artworkStateReducer = combineReducers<ArtworkState>([
     return state.copyWith(
       byId: updateMap<String, ArtworkModel>(state.byId, {
         action.id: (artwork) => artwork.copyWith(
-              bytes: action.bytes,
+              bytes: action.bytes
             ),
       }),
       isLoading: false,

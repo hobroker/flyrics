@@ -3,17 +3,19 @@ import 'package:flyrics/utils/sizing.dart';
 
 class HeaderWrapper extends StatelessWidget {
   final List<Widget> children;
+  final double height;
 
   HeaderWrapper({
     Key key,
     this.children,
+    this.height,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: UI(context).headerWidth,
-      height: UI(context).headerHeight,
+      height: height,
       child: Container(
         child: Row(
           children: children,

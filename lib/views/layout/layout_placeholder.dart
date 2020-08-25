@@ -9,12 +9,11 @@ class LayoutPlaceholder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        HeaderPlaceholder(),
         LyricsWrapper(
           child: LyricsPlaceholder(
             isAnimated: false,
           ),
-          footer: EmptyWidget(),
+          header: HeaderPlaceholder(),
         )
       ],
     );

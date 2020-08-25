@@ -9,10 +9,10 @@ class LayoutScreeen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Header(),
         LyricsWrapper(
           child: Lyrics(),
           footer: Footer(),
+          header: Header(),
         ),
       ],
     );

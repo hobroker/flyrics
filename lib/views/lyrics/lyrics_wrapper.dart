@@ -1,15 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flyrics/utils/sizing.dart';
+import 'package:flyrics/views/empty_widget.dart';
 
 class LyricsWrapper extends StatelessWidget {
   final Widget child;
   final Widget footer;
+  final Widget header;
 
   LyricsWrapper({
     Key key,
     @required this.child,
-    @required this.footer,
+    @required this.header,
+    this.footer = const EmptyWidget(),
   }) : super(key: key);
 
   @override
@@ -17,25 +20,30 @@ class LyricsWrapper extends StatelessWidget {
     return Expanded(
       child: Stack(
         children: [
-          Container(
-            padding: EdgeInsets.only(top: 8, left: 8, right: 4),
-            child: CupertinoScrollbar(
-              thickness: 4,
-              thicknessWhileDragging: 8,
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.only(right: 4),
-                      child: child,
-                    ),
-                    SizedBox(height: UI(context).footerHeight),
-                  ],
+          CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                floating: true,
+                pinned: true,
+                collapsedHeight: 50.0,
+                toolbarHeight: 0,
+                expandedHeight: 80.0,
+                backgroundColor: Colors.transparent,
+                flexibleSpace: header,
+              ),
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index) => Container(
+                    child: child,
+                    padding: EdgeInsets.only(top: 8, left: 8, right: 4),
+                  ),
+                  childCount: 1,
                 ),
               ),
-            ),
+              SliverPadding(
+                padding: EdgeInsets.only(bottom: UI(context).footerHeight),
+              )
+            ],
           ),
           Positioned(
             bottom: 0,

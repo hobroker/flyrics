@@ -8,3 +8,7 @@ Track getTrack(AppState state) => state.track;
 bool hasTrack(AppState state) => getTrack(state) != null;
 
 String getTrackArtwork(AppState state) => getTrack(state)?.artwork;
+
+String getTrackName(AppState state) => getTrack(state)?.name;
+
+String getTrackArtist(AppState state) => getTrack(state)?.artist;

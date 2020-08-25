@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/constants/sizing.dart';
-import 'package:flyrics/utils/random.dart';
 
-class PlaceholderRect extends StatefulWidget {
+class PlaceholderRect extends StatelessWidget {
   final double height;
   final double width;
 
@@ -13,17 +11,12 @@ class PlaceholderRect extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _PlaceholderRectState createState() => _PlaceholderRectState();
-}
-
-class _PlaceholderRectState extends State<PlaceholderRect> {
-  @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
       color: Theme.of(context).primaryColor,
       duration: Duration(milliseconds: 300),
-      width: widget.width,
-      height: widget.height,
+      width: this.width,
+      height: this.height,
     );
   }
 }

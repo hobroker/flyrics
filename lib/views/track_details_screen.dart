@@ -1,21 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/models/track.dart';
 
 class TrackDetailsScreen extends StatelessWidget {
-  final Track track;
+  final String name;
+  final String artist;
 
   TrackDetailsScreen({
     Key key,
-    @required this.track,
+    @required this.name,
+    @required this.artist,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(this.track.name),
-        Text(this.track.artist),
-      ],
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            this.name,
+            overflow: TextOverflow.ellipsis,
+            style: new TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          Text(
+            this.artist,
+            overflow: TextOverflow.ellipsis,
+            style: new TextStyle(
+              fontSize: 14.0,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

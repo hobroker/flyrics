@@ -13,15 +13,17 @@ class TrackDetails extends StatelessWidget {
     return StoreConnector<AppState, _ViewModel>(
       converter: (Store<AppState> store) {
         return _ViewModel(
-          track: getTrack(store.state),
-          isPlaying: store.state.isRunning,
+          name: getTrackName(store.state),
+          artist: getTrackArtist(store.state),
+          hasTrack: hasTrack(store.state),
         );
       },
       builder: (context, vm) {
-        return vm.track == null
+        return !vm.hasTrack
             ? TrackDetailsPlaceholder()
             : TrackDetailsScreen(
-                track: vm.track,
+                name: vm.name,
+                artist: vm.artist,
               );
       },
     );
@@ -29,11 +31,13 @@ class TrackDetails extends StatelessWidget {
 }
 
 class _ViewModel {
-  final Track track;
-  final bool isPlaying;
+  final String name;
+  final String artist;
+  final bool hasTrack;
 
   _ViewModel({
-    this.track,
-    this.isPlaying,
+    this.name,
+    this.artist,
+    this.hasTrack,
   });
 }

@@ -3,15 +3,17 @@ import 'package:redux/redux.dart';
 import 'package:flyrics/actions/track_actions.dart';
 
 final artworkStateReducer = combineReducers<ArtworkState>([
-  TypedReducer<ArtworkState, FetchTrackSuccessAction>((state, action) {
+  TypedReducer<ArtworkState, FetchArtworkBytesStartAction>((state, action) {
     return state.copyWith(
-      url: action.track.artwork,
+      url: action.url,
       bytes: null,
+      isLoading: true,
     );
   }),
   TypedReducer<ArtworkState, FetchArtworkBytesSuccessAction>((state, action) {
     return state.copyWith(
       bytes: action.bytes,
+      isLoading: false,
     );
   }),
   TypedReducer<ArtworkState, FetchArtworkColorsSuccessAction>((state, action) {

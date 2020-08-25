@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/models/app_state.dart';
 import 'package:flyrics/models/artwork_state.dart';
-import 'package:flyrics/selectors/track.dart';
 
 ArtworkState getArtworkState(AppState state) => state.artwork;
 
@@ -10,10 +9,10 @@ String getArtworkUrl(AppState state) => getArtworkState(state)?.url;
 List<int> getTrackArtworkAsBytes(AppState state) =>
     getArtworkState(state).bytes;
 
-bool isArtworkLoaded(AppState state) => getTrackArtworkAsBytes(state) != null;
+bool isArtworkLoading(AppState state) => getArtworkState(state).isLoading;
 
 bool isArtworkMissing(AppState state) =>
-    getTrackArtworkAsBytes(state) == null && !trackHasArtwork(state);
+    getArtworkUrl(state) == null && !isArtworkLoading(state);
 
 Color getArtworkDominantColor(AppState state) =>
     getArtworkState(state)?.dominantColor;

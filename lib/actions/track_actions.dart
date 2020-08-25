@@ -11,7 +11,11 @@ class FetchTrackSuccessAction {
   FetchTrackSuccessAction(this.track);
 }
 
-class FetchArtworkBytesStartAction {}
+class FetchArtworkBytesStartAction {
+  final String url;
+
+  FetchArtworkBytesStartAction(this.url);
+}
 
 class FetchArtworkBytesSuccessAction {
   final List<int> bytes;

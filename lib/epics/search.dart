@@ -17,9 +17,8 @@ Stream<dynamic> searchLyricsEpic(
     actions
         .where((action) => action is SearchStartAction)
         .map((action) => getSearchQuery(store.state))
-        .asyncMap((query) => api.genius
-            .search(query)
-            .then((results) => SearchSuccessAction(results)));
+        .asyncMap((query) => api.genius.search(query))
+        .map((results) => SearchSuccessAction(results));
 
 Stream<dynamic> onSearchSuccessEpic(
         Stream<dynamic> actions, EpicStore<AppState> store) =>
@@ -33,9 +32,8 @@ Stream<dynamic> fetchLyricsEpic(
     actions
         .where((action) => action is FetchLyricsStartAction)
         .map((action) => action.url)
-        .asyncMap((url) => api.genius
-            .fetchLyrics(url)
-            .then((text) => FetchLyricsSuccessAction('$text $text $text')));
+        .asyncMap((url) => api.genius.fetchLyrics(url))
+        .map((text) => FetchLyricsSuccessAction('$text $text $text'));
 
 final searchEpics = combineEpics<AppState>([
   searchLyricsOnTrachFetchSuccessEpic,

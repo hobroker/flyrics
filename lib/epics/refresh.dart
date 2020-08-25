@@ -7,8 +7,8 @@ import 'package:flyrics/actions/track_actions.dart';
 Stream<dynamic> triggerRefreshEpic(
         Stream<dynamic> actions, EpicStore<AppState> store) =>
     actions
-        .where((action) =>
-            action is CheckTrackAction || action is AppStartedAction)
+        .where((action) => action is CheckTrackAction)
+        .where((action) => action is AppStartedAction)
         .debounce(Duration(milliseconds: 1500))
         .map((action) => CheckTrackAction());
 

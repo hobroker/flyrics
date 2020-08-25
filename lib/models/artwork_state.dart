@@ -30,12 +30,14 @@ class ArtworkState {
     bytes,
     textColor,
     colors,
+    isLoading,
   }) {
     return ArtworkState(
       url: url ?? this.url,
       bytes: bytes ?? this.bytes,
       textColor: textColor ?? this.textColor,
       colors: colors ?? this.colors,
+      isLoading: isLoading ?? this.isLoading,
     );
   }
 
@@ -44,6 +46,7 @@ class ArtworkState {
     return other.url == url &&
         other.bytes == bytes &&
         other.colors == colors &&
+        other.isLoading == isLoading &&
         other.textColor == textColor;
   }
 

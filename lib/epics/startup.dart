@@ -19,10 +19,10 @@ Stream<dynamic> checkIsRunningOnStartEpic(
 
 Stream<dynamic> checkIsRunningEpic(
         Stream<dynamic> actions, EpicStore<AppState> store) =>
-    actions.where((action) => action is CheckIsRunningStartAction).asyncMap(
-        (action) => api.spotify
-            .isRunning()
-            .then((value) => CheckIsRunningSuccessAction(value)));
+    actions
+        .where((action) => action is CheckIsRunningStartAction)
+        .asyncMap((action) => api.spotify.isRunning())
+        .map((value) => CheckIsRunningSuccessAction(value));
 
 final startupEpics = combineEpics<AppState>([
   fetchTrackOnStartEpic,

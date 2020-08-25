@@ -29,6 +29,7 @@ class ArtworkScreen extends StatelessWidget {
           ),
           AnimatedContainer(
             width: shadeWidth,
+            duration: UI.transitionDuration,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.centerLeft,
@@ -40,7 +41,6 @@ class ArtworkScreen extends StatelessWidget {
                 tileMode: TileMode.repeated,
               ),
             ),
-            duration: Duration(milliseconds: 300),
           ),
         ],
       ),

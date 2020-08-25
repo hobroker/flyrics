@@ -21,7 +21,7 @@ class ContentScreen extends StatelessWidget {
       child: AnimatedContainer(
         padding: EdgeInsets.all(8),
         alignment: Alignment(0, 0),
-        duration: Duration(milliseconds: 300),
+        duration: UI.transitionDuration,
         decoration: BoxDecoration(
           color: backgroundColor,
         ),

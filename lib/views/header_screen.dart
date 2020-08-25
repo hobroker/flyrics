@@ -17,7 +17,7 @@ class HeaderScreen extends StatelessWidget {
       width: UI(context).headerWidth,
       height: UI(context).headerHeight,
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 300),
+        duration: UI.transitionDuration,
         decoration: BoxDecoration(
           color: backgroundColor,
         ),

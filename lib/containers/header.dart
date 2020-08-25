@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/selectors/artwork.dart';
-import 'package:flyrics/utils/sizing.dart';
+import 'package:flyrics/utils/connector.dart';
 import 'package:flyrics/views/header_screen.dart';
 import 'package:redux/redux.dart';
 import 'package:flyrics/models/app_state.dart';
-import 'connector.dart';
 
 class Header extends StatelessWidget {
   @override
@@ -17,7 +16,7 @@ class Header extends StatelessWidget {
       },
       builder: (context, vm) {
         return HeaderScreen(
-          backgroundColor: vm.backgroundColor ?? UI.primaryColor,
+          backgroundColor: vm.backgroundColor,
         );
       },
     );
@@ -26,13 +25,16 @@ class Header extends StatelessWidget {
 
 class _ViewModel {
   final Color backgroundColor;
+  final Color textColor;
 
   _ViewModel({
     this.backgroundColor,
+    this.textColor,
   });
 
   bool operator ==(other) {
-    return other.dominantColor == backgroundColor;
+    return other.backgroundColor == backgroundColor &&
+        other.textColor == textColor;
   }
 
   @override

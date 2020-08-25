@@ -26,7 +26,7 @@ Stream<dynamic> fetchArtworkImageAsBytesEpic(
         .where((action) => action is FetchTrackSuccessAction)
         .map((action) => getArtworkUrl(store.state))
         .where((url) => url != null)
-        .asyncMap((url) => Http.fetchImageBytes(url).then((response) {
+        .asyncMap((url) => Http.getBytes(url).then((response) {
               return FetchArtworkBytesSuccessAction(response);
             }));
 

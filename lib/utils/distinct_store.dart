@@ -1,5 +1,4 @@
-import 'package:flyrics/models/app_state.dart';
-import 'package:redux/redux.dart' show Middleware, Reducer, Store;
+import 'package:redux/redux.dart';
 
 class DistinctStore<T> extends Store<T> {
   DistinctStore(

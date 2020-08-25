@@ -3,36 +3,45 @@ import 'package:flyrics/utils/sizing.dart';
 
 class ContentScreen extends StatelessWidget {
   final Color backgroundColor;
+  final Color textColor;
+  final String text;
 
   ContentScreen({
     Key key,
-    this.backgroundColor,
+    @required this.backgroundColor,
+    @required this.textColor,
+    @required this.text,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var width = UI(context).appWidth;
     var height = UI(context).appHeight - UI(context).headerHeight;
 
     return Expanded(
       child: AnimatedContainer(
+        padding: EdgeInsets.all(8),
         alignment: Alignment(0, 0),
         duration: Duration(milliseconds: 300),
         decoration: BoxDecoration(
-          color: this.backgroundColor,
+          color: backgroundColor,
         ),
         child: ConstrainedBox(
-          constraints: BoxConstraints(maxHeight: height, minHeight: height),
+          constraints: BoxConstraints(
+            maxHeight: height,
+            minHeight: height,
+          ),
           child: SingleChildScrollView(
-            child: Container(
-              width: width,
-              color: Colors.green,
-              child: Column(
-                children: [
-                  Text('one'),
-                  Text('one'),
-                ],
-              ),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Text(
+                  text,
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    color: textColor,
+                  ),
+                )
+              ],
             ),
           ),
         ),

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flyrics/selectors/artwork.dart';
 import 'package:flyrics/selectors/track.dart';
 import 'package:flyrics/store/connector.dart';
-import 'package:flyrics/views/track/placeholder.dart';
-import 'package:flyrics/views/track/screen.dart';
+import 'package:flyrics/views/track/track_placeholder.dart';
+import 'package:flyrics/views/track/track_screen.dart';
 
 class TrackDetails extends StatelessWidget {
   @override
@@ -17,12 +17,12 @@ class TrackDetails extends StatelessWidget {
       ),
       builder: (context, vm) {
         return vm.hasTrack
-            ? TrackDetailsScreen(
+            ? TrackScreen(
                 name: vm.name,
                 artist: vm.artist,
                 textColor: vm.textColor,
               )
-            : TrackDetailsPlaceholder();
+            : TrackPlaceholder();
       },
     );
   }

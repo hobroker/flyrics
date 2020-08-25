@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flyrics/containers/dynamic_container.dart';
 import 'package:flyrics/utils/sizing.dart';
 
-class ContentWrapper extends StatelessWidget {
-  final List<Widget> children;
-  final Color backgroundColor;
+class LyricsWrapper extends StatelessWidget {
+  final Widget child;
 
-  ContentWrapper({
+  LyricsWrapper({
     Key key,
-    @required this.children,
-    @required this.backgroundColor,
+    @required this.child,
   }) : super(key: key);
 
   @override
@@ -29,7 +27,7 @@ class ContentWrapper extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisSize: MainAxisSize.max,
-                children: children,
+                children: [child],
               ),
             ),
           ),

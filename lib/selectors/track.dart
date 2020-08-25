@@ -5,6 +5,7 @@ Track getTrack(AppState state) => state.track;
 
 bool hasTrack(AppState state) {
   var track = getTrack(state);
+
   return track != null && !track.isEmpty();
 }
 

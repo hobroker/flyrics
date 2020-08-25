@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:flyrics/utils/debug.dart';
+
 class ShellApi {
   Future<String> _exec(String cmd, List<String> args) async {
     try {
@@ -7,8 +9,7 @@ class ShellApi {
 
       return result.stdout.trim();
     } catch (e) {
-      print('error');
-      print(e.error);
+      debug('error', e.error);
 
       rethrow;
     }

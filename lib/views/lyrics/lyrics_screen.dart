@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class LyricsContent extends StatelessWidget {
+class LyricsScreen extends StatelessWidget {
   final Color textColor;
   final String text;
 
-  LyricsContent({
+  LyricsScreen({
     Key key,
     @required this.textColor,
     @required this.text,

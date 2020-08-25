@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flyrics/selectors/artwork.dart';
 import 'package:flyrics/store/connector.dart';
 import 'package:flyrics/views/empty_widget.dart';
-import 'package:flyrics/views/artwork/placeholder.dart';
-import 'package:flyrics/views/artwork/screen.dart';
+import 'package:flyrics/views/artwork/artwork_placeholder.dart';
+import 'package:flyrics/views/artwork/artwork_screen.dart';
 
 class Artwork extends StatelessWidget {
   @override

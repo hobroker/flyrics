@@ -52,8 +52,6 @@ class GeniusApi {
   Future<LyricsResult> fetchLyrics(String url) async {
     var result = await _fetchLyricsText(url);
 
-    print(result.tries);
-
     return result;
   }
 }

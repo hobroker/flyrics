@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flyrics/utils/sizing.dart';
 import 'package:flyrics/views/text_ellipsis.dart';
 
-class TrackDetailsScreen extends StatelessWidget {
+class TrackScreen extends StatelessWidget {
   final String name;
   final String artist;
   final Color textColor;
 
-  TrackDetailsScreen({
+  TrackScreen({
     Key key,
     @required this.name,
     @required this.artist,

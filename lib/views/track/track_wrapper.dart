@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class TrackDetailsWrapper extends StatelessWidget {
+class TrackWrapper extends StatelessWidget {
   final Widget child;
 
-  TrackDetailsWrapper({
+  TrackWrapper({
     Key key,
     this.child,
   }) : super(key: key);

@@ -7,6 +7,7 @@ class PlaceholderShimmerScreeen extends StatelessWidget {
   final double width;
   final Color backgroundColor;
   final Color shineColor;
+  final bool isAnimated;
 
   PlaceholderShimmerScreeen({
     Key key,
@@ -14,6 +15,7 @@ class PlaceholderShimmerScreeen extends StatelessWidget {
     @required this.width,
     this.backgroundColor,
     this.shineColor,
+    this.isAnimated = true,
   }) : super(key: key);
 
   @override
@@ -21,7 +23,7 @@ class PlaceholderShimmerScreeen extends StatelessWidget {
     return Shimmer.fromColors(
       baseColor: backgroundColor ?? UI.primaryDarkColor,
       highlightColor: shineColor ?? UI.primaryColor,
-      enabled: true,
+      enabled: isAnimated,
       child: AnimatedContainer(
         width: width,
         height: height,

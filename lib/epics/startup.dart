@@ -8,8 +8,9 @@ import 'package:redux_epics/redux_epics.dart';
 Stream<dynamic> fetchTrackOnStartEpic(
         Stream<dynamic> actions, EpicStore<AppState> store) =>
     actions
-        .where((action) => action is AppStartedAction)
-        .map((event) => FetchTrackStartAction());
+        .where((action) => action is CheckIsRunningSuccessAction)
+        .where((action) => action.isRunning)
+        .map((isRunning) => FetchTrackStartAction());
 
 Stream<dynamic> checkIsRunningOnStartEpic(
         Stream<dynamic> actions, EpicStore<AppState> store) =>

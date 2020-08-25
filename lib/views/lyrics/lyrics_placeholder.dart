@@ -6,10 +6,17 @@ import 'package:flyrics/views/placeholder_shimmer_screen.dart';
 
 class LyricsPlaceholder extends StatelessWidget {
   final double height = 16;
+  final bool isAnimated;
+
+  const LyricsPlaceholder({
+    Key key,
+    this.isAnimated = true,
+  }) : super(key: key);
 
   Widget getPlaceholderLine(context) {
     return PlaceholderShimmerScreeen(
       height: height,
+      isAnimated: isAnimated,
       width: UI(context).appWidth * randomDoubleBetween(0.6, 0.8),
     );
   }

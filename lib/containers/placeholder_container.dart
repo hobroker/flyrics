@@ -3,14 +3,16 @@ import 'package:flyrics/selectors/artwork.dart';
 import 'package:flyrics/store/connector.dart';
 import 'package:flyrics/views/placeholder_shimmer_screen.dart';
 
-class PlaceholderShimmer extends StatelessWidget {
+class PlaceholderContainer extends StatelessWidget {
   final double height;
   final double width;
+  final bool isAnimated;
 
-  const PlaceholderShimmer({
+  const PlaceholderContainer({
     Key key,
     this.height,
     this.width,
+    this.isAnimated = true,
   }) : super(key: key);
 
   @override
@@ -26,6 +28,7 @@ class PlaceholderShimmer extends StatelessWidget {
           shineColor: vm.shineColor,
           width: width,
           height: height,
+          isAnimated: isAnimated,
         );
       },
     );

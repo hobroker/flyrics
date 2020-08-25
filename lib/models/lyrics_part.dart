@@ -14,6 +14,8 @@ class LyricsPart {
     this.endsInNewLine = false,
   });
 
+  bool get hasAnnotation => annotationId != null;
+
   LyricsPart copyWith({
     html,
     text,
@@ -26,11 +28,6 @@ class LyricsPart {
       annotationId: annotationId ?? this.annotationId,
       endsInNewLine: endsInNewLine ?? this.endsInNewLine,
     );
-  }
-
-  @override
-  String toString() {
-    return '$annotationId/$text/${endsInNewLine ? '\$' : ''}';
   }
 
   @override

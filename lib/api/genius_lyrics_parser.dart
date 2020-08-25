@@ -13,7 +13,7 @@ class GeniusLyricsParser {
 
   GeniusLyricsParser(this.html);
 
-  List<LyricsPart> parse() {
+  List<LyricsPart> parseParts() {
     var $fragment = parseFragment(html.replaceAll('<br>', '\n'));
     var map = _findAnnotations($fragment);
 

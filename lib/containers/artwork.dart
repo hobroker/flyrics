@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/selectors/artwork.dart';
 import 'package:flyrics/store/connector.dart';
-import 'package:flyrics/views/empty_widget.dart';
 import 'package:flyrics/views/artwork/artwork_placeholder.dart';
 import 'package:flyrics/views/artwork/artwork_screen.dart';
 
@@ -16,16 +15,14 @@ class Artwork extends StatelessWidget {
         fadeColor: getArtworkDominantColor(state),
       ),
       builder: (context, vm) {
-        if (vm.isLoading) {
-          return ArtworkPlaceholder(
-            isAnimated: !vm.isArtworkMissing,
-          );
-        }
-
-        return ArtworkScreen(
-          bytes: vm.artworkBytes,
-          fadeColor: vm.fadeColor,
-        );
+        return vm.isLoading
+            ? ArtworkPlaceholder(
+                isAnimated: !vm.isArtworkMissing,
+              )
+            : ArtworkScreen(
+                bytes: vm.artworkBytes,
+                fadeColor: vm.fadeColor,
+              );
       },
     );
   }

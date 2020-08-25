@@ -20,6 +20,6 @@ void main() {
       LyricsPart(text: 'hello', endsInNewLine: true),
     ];
 
-    expect(parser.parse(), equals(expected));
+    expect(parser.parseParts(), equals(expected));
   });
 }

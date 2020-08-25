@@ -5,20 +5,17 @@ import 'package:flyrics/models/lyrics_part.dart';
 class LyricsResult {
   final String text;
   final int tries;
-  final List<LyricsPart> parts;
 
   LyricsResult({
     this.text,
     this.tries,
-    this.parts,
   });
 
   @override
   bool operator ==(other) {
     return other is LyricsResult &&
         other.text == text &&
-        other.tries == tries &&
-        other.parts == parts;
+        other.tries == tries;
   }
 
   @override

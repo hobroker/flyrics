@@ -4,7 +4,7 @@ import 'package:redux/redux.dart';
 import 'utils/config.dart';
 import 'actions/app_actions.dart';
 import 'api/api.dart';
-import 'store/create_store.dart';
+import 'store/store.dart';
 import 'views/app.dart';
 
 void startTimers(Store store) {
@@ -23,8 +23,8 @@ Future<void> main() async {
   runApp(App(
     store: store,
     onLoad: () {
-      startTimers(store);
       store.dispatch(AppStartedAction());
+      startTimers(store);
     },
   ));
 }

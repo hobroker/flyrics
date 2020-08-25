@@ -18,11 +18,14 @@ class TextEllipsis extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      addWhiteSpaces(text),
-      maxLines: maxLines,
-      overflow: TextOverflow.ellipsis,
-      style: style,
+    return Container(
+      height: style.fontSize * maxLines,
+      child: Text(
+        addWhiteSpaces(text),
+        maxLines: maxLines,
+        overflow: TextOverflow.ellipsis,
+        style: style.copyWith(height: 1),
+      ),
     );
   }
 }

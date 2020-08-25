@@ -22,7 +22,11 @@ class TrackScreen extends StatelessWidget {
 
   TextStyle get artistTextStyle => textStyle.copyWith(fontSize: 15);
 
-  double getNameAvailableHeight(constraints) => constraints.maxHeight - 18.0;
+  double getNameAvailableHeight(constraints) => constraints.maxHeight - 21.0;
+
+  double getNameHeight(constraints) => getNameMaxLines(constraints) == 1
+      ? 21.0
+      : getNameAvailableHeight(constraints);
 
   int getNameMaxLines(constraints) {
     var textPainter = paintText(
@@ -31,10 +35,8 @@ class TrackScreen extends StatelessWidget {
       constraints,
       maxLines: 1,
     );
-    var didExceedMaxLines = textPainter.didExceedMaxLines;
-    var nameAvailableHeight = getNameAvailableHeight(constraints);
 
-    return didExceedMaxLines && nameAvailableHeight > 35 ? 2 : 1;
+    return textPainter.didExceedMaxLines ? 2 : 1;
   }
 
   @override
@@ -43,22 +45,19 @@ class TrackScreen extends StatelessWidget {
       builder: (context, constraints) {
         var nameAvailableHeight = getNameAvailableHeight(constraints);
         var nameMaxLines = getNameMaxLines(constraints);
-        var nameHeight = nameMaxLines == 2 ? nameAvailableHeight : 20.0;
+        if (nameMaxLines == 2 && nameAvailableHeight < 30) {
+          nameMaxLines = 1;
+        }
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              height: nameHeight,
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: TextEllipsis(
-                  text: name,
-                  maxLines: nameMaxLines,
-                  style: nameTextStyle,
-                ),
-              ),
+            TextEllipsis(
+              text: name,
+              maxLines: nameMaxLines,
+              style: nameTextStyle,
             ),
+            SizedBox(height: 4),
             TextEllipsis(
               text: artist,
               style: artistTextStyle,

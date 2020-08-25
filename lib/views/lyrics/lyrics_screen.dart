@@ -12,7 +12,7 @@ class LyricsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
+    return SelectableText(
       text,
       textAlign: TextAlign.start,
       style: TextStyle(

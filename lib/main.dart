@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
-import 'actions/app_actions.dart';
-import 'api/api.dart';
-import 'store/store.dart';
-import 'utils/config.dart';
-import 'views/app_screen.dart';
+import 'package:flyrics/api/api.dart';
+import 'package:flyrics/containers/app.dart';
+import 'package:flyrics/store/store.dart';
+import 'package:flyrics/utils/config.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,11 +11,8 @@ Future<void> main() async {
   var store = createStore();
 
   runApp(
-    AppScreen(
+    App(
       store: store,
-      onLoad: () {
-        store.dispatch(AppStartedAction());
-      },
     ),
   );
 }

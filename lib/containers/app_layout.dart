@@ -10,8 +10,8 @@ import 'package:flyrics/views/layout/layout_screen.dart';
 class AppLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Connector(
-      converter: (store) => isPlayerRunning(store.state),
+    return Connector.state(
+      converter: isPlayerRunning,
       builder: (context, isRunning) {
         return Scaffold(
           body: DynamicContainer(

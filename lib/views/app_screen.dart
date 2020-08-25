@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flyrics/containers/app_layout.dart';
-import 'package:flyrics/models/state/app_state.dart';
-import 'package:redux/redux.dart';
 
 class AppScreen extends StatefulWidget {
-  final Store<AppState> store;
-  final Function onLoad;
+  final Function onInit;
 
   const AppScreen({
     Key key,
-    this.store,
-    this.onLoad,
+    this.onInit,
   }) : super(key: key);
 
   @override
@@ -22,17 +17,14 @@ class _AppScreenState extends State<AppScreen> {
   @override
   void initState() {
     super.initState();
-    widget.onLoad();
+    widget.onInit();
   }
 
   @override
   Widget build(BuildContext context) {
-    return StoreProvider(
-      store: widget.store,
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: AppLayout(),
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: AppLayout(),
     );
   }
 }

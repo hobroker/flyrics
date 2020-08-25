@@ -17,8 +17,8 @@ class DynamicContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Connector(
-      converter: (store) => getArtworkDominantColor(store.state),
+    return Connector.state(
+      converter: getArtworkDominantColor,
       builder: (context, backgroundColor) {
         return Container(
           width: width,

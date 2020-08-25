@@ -9,12 +9,12 @@ import 'package:flyrics/views/lyrics/lyrics_screen.dart';
 class Lyrics extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Connector(
-      converter: (store) => _ViewModel(
-        textColor: getArtworkTextColor(store.state),
-        text: getLyricsText(store.state),
-        hasLyrics: activeTrackHasLyrics(store.state),
-        isLoading: areLyricsLoading(store.state),
+    return Connector.state(
+      converter: (state) => _ViewModel(
+        textColor: getArtworkTextColor(state),
+        text: getLyricsText(state),
+        hasLyrics: activeTrackHasLyrics(state),
+        isLoading: areLyricsLoading(state),
       ),
       builder: (context, vm) {
         return Conditional.single(

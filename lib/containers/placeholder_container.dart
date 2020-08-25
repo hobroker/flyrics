@@ -17,10 +17,10 @@ class PlaceholderContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Connector(
-      converter: (store) => _ViewModel(
-        backgroundColor: getPlaceholderBgColor(store.state),
-        shineColor: getPlaceholderFgColor(store.state),
+    return Connector.state(
+      converter: (state) => _ViewModel(
+        backgroundColor: getPlaceholderBgColor(state),
+        shineColor: getPlaceholderFgColor(state),
       ),
       builder: (context, vm) {
         return PlaceholderShimmerScreeen(

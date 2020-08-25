@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/containers/lyrics.dart';
-import 'package:flyrics/views/lyrics/lyrics_wrapper.dart';
 import 'package:flyrics/views/header/header.dart';
+import 'package:flyrics/views/lyrics/lyrics_wrapper.dart';
 
 class LayoutScreeen extends StatelessWidget {
   @override

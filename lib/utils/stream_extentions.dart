@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:stream_transform/src/from_handlers.dart';
 
 extension OfType<T> on Stream<T> {

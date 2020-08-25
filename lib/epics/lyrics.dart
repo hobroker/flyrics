@@ -1,7 +1,7 @@
-import 'package:flyrics/models/app_state.dart';
 import 'package:flyrics/actions/lyrics_actions.dart';
 import 'package:flyrics/actions/search_actions.dart';
 import 'package:flyrics/api/api.dart';
+import 'package:flyrics/models/state/app_state.dart';
 import 'package:flyrics/selectors/search.dart';
 import 'package:flyrics/selectors/track.dart';
 import 'package:redux_epics/redux_epics.dart';

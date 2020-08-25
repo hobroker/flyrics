@@ -1,8 +1,7 @@
 import 'package:flyrics/actions/artwork_actions.dart';
-import 'package:flyrics/actions/player_actions.dart';
+import 'package:flyrics/models/state/app_state.dart';
 import 'package:flyrics/selectors/track.dart';
 import 'package:flyrics/utils/color.dart';
-import 'package:flyrics/models/app_state.dart';
 import 'package:redux_epics/redux_epics.dart';
 
 Stream<dynamic> findArtworkColorsEpic(

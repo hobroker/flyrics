@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flyrics/models/lyrics_model.dart';
 import 'package:flyrics/models/search_result_model.dart';
-import 'package:http/http.dart' as http;
 import 'package:html/parser.dart';
+import 'package:http/http.dart' as http;
 
 class GeniusApi {
   final String accessToken;

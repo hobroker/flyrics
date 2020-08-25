@@ -1,8 +1,8 @@
-import 'package:flyrics/models/app_state.dart';
+import 'package:flyrics/models/state/app_state.dart';
 
 import 'artwork_state_reducer.dart';
-import 'player_reducer.dart';
 import 'lyrics_reducer.dart';
+import 'player_reducer.dart';
 import 'search_reducer.dart';
 import 'timer_reducer.dart';
 import 'track_reducer.dart';

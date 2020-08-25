@@ -1,7 +1,7 @@
-import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flyrics/models/state/app_state.dart';
 import 'package:redux/redux.dart';
-import 'package:flyrics/models/app_state.dart';
 
 bool _onWillChange(prevViewModel, newViewModel) =>
     prevViewModel != newViewModel;

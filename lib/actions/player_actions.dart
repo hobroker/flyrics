@@ -5,4 +5,3 @@ class SetIsRunningAction {
 
   SetIsRunningAction(this.isRunning);
 }
-

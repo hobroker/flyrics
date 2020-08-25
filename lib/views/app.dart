@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/containers/app_layout.dart';
-import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:flyrics/models/app_state.dart';
+import 'package:flyrics/containers/app_layout.dart';
+import 'package:flyrics/models/state/app_state.dart';
+import 'package:redux/redux.dart';
 
 class App extends StatefulWidget {
   final Store<AppState> store;

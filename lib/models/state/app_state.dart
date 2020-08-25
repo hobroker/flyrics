@@ -16,28 +16,12 @@ class AppState {
   final TimerState timer;
 
   AppState({
-    this.player = const PlayerState(
-      isRunning: false,
-    ),
-    this.timer = const TimerState(
-      refreshTrack: false,
-    ),
-    this.track = const TrackState(
-      isLoading: false,
-      byId: {},
-    ),
-    this.artwork = const ArtworkState(
-      isLoading: false,
-      byId: {},
-    ),
-    this.search = const SearchState(
-      isLoading: false,
-      results: [],
-    ),
-    this.lyrics = const LyricsState(
-      isLoading: false,
-      byId: {},
-    ),
+    this.player = const PlayerState(isRunning: false),
+    this.timer = const TimerState(refreshTrack: false),
+    this.track = const TrackState(byId: {}, isLoading: false),
+    this.artwork = const ArtworkState(byId: {}, isLoading: false),
+    this.search = const SearchState(results: [], isLoading: false),
+    this.lyrics = const LyricsState(byId: {}, isLoading: false),
   });
 
   @override
@@ -45,10 +29,10 @@ class AppState {
     return other is AppState &&
         other.player == player &&
         other.track == track &&
-        other.artwork == artwork &&
-        other.search == search &&
         other.lyrics == lyrics &&
-        other.timer == timer;
+        other.search == search &&
+        other.timer == timer &&
+        other.artwork == artwork;
   }
 
   @override

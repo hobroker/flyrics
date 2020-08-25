@@ -1,4 +1,4 @@
-import 'package:flyrics/models/app_state.dart';
+import 'package:flyrics/models/state/app_state.dart';
 import 'package:flyrics/models/state/track_state.dart';
 import 'package:flyrics/models/track_model.dart';
 

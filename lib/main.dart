@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/timers/track_refresh.dart';
 import 'package:redux/redux.dart';
-import 'utils/config.dart';
+
 import 'actions/app_actions.dart';
 import 'api/api.dart';
 import 'store/store.dart';
+import 'utils/config.dart';
 import 'views/app.dart';
 
 void startTimers(Store store) {

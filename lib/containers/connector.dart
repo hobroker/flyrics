@@ -4,11 +4,10 @@ import 'package:redux/redux.dart';
 import 'package:flyrics/models/app_state.dart';
 
 class Connector<ViewModel> extends StatelessWidget {
-  final dynamic viewModel;
   final Function(Store<AppState> store) converter;
   final Function(BuildContext context, ViewModel vm) builder;
 
-  Connector({this.viewModel, this.converter, this.builder});
+  Connector({this.converter, this.builder});
 
   onWillChange(prevViewModel, newViewModel) => prevViewModel != newViewModel;
 

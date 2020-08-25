@@ -17,7 +17,7 @@ bool isArtworkLoaded(AppState state) => getTrackArtworkAsBytes(state) != null;
 bool shouldDisplayArtwork(AppState state) =>
     isArtworkLoaded(state) && !shouldUpdateArtwork(state);
 
-Color getArtworkBackgroundColor(AppState state) =>
-    getArtworkState(state).backgroundColor;
+Color getArtworkDominantColor(AppState state) =>
+    getArtworkState(state).dominantColor;
 
 Color getArtworkTextColor(AppState state) => getArtworkState(state).textColor;

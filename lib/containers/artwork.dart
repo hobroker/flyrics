@@ -15,7 +15,7 @@ class Artwork extends StatelessWidget {
         return _ViewModel(
           artworkBytes: getTrackArtworkAsBytes(store.state),
           isArtworkLoaded: shouldDisplayArtwork(store.state),
-          fadeColor: getArtworkBackgroundColor(store.state),
+          fadeColor: getArtworkDominantColor(store.state),
         );
       },
       builder: (context, vm) {

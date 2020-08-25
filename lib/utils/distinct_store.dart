@@ -1,5 +1,5 @@
-import 'package:redux/redux.dart'
-    show Middleware, NextDispatcher, Reducer, Store;
+import 'package:flyrics/models/app_state.dart';
+import 'package:redux/redux.dart' show Middleware, Reducer, Store;
 
 class DistinctStore<T> extends Store<T> {
   DistinctStore(
@@ -10,9 +10,6 @@ class DistinctStore<T> extends Store<T> {
   }) : super(reducer, initialState: initialState, middleware: middleware);
 
   @override
-  NextDispatcher _createReduceAndNotify(bool distinct) {
-    return (dynamic action) {
-      print('action');
-    };
-  }
+  Stream<T> get onChange =>
+      super.onChange.distinct((prev, next) => prev == next);
 }

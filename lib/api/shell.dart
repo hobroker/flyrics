@@ -7,6 +7,7 @@ class Shell {
 
       return result.stdout.trim();
     } catch (e) {
+      print('error');
       print(e.error);
 
       throw e;

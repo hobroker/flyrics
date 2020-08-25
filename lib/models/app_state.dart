@@ -13,4 +13,14 @@ class AppState {
     this.track: const Track(),
     this.artworkState: const ArtworkState(),
   });
+
+  bool operator ==(other) {
+    return other is AppState &&
+        other.isRunning == isRunning &&
+        other.track == track &&
+        other.artworkState == artworkState;
+  }
+
+  @override
+  int get hashCode => super.hashCode;
 }

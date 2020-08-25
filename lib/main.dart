@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flyrics/epics/index.dart';
+import 'package:flyrics/utils/distinct_store.dart';
 
 import 'package:redux/redux.dart';
 import 'package:redux_epics/redux_epics.dart';
@@ -16,7 +17,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   var epicMiddleware = new EpicMiddleware(epic);
-  var store = Store<AppState>(
+  var store = DistinctStore<AppState>(
     appReducer,
     initialState: AppState(),
     middleware: [
@@ -24,10 +25,6 @@ Future<void> main() async {
 //      new LoggingMiddleware.printer(),
     ],
   );
-
-//  store.onChange.listen((event) {
-//    print(event);
-//  });
 
   Timer.periodic(new Duration(milliseconds: 1500), (timer) {
     store.dispatch(FetchTrackStartAction());

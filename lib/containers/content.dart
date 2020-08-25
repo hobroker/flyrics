@@ -9,11 +9,9 @@ class Content extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Connector<_ViewModel>(
-      converter: (Store<AppState> store) {
-        return _ViewModel(
-          backgroundColor: getArtworkBackgroundColor(store.state),
-        );
-      },
+      converter: (Store<AppState> store) => _ViewModel(
+        backgroundColor: getArtworkDominantColor(store.state),
+      ),
       builder: (context, vm) {
         return ContentScreen(
           backgroundColor: vm.backgroundColor,

@@ -7,14 +7,14 @@ class ArtworkState {
   final String url;
   final List<int> bytes;
   final bool shouldRefresh;
-  final Color backgroundColor;
+  final Color dominantColor;
   final Color textColor;
 
   const ArtworkState({
     this.url,
     this.bytes,
     this.shouldRefresh = true,
-    this.backgroundColor = UI.primaryColor,
+    this.dominantColor = UI.primaryColor,
     this.textColor = UI.textColor,
   });
 
@@ -33,8 +33,19 @@ class ArtworkState {
       url: url ?? this.url,
       bytes: bytes ?? this.bytes,
       shouldRefresh: shouldRefresh ?? this.shouldRefresh,
-      backgroundColor: dominantColor ?? this.backgroundColor,
+      dominantColor: dominantColor ?? this.dominantColor,
       textColor: textColor ?? this.textColor,
     );
   }
+
+  bool operator ==(other) {
+    return other.url == url &&
+        other.bytes == bytes &&
+        other.shouldRefresh == shouldRefresh &&
+        other.dominantColor == dominantColor &&
+        other.textColor == textColor;
+  }
+
+  @override
+  int get hashCode => super.hashCode;
 }

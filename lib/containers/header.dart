@@ -12,7 +12,7 @@ class Header extends StatelessWidget {
     return Connector<_ViewModel>(
       converter: (Store<AppState> store) {
         return _ViewModel(
-          backgroundColor: getArtworkBackgroundColor(store.state),
+          backgroundColor: getArtworkDominantColor(store.state),
         );
       },
       builder: (context, vm) {
@@ -32,7 +32,7 @@ class _ViewModel {
   });
 
   bool operator ==(other) {
-    return other.backgroundColor == backgroundColor;
+    return other.dominantColor == backgroundColor;
   }
 
   @override

@@ -3,6 +3,7 @@ import 'package:flyrics/selectors/artwork.dart';
 import 'package:flyrics/selectors/lyrics.dart';
 import 'package:flyrics/store/connector.dart';
 import 'package:flyrics/views/content_screen.dart';
+import 'package:flyrics/views/content_wrapper.dart';
 import 'package:redux/redux.dart';
 import 'package:flyrics/models/app_state.dart';
 
@@ -17,10 +18,12 @@ class Content extends StatelessWidget {
         isLoading: areLyricsLoading(store.state),
       ),
       builder: (context, vm) {
-        return ContentScreen(
+        return ContentWrapper(
           backgroundColor: vm.backgroundColor,
-          textColor: vm.textColor,
-          text: vm.isLoading ? 'loading...' : vm.text,
+          child: LyricsContent(
+            textColor: vm.textColor,
+            text: vm.isLoading ? 'loading...' : vm.text,
+          ),
         );
       },
     );

@@ -9,10 +9,10 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return HeaderWrapper(
       children: [
+        Artwork(),
         TrackWrapper(
           child: TrackDetails(),
         ),
-        Artwork(),
       ],
     );
   }

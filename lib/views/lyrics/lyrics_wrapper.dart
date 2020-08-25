@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flyrics/containers/genius_redirect.dart';
 import 'package:flyrics/utils/sizing.dart';
 
 class LyricsWrapper extends StatelessWidget {
@@ -15,7 +16,7 @@ class LyricsWrapper extends StatelessWidget {
 
     return Flexible(
       child: Container(
-        padding: EdgeInsets.all(8),
+        padding: EdgeInsets.only(top: 8, left: 8, right: 8),
         child: ConstrainedBox(
           constraints: BoxConstraints(
             maxHeight: height,
@@ -25,7 +26,11 @@ class LyricsWrapper extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.max,
-              children: [child],
+              children: [
+                GeniusRedirect(),
+                child,
+                SizedBox(height: 8),
+              ],
             ),
           ),
         ),

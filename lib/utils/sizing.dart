@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
 
+double relativeSize(double main, double percent, {double max}) {
+  var result = main * percent;
+  if (max == null) {
+    return result;
+  }
+
+  if (result > max) {
+    result = max;
+  }
+
+  return result;
+}
+
 class UI {
   final BuildContext context;
   double appHeight;
   double appWidth;
-  double headerHeight;
   double headerWidth;
 
   static const Color primaryColor = Color(0xff282828);
@@ -20,6 +32,13 @@ class UI {
     appHeight = size.height;
     appWidth = size.width;
     headerWidth = appWidth;
-    headerHeight = appWidth * .2;
   }
+
+  double get headerHeight => relativeSize(appWidth, .2, max: 80);
+
+  double get trackNameFontSize => relativeSize(headerHeight, .25, max: 20);
+
+  double get trackArtistFontSize => relativeSize(headerHeight, .2, max: 18);
+
+  double get lyricsFontSize => relativeSize(headerHeight, .185, max: 14);
 }

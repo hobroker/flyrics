@@ -16,6 +16,7 @@ class TrackScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var ui = UI(context);
     var textStyle = TextStyle(
       color: textColor ?? UI.textColor,
     );
@@ -26,14 +27,14 @@ class TrackScreen extends StatelessWidget {
         TextEllipsis(
           text: name,
           style: textStyle.copyWith(
-            fontSize: 15.0,
+            fontSize: ui.trackNameFontSize,
             fontWeight: FontWeight.w500,
           ),
         ),
         TextEllipsis(
           text: artist,
           style: textStyle.copyWith(
-            fontSize: 13.0,
+            fontSize: ui.trackArtistFontSize,
           ),
         ),
       ],

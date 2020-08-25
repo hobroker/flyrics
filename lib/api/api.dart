@@ -1,7 +1,6 @@
 import 'package:flyrics/api/http_client.dart';
 import 'package:flyrics/api/url.dart';
 import 'package:flyrics/utils/config.dart';
-import 'package:http/http.dart';
 
 import 'genius_api.dart';
 import 'shell_api.dart';
@@ -13,7 +12,7 @@ class Api {
   Config _config;
   ShellApi shell;
   UrlApi url;
-  BaseClient client;
+  HttpClient client;
 
   Api init(Config config, {httpClient}) {
     _config = config;

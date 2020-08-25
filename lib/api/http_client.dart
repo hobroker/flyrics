@@ -1,9 +1,13 @@
-import 'package:http/http.dart';
+import 'dart:convert';
 
-class HttpClient extends BaseClient {
-  final _httpClient = Client();
+import 'package:http/http.dart' as http;
 
-  @override
-  Future<StreamedResponse> send(BaseRequest request) =>
-      _httpClient.send(request);
+class HttpClient {
+  Future<http.Response> getRaw(uri) => http.get(uri);
+
+  Future<Map> get(uri) async {
+    var response = await getRaw(uri);
+
+    return json.decode(response.body);
+  }
 }

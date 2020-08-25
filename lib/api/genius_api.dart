@@ -1,14 +1,14 @@
 import 'dart:convert';
 
+import 'package:flyrics/api/http_client.dart';
 import 'package:flyrics/models/search_result_model.dart';
 import 'package:html/parser.dart';
-import 'package:http/http.dart';
 
 class GeniusApi {
   final String accessToken;
   static int MAX_FETCH_LOOPS = 10;
   final String baseUrl = 'api.genius.com';
-  final BaseClient client;
+  final HttpClient client;
 
   GeniusApi(this.client, {this.accessToken});
 
@@ -17,8 +17,7 @@ class GeniusApi {
       'q': query,
       'access_token': accessToken,
     });
-    var response = await client.get(uri);
-    var data = json.decode(response.body);
+    var data = await client.get(uri);
     var items = data['response']['hits'].map((item) => item['result']);
     var list = List<SearchResultModel>.from(
         items.map((item) => SearchResultModel.fromJson(item)));
@@ -29,7 +28,7 @@ class GeniusApi {
   Future<String> _fetchLyricsText(url, {int loop = 0}) async {
     loop++;
 
-    var response = await client.get(url);
+    var response = await client.getRaw(url);
     var document = parse(response.body);
     var $pageData = document.querySelector('meta[itemprop="page_data"]');
 

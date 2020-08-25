@@ -16,6 +16,8 @@ class FetchArtworkBytesSuccessAction {
 
 class SetArtworkAsMissingAction {}
 
+class ResetArtworkColorsAction {}
+
 class SetArtworkColorsAction {
   final String id;
   final Color textColor;

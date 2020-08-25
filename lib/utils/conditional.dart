@@ -1,0 +1,14 @@
+import 'package:flutter/material.dart';
+
+class Conditional {
+  static Widget single({
+    @required bool when,
+    @required Widget Function() render,
+    @required Widget Function() fallback,
+  }) {
+    if (when) {
+      return render();
+    }
+    return fallback();
+  }
+}

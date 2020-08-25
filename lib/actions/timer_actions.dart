@@ -1,3 +1,11 @@
-class StartRefreshTimerAction {}
+class SetRefreshTrackTimerAction {
+  final bool value;
 
-class StopRefreshTimerAction {}
+  SetRefreshTrackTimerAction(this.value);
+}
+
+class SetCheckIsRunningTimerAction {
+  final bool value;
+
+  SetCheckIsRunningTimerAction(this.value);
+}

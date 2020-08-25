@@ -29,6 +29,7 @@ class PlaceholderShimmerScreeen extends StatelessWidget {
         height: height,
         decoration: BoxDecoration(
           color: UI.primaryColor,
+          borderRadius: BorderRadius.circular(2),
         ),
         duration: UI.transitionDuration,
       ),

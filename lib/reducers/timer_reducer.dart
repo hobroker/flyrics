@@ -3,10 +3,10 @@ import 'package:flyrics/models/state/timer_state.dart';
 import 'package:redux/redux.dart';
 
 final timerReducer = combineReducers<TimerState>([
-  TypedReducer<TimerState, StopRefreshTimerAction>((state, action) {
-    return state.copyWith(refreshTrack: false);
+  TypedReducer<TimerState, SetCheckIsRunningTimerAction>((state, action) {
+    return state.copyWith(checkIsRunning: action.value);
   }),
-  TypedReducer<TimerState, StartRefreshTimerAction>((state, action) {
-    return state.copyWith(refreshTrack: true);
+  TypedReducer<TimerState, SetRefreshTrackTimerAction>((state, action) {
+    return state.copyWith(refreshTrack: action.value);
   }),
 ]);

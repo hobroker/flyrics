@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/utils/random.dart';
 import 'package:flyrics/utils/sizing.dart';
-import 'package:flyrics/views/empty_widget.dart';
 import 'package:flyrics/views/placeholder_shimmer_screen.dart';
 
 class LyricsPlaceholder extends StatelessWidget {
-  final double height = 16;
+  final double height = 12;
+  final int linesCount = 14;
   final bool isAnimated;
 
   const LyricsPlaceholder({
@@ -26,13 +26,10 @@ class LyricsPlaceholder extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: List.generate(
-        9,
+        linesCount,
         (index) {
-          if (index == 4) {
-            return Container(
-              height: height,
-              child: EmptyWidget(),
-            );
+          if (index % 5 == 0) {
+            return SizedBox(height: height);
           }
 
           return Container(

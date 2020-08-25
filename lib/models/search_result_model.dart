@@ -5,7 +5,10 @@ class SearchResultModel {
   final String title;
   final String url;
 
-  SearchResultModel({this.title, this.url});
+  SearchResultModel({
+    this.title,
+    this.url,
+  });
 
   static SearchResultModel fromJson(Map json) {
     return SearchResultModel(

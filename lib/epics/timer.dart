@@ -5,27 +5,41 @@ import 'package:flyrics/actions/track_actions.dart';
 import 'package:flyrics/models/state/app_state.dart';
 import 'package:redux_epics/redux_epics.dart';
 
-Stream<dynamic> stopRefreshTrackTimerEpic(
+Stream<dynamic> stopCheckIsRunningTimerEpic(
         Stream<dynamic> actions, EpicStore<AppState> store) =>
     actions
         .where((action) => action is FetchTrackStartAction)
-        .map((action) => StopRefreshTimerAction());
+        .map((action) => SetCheckIsRunningTimerAction(false));
 
-Stream<dynamic> onStartUpStartRefreshTrackTimerEpic(
+Stream<dynamic> onStartupStartCheckIsRunningTimerEpic(
         Stream<dynamic> actions, EpicStore<AppState> store) =>
     actions
         .where((action) => action is SetArtworkColorsAction)
-        .map((action) => StartRefreshTimerAction());
+        .map((action) => SetCheckIsRunningTimerAction(true));
 
-Stream<dynamic> restartUpStartRefreshTrackTimerEpic(
+Stream<dynamic> restartCheckIsRunningTimerEpic(
         Stream<dynamic> actions, EpicStore<AppState> store) =>
     actions
         .where((action) => action is SetIsRunningAction)
         .where((action) => !action.isRunning)
-        .map((action) => StartRefreshTimerAction());
+        .map((action) => SetCheckIsRunningTimerAction(true));
+
+Stream<dynamic> stopRefreshingTrackTimerEpic(
+        Stream<dynamic> actions, EpicStore<AppState> store) =>
+    actions
+        .where((action) => action is FetchTrackStartAction)
+        .map((action) => SetRefreshTrackTimerAction(false));
+
+Stream<dynamic> startRefreshingTrackTimerEpic(
+        Stream<dynamic> actions, EpicStore<AppState> store) =>
+    actions
+        .where((action) => action is FetchTrackSuccessAction)
+        .map((action) => SetRefreshTrackTimerAction(true));
 
 final timerEpics = combineEpics<AppState>([
-  stopRefreshTrackTimerEpic,
-  restartUpStartRefreshTrackTimerEpic,
-  onStartUpStartRefreshTrackTimerEpic,
+  stopCheckIsRunningTimerEpic,
+  restartCheckIsRunningTimerEpic,
+  onStartupStartCheckIsRunningTimerEpic,
+  stopRefreshingTrackTimerEpic,
+  startRefreshingTrackTimerEpic,
 ]);

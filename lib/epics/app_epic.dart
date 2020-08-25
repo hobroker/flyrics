@@ -6,6 +6,7 @@ import 'color.dart';
 import 'lyrics.dart';
 import 'search.dart';
 import 'startup.dart';
+import 'timer.dart';
 import 'track.dart';
 
 final appEpic = combineEpics<AppState>([
@@ -15,5 +16,5 @@ final appEpic = combineEpics<AppState>([
   startupEpics,
   searchEpics,
   lyricsEpics,
-//  timerEpics,
+  timerEpics,
 ]);

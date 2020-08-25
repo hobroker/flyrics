@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flyrics/selectors/artwork.dart';
 import 'package:flyrics/selectors/lyrics.dart';
 import 'package:flyrics/store/connector.dart';
+import 'package:flyrics/utils/conditional.dart';
 import 'package:flyrics/views/lyrics/lyrics_placeholder.dart';
 import 'package:flyrics/views/lyrics/lyrics_screen.dart';
 
@@ -16,12 +17,16 @@ class Lyrics extends StatelessWidget {
         isLoading: areLyricsLoading(state),
       ),
       builder: (context, vm) {
-        return vm.isLoading || !vm.hasLyrics
-            ? LyricsPlaceholder()
-            : LyricsScreen(
-                textColor: vm.textColor,
-                text: vm.text,
-              );
+        return Conditional.single(
+          when: !vm.isLoading && vm.hasLyrics,
+          render: () => LyricsScreen(
+            textColor: vm.textColor,
+            text: vm.text,
+          ),
+          fallback: () => LyricsPlaceholder(
+            isAnimated: vm.isLoading,
+          ),
+        );
       },
     );
   }

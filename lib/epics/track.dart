@@ -1,3 +1,4 @@
+import 'package:flyrics/actions/player_actions.dart';
 import 'package:flyrics/actions/track_actions.dart';
 import 'package:flyrics/api/api.dart';
 import 'package:flyrics/models/state/app_state.dart';
@@ -12,6 +13,14 @@ Stream<dynamic> fetchCurrentTrackEpic(
         .where((track) => track != getActiveTrack(store.state))
         .map((track) => FetchTrackSuccessAction(track));
 
+Stream<dynamic> resetActiveIdEpic(
+        Stream<dynamic> actions, EpicStore<AppState> store) =>
+    actions
+        .where((action) => action is SetIsRunningAction)
+        .where((action) => !action.isRunning)
+        .map((action) => ResetActiveIdAction());
+
 final trackEpics = combineEpics<AppState>([
   fetchCurrentTrackEpic,
+  resetActiveIdEpic,
 ]);

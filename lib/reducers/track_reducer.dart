@@ -12,8 +12,15 @@ final trackReducer = combineReducers<TrackState>([
   TypedReducer<TrackState, FetchTrackSuccessAction>((state, action) {
     return state.copyWith(
       isLoading: false,
-      byId: setMapValue(state.byId, action.track.id, action.track),
       activeId: action.track.id,
+      byId: setMapValue(state.byId, action.track.id, action.track),
+    );
+  }),
+  TypedReducer<TrackState, ResetActiveIdAction>((state, action) {
+    return TrackState(
+      isLoading: state.isLoading,
+      byId: state.byId,
+      activeId: null,
     );
   }),
 ]);

@@ -16,6 +16,8 @@ TrackModel getActiveTrack(AppState state) {
 
 bool hasTrack(AppState state) => getActiveTrack(state) != null;
 
+bool isTrackLoading(AppState state) => getTrackState(state).isLoading;
+
 String getTrackName(AppState state) => getActiveTrack(state)?.name;
 
 String getTrackArtist(AppState state) => getActiveTrack(state)?.artist;

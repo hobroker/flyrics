@@ -9,3 +9,5 @@ class FetchTrackSuccessAction {
 
   FetchTrackSuccessAction(this.track);
 }
+
+class ResetActiveIdAction {}

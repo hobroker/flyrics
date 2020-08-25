@@ -24,7 +24,7 @@ class DynamicContainer extends StatelessWidget {
           width: width,
           height: height,
           decoration: BoxDecoration(
-            color: backgroundColor,
+            color: backgroundColor ?? UI.primaryColor,
           ),
           child: AnimatedContainer(
             duration: UI.transitionDuration,

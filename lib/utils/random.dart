@@ -6,7 +6,7 @@ int random(min, max) {
   return min + random.nextInt(max - min);
 }
 
-randomSize(double maxWidth, {subPercent: 0.1}) {
+double randomSize(double maxWidth, {subPercent: 0.1}) {
   var sub = maxWidth * subPercent;
 
   return random((maxWidth - sub).toInt(), maxWidth.toInt()).toDouble();

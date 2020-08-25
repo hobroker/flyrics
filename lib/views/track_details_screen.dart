@@ -14,6 +14,10 @@ class TrackDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var textStyle = new TextStyle(
+      color: this.textColor,
+    );
+
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,18 +25,16 @@ class TrackDetailsScreen extends StatelessWidget {
           Text(
             this.name,
             overflow: TextOverflow.ellipsis,
-            style: new TextStyle(
+            style: textStyle.copyWith(
               fontSize: 16.0,
               fontWeight: FontWeight.w500,
-              color: this.textColor,
             ),
           ),
           Text(
             this.artist,
             overflow: TextOverflow.ellipsis,
-            style: new TextStyle(
+            style: textStyle.copyWith(
               fontSize: 14.0,
-              color: this.textColor,
             ),
           ),
         ],

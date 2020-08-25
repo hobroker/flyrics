@@ -12,20 +12,20 @@ class TrackDetails extends StatelessWidget {
     return StoreConnector<AppState, _ViewModel>(
       converter: (Store<AppState> store) {
         return _ViewModel(
+          hasTrack: hasTrack(store.state),
           name: getTrackName(store.state),
           artist: getTrackArtist(store.state),
-          hasTrack: hasTrack(store.state),
           textColor: getArtworkTextColor(store.state),
         );
       },
       builder: (context, vm) {
-        return !vm.hasTrack
-            ? TrackDetailsPlaceholder()
-            : TrackDetailsScreen(
+        return vm.hasTrack
+            ? TrackDetailsScreen(
                 name: vm.name,
                 artist: vm.artist,
                 textColor: vm.textColor,
-              );
+              )
+            : TrackDetailsPlaceholder();
       },
     );
   }

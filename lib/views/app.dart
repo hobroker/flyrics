@@ -33,8 +33,8 @@ class _AppState extends State<App> {
         debugShowCheckedModeBanner: false,
         home: HomePage(),
         theme: ThemeData(
-          primaryColor: const Color(0xff282828),
-          accentColor: const Color(0xff62D36E),
+          primaryColor: Color(0xff282828),
+          accentColor: Color(0xff62D36E),
         ),
       ),
     );

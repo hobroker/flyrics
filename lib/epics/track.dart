@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flyrics/api/http.dart';
 import 'package:flyrics/api/spotify.dart';
 import 'package:flyrics/selectors/track.dart';
@@ -41,8 +40,8 @@ Stream<dynamic> findArtworkColorsEpic(
 
     var backgroundColor = generator.dominantColor?.color;
     var textColor = backgroundColor.computeLuminance() > 0.5
-        ? Colors.black
-        : lighten(backgroundColor, 0.5);
+        ? darken(backgroundColor, 0.5)
+        : lighten(backgroundColor, 0.75);
 
     return FetchArtworkColorsSuccessAction(
       backgroundColor: backgroundColor,

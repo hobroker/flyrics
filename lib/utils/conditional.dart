@@ -7,4 +7,11 @@ class Conditional {
     @required Widget Function() fallback,
   }) =>
       when ? render() : fallback();
+
+  static List<Widget> many({
+    @required bool when,
+    @required List<Widget> Function() render,
+    @required List<Widget> Function() fallback,
+  }) =>
+      when ? render() : fallback();
 }

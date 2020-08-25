@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/selectors/artwork.dart';
 import 'package:flyrics/store/connector.dart';
-import 'package:flyrics/utils/sizing.dart';
+import 'package:flyrics/utils/ux.dart';
 
 class DynamicContainer extends StatelessWidget {
   final Widget child;
@@ -24,10 +24,10 @@ class DynamicContainer extends StatelessWidget {
           width: width,
           height: height,
           decoration: BoxDecoration(
-            color: backgroundColor ?? UI.primaryColor,
+            color: backgroundColor ?? UX.primaryColor,
           ),
           child: AnimatedContainer(
-            duration: UI.transitionDuration,
+            duration: UX.transitionDuration,
             decoration: BoxDecoration(
               color: backgroundColor,
             ),

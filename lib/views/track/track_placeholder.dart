@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/containers/placeholder_container.dart';
 import 'package:flyrics/utils/random.dart';
-import 'package:flyrics/utils/sizing.dart';
 
 class TrackPlaceholder extends StatelessWidget {
   final bool isAnimated;
@@ -13,21 +12,25 @@ class TrackPlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        PlaceholderContainer(
-          height: 20.0,
-          isAnimated: isAnimated,
-          width: UI(context).appWidth * randomDoubleBetween(0.6, 0.7),
-        ),
-        SizedBox(height: 4),
-        PlaceholderContainer(
-          height: 16,
-          isAnimated: isAnimated,
-          width: UI(context).appWidth * randomDoubleBetween(0.4, 0.5),
-        ),
-      ],
-    );
+    return LayoutBuilder(builder: (context, constraints) {
+      var appWidth = constraints.maxWidth;
+
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          PlaceholderContainer(
+            height: 20.0,
+            isAnimated: isAnimated,
+            width: appWidth * randomDoubleBetween(0.7, 0.9),
+          ),
+          SizedBox(height: 4),
+          PlaceholderContainer(
+            height: 16,
+            isAnimated: isAnimated,
+            width: appWidth * randomDoubleBetween(0.5, 0.6),
+          ),
+        ],
+      );
+    });
   }
 }

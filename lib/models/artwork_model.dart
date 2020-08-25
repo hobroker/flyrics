@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flyrics/utils/color.dart';
-import 'package:flyrics/utils/sizing.dart';
+import 'package:flyrics/utils/ux.dart';
 
 @immutable
 class ArtworkModel {
@@ -13,8 +13,8 @@ class ArtworkModel {
   const ArtworkModel({
     this.url,
     this.bytes,
-    this.colors = const [UI.primaryColor],
-    this.textColor = UI.textColor,
+    this.colors = const [UX.primaryColor],
+    this.textColor = UX.textColor,
   });
 
   Color get dominantColor => autoDarken(colors.first);

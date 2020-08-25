@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/utils/sizing.dart';
+import 'package:flyrics/utils/ux.dart';
 import 'package:flyrics/views/hover_builder.dart';
 import 'package:flyrics/views/icons/genius_icon.dart';
 
@@ -15,19 +15,18 @@ class GeniusRedirectScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var ui = UI(context);
     return HoverBuilder<double>(
       value: 0.5,
       onEnter: (double opacity) => 1.0,
       builder: (BuildContext context, double opacity) {
         return AnimatedOpacity(
           opacity: opacity,
-          duration: UI.transitionDuration,
+          duration: UX.transitionDuration,
           child: IconButton(
             padding: EdgeInsets.all(0),
             constraints: BoxConstraints(
-              maxWidth: ui.footerHeight,
-              maxHeight: ui.footerHeight,
+              maxWidth: 20,
+              maxHeight: 20,
             ),
             icon: GeniusIcon(),
             onPressed: openUrl,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/utils/sizing.dart';
+import 'package:flyrics/utils/relative_size.dart';
+import 'package:flyrics/utils/ux.dart';
 import 'package:flyrics/views/text_ellipsis.dart';
 
 class TrackScreen extends StatelessWidget {
@@ -17,7 +18,7 @@ class TrackScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var textStyle = TextStyle(
-      color: textColor ?? UI.textColor,
+      color: textColor ?? UX.textColor,
     );
 
     return LayoutBuilder(

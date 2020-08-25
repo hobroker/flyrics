@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/utils/sizing.dart';
+import 'package:flyrics/utils/ux.dart';
 
 class ArtworkScreen extends StatelessWidget {
   final List<int> bytes;
@@ -8,7 +8,7 @@ class ArtworkScreen extends StatelessWidget {
   ArtworkScreen({
     Key key,
     @required this.bytes,
-    this.fadeColor = UI.primaryColor,
+    this.fadeColor = UX.primaryColor,
   }) : super(key: key);
 
   @override
@@ -32,7 +32,7 @@ class ArtworkScreen extends StatelessWidget {
               Container(
                 width: shadeWidth,
                 child: AnimatedContainer(
-                  duration: UI.transitionDuration,
+                  duration: UX.transitionDuration,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.centerLeft,

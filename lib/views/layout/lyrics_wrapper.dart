@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flyrics/utils/sizing.dart';
 import 'package:flyrics/views/empty_widget.dart';
 
-class LyricsWrapper extends StatelessWidget {
+class LayoutWrapper extends StatelessWidget {
   final Widget header;
   final Widget body;
   final Widget footer;
 
-  LyricsWrapper({
+  LayoutWrapper({
     Key key,
     @required this.header,
     @required this.body,
@@ -40,7 +39,7 @@ class LyricsWrapper extends StatelessWidget {
               ),
             ),
             SliverPadding(
-              padding: EdgeInsets.only(bottom: UI(context).footerHeight),
+              padding: EdgeInsets.only(bottom: 20),
             ),
           ],
         ),

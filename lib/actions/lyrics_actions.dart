@@ -1,4 +1,3 @@
-import 'package:flyrics/models/lyrics_model.dart';
 import 'package:flyrics/store/action.dart';
 
 class SetLyricsLoadingAction with Action {}

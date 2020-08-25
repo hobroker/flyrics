@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/containers/placeholder_container.dart';
 import 'package:flyrics/utils/random.dart';
-import 'package:flyrics/utils/sizing.dart';
 
 class LyricsPlaceholder extends StatelessWidget {
   final double height = 12;
@@ -13,27 +12,33 @@ class LyricsPlaceholder extends StatelessWidget {
     this.isAnimated = true,
   }) : super(key: key);
 
+  double genWidth(appWidth) => appWidth * randomDoubleBetween(0.6, 0.8);
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: List.generate(
-        linesCount,
-        (index) {
-          if (index % 5 == 0) {
-            return SizedBox(height: height);
-          }
+    return LayoutBuilder(builder: (context, constraints) {
+      var appWidth = constraints.maxWidth;
 
-          return Container(
-            margin: EdgeInsets.only(bottom: 4),
-            child: PlaceholderContainer(
-              height: height,
-              isAnimated: isAnimated,
-              width: UI(context).appWidth * randomDoubleBetween(0.6, 0.8),
-            ),
-          );
-        },
-      ),
-    );
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: List.generate(
+          linesCount,
+          (index) {
+            if (index % 5 == 0) {
+              return SizedBox(height: height);
+            }
+
+            return Container(
+              margin: EdgeInsets.only(bottom: 4),
+              child: PlaceholderContainer(
+                height: height,
+                isAnimated: isAnimated,
+                width: genWidth(appWidth),
+              ),
+            );
+          },
+        ),
+      );
+    });
   }
 }

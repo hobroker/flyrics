@@ -19,7 +19,7 @@ class TrackDetails extends StatelessWidget {
       ),
       builder: (context, vm) {
         return Conditional.single(
-          when: !vm.isLoading && vm.hasTrack,
+          when: vm.isLoading && vm.hasTrack,
           render: () => TrackScreen(
             name: vm.name,
             artist: vm.artist,

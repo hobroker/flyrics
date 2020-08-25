@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/utils/sizing.dart';
+import 'package:flyrics/utils/ux.dart';
 import 'package:shimmer/shimmer.dart';
 
 class PlaceholderShimmerScreeen extends StatelessWidget {
@@ -21,17 +21,17 @@ class PlaceholderShimmerScreeen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: backgroundColor ?? UI.primaryDarkColor,
-      highlightColor: shineColor ?? UI.primaryColor,
+      baseColor: backgroundColor ?? UX.primaryDarkColor,
+      highlightColor: shineColor ?? UX.primaryColor,
       enabled: isAnimated,
       child: AnimatedContainer(
         width: width,
         height: height,
         decoration: BoxDecoration(
-          color: UI.primaryColor,
+          color: UX.primaryColor,
           borderRadius: BorderRadius.circular(2),
         ),
-        duration: UI.transitionDuration,
+        duration: UX.transitionDuration,
       ),
     );
   }

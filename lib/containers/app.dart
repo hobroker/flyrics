@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flyrics/actions/app_actions.dart';
+import 'package:flyrics/containers/home_page.dart';
 import 'package:flyrics/models/state/app_state.dart';
-import 'package:flyrics/views/app_screen.dart';
+import 'package:flyrics/selectors/player.dart';
 import 'package:redux/redux.dart';
 
 class App extends StatelessWidget {
@@ -21,8 +22,12 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreProvider(
       store: store,
-      child: AppScreen(
-        onInit: _onInit,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: HomePage(
+          onInit: _onInit,
+          isRunning: isPlayerRunning(store.state),
+        ),
       ),
     );
   }

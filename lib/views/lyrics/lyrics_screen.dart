@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/utils/sizing.dart';
 
 class LyricsScreen extends StatelessWidget {
   final Color textColor;

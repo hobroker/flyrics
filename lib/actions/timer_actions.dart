@@ -1,2 +1,3 @@
 class StartRefreshTimerAction {}
+
 class StopRefreshTimerAction {}

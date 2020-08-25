@@ -11,7 +11,13 @@ Stream<dynamic> triggerFetchArtworkImageAsBytesEpic(
         .where((action) => action is FetchTrackSuccessAction)
         .map((action) => action.track.artwork)
         .where((url) => url != null)
-        .map((url) => FetchArtworkBytesStartAction(url));
+        .map((url) {
+      var id = getActiveTrackId(store.state);
+      return FetchArtworkBytesStartAction(
+        url,
+        id: id,
+      );
+    });
 
 Stream<dynamic> setArtworkAsMissingEpic(Stream<dynamic> actions, store) =>
     actions
@@ -25,7 +31,13 @@ Stream<dynamic> fetchArtworkImageAsBytesEpic(Stream<dynamic> actions, store) =>
         .where((action) => action is FetchArtworkBytesStartAction)
         .map((action) => getTrackArtwork(store.state))
         .asyncMap((url) => api.spotify.getImageBytes(url))
-        .map((response) => FetchArtworkBytesSuccessAction(response));
+        .map((response) {
+      var id = getActiveTrackId(store.state);
+      return FetchArtworkBytesSuccessAction(
+        response,
+        id: id,
+      );
+    });
 
 final artworkEpics = combineEpics<AppState>([
   triggerFetchArtworkImageAsBytesEpic,

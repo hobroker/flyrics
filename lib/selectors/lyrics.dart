@@ -1,11 +1,11 @@
 import 'package:flyrics/models/app_state.dart';
-import 'package:flyrics/models/lyrics.dart';
-import 'package:flyrics/models/new/lyrics_state.dart';
+import 'package:flyrics/models/lyrics_model.dart';
+import 'package:flyrics/models/state/lyrics_state.dart';
 import 'package:flyrics/selectors/track.dart';
 
 LyricsState getLyricsState(AppState state) => state.lyrics;
 
-Map getLyricsById(AppState state) => state.lyrics.byId;
+Map getLyricsById(AppState state) => getLyricsState(state).byId;
 
 LyricsModel getActiveLyrics(AppState state) {
   var activeId = getActiveTrackId(state);

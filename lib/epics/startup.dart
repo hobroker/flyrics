@@ -1,7 +1,7 @@
 import 'package:flyrics/api/api.dart';
 import 'package:flyrics/models/app_state.dart';
 import 'package:flyrics/actions/app_actions.dart';
-import 'package:flyrics/actions/is_running_actions.dart';
+import 'package:flyrics/actions/player_actions.dart';
 import 'package:flyrics/actions/track_actions.dart';
 import 'package:redux_epics/redux_epics.dart';
 

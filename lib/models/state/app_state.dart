@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
-import 'package:flyrics/models/new/artwork_state.dart';
-import 'package:flyrics/models/new/lyrics_state.dart';
-import 'package:flyrics/models/new/player_state.dart';
-import 'package:flyrics/models/new/search_state.dart';
-import 'package:flyrics/models/new/timer_state.dart';
-import 'package:flyrics/models/new/track_state.dart';
+import 'package:flyrics/models/state/artwork_state.dart';
+import 'package:flyrics/models/state/lyrics_state.dart';
+import 'package:flyrics/models/state/player_state.dart';
+import 'package:flyrics/models/state/search_state.dart';
+import 'package:flyrics/models/state/timer_state.dart';
+import 'package:flyrics/models/state/track_state.dart';
 
 @immutable
 class AppState {

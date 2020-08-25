@@ -11,13 +11,13 @@ class Artwork extends StatelessWidget {
       converter: (state) => _ViewModel(
         artworkBytes: getTrackArtworkAsBytes(state),
         isLoading: isArtworkLoading(state),
-        isArtworkMissing: isArtworkMissing(state),
+        hasBytes: activeTrackHasArtworkBytes(state),
         fadeColor: getArtworkDominantColor(state),
       ),
       builder: (context, vm) {
-        return vm.isLoading
+        return vm.isLoading || !vm.hasBytes
             ? ArtworkPlaceholder(
-                isAnimated: !vm.isArtworkMissing,
+                isAnimated: !vm.hasBytes,
               )
             : ArtworkScreen(
                 bytes: vm.artworkBytes,
@@ -31,7 +31,7 @@ class Artwork extends StatelessWidget {
 @immutable
 class _ViewModel {
   final bool isLoading;
-  final bool isArtworkMissing;
+  final bool hasBytes;
   final List<int> artworkBytes;
   final Color fadeColor;
 
@@ -39,14 +39,14 @@ class _ViewModel {
     @required this.artworkBytes,
     @required this.isLoading,
     @required this.fadeColor,
-    @required this.isArtworkMissing,
+    @required this.hasBytes,
   });
 
   @override
   bool operator ==(other) {
     return other.isLoading == isLoading &&
         other.artworkBytes == artworkBytes &&
-        other.isArtworkMissing == isArtworkMissing &&
+        other.hasBytes == hasBytes &&
         other.fadeColor == fadeColor;
   }
 

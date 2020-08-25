@@ -1,4 +1,4 @@
-import 'package:flyrics/models/search_result.dart';
+import 'package:flyrics/models/search_result_model.dart';
 
 class SearchStartAction {}
 

@@ -1,11 +1,11 @@
-import 'package:flyrics/models/track.dart';
+import 'package:flyrics/models/track_model.dart';
 
 class FetchTrackStartAction {}
 
 class CheckTrackAction {}
 
 class FetchTrackSuccessAction {
-  final Track track;
+  final TrackModel track;
 
   FetchTrackSuccessAction(this.track);
 }

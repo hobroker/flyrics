@@ -1,6 +1,6 @@
 import 'package:flyrics/models/app_state.dart';
-import 'package:flyrics/models/new/track_state.dart';
-import 'package:flyrics/models/track.dart';
+import 'package:flyrics/models/state/track_state.dart';
+import 'package:flyrics/models/track_model.dart';
 
 TrackState getTrackState(AppState state) => state.track;
 
@@ -8,7 +8,7 @@ String getActiveTrackId(AppState state) => state.track.activeId;
 
 Map getTracksById(AppState state) => state.track.byId;
 
-Track getActiveTrack(AppState state) {
+TrackModel getActiveTrack(AppState state) {
   var activeId = getActiveTrackId(state);
 
   return getTracksById(state)[activeId];

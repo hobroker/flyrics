@@ -1,5 +1,5 @@
-import 'package:flyrics/models/new/track_state.dart';
-import 'package:flyrics/models/track.dart';
+import 'package:flyrics/models/state/track_state.dart';
+import 'package:flyrics/models/track_model.dart';
 import 'package:redux/redux.dart';
 import 'package:flyrics/actions/track_actions.dart';
 
@@ -11,7 +11,7 @@ final trackReducer = combineReducers<TrackState>([
   }),
   TypedReducer<TrackState, FetchTrackSuccessAction>((state, action) {
     var id = action.track.id;
-    var byId = Map<String, Track>.from(state.byId);
+    var byId = Map<String, TrackModel>.from(state.byId);
     byId[id] = action.track;
 
     return state.copyWith(

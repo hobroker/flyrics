@@ -2,14 +2,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flyrics/utils/debug.dart';
 
 @immutable
-class Track {
+class TrackModel {
   final String id;
   final String name;
   final String album;
   final String artist;
   final String artwork;
 
-  const Track({
+  const TrackModel({
     this.id,
     this.name,
     this.album,
@@ -17,8 +17,8 @@ class Track {
     this.artwork,
   });
 
-  static Track fromJson(Map json) {
-    return Track(
+  static TrackModel fromJson(Map json) {
+    return TrackModel(
       id: json['id'],
       name: json['name'],
       album: json['album'],
@@ -42,7 +42,7 @@ class Track {
 
   @override
   bool operator ==(other) {
-    return (other is Track && other.id == id);
+    return (other is TrackModel && other.id == id);
   }
 
   @override

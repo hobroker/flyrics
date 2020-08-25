@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flyrics/models/lyrics.dart';
+import 'package:flyrics/models/lyrics_model.dart';
 
 @immutable
 class LyricsState {

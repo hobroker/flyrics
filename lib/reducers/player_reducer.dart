@@ -1,5 +1,5 @@
-import 'package:flyrics/actions/is_running_actions.dart';
-import 'package:flyrics/models/new/player_state.dart';
+import 'package:flyrics/actions/player_actions.dart';
+import 'package:flyrics/models/state/player_state.dart';
 import 'package:redux/redux.dart';
 
 final playerReducer = combineReducers<PlayerState>([

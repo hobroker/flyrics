@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flyrics/api/scripts.dart';
 import 'package:flyrics/api/shell_api.dart';
-import 'package:flyrics/models/track.dart';
+import 'package:flyrics/models/track_model.dart';
 import 'package:http/http.dart' as http;
 
 class SpotifyApi {
@@ -16,10 +16,10 @@ class SpotifyApi {
     return result == 'true';
   }
 
-  Future<Track> fetchCurrentTrack() async {
+  Future<TrackModel> fetchCurrentTrack() async {
     var result = await shell.runAppleScript(Scripts.getCurrentTrack);
     var data = json.decode(result);
-    var track = Track.fromJson(data);
+    var track = TrackModel.fromJson(data);
 
     return track;
   }

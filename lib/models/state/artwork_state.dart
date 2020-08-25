@@ -12,6 +12,13 @@ class ArtworkState {
     this.isLoading,
   });
 
+  ArtworkState copyWith({byId, isLoading}) {
+    return ArtworkState(
+      byId: byId ?? this.byId,
+      isLoading: isLoading ?? this.isLoading,
+    );
+  }
+
   @override
   String toString() {
     return stringify({

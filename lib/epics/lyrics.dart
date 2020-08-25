@@ -21,10 +21,7 @@ Stream<dynamic> fetchLyricsEpic(
         .asyncMap((url) => api.genius.fetchLyrics(url))
         .map((result) {
       var id = getActiveTrackId(store.state);
-      return FetchLyricsSuccessAction(
-        result: result,
-        id: id,
-      );
+      return FetchLyricsSuccessAction(result, id: id);
     });
 
 final lyricsEpics = combineEpics<AppState>([

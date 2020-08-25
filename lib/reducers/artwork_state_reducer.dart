@@ -1,39 +1,44 @@
 import 'package:flyrics/actions/artwork_actions.dart';
-import 'package:flyrics/models/artwork_state.dart';
+import 'package:flyrics/models/artwork_model.dart';
+import 'package:flyrics/models/state/artwork_state.dart';
 import 'package:redux/redux.dart';
 
 final artworkStateReducer = combineReducers<ArtworkState>([
   TypedReducer<ArtworkState, FetchArtworkBytesStartAction>((state, action) {
-    return state.copyWith(
+    var id = action.id;
+    var byId = Map<String, ArtworkModel>.from(state.byId);
+    byId[id] = ArtworkModel(
       url: action.url,
       bytes: null,
+    );
+
+    return state.copyWith(
+      byId: byId,
       isLoading: true,
     );
   }),
   TypedReducer<ArtworkState, FetchArtworkBytesSuccessAction>((state, action) {
-    return state.copyWith(
+    var id = action.id;
+    var byId = Map<String, ArtworkModel>.from(state.byId);
+    byId[id] = byId[id].copyWith(
       bytes: action.bytes,
+    );
+
+    return state.copyWith(
+      byId: byId,
       isLoading: false,
     );
   }),
-  TypedReducer<ArtworkState, FetchArtworkBytesStartAction>((state, action) {
-    const newArtworkState = ArtworkState();
-    return state.copyWith(
-      textColor: newArtworkState.textColor,
-      colors: newArtworkState.colors,
-    );
-  }),
   TypedReducer<ArtworkState, SetArtworkColorsAction>((state, action) {
-    return state.copyWith(
+    var id = action.id;
+    var byId = Map<String, ArtworkModel>.from(state.byId);
+    byId[id] = byId[id].copyWith(
       textColor: action.textColor,
       colors: action.colors,
     );
-  }),
-  TypedReducer<ArtworkState, ResetArtworkColorsAction>((state, action) {
-    return ArtworkState(
-      isLoading: state.isLoading,
-      bytes: state.bytes,
-      url: state.url,
+
+    return state.copyWith(
+      byId: byId,
     );
   }),
   TypedReducer<ArtworkState, SetArtworkAsMissingAction>((state, action) {

@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
-import 'package:flyrics/models/track.dart';
+import 'package:flyrics/models/track_model.dart';
 import 'package:flyrics/utils/debug.dart';
 
 @immutable
 class TrackState {
-  final Map<String, Track> byId;
+  final Map<String, TrackModel> byId;
   final String activeId;
   final bool isLoading;
 

@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flyrics/models/search_result.dart';
+import 'package:flyrics/models/search_result_model.dart';
 
 @immutable
 class SearchState {
@@ -7,8 +7,8 @@ class SearchState {
   final bool isLoading;
 
   const SearchState({
-    this.isLoading = false,
-    this.results = const [],
+    this.isLoading,
+    this.results,
   });
 
   SearchState copyWith({isLoading, results}) {

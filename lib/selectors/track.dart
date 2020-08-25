@@ -14,11 +14,7 @@ TrackModel getActiveTrack(AppState state) {
   return getTracksById(state)[activeId];
 }
 
-bool hasTrack(AppState state) {
-  var track = getActiveTrack(state);
-
-  return track != null && !track.isEmpty();
-}
+bool hasTrack(AppState state) => getActiveTrack(state) != null;
 
 String getTrackName(AppState state) => getActiveTrack(state)?.name;
 

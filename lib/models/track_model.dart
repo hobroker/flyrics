@@ -38,8 +38,6 @@ class TrackModel {
     }, true);
   }
 
-  bool isEmpty() => id == null;
-
   @override
   bool operator ==(other) {
     return (other is TrackModel && other.id == id);

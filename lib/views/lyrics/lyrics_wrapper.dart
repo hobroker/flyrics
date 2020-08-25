@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flyrics/utils/sizing.dart';
 
@@ -24,15 +25,18 @@ class LyricsWrapper extends StatelessWidget {
         child: Stack(
           children: [
             Container(
-              padding: EdgeInsets.only(top: 8, left: 8, right: 8),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    child,
-                    SizedBox(height: 8),
-                  ],
+              padding: EdgeInsets.only(top: 8, left: 8, right: 4),
+              child: CupertinoScrollbar(
+                thickness: 4,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      child,
+                      SizedBox(height: 8),
+                    ],
+                  ),
                 ),
               ),
             ),

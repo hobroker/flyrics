@@ -25,10 +25,7 @@ class GeniusRedirectScreen extends StatelessWidget {
         child: IconButton(
           padding: EdgeInsets.all(0),
           constraints: BoxConstraints(maxWidth: 16, maxHeight: 16),
-          icon: SvgPicture.asset(
-            UI.geniusIcon,
-            color: UI.geniusAccentColor,
-          ),
+          icon: SvgPicture.asset(UI.geniusIcon, color: UI.geniusAccentColor),
           onPressed: onPressed,
         ),
       ),

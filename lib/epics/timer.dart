@@ -3,6 +3,7 @@ import 'package:flyrics/actions/player_actions.dart';
 import 'package:flyrics/actions/timer_actions.dart';
 import 'package:flyrics/actions/track_actions.dart';
 import 'package:flyrics/models/state/app_state.dart';
+import 'package:flyrics/selectors/timer.dart';
 import 'package:redux_epics/redux_epics.dart';
 
 Stream stopCheckIsRunningTimerEpic(Stream actions, store) => actions
@@ -20,10 +21,12 @@ Stream restartCheckIsRunningTimerEpic(Stream actions, store) => actions
 
 Stream stopRefreshingTrackTimerEpic(Stream actions, store) => actions
     .where((action) => action is FetchTrackStartAction)
+    .where((action) => isCheckIsRunningTimerActive(store.state))
     .map((action) => SetRefreshTrackTimerAction(false));
 
 Stream startRefreshingTrackTimerEpic(Stream actions, store) => actions
     .where((action) => action is FetchTrackSuccessAction)
+    .where((action) => !isCheckIsRunningTimerActive(store.state))
     .map((action) => SetRefreshTrackTimerAction(true));
 
 final timerEpics = combineEpics<AppState>([

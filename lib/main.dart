@@ -6,6 +6,7 @@ import 'package:flyrics/utils/config.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Config.init().then((secrets) => api.init(secrets));
 
   var store = createStore();

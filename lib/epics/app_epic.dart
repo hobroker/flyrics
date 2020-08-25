@@ -9,7 +9,7 @@ import 'search.dart';
 import 'startup.dart';
 import 'timer.dart';
 import 'track.dart';
-import 'url_epic.dart';
+import 'url.dart';
 
 final appEpic = combineEpics<AppState>([
   trackEpics,

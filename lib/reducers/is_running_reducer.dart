@@ -3,9 +3,6 @@ import 'package:redux/redux.dart';
 
 final isPlayingReducer = combineReducers<bool>([
   TypedReducer<bool, CheckIsRunningSuccessAction>((state, action) {
-    print('->');
-    print(action.isRunning);
-
     return action.isRunning;
   }),
 ]);

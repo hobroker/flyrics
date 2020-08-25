@@ -18,6 +18,10 @@ class App extends StatelessWidget {
       store: this.store,
       child: MaterialApp(
         home: HomePage(),
+        theme: ThemeData(
+          primaryColor: const Color(0xff282828),
+          accentColor: const Color(0xff62D36E),
+        ),
       ),
     );
   }

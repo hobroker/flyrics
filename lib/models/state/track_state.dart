@@ -1,10 +1,12 @@
+import 'dart:collection';
+
 import 'package:flutter/foundation.dart';
 import 'package:flyrics/models/track_model.dart';
 import 'package:flyrics/utils/debug.dart';
 
 @immutable
 class TrackState {
-  final Map<String, TrackModel> byId;
+  final HashMap<String, TrackModel> byId;
   final String activeId;
   final bool isLoading;
 
@@ -13,6 +15,14 @@ class TrackState {
     this.activeId,
     this.isLoading,
   });
+
+  factory TrackState.init() {
+    return TrackState(
+      byId: HashMap<String, TrackModel>(),
+      activeId: null,
+      isLoading: false,
+    );
+  }
 
   TrackState copyWith({byId, isLoading, activeId}) {
     return TrackState(

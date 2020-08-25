@@ -16,13 +16,24 @@ class AppState {
   final TimerState timer;
 
   AppState({
-    this.player = const PlayerState(isRunning: false),
-    this.timer = const TimerState(refreshTrack: false),
-    this.track = const TrackState(byId: {}, isLoading: false),
-    this.artwork = const ArtworkState(byId: {}, isLoading: false),
-    this.search = const SearchState(results: [], isLoading: false),
-    this.lyrics = const LyricsState(byId: {}, isLoading: false),
+    this.player,
+    this.timer,
+    this.track,
+    this.artwork,
+    this.search,
+    this.lyrics,
   });
+
+  factory AppState.init() {
+    return AppState(
+      player: PlayerState.init(),
+      timer: TimerState.init(),
+      track: TrackState.init(),
+      artwork: ArtworkState.init(),
+      search: SearchState.init(),
+      lyrics: LyricsState.init(),
+    );
+  }
 
   @override
   bool operator ==(other) {

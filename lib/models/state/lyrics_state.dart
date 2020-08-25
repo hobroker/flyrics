@@ -1,15 +1,24 @@
+import 'dart:collection';
+
 import 'package:flutter/foundation.dart';
 import 'package:flyrics/models/lyrics_model.dart';
 
 @immutable
 class LyricsState {
   final bool isLoading;
-  final Map<String, LyricsModel> byId;
+  final HashMap<String, LyricsModel> byId;
 
   const LyricsState({
     this.isLoading,
     this.byId,
   });
+
+  factory LyricsState.init() {
+    return LyricsState(
+      isLoading: false,
+      byId: HashMap<String, LyricsModel>(),
+    );
+  }
 
   LyricsState copyWith({isLoading, byId}) {
     return LyricsState(

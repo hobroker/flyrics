@@ -1,16 +1,25 @@
+import 'dart:collection';
+
 import 'package:flutter/foundation.dart';
 import 'package:flyrics/models/artwork_model.dart';
 import 'package:flyrics/utils/debug.dart';
 
 @immutable
 class ArtworkState {
-  final Map<String, ArtworkModel> byId;
   final bool isLoading;
+  final HashMap<String, ArtworkModel> byId;
 
   const ArtworkState({
-    this.byId,
     this.isLoading,
+    this.byId,
   });
+
+  factory ArtworkState.init() {
+    return ArtworkState(
+      isLoading: false,
+      byId: HashMap<String, ArtworkModel>(),
+    );
+  }
 
   ArtworkState copyWith({byId, isLoading}) {
     return ArtworkState(

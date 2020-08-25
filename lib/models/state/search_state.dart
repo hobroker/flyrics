@@ -3,13 +3,20 @@ import 'package:flyrics/models/search_result_model.dart';
 
 @immutable
 class SearchState {
-  final List<SearchResultModel> results;
   final bool isLoading;
+  final List<SearchResultModel> results;
 
   const SearchState({
     this.isLoading,
     this.results,
   });
+
+  factory SearchState.init() {
+    return SearchState(
+      isLoading: false,
+      results: [],
+    );
+  }
 
   SearchState copyWith({isLoading, results}) {
     return SearchState(

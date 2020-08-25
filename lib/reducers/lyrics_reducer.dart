@@ -1,17 +1,13 @@
 import 'package:flyrics/actions/lyrics_actions.dart';
 import 'package:flyrics/actions/search_actions.dart';
-import 'package:flyrics/models/lyrics_model.dart';
 import 'package:flyrics/models/state/lyrics_state.dart';
+import 'package:flyrics/utils/map.dart';
 import 'package:redux/redux.dart';
 
 final lyricsReducer = combineReducers<LyricsState>([
   TypedReducer<LyricsState, FetchLyricsSuccessAction>((state, action) {
-    var byId = Map<String, LyricsModel>.from(state.byId);
-    var id = action.id;
-    byId[id] = action.result;
-
     return state.copyWith(
-      byId: byId,
+      byId: setMapValue(state.byId, action.id, action.result),
       isLoading: false,
     );
   }),

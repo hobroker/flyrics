@@ -8,6 +8,12 @@ class TimerState {
     this.refreshTrack,
   });
 
+  factory TimerState.init() {
+    return TimerState(
+      refreshTrack: false,
+    );
+  }
+
   TimerState copyWith({refreshTrack}) {
     return TimerState(
       refreshTrack: refreshTrack ?? this.refreshTrack,

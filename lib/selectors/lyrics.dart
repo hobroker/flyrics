@@ -1,5 +1,5 @@
-import 'package:flyrics/models/state/app_state.dart';
 import 'package:flyrics/models/lyrics_model.dart';
+import 'package:flyrics/models/state/app_state.dart';
 import 'package:flyrics/models/state/lyrics_state.dart';
 import 'package:flyrics/selectors/track.dart';
 

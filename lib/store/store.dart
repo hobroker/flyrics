@@ -22,7 +22,7 @@ Store createStore() {
   var store = Store<AppState>(
     appReducer,
     distinct: true,
-    initialState: AppState(),
+    initialState: AppState.init(),
     middleware: [
       epicMiddleware,
       loggingMiddleware,

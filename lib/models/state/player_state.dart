@@ -9,6 +9,12 @@ class PlayerState {
     this.isRunning,
   });
 
+  factory PlayerState.init() {
+    return PlayerState(
+      isRunning: false,
+    );
+  }
+
   PlayerState copyWith({isRunning}) {
     return PlayerState(
       isRunning: isRunning ?? this.isRunning,

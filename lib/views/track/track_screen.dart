@@ -15,19 +15,19 @@ class TrackScreen extends StatelessWidget {
     this.textColor,
   }) : super(key: key);
 
-  TextStyle get textStyle => TextStyle(color: textColor ?? UX.textColor);
+  TextStyle get _textStyle => TextStyle(color: textColor ?? UX.textColor);
 
-  TextStyle get nameTextStyle =>
-      textStyle.copyWith(fontSize: 16, fontWeight: FontWeight.w500);
+  TextStyle get _nameTextStyle =>
+      _textStyle.copyWith(fontSize: 16, fontWeight: FontWeight.w500);
 
-  TextStyle get artistTextStyle => textStyle.copyWith(fontSize: 15);
+  TextStyle get _artistTextStyle => _textStyle.copyWith(fontSize: 15);
 
-  double getNameAvailableHeight(constraints) => constraints.maxHeight - 21.0;
+  double _getNameAvailableHeight(constraints) => constraints.maxHeight - 21.0;
 
-  int getNameMaxLines(constraints) {
+  int _getNameMaxLines(constraints) {
     var textPainter = paintText(
       name,
-      nameTextStyle,
+      _nameTextStyle,
       constraints,
       maxLines: 1,
     );
@@ -39,8 +39,8 @@ class TrackScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        var nameAvailableHeight = getNameAvailableHeight(constraints);
-        var nameMaxLines = getNameMaxLines(constraints);
+        var nameAvailableHeight = _getNameAvailableHeight(constraints);
+        var nameMaxLines = _getNameMaxLines(constraints);
         if (nameMaxLines == 2 && nameAvailableHeight < 30) {
           nameMaxLines = 1;
         }
@@ -51,12 +51,12 @@ class TrackScreen extends StatelessWidget {
             TextEllipsis(
               text: name,
               maxLines: nameMaxLines,
-              style: nameTextStyle,
+              style: _nameTextStyle,
             ),
             SizedBox(height: 4),
             TextEllipsis(
               text: artist,
-              style: artistTextStyle,
+              style: _artistTextStyle,
             ),
           ],
         );

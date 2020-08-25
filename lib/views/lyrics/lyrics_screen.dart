@@ -19,6 +19,7 @@ class LyricsScreen extends StatelessWidget {
         style: TextStyle(
           fontSize: 12,
           color: textColor,
+          height: 1.3,
         ),
       ),
     );

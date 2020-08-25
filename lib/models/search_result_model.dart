@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flyrics/utils/debug.dart';
 
 @immutable
 class SearchResultModel {
@@ -22,6 +23,14 @@ class SearchResultModel {
     return other is SearchResultModel &&
         other.title == title &&
         other.url == url;
+  }
+
+  @override
+  String toString() {
+    return stringify({
+      'title': title,
+      'url': url,
+    }, true);
   }
 
   @override

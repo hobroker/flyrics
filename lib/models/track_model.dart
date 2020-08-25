@@ -19,7 +19,7 @@ class TrackModel {
 
   static TrackModel fromJson(Map json) {
     return TrackModel(
-      id: json['id'],
+      id: json['id'].replaceFirst('spotify:track:', ''),
       name: json['name'],
       album: json['album'],
       artist: json['artist'],

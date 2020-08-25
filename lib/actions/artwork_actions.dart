@@ -5,6 +5,9 @@ class FetchArtworkBytesStartAction {
   final String url;
 
   FetchArtworkBytesStartAction(this.url, {this.id});
+
+  @override
+  String toString() => '${FetchArtworkBytesStartAction}($url, id: $id)';
 }
 
 class FetchArtworkBytesSuccessAction {
@@ -12,11 +15,20 @@ class FetchArtworkBytesSuccessAction {
   final List<int> bytes;
 
   FetchArtworkBytesSuccessAction(this.bytes, {this.id});
+
+  @override
+  String toString() => '${FetchArtworkBytesSuccessAction}([...], id: $id)';
 }
 
-class SetArtworkAsMissingAction {}
+class SetArtworkAsMissingAction {
+  @override
+  String toString() => '${SetArtworkAsMissingAction}()';
+}
 
-class ResetArtworkColorsAction {}
+class ResetArtworkColorsAction {
+  @override
+  String toString() => '${ResetArtworkColorsAction}()';
+}
 
 class SetArtworkColorsAction {
   final String id;
@@ -28,4 +40,7 @@ class SetArtworkColorsAction {
     this.colors,
     this.id,
   });
+
+  @override
+  String toString() => '${SetArtworkColorsAction}($textColor, <Color>[...], $id)';
 }

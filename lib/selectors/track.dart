@@ -29,3 +29,6 @@ Color getArtworkBackgroundColor(AppState state) =>
     getTrackState(state).backgroundColor;
 
 Color getArtworkTextColor(AppState state) => getTrackState(state).textColor;
+
+bool shouldUpdateArtwork(AppState state) =>
+    getTrackState(state).shouldUpdateArtwork;

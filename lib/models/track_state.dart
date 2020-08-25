@@ -6,12 +6,14 @@ import 'package:flyrics/models/track.dart';
 class TrackState {
   final Track track;
   final List<int> artworkBytes;
+  final bool shouldUpdateArtwork;
   final Color backgroundColor;
   final Color textColor;
 
   const TrackState({
     this.track: const Track(),
     this.artworkBytes,
+    this.shouldUpdateArtwork = true,
     this.backgroundColor,
     this.textColor,
   });
@@ -25,12 +27,14 @@ class TrackState {
     artworkBytes,
     backgroundColor,
     textColor,
+    shouldUpdateArtwork,
   }) {
     return TrackState(
       track: track ?? this.track,
       artworkBytes: artworkBytes ?? this.artworkBytes,
       backgroundColor: backgroundColor ?? this.backgroundColor,
       textColor: textColor ?? this.textColor,
+      shouldUpdateArtwork: shouldUpdateArtwork ?? this.shouldUpdateArtwork,
     );
   }
 }

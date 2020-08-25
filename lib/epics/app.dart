@@ -5,15 +5,13 @@ import 'package:flyrics/actions/is_running_actions.dart';
 import 'package:flyrics/actions/track_actions.dart';
 
 Stream<dynamic> fetchTrackOnStartEpic(
-    Stream<dynamic> actions, EpicStore<AppState> store) {
-  return actions
-      .where((action) => action is AppStartedAction)
-      .map((event) => FetchTrackStartAction());
-}
+        Stream<dynamic> actions, EpicStore<AppState> store) =>
+    actions
+        .where((action) => action is AppStartedAction)
+        .map((event) => FetchTrackStartAction());
 
 Stream<dynamic> checkIsRunningOnStartEpic(
-    Stream<dynamic> actions, EpicStore<AppState> store) {
-  return actions
-      .where((action) => action is AppStartedAction)
-      .map((event) => CheckIsRunningStartAction());
-}
+        Stream<dynamic> actions, EpicStore<AppState> store) =>
+    actions
+        .where((action) => action is AppStartedAction)
+        .map((event) => CheckIsRunningStartAction());

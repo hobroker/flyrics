@@ -12,6 +12,7 @@ dependencies:
   palette_generator: ^0.2.3
   http: ^0.12.2
   shimmer: ^1.1.1
+  stream_transform: ^1.2.0
   flutter:
     sdk: flutter
   cupertino_icons: ^0.1.3

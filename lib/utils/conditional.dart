@@ -5,10 +5,6 @@ class Conditional {
     @required bool when,
     @required Widget Function() render,
     @required Widget Function() fallback,
-  }) {
-    if (when) {
-      return render();
-    }
-    return fallback();
-  }
+  }) =>
+      when ? render() : fallback();
 }

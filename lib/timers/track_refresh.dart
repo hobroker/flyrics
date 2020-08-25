@@ -10,6 +10,7 @@ void trackRefresh(Store store, {Duration every}) {
   Timer.periodic(every, (Timer timer) async {
     var isRunning = isSpotifyRunning(store.state);
     if (!isRunning) {
+      // start another timer to check if the player started
       return;
     }
 

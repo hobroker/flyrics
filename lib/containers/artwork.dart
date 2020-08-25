@@ -16,12 +16,10 @@ class Artwork extends StatelessWidget {
         fadeColor: getArtworkDominantColor(state),
       ),
       builder: (context, vm) {
-        if (vm.isArtworkMissing) {
-          return EmptyWidget();
-        }
-
         if (vm.isLoading) {
-          return ArtworkPlaceholder();
+          return ArtworkPlaceholder(
+            isAnimated: !vm.isArtworkMissing,
+          );
         }
 
         return ArtworkScreen(

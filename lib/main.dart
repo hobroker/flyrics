@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/timers/track_refresh.dart';
 import 'package:redux/redux.dart';
-import 'utils/secrets.dart';
+import 'utils/config.dart';
 import 'actions/app_actions.dart';
 import 'api/api.dart';
 import 'store/create_store.dart';
@@ -16,7 +16,7 @@ void startTimers(Store store) {
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Secrets.init().then((secrets) => api.init(secrets));
+  await Config.init().then((secrets) => api.init(secrets));
 
   var store = createStore();
 

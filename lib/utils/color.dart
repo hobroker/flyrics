@@ -43,7 +43,7 @@ Color autoDarken(Color color) {
 }
 
 Future<List<Color>> findImageColors(List<int> bytes) async {
-  var image = await loadImage(bytes);
+  var image = await bytesToImage(bytes);
   var generator = await PaletteGenerator.fromImage(
     image,
     maximumColorCount: 10,

@@ -1,12 +1,12 @@
-import 'package:flyrics/models/app_state.dart';
 import 'package:redux_epics/redux_epics.dart';
+import 'package:flyrics/models/app_state.dart';
 
-import 'app.dart';
+import 'startup.dart';
 import 'search.dart';
 import 'track.dart';
 import 'is_running.dart';
 
-final epic = combineEpics<AppState>([
+final appEpic = combineEpics<AppState>([
   fetchTrackOnStartEpic,
   checkIsRunningOnStartEpic,
   fetchCurrentTrackEpic,
@@ -15,4 +15,6 @@ final epic = combineEpics<AppState>([
   checkIsRunningEpic,
   searchLyricsOnAppStartEpic,
   searchLyricsEpic,
+  onSearchSuccessEpic,
+  fetchLyricsEpic,
 ]);

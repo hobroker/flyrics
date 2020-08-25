@@ -22,7 +22,7 @@ class Genius {
     return list;
   }
 
-  static Future<String> getLyrics(String url) async {
+  Future<String> fetchLyrics(String url) async {
     return '[]';
   }
 }

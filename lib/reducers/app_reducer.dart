@@ -1,8 +1,9 @@
 import 'package:flyrics/models/app_state.dart';
-import 'package:flyrics/reducers/search_reducer.dart';
 
 import 'artwork_state_reducer.dart';
 import 'is_running_reducer.dart';
+import 'lyrics_reducer.dart';
+import 'search_reducer.dart';
 import 'track_reducer.dart';
 
 AppState appReducer(AppState state, action) {
@@ -15,5 +16,6 @@ AppState appReducer(AppState state, action) {
     isRunning: isPlayingReducer(state.isRunning, action),
     artwork: artworkStateReducer(state.artwork, action),
     search: searchReducer(state.search, action),
+    lyrics: lyricsReducer(state.lyrics, action),
   );
 }

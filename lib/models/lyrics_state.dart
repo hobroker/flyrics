@@ -5,8 +5,8 @@ class LyricsState {
   final bool isLoading;
   final String text;
 
-  LyricsState({
-    this.isLoading: false,
+  const LyricsState({
+    this.isLoading: true,
     this.text,
   });
 

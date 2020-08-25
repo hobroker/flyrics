@@ -4,14 +4,16 @@ import 'package:flyrics/api/spotify.dart';
 import 'package:flyrics/utils/secrets.dart';
 
 class Api {
+  Secrets _secrets;
   Spotify spotify;
   Genius genius;
   Shell shell;
 
-  Api();
+  getSecret(String key) => this._secrets.getEnv(key);
 
-  init() {
-    var geniusAccessToken = Secrets.getEnv('GENIUS_API_KEY');
+  init(Secrets secrets) {
+    this._secrets = secrets;
+    var geniusAccessToken = this.getSecret('GENIUS_API_KEY');
 
     this.shell = Shell();
     this.spotify = Spotify(shell: this.shell);

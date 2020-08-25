@@ -16,7 +16,6 @@ class ArtworkScreen extends StatelessWidget {
     var height = UI(context).headerHeight;
 
     return Container(
-      width: height,
       child: Stack(
         children: [
           Container(

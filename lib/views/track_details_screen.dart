@@ -22,7 +22,7 @@ class TrackDetailsScreen extends StatelessWidget {
 
     return Container(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           TextEllipsis(
             text: name,

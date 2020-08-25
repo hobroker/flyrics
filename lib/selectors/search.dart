@@ -13,7 +13,7 @@ String getSearchQuery(AppState state) {
 SearchState getSearchState(AppState state) => state.search;
 
 SearchResult getFirstSearchResult(AppState state) =>
-    getSearchState(state).items.first;
+    getSearchState(state).results.first;
 
 String getFirstSearchResultUrl(AppState state) =>
     getFirstSearchResult(state).url;

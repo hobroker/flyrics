@@ -3,18 +3,18 @@ import 'package:flyrics/models/search_result.dart';
 
 @immutable
 class SearchState {
-  final List<SearchResult> items;
+  final List<SearchResult> results;
   final bool isLoading;
 
   const SearchState({
     this.isLoading = false,
-    this.items = const [],
+    this.results = const [],
   });
 
-  SearchState copyWith({isLoading, items}) {
+  SearchState copyWith({isLoading, results}) {
     return SearchState(
       isLoading: isLoading ?? this.isLoading,
-      items: items ?? this.items,
+      results: results ?? this.results,
     );
   }
 
@@ -22,7 +22,7 @@ class SearchState {
   bool operator ==(other) {
     return other is SearchState &&
         other.isLoading == isLoading &&
-        other.items == items;
+        other.results == results;
   }
 
   @override

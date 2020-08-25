@@ -10,7 +10,7 @@ final searchReducer = combineReducers<SearchState>([
   }),
   TypedReducer<SearchState, SearchSuccessAction>((state, action) {
     return state.copyWith(
-      items: action.results,
+      results: action.results,
       isLoading: false,
     );
   }),

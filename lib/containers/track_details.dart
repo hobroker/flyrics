@@ -7,10 +7,6 @@ import 'package:flyrics/views/track/track_placeholder.dart';
 import 'package:flyrics/views/track/track_screen.dart';
 
 class TrackDetails extends StatelessWidget {
-  final double headerHeight;
-
-  const TrackDetails({Key key, this.headerHeight}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Connector.state(
@@ -28,7 +24,6 @@ class TrackDetails extends StatelessWidget {
             name: vm.name,
             artist: vm.artist,
             textColor: vm.textColor,
-            headerHeight: headerHeight,
           ),
           fallback: () => TrackPlaceholder(
             isAnimated: vm.isLoading,

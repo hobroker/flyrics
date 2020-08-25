@@ -25,11 +25,9 @@ class Artwork extends StatelessWidget {
           render: () => ArtworkScreen(
             bytes: vm.artworkBytes,
             fadeColor: vm.fadeColor,
-            height: height,
           ),
           fallback: () => ArtworkPlaceholder(
             isAnimated: vm.isLoading,
-            height: height,
           ),
         );
       },

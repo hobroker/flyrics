@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/utils/sizing.dart';
 
-class HeaderWrapper extends StatelessWidget {
+class HeaderWrapperScreen extends StatelessWidget {
   final List<Widget> children;
-  final double height;
+  final Color backgroundColor;
 
-  HeaderWrapper({
+  HeaderWrapperScreen({
     Key key,
     this.children,
-    this.height,
+    this.backgroundColor,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: backgroundColor,
       width: UI(context).headerWidth,
-      height: height,
       child: Container(
         child: Row(
           children: children,

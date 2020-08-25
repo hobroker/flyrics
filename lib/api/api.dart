@@ -1,5 +1,7 @@
+import 'package:flyrics/api/http_client.dart';
 import 'package:flyrics/api/url.dart';
 import 'package:flyrics/utils/config.dart';
+import 'package:http/http.dart';
 
 import 'genius_api.dart';
 import 'shell_api.dart';
@@ -11,15 +13,19 @@ class Api {
   Config _config;
   ShellApi shell;
   UrlApi url;
+  BaseClient client;
 
-  void init(Config config) {
+  Api init(Config config, {httpClient}) {
     _config = config;
     var geniusAccessToken = _getConfig('GENIUS_API_KEY');
 
+    client = httpClient ?? HttpClient();
     shell = ShellApi();
-    spotify = SpotifyApi(shell: shell);
+    spotify = SpotifyApi(client, shell: shell);
     url = UrlApi(shell: shell);
-    genius = GeniusApi(accessToken: geniusAccessToken);
+    genius = GeniusApi(client, accessToken: geniusAccessToken);
+
+    return this;
   }
 
   String _getConfig(String key) => _config.get(key);

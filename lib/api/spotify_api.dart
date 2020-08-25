@@ -3,12 +3,13 @@ import 'dart:convert';
 import 'package:flyrics/api/scripts.dart';
 import 'package:flyrics/api/shell_api.dart';
 import 'package:flyrics/models/track_model.dart';
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 
 class SpotifyApi {
   final ShellApi shell;
+  final BaseClient client;
 
-  SpotifyApi({this.shell});
+  SpotifyApi(this.client, {this.shell});
 
   Future<bool> isRunning() async {
     var result = await shell.runAppleScript(Scripts.isSpotifyRunning);
@@ -34,7 +35,7 @@ class SpotifyApi {
   }
 
   Future<List<int>> getImageBytes(String url) async {
-    var response = await http.get(url);
+    var response = await client.get(url);
 
     return response.bodyBytes;
   }

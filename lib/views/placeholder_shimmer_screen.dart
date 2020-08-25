@@ -12,8 +12,8 @@ class PlaceholderShimmerScreeen extends StatelessWidget {
     Key key,
     @required this.height,
     @required this.width,
-    this.backgroundColor = UI.accentColor,
-    this.shineColor = UI.primaryColor,
+    this.backgroundColor,
+    this.shineColor,
   }) : super(key: key);
 
   @override
@@ -22,10 +22,11 @@ class PlaceholderShimmerScreeen extends StatelessWidget {
       baseColor: backgroundColor ?? UI.primaryDarkColor,
       highlightColor: shineColor ?? UI.primaryColor,
       enabled: true,
-      child: Container(
+      child: AnimatedContainer(
         width: width,
         height: height,
         color: UI.primaryColor,
+        duration: UI.transitionDuration,
       ),
     );
   }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/utils/sizing.dart';
 
-class ContentWrapper extends StatelessWidget {
+class LyricsWrapperScreen extends StatelessWidget {
   final Widget child;
   final Color backgroundColor;
 
-  ContentWrapper({
+  LyricsWrapperScreen({
     Key key,
     @required this.child,
     @required this.backgroundColor,

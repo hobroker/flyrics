@@ -7,16 +7,14 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          width: UI(context).appWidth,
-          height: UI(context).appHeight,
-          child: Column(
-            children: [
-              Header(),
-              Content(),
-            ],
-          ),
+      body: Container(
+        width: UI(context).appWidth,
+        height: UI(context).appHeight,
+        child: Column(
+          children: [
+            Header(),
+            Content(),
+          ],
         ),
       ),
     );

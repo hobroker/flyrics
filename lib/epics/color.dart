@@ -15,12 +15,6 @@ Stream findArtworkColorsEpic(Stream actions, store) => actions
       );
     });
 
-//Stream resetColorsEpic(Stream actions, store) => actions
-//    .where((action) => action is SetIsRunningAction)
-//    .map((action) => !action.isRunning)
-//    .map((action) => ResetArtworkColorsAction());
-
 final colorEpics = combineEpics<AppState>([
   findArtworkColorsEpic,
-//  resetColorsEpic,
 ]);

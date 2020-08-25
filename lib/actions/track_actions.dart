@@ -1,25 +1,21 @@
 import 'package:flyrics/models/track_model.dart';
+import 'package:flyrics/store/action.dart';
 
-class FetchTrackStartAction {
-  @override
-  String toString() => '${FetchTrackStartAction}()';
-}
+class FetchTrackStartAction with Action {}
 
-class CheckTrackAction {
-  @override
-  String toString() => '${CheckTrackAction}()';
-}
+class CheckTrackAction with Action {}
 
-class FetchTrackSuccessAction {
+class FetchTrackSuccessAction with Action {
   final TrackModel track;
 
   FetchTrackSuccessAction(this.track);
 
   @override
-  String toString() => '${FetchTrackStartAction}($track)';
+  String toString() => '${runtimeType}($track)';
 }
 
-class ResetActiveIdAction {
-  @override
-  String toString() => '${ResetActiveIdAction}()';
-}
+class ResetActiveIdAction with Action {}
+
+class RefreshCurrentTrackTimerAction with Action {}
+
+class RefreshCurrentTrackAction with Action {}

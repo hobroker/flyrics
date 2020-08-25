@@ -1,3 +1,4 @@
+import 'package:flyrics/epics/player.dart';
 import 'package:flyrics/models/state/app_state.dart';
 import 'package:redux_epics/redux_epics.dart';
 
@@ -19,4 +20,5 @@ final appEpic = combineEpics<AppState>([
   lyricsEpics,
   timerEpics,
   urlEpics,
+  playerEpics,
 ]);

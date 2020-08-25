@@ -4,21 +4,21 @@ import 'package:flyrics/containers/app_layout.dart';
 import 'package:flyrics/models/state/app_state.dart';
 import 'package:redux/redux.dart';
 
-class App extends StatefulWidget {
+class AppScreen extends StatefulWidget {
   final Store<AppState> store;
   final Function onLoad;
 
-  const App({
+  const AppScreen({
     Key key,
     this.store,
     this.onLoad,
   }) : super(key: key);
 
   @override
-  _AppState createState() => _AppState();
+  _AppScreenState createState() => _AppScreenState();
 }
 
-class _AppState extends State<App> {
+class _AppScreenState extends State<AppScreen> {
   @override
   void initState() {
     super.initState();

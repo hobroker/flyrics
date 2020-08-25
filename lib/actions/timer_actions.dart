@@ -1,17 +1,19 @@
-class SetRefreshTrackTimerAction {
+import 'package:flyrics/store/action.dart';
+
+class SetRefreshTrackTimerAction with Action {
   final bool value;
 
   SetRefreshTrackTimerAction(this.value);
 
   @override
-  String toString() => '${SetRefreshTrackTimerAction}($value)';
+  String toString() => '${runtimeType}($value)';
 }
 
-class SetCheckIsRunningTimerAction {
+class SetCheckIsRunningTimerAction with Action {
   final bool value;
 
   SetCheckIsRunningTimerAction(this.value);
 
   @override
-  String toString() => '${SetCheckIsRunningTimerAction}($value)';
+  String toString() => '${runtimeType}($value)';
 }

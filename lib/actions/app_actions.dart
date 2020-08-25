@@ -1,13 +1,12 @@
-class AppStartedAction {
-  @override
-  String toString() => '${AppStartedAction}()';
-}
+import 'package:flyrics/store/action.dart';
 
-class OpenUrlAction {
+class AppStartedAction with Action {}
+
+class OpenUrlAction with Action {
   final String url;
 
   OpenUrlAction(this.url);
 
   @override
-  String toString() => '${OpenUrlAction}($url)';
+  String toString() => '${runtimeType}($url)';
 }

@@ -17,7 +17,16 @@ class SpotifyApi {
   }
 
   Future<TrackModel> fetchCurrentTrack() async {
+    var hasData = await isRunning();
+    if (!hasData) {
+      return null;
+    }
+
     var result = await shell.runAppleScript(Scripts.getCurrentTrack);
+    if (result == null || result.isEmpty) {
+      return null;
+    }
+
     var data = json.decode(result);
     var track = TrackModel.fromJson(data);
 

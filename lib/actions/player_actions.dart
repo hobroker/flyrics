@@ -1,10 +1,16 @@
-class CheckIsRunningStartAction {}
+import 'package:flyrics/store/action.dart';
 
-class SetIsRunningAction {
+class CheckIsRunningStartAction with Action {}
+
+class SetIsRunningAction with Action {
   final bool isRunning;
 
   SetIsRunningAction(this.isRunning);
 
   @override
-  String toString() => '${SetIsRunningAction}($isRunning)';
+  String toString() => '${runtimeType}($isRunning)';
 }
+
+class RefreshCheckIsRunningTimerAction with Action {}
+
+class RefreshCheckIsRunningAction with Action {}

@@ -1,36 +1,32 @@
 import 'dart:ui';
 
-class FetchArtworkBytesStartAction {
+import 'package:flyrics/store/action.dart';
+
+class FetchArtworkBytesStartAction with Action {
   final String id;
   final String url;
 
   FetchArtworkBytesStartAction(this.url, {this.id});
 
   @override
-  String toString() => '${FetchArtworkBytesStartAction}($url, id: $id)';
+  String toString() => '${runtimeType}($url, id: $id)';
 }
 
-class FetchArtworkBytesSuccessAction {
+class FetchArtworkBytesSuccessAction with Action {
   final String id;
   final List<int> bytes;
 
   FetchArtworkBytesSuccessAction(this.bytes, {this.id});
 
   @override
-  String toString() => '${FetchArtworkBytesSuccessAction}([...], id: $id)';
+  String toString() => '${runtimeType}([...], id: $id)';
 }
 
-class SetArtworkAsMissingAction {
-  @override
-  String toString() => '${SetArtworkAsMissingAction}()';
-}
+class SetArtworkAsMissingAction with Action {}
 
-class ResetArtworkColorsAction {
-  @override
-  String toString() => '${ResetArtworkColorsAction}()';
-}
+class ResetArtworkColorsAction with Action {}
 
-class SetArtworkColorsAction {
+class SetArtworkColorsAction with Action {
   final String id;
   final Color textColor;
   final List<Color> colors;
@@ -42,5 +38,5 @@ class SetArtworkColorsAction {
   });
 
   @override
-  String toString() => '${SetArtworkColorsAction}($textColor, <Color>[...], $id)';
+  String toString() => '${runtimeType}($textColor, <Color>[...], $id)';
 }

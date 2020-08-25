@@ -1,15 +1,42 @@
+import 'package:flyrics/actions/app_actions.dart';
 import 'package:flyrics/actions/player_actions.dart';
 import 'package:flyrics/actions/track_actions.dart';
 import 'package:flyrics/api/api.dart';
 import 'package:flyrics/models/state/app_state.dart';
+import 'package:flyrics/selectors/player.dart';
 import 'package:flyrics/selectors/track.dart';
 import 'package:redux_epics/redux_epics.dart';
+import 'package:stream_transform/stream_transform.dart';
 
 Stream fetchCurrentTrackEpic(Stream actions, store) => actions
     .where((action) => action is FetchTrackStartAction)
     .asyncMap((action) => api.spotify.fetchCurrentTrack())
     .where((track) => track != getActiveTrack(store.state))
-    .map((track) => FetchTrackSuccessAction(track));
+    .map((track) => track == null
+        ? SetIsRunningAction(false)
+        : FetchTrackSuccessAction(track));
+
+Stream startRefershCurrentTrackEpic(Stream actions, store) => actions
+    .where((action) => action is AppStartedAction)
+    .map((action) => RefreshCurrentTrackTimerAction());
+
+Stream trigerRefershCurrentTrackEpic(Stream actions, store) => actions
+    .where((action) => action is RefreshCurrentTrackTimerAction)
+    .map((action) => RefreshCurrentTrackAction());
+
+Stream retrigerRefershCurrentTrackEpic(Stream actions, store) => actions
+    .where((action) => action is RefreshCurrentTrackAction)
+    .debounce(Duration(milliseconds: 1500))
+    .map((action) => RefreshCurrentTrackTimerAction());
+
+Stream refershCurrentTrackEpic(Stream actions, store) => actions
+    .where((action) => action is RefreshCurrentTrackAction)
+    .where((action) => isPlayerRunning(store.state))
+    .asyncMap((action) => api.spotify.fetchCurrentTrack())
+    .where((track) => track != getActiveTrack(store.state))
+    .map((track) => track == null
+        ? SetIsRunningAction(false)
+        : FetchTrackSuccessAction(track));
 
 Stream resetActiveIdEpic(Stream actions, store) => actions
     .where((action) => action is SetIsRunningAction)
@@ -19,4 +46,8 @@ Stream resetActiveIdEpic(Stream actions, store) => actions
 final trackEpics = combineEpics<AppState>([
   fetchCurrentTrackEpic,
   resetActiveIdEpic,
+  startRefershCurrentTrackEpic,
+  trigerRefershCurrentTrackEpic,
+  retrigerRefershCurrentTrackEpic,
+  refershCurrentTrackEpic,
 ]);

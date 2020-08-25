@@ -1,9 +1,7 @@
 import 'package:flyrics/models/search_result_model.dart';
+import 'package:flyrics/store/action.dart';
 
-class SearchStartAction {
-  @override
-  String toString() => '${SearchStartAction}()';
-}
+class SearchStartAction with Action {}
 
 class SearchSuccessAction {
   final List<SearchResultModel> results;
@@ -11,5 +9,5 @@ class SearchSuccessAction {
   SearchSuccessAction(this.results);
 
   @override
-  String toString() => '${SearchSuccessAction}(<SearchResultModel>[...])';
+  String toString() => '${runtimeType}(<SearchResultModel>[...])';
 }

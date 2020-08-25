@@ -4,9 +4,7 @@ import 'package:flyrics/selectors/track.dart';
 import 'package:flyrics/utils/color.dart';
 import 'package:redux_epics/redux_epics.dart';
 
-Stream<dynamic> findArtworkColorsEpic(
-        Stream<dynamic> actions, EpicStore<AppState> store) =>
-    actions
+Stream findArtworkColorsEpic(Stream actions, store) => actions
         .where((action) => action is FetchArtworkBytesSuccessAction)
         .asyncMap((action) => findImageColors(action.bytes))
         .map((colors) {
@@ -17,7 +15,7 @@ Stream<dynamic> findArtworkColorsEpic(
       );
     });
 
-//Stream<dynamic> resetColorsEpic(Stream<dynamic> actions, store) => actions
+//Stream resetColorsEpic(Stream actions, store) => actions
 //    .where((action) => action is SetIsRunningAction)
 //    .map((action) => !action.isRunning)
 //    .map((action) => ResetArtworkColorsAction());

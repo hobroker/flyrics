@@ -10,12 +10,12 @@ class TrackDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Connector(
-      converter: (state) => _ViewModel(
-        isLoading: isTrackLoading(state),
-        hasTrack: hasTrack(state),
-        name: getTrackName(state),
-        artist: getTrackArtist(state),
-        textColor: getArtworkTextColor(state),
+      converter: (store) => _ViewModel(
+        isLoading: isTrackLoading(store.state),
+        hasTrack: hasTrack(store.state),
+        name: getTrackName(store.state),
+        artist: getTrackArtist(store.state),
+        textColor: getArtworkTextColor(store.state),
       ),
       builder: (context, vm) {
         return Conditional.single(

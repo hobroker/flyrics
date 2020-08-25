@@ -9,11 +9,11 @@ class Artwork extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Connector(
-      converter: (state) => _ViewModel(
-        artworkBytes: getTrackArtworkAsBytes(state),
-        isLoading: isArtworkLoading(state),
-        hasBytes: activeTrackHasArtworkBytes(state),
-        fadeColor: getArtworkDominantColor(state),
+      converter: (store) => _ViewModel(
+        artworkBytes: getTrackArtworkAsBytes(store.state),
+        isLoading: isArtworkLoading(store.state),
+        hasBytes: activeTrackHasArtworkBytes(store.state),
+        fadeColor: getArtworkDominantColor(store.state),
       ),
       builder: (context, vm) {
         return Conditional.single(

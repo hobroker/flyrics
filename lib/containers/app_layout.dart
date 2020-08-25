@@ -11,7 +11,7 @@ class AppLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Connector(
-      converter: isPlayerRunning,
+      converter: (store) => isPlayerRunning(store.state),
       builder: (context, isRunning) {
         return Scaffold(
           body: DynamicContainer(

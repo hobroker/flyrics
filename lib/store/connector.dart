@@ -7,7 +7,7 @@ bool _onWillChange(prevViewModel, newViewModel) =>
     prevViewModel != newViewModel;
 
 class Connector<ViewModel> extends StatelessWidget {
-  final Function(AppState state) converter;
+  final Function(Store<AppState> store) converter;
   final Function(BuildContext context, ViewModel vm) builder;
 
   Connector({this.converter, this.builder});
@@ -17,7 +17,7 @@ class Connector<ViewModel> extends StatelessWidget {
     return StoreConnector<AppState, ViewModel>(
       distinct: true,
       onWillChange: _onWillChange,
-      converter: (Store<AppState> store) => converter(store.state),
+      converter: converter,
       builder: builder,
     );
   }

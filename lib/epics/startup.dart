@@ -5,25 +5,19 @@ import 'package:flyrics/api/api.dart';
 import 'package:flyrics/models/state/app_state.dart';
 import 'package:redux_epics/redux_epics.dart';
 
-Stream<dynamic> fetchTrackOnStartEpic(
-        Stream<dynamic> actions, EpicStore<AppState> store) =>
-    actions
-        .where((action) => action is SetIsRunningAction)
-        .where((action) => action.isRunning)
-        .map((isRunning) => FetchTrackStartAction());
+Stream fetchTrackOnStartEpic(Stream actions, store) => actions
+    .where((action) => action is SetIsRunningAction)
+    .where((action) => action.isRunning)
+    .map((isRunning) => FetchTrackStartAction());
 
-Stream<dynamic> checkIsRunningOnStartEpic(
-        Stream<dynamic> actions, EpicStore<AppState> store) =>
-    actions
-        .where((action) => action is AppStartedAction)
-        .map((event) => CheckIsRunningStartAction());
+Stream checkIsRunningOnStartEpic(Stream actions, store) => actions
+    .where((action) => action is AppStartedAction)
+    .map((event) => CheckIsRunningStartAction());
 
-Stream<dynamic> checkIsRunningEpic(
-        Stream<dynamic> actions, EpicStore<AppState> store) =>
-    actions
-        .where((action) => action is CheckIsRunningStartAction)
-        .asyncMap((action) => api.spotify.isRunning())
-        .map((value) => SetIsRunningAction(value));
+Stream checkIsRunningEpic(Stream actions, store) => actions
+    .where((action) => action is CheckIsRunningStartAction)
+    .asyncMap((action) => api.spotify.isRunning())
+    .map((value) => SetIsRunningAction(value));
 
 final startupEpics = combineEpics<AppState>([
   fetchTrackOnStartEpic,

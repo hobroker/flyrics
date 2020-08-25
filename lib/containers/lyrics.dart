@@ -10,11 +10,11 @@ class Lyrics extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Connector(
-      converter: (state) => _ViewModel(
-        textColor: getArtworkTextColor(state),
-        text: getLyricsText(state),
-        hasLyrics: hasActiveTrackLyrics(state),
-        isLoading: areLyricsLoading(state),
+      converter: (store) => _ViewModel(
+        textColor: getArtworkTextColor(store.state),
+        text: getLyricsText(store.state),
+        hasLyrics: hasActiveTrackLyrics(store.state),
+        isLoading: areLyricsLoading(store.state),
       ),
       builder: (context, vm) {
         return Conditional.single(

@@ -8,6 +8,7 @@ import 'search.dart';
 import 'startup.dart';
 import 'timer.dart';
 import 'track.dart';
+import 'url_epic.dart';
 
 final appEpic = combineEpics<AppState>([
   trackEpics,
@@ -17,4 +18,5 @@ final appEpic = combineEpics<AppState>([
   searchEpics,
   lyricsEpics,
   timerEpics,
+  urlEpics,
 ]);

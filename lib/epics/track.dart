@@ -5,20 +5,16 @@ import 'package:flyrics/models/state/app_state.dart';
 import 'package:flyrics/selectors/track.dart';
 import 'package:redux_epics/redux_epics.dart';
 
-Stream<dynamic> fetchCurrentTrackEpic(
-        Stream<dynamic> actions, EpicStore<AppState> store) =>
-    actions
-        .where((action) => action is FetchTrackStartAction)
-        .asyncMap((action) => api.spotify.fetchCurrentTrack())
-        .where((track) => track != getActiveTrack(store.state))
-        .map((track) => FetchTrackSuccessAction(track));
+Stream fetchCurrentTrackEpic(Stream actions, store) => actions
+    .where((action) => action is FetchTrackStartAction)
+    .asyncMap((action) => api.spotify.fetchCurrentTrack())
+    .where((track) => track != getActiveTrack(store.state))
+    .map((track) => FetchTrackSuccessAction(track));
 
-Stream<dynamic> resetActiveIdEpic(
-        Stream<dynamic> actions, EpicStore<AppState> store) =>
-    actions
-        .where((action) => action is SetIsRunningAction)
-        .where((action) => !action.isRunning)
-        .map((action) => ResetActiveIdAction());
+Stream resetActiveIdEpic(Stream actions, store) => actions
+    .where((action) => action is SetIsRunningAction)
+    .where((action) => !action.isRunning)
+    .map((action) => ResetActiveIdAction());
 
 final trackEpics = combineEpics<AppState>([
   fetchCurrentTrackEpic,

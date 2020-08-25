@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flyrics/api/api.dart';
 import 'package:flyrics/utils/sizing.dart';
 
 class GeniusRedirectScreen extends StatelessWidget {
-  final String url;
   final Color iconColor;
+  final Function() openUrl;
 
   GeniusRedirectScreen({
     Key key,
-    @required this.url,
+    @required this.openUrl,
     @required this.iconColor,
   }) : super(key: key);
 
   void onPressed() async {
-    await api.url.openUrl(url);
+    openUrl();
   }
 
   @override

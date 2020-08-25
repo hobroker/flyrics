@@ -2,27 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flyrics/selectors/artwork.dart';
 import 'package:flyrics/selectors/lyrics.dart';
 import 'package:flyrics/store/connector.dart';
-import 'package:flyrics/views/lyrics_content.dart';
-import 'package:flyrics/views/lyrics_placeholder.dart';
-import 'package:redux/redux.dart';
-import 'package:flyrics/models/app_state.dart';
+import 'package:flyrics/views/lyrics/lyrics_content.dart';
+import 'package:flyrics/views/lyrics/lyrics_placeholder.dart';
 
 class Lyrics extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Connector<_ViewModel>(
-      converter: (Store<AppState> store) => _ViewModel(
-        textColor: getArtworkTextColor(store.state),
-        text: getLyricsText(store.state),
-        isLoading: areLyricsLoading(store.state),
+    return Connector(
+      converter: (state) => _ViewModel(
+        textColor: getArtworkTextColor(state),
+        text: getLyricsText(state),
+        isLoading: areLyricsLoading(state),
       ),
       builder: (context, vm) {
         return vm.isLoading
             ? LyricsPlaceholder()
             : LyricsContent(
-          textColor: vm.textColor,
-          text: vm.text,
-        );
+                textColor: vm.textColor,
+                text: vm.text,
+              );
       },
     );
   }

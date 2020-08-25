@@ -2,23 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flyrics/selectors/artwork.dart';
 import 'package:flyrics/selectors/track.dart';
 import 'package:flyrics/store/connector.dart';
-import 'package:flyrics/views/track_details_placeholder.dart';
-import 'package:redux/redux.dart';
-import 'package:flyrics/views/track_details_screen.dart';
-import 'package:flyrics/models/app_state.dart';
+import 'package:flyrics/views/track/track_details_placeholder.dart';
+import 'package:flyrics/views/track/track_details_screen.dart';
 
 class TrackDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Connector<_ViewModel>(
-      converter: (Store<AppState> store) {
-        return _ViewModel(
-          hasTrack: hasTrack(store.state),
-          name: getTrackName(store.state),
-          artist: getTrackArtist(store.state),
-          textColor: getArtworkTextColor(store.state),
-        );
-      },
+    return Connector(
+      converter: (state) => _ViewModel(
+        hasTrack: hasTrack(state),
+        name: getTrackName(state),
+        artist: getTrackArtist(state),
+        textColor: getArtworkTextColor(state),
+      ),
       builder: (context, vm) {
         return vm.hasTrack
             ? TrackDetailsScreen(

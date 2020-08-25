@@ -2,23 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flyrics/selectors/artwork.dart';
 import 'package:flyrics/store/connector.dart';
 import 'package:flyrics/views/empty_widget.dart';
-import 'package:redux/redux.dart';
-import 'package:flyrics/views/artwork_placeholder.dart';
-import 'package:flyrics/views/artwork_screen.dart';
-import 'package:flyrics/models/app_state.dart';
+import 'package:flyrics/views/artwork/artwork_placeholder.dart';
+import 'package:flyrics/views/artwork/artwork_screen.dart';
 
 class Artwork extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Connector<_ViewModel>(
-      converter: (Store<AppState> store) {
-        return _ViewModel(
-          artworkBytes: getTrackArtworkAsBytes(store.state),
-          isLoading: isArtworkLoading(store.state),
-          isArtworkMissing: isArtworkMissing(store.state),
-          fadeColor: getArtworkDominantColor(store.state),
-        );
-      },
+    return Connector(
+      converter: (state) => _ViewModel(
+        artworkBytes: getTrackArtworkAsBytes(state),
+        isLoading: isArtworkLoading(state),
+        isArtworkMissing: isArtworkMissing(state),
+        fadeColor: getArtworkDominantColor(state),
+      ),
       builder: (context, vm) {
         if (vm.isArtworkMissing) {
           return EmptyWidget();

@@ -11,9 +11,10 @@ class SpotifyApi {
   SpotifyApi({this.shell});
 
   Future<bool> isRunning() async {
-    var result = await shell.runAppleScript(Scripts.isSpotifyRunning);
-
-    return result == 'true';
+    return true;
+//    var result = await shell.runAppleScript(Scripts.isSpotifyRunning);
+//
+//    return result == 'true';
   }
 
   Future<Track> fetchCurrentTrack() async {

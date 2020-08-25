@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/containers/content.dart';
 import 'package:flyrics/utils/sizing.dart';
-import 'package:flyrics/containers/header.dart';
+import 'package:flyrics/containers/app_layout.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -10,12 +9,7 @@ class HomePage extends StatelessWidget {
       body: Container(
         width: UI(context).appWidth,
         height: UI(context).appHeight,
-        child: Column(
-          children: [
-            Header(),
-            Content(),
-          ],
-        ),
+        child: AppLayout(),
       ),
     );
   }

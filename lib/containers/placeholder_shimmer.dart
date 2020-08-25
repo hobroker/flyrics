@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flyrics/selectors/artwork.dart';
 import 'package:flyrics/store/connector.dart';
 import 'package:flyrics/views/placeholder_shimmer_screen.dart';
-import 'package:redux/redux.dart';
-import 'package:flyrics/models/app_state.dart';
 
 class PlaceholderShimmer extends StatelessWidget {
   final double height;
@@ -17,13 +15,11 @@ class PlaceholderShimmer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Connector<_ViewModel>(
-      converter: (Store<AppState> store) {
-        return _ViewModel(
-          backgroundColor: getArtworkColorByIndex(store.state, 1),
-          shineColor: getArtworkColorByIndex(store.state, 2),
-        );
-      },
+    return Connector(
+      converter: (state) => _ViewModel(
+        backgroundColor: getArtworkColorByIndex(state, 1),
+        shineColor: getArtworkColorByIndex(state, 2),
+      ),
       builder: (context, vm) {
         return PlaceholderShimmerScreeen(
           backgroundColor: vm.backgroundColor,

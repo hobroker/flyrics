@@ -24,6 +24,9 @@ class UI {
   static const Color darkColor = Color(0xff191414);
   static const Color accentColor = Color(0xff62D36E);
   static const Color textColor = Color(0xffffffff);
+  static const Color geniusAccentColor = Color(0xffFFFE7D);
+
+  static String geniusIcon = 'assets/icons/genius.svg';
 
   static Duration transitionDuration = Duration(milliseconds: 1500);
 

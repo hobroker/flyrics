@@ -21,11 +21,13 @@ Future<void> main() async {
 
   var store = createStore();
 
-  runApp(App(
-    store: store,
-    onLoad: () {
-      store.dispatch(AppStartedAction());
-      startTimers(store);
-    },
-  ));
+  runApp(
+    App(
+      store: store,
+      onLoad: () {
+        store.dispatch(AppStartedAction());
+        startTimers(store);
+      },
+    ),
+  );
 }

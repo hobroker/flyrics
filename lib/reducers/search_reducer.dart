@@ -4,8 +4,9 @@ import 'package:redux/redux.dart';
 
 final searchReducer = combineReducers<SearchState>([
   TypedReducer<SearchState, SearchStartAction>((state, action) {
-    return state.copyWith(
+    return SearchState(
       isLoading: true,
+      results: [],
     );
   }),
   TypedReducer<SearchState, SearchSuccessAction>((state, action) {

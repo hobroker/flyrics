@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flyrics/api/api.dart';
+import 'package:flyrics/utils/sizing.dart';
 
 class GeniusRedirectScreen extends StatelessWidget {
   final String url;
@@ -21,18 +22,15 @@ class GeniusRedirectScreen extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: Opacity(
-        opacity: .9,
-        child: Container(
-          child: IconButton(
-            padding: EdgeInsets.all(0),
-            constraints: BoxConstraints(maxWidth: 16, maxHeight: 16),
-            icon: SvgPicture.asset(
-              'assets/icons/genius.svg',
-              color: Colors.green,
-              semanticsLabel: 'A red up arrow',
-            ),
-            onPressed: onPressed,
+        opacity: .5,
+        child: IconButton(
+          padding: EdgeInsets.all(0),
+          constraints: BoxConstraints(maxWidth: 16, maxHeight: 16),
+          icon: SvgPicture.asset(
+            UI.geniusIcon,
+            color: UI.geniusAccentColor,
           ),
+          onPressed: onPressed,
         ),
       ),
     );

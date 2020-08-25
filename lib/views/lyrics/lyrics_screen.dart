@@ -13,12 +13,15 @@ class LyricsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SelectableText(
-      text,
-      textAlign: TextAlign.start,
-      style: TextStyle(
-        fontSize: UI(context).lyricsFontSize,
-        color: textColor,
+    return Container(
+      padding: EdgeInsets.only(bottom: 20),
+      child: SelectableText(
+        text,
+        textAlign: TextAlign.start,
+        style: TextStyle(
+          fontSize: UI(context).lyricsFontSize,
+          color: textColor,
+        ),
       ),
     );
   }

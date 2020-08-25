@@ -16,16 +16,16 @@ class LyricsWrapper extends StatelessWidget {
     var height = UI(context).appHeight - UI(context).headerHeight;
 
     return Flexible(
-      child: Container(
-        padding: EdgeInsets.only(top: 8, left: 8, right: 8),
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            maxHeight: height,
-            minHeight: height,
-          ),
-          child: Stack(
-            children: [
-              SingleChildScrollView(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          maxHeight: height,
+          minHeight: height,
+        ),
+        child: Stack(
+          children: [
+            Container(
+              padding: EdgeInsets.only(top: 8, left: 8, right: 8),
+              child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisSize: MainAxisSize.max,
@@ -35,13 +35,13 @@ class LyricsWrapper extends StatelessWidget {
                   ],
                 ),
               ),
-              Positioned(
-                bottom: 0,
-                right: 0,
-                child: footer,
-              )
-            ],
-          ),
+            ),
+            Positioned(
+              bottom: 0,
+              right: 0,
+              child: footer,
+            )
+          ],
         ),
       ),
     );

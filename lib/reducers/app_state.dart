@@ -5,7 +5,7 @@ import 'package:flyrics/reducers/track_reducer.dart';
 
 AppState appReducer(AppState state, action) {
   return AppState(
-    track: trackReducer(state.track, action),
+    trackState: trackReducer(state.trackState, action),
     isRunning: isPlayingReducer(state.isRunning, action),
     meta: metaReducer(state.meta, action),
   );

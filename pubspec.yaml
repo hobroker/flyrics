@@ -9,6 +9,8 @@ dependencies:
   flutter_redux: ^0.6.0
   redux_epics: ^0.14.0
   redux_logging: ^0.4.0
+  palette_generator: ^0.2.3
+  http: ^0.12.2
   flutter:
     sdk: flutter
   cupertino_icons: ^0.1.3

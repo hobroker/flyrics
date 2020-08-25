@@ -10,5 +10,7 @@ final epic = combineEpics<AppState>([
   checkIsRunningOnStartEpic,
 
   fetchCurrentTrackEpic,
+  fetchArtworkImageAsBytesEpic,
+  findArtworkColorsEpic,
   checkIsRunningEpic,
 ]);

@@ -1,22 +1,25 @@
 import 'package:flutter/foundation.dart';
 import 'package:flyrics/models/meta.dart';
-import 'package:flyrics/models/track.dart';
+import 'package:flyrics/models/track_state.dart';
 
 @immutable
 class AppState {
   final bool isRunning;
-  final Track track;
+  final TrackState trackState;
   final Meta meta;
 
   AppState({
     this.isRunning,
-    this.track,
+    this.trackState,
     this.meta,
   });
 
   factory AppState.loading() => AppState(
         isRunning: false,
-        track: null,
         meta: null,
+        trackState: TrackState(
+          track: null,
+          artworkBytes: null,
+        ),
       );
 }

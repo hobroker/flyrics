@@ -3,10 +3,10 @@ import 'package:flyrics/constants/sizing.dart';
 import 'package:flyrics/containers/artwork.dart';
 import 'package:flyrics/containers/track_details.dart';
 
-class Header extends StatelessWidget {
+class HeaderScreen extends StatelessWidget {
   final Color backgroundColor;
 
-  Header({this.backgroundColor});
+  HeaderScreen({this.backgroundColor});
 
   @override
   Widget build(BuildContext context) {

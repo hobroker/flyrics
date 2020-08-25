@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/constants/sizing.dart';
-import 'header.dart';
+import 'package:flyrics/containers/header.dart';
 
 class HomePage extends StatelessWidget {
   @override

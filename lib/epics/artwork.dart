@@ -12,6 +12,13 @@ Stream<dynamic> triggerFetchArtworkImageAsBytesEpic(
         .where((url) => url != null)
         .map((url) => FetchArtworkBytesStartAction(url));
 
+Stream<dynamic> setArtworkAsMissingEpic(Stream<dynamic> actions, store) =>
+    actions
+        .where((action) => action is FetchTrackSuccessAction)
+        .map((action) => action.track.artwork)
+        .where((url) => url == null)
+        .map((url) => SetArtworkAsMissingAction());
+
 Stream<dynamic> fetchArtworkImageAsBytesEpic(Stream<dynamic> actions, store) =>
     actions
         .where((action) => action is FetchArtworkBytesStartAction)
@@ -22,4 +29,5 @@ Stream<dynamic> fetchArtworkImageAsBytesEpic(Stream<dynamic> actions, store) =>
 final artworkEpics = combineEpics<AppState>([
   triggerFetchArtworkImageAsBytesEpic,
   fetchArtworkImageAsBytesEpic,
+  setArtworkAsMissingEpic,
 ]);

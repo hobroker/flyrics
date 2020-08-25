@@ -8,7 +8,7 @@ class ArtworkScreen extends StatelessWidget {
   ArtworkScreen({
     Key key,
     @required this.bytes,
-    this.fadeColor = Colors.transparent,
+    this.fadeColor = UI.primaryColor,
   }) : super(key: key);
 
   @override

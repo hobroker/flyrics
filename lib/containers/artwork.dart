@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/selectors/artwork.dart';
 import 'package:flyrics/utils/connector.dart';
-import 'package:flyrics/utils/sizing.dart';
+import 'package:flyrics/views/empty_widget.dart';
 import 'package:redux/redux.dart';
 import 'package:flyrics/views/artwork_placeholder.dart';
 import 'package:flyrics/views/artwork_screen.dart';
@@ -20,12 +20,18 @@ class Artwork extends StatelessWidget {
         );
       },
       builder: (context, vm) {
-        return vm.isLoading
-            ? ArtworkPlaceholder()
-            : ArtworkScreen(
-                bytes: vm.artworkBytes,
-                fadeColor: vm.fadeColor ?? UI.primaryColor,
-              );
+        if (vm.isArtworkMissing) {
+          return EmptyWidget();
+        }
+
+        if (vm.isLoading) {
+          return ArtworkPlaceholder();
+        }
+
+        return ArtworkScreen(
+          bytes: vm.artworkBytes,
+          fadeColor: vm.fadeColor,
+        );
       },
     );
   }

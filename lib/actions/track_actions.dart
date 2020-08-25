@@ -17,6 +17,8 @@ class FetchArtworkBytesStartAction {
   FetchArtworkBytesStartAction(this.url);
 }
 
+class SetArtworkAsMissingAction {}
+
 class FetchArtworkBytesSuccessAction {
   final List<int> bytes;
 

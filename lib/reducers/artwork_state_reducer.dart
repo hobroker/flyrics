@@ -22,4 +22,9 @@ final artworkStateReducer = combineReducers<ArtworkState>([
       colors: action.colors,
     );
   }),
+  TypedReducer<ArtworkState, SetArtworkAsMissingAction>((state, action) {
+    return state.copyWith(
+      isLoading: false,
+    );
+  }),
 ]);

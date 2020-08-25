@@ -3,6 +3,7 @@ import 'package:flyrics/actions/lyrics_actions.dart';
 import 'package:flyrics/actions/search_actions.dart';
 import 'package:flyrics/api/api.dart';
 import 'package:flyrics/selectors/search.dart';
+import 'package:flyrics/selectors/track.dart';
 import 'package:redux_epics/redux_epics.dart';
 
 Stream<dynamic> onSearchSuccessEpic(
@@ -18,7 +19,13 @@ Stream<dynamic> fetchLyricsEpic(
         .where((action) => action is FetchLyricsStartAction)
         .map((action) => action.url)
         .asyncMap((url) => api.genius.fetchLyrics(url))
-        .map((lyricsResult) => FetchLyricsSuccessAction(lyricsResult));
+        .map((result) {
+      var id = getActiveTrackId(store.state);
+      return FetchLyricsSuccessAction(
+        result: result,
+        id: id,
+      );
+    });
 
 final lyricsEpics = combineEpics<AppState>([
   onSearchSuccessEpic,

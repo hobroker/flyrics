@@ -1,14 +1,14 @@
 import 'package:flutter/foundation.dart';
 
 @immutable
-class SearchResult {
+class SearchResultModel {
   final String title;
   final String url;
 
-  SearchResult({this.title, this.url});
+  SearchResultModel({this.title, this.url});
 
-  static SearchResult fromJson(Map json) {
-    return SearchResult(
+  static SearchResultModel fromJson(Map json) {
+    return SearchResultModel(
       title: json['full_title'],
       url: json['url'],
     );
@@ -16,7 +16,9 @@ class SearchResult {
 
   @override
   bool operator ==(other) {
-    return other is SearchResult && other.title == title && other.url == url;
+    return other is SearchResultModel &&
+        other.title == title &&
+        other.url == url;
   }
 
   @override

@@ -1,4 +1,4 @@
-import 'package:flyrics/models/lyrics_result.dart';
+import 'package:flyrics/models/lyrics.dart';
 
 class FetchLyricsStartAction {
   final String url;
@@ -7,7 +7,8 @@ class FetchLyricsStartAction {
 }
 
 class FetchLyricsSuccessAction {
-  final LyricsResult result;
+  final String id;
+  final LyricsModel result;
 
-  FetchLyricsSuccessAction(this.result);
+  FetchLyricsSuccessAction({this.result, this.id});
 }

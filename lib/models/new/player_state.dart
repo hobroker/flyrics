@@ -9,6 +9,12 @@ class PlayerState {
     this.isRunning,
   });
 
+  PlayerState copyWith({isRunning}) {
+    return PlayerState(
+      isRunning: isRunning ?? this.isRunning,
+    );
+  }
+
   @override
   String toString() {
     return stringify({
@@ -18,8 +24,7 @@ class PlayerState {
 
   @override
   bool operator ==(other) {
-    return (other is PlayerState &&
-        other.isRunning == isRunning);
+    return (other is PlayerState && other.isRunning == isRunning);
   }
 
   @override

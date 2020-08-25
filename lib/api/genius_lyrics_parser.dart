@@ -1,4 +1,4 @@
-import 'package:flyrics/models/lyrics_part.dart';
+import 'package:flutter/foundation.dart';
 import 'package:html/parser.dart';
 
 bool _isNumeric(String str) {
@@ -57,4 +57,47 @@ class GeniusLyricsParser {
 
     return map;
   }
+}
+
+@immutable
+class LyricsPart {
+  final String html;
+  final String text;
+  final int annotationId;
+  final bool endsInNewLine;
+
+  LyricsPart({
+    this.html,
+    this.text,
+    this.annotationId,
+    this.endsInNewLine = false,
+  });
+
+  bool get hasAnnotation => annotationId != null;
+
+  LyricsPart copyWith({
+    html,
+    text,
+    annotationId,
+    endsInNewLine,
+  }) {
+    return LyricsPart(
+      html: html ?? this.html,
+      text: text ?? this.text,
+      annotationId: annotationId ?? this.annotationId,
+      endsInNewLine: endsInNewLine ?? this.endsInNewLine,
+    );
+  }
+
+  @override
+  bool operator ==(other) {
+    return other is LyricsPart &&
+        other.html == html &&
+        other.text == text &&
+        other.endsInNewLine == endsInNewLine &&
+        other.annotationId == annotationId;
+  }
+
+  @override
+  int get hashCode => super.hashCode;
 }

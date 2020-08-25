@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flyrics/models/lyrics_result.dart';
+import 'package:flyrics/models/lyrics.dart';
 import 'package:flyrics/models/search_result.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart';
@@ -12,7 +12,7 @@ class GeniusApi {
 
   GeniusApi({this.accessToken});
 
-  Future<List<SearchResult>> search(String query) async {
+  Future<List<SearchResultModel>> search(String query) async {
     var uri = Uri.https(baseUrl, 'search', {
       'q': query,
       'access_token': accessToken,
@@ -20,13 +20,13 @@ class GeniusApi {
     var response = await http.get(uri);
     var data = json.decode(response.body);
     var items = data['response']['hits'].map((item) => item['result']);
-    var list = List<SearchResult>.from(
-        items.map((item) => SearchResult.fromJson(item)));
+    var list = List<SearchResultModel>.from(
+        items.map((item) => SearchResultModel.fromJson(item)));
 
     return list;
   }
 
-  Future<LyricsResult> _fetchLyricsText(url, {int loop = 0}) async {
+  Future<LyricsModel> _fetchLyricsText(url, {int loop = 0}) async {
     loop++;
 
     var response = await http.get(url);
@@ -46,13 +46,12 @@ class GeniusApi {
     var html = content['lyrics_data']['body']['html'];
     var $fragment = parseFragment(html);
 
-    return LyricsResult(
+    return LyricsModel(
       text: $fragment.text,
-      tries: loop,
     );
   }
 
-  Future<LyricsResult> fetchLyrics(String url) async {
+  Future<LyricsModel> fetchLyrics(String url) async {
     var result = await _fetchLyricsText(url);
 
     return result;

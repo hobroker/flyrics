@@ -12,10 +12,11 @@ class Lyrics extends StatelessWidget {
       converter: (state) => _ViewModel(
         textColor: getArtworkTextColor(state),
         text: getLyricsText(state),
+        hasLyrics: hasActiveTrackLyrics(state),
         isLoading: areLyricsLoading(state),
       ),
       builder: (context, vm) {
-        return vm.isLoading
+        return vm.isLoading || !vm.hasLyrics
             ? LyricsPlaceholder()
             : LyricsScreen(
                 textColor: vm.textColor,
@@ -30,11 +31,13 @@ class Lyrics extends StatelessWidget {
 class _ViewModel {
   final Color textColor;
   final String text;
+  final bool hasLyrics;
   final bool isLoading;
 
   _ViewModel({
     @required this.textColor,
     @required this.text,
+    @required this.hasLyrics,
     @required this.isLoading,
   });
 
@@ -42,6 +45,7 @@ class _ViewModel {
   bool operator ==(other) {
     return other.textColor == textColor &&
         other.text == text &&
+        other.hasLyrics == hasLyrics &&
         other.isLoading == isLoading;
   }
 

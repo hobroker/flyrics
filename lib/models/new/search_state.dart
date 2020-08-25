@@ -3,7 +3,7 @@ import 'package:flyrics/models/search_result.dart';
 
 @immutable
 class SearchState {
-  final List<SearchResult> results;
+  final List<SearchResultModel> results;
   final bool isLoading;
 
   const SearchState({

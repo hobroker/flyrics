@@ -10,7 +10,7 @@ class AppLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Connector(
-      converter: isSpotifyRunning,
+      converter: isPlayerRunning,
       builder: (context, isRunning) {
         return Scaffold(
           body: DynamicContainer(

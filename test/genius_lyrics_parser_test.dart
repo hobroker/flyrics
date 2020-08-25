@@ -1,5 +1,4 @@
 import 'package:flyrics/api/genius_lyrics_parser.dart';
-import 'package:flyrics/models/lyrics_part.dart';
 import 'package:test/test.dart';
 
 const fragment =

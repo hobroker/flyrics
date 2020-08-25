@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/constants/sizing.dart';
-import 'package:flyrics/utils/random.dart';
+import 'package:flyrics/utils/sizing.dart';
 import 'package:flyrics/views/placeholder_rect.dart';
 
 class ArtworkPlaceholder extends StatelessWidget {
   getSize(context) {
-    return randomSize(Sizing(context).headerHeight * 0.8);
+    return UI(context).headerHeight * 0.8;
   }
 
   @override

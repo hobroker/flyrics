@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/constants/sizing.dart';
+import 'package:flyrics/utils/sizing.dart';
 import 'package:flyrics/containers/artwork.dart';
 import 'package:flyrics/containers/track_details.dart';
 
@@ -11,11 +11,13 @@ class HeaderScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: Sizing(context).headerWidth,
-      height: Sizing(context).headerHeight,
+      width: UI(context).headerWidth,
+      height: UI(context).headerHeight,
       child: AnimatedContainer(
         duration: Duration(milliseconds: 300),
-        color: this.backgroundColor,
+        decoration: BoxDecoration(
+          color: this.backgroundColor,
+        ),
         child: Row(
           children: [
             Expanded(

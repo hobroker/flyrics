@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flyrics/utils/sizing.dart';
+import 'package:shimmer/shimmer.dart';
 
 class PlaceholderRect extends StatelessWidget {
   final double height;
@@ -12,11 +14,15 @@ class PlaceholderRect extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      color: Theme.of(context).primaryColorDark,
-      duration: Duration(milliseconds: 300),
-      width: this.width,
-      height: this.height,
+    return Shimmer.fromColors(
+      baseColor: UI.primaryDarkColor,
+      highlightColor: UI.primaryColor,
+      enabled: true,
+      child: Container(
+        width: this.width,
+        height: this.height,
+        color: UI.primaryColor,
+      ),
     );
   }
 }

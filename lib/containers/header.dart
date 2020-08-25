@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flyrics/utils/sizing.dart';
 import 'package:flyrics/views/header_screen.dart';
 import 'package:redux/redux.dart';
 import 'package:flyrics/selectors/track.dart';
@@ -16,7 +17,7 @@ class Header extends StatelessWidget {
       },
       builder: (context, vm) {
         return HeaderScreen(
-          backgroundColor: vm.backgroundColor ?? Theme.of(context).primaryColor,
+          backgroundColor: vm.backgroundColor ?? UI.primaryColor,
         );
       },
     );

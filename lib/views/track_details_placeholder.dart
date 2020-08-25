@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/constants/sizing.dart';
-import 'package:flyrics/utils/random.dart';
+import 'package:flyrics/utils/sizing.dart';
 import 'package:flyrics/views/placeholder_rect.dart';
 
 class TrackDetailsPlaceholder extends StatelessWidget {
@@ -11,12 +10,12 @@ class TrackDetailsPlaceholder extends StatelessWidget {
       children: [
         PlaceholderRect(
           height: 20.0,
-          width: randomSize(Sizing(context).appWidth * 0.75),
+          width: UI(context).appWidth * 0.7,
         ),
         Spacer(),
         PlaceholderRect(
           height: 16,
-          width: randomSize(Sizing(context).appWidth * 0.5),
+          width: UI(context).appWidth * 0.45,
         ),
       ],
     );

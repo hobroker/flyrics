@@ -2,7 +2,7 @@ import 'package:flyrics/api/http.dart';
 import 'package:flyrics/api/spotify.dart';
 import 'package:flyrics/selectors/track.dart';
 import 'package:flyrics/utils/color.dart';
-import 'package:flyrics/utils/ui.dart';
+import 'package:flyrics/utils/load_image.dart';
 import 'package:palette_generator/palette_generator.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:flyrics/models/app_state.dart';
@@ -22,6 +22,7 @@ Stream<dynamic> fetchArtworkImageAsBytesEpic(
   return actions
       .where((action) => action is FetchTrackSuccessAction)
       .map((action) => getTrackArtwork(store.state))
+      .where((url) => url != null)
       .asyncMap((url) => Http.fetchImageBytes(url).then((response) {
             return FetchArtworkBytesSuccessAction(response);
           }));

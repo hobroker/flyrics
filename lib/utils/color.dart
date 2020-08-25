@@ -20,9 +20,9 @@ Color lighten(Color color, [double amount = .1]) {
 
 Color autoDarken(Color color) {
   var luminance = color.computeLuminance();
-  if (luminance < 0.1) {
-    return color;
-  }
+//  if (luminance < 0.01) {
+//    return Colors.white;
+//  }
 
   return luminance > 0.5 ? darken(color, 0.5) : lighten(color, 0.75);
 }

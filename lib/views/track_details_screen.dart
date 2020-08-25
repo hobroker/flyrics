@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flyrics/utils/sizing.dart';
 
 class TrackDetailsScreen extends StatelessWidget {
   final String name;
@@ -15,7 +16,7 @@ class TrackDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var textStyle = new TextStyle(
-      color: this.textColor ?? Theme.of(context).textSelectionColor,
+      color: this.textColor ?? UI.textColor,
     );
 
     return Container(

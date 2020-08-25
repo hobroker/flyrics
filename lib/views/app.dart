@@ -17,6 +17,7 @@ class App extends StatelessWidget {
     return StoreProvider(
       store: this.store,
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: HomePage(),
         theme: ThemeData(
           primaryColor: const Color(0xff282828),

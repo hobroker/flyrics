@@ -6,13 +6,12 @@ final artworkStateReducer = combineReducers<ArtworkState>([
   TypedReducer<ArtworkState, FetchTrackSuccessAction>((state, action) {
     return state.copyWith(
       url: action.track.artwork,
-      shouldRefresh: true,
+      bytes: null,
     );
   }),
   TypedReducer<ArtworkState, FetchArtworkBytesSuccessAction>((state, action) {
     return state.copyWith(
       bytes: action.bytes,
-      shouldRefresh: false,
     );
   }),
   TypedReducer<ArtworkState, FetchArtworkColorsSuccessAction>((state, action) {

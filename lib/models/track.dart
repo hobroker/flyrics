@@ -22,7 +22,7 @@ class Track {
       name: json['name'],
       album: json['album'],
       artist: json['artist'],
-      artwork: json['artwork'],
+      artwork: json['artwork'] == 'missing value' ? null : json['artwork'],
     );
   }
 

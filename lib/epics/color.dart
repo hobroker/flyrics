@@ -7,14 +7,10 @@ Stream<dynamic> findArtworkColorsEpic(
         Stream<dynamic> actions, EpicStore<AppState> store) =>
     actions
         .where((action) => action is FetchArtworkBytesSuccessAction)
-        .asyncMap((action) async {
-      var colors = await findImageColors(action.bytes);
-      var backgroundColor = colors.first;
-      var textColor = autoDarken(backgroundColor);
-
+        .asyncMap((action) => findImageColors(action.bytes))
+        .map((colors) {
       return FetchArtworkColorsSuccessAction(
-        dominantColor: backgroundColor,
-        textColor: textColor,
+        textColor: findOppositeColor(colors.first),
         colors: colors,
       );
     });

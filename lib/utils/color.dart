@@ -21,13 +21,22 @@ Color lighten(Color color, [double amount = .1]) {
   return hslLight.toColor();
 }
 
-Color autoDarken(Color color) {
+Color findOppositeColor(Color color) {
   var luminance = color.computeLuminance();
 //  if (luminance < 0.01) {
 //    return Colors.white;
 //  }
 
   return luminance > 0.5 ? darken(color, 0.5) : lighten(color, 0.75);
+}
+
+Color autoDarken(Color color) {
+  var luminance = color.computeLuminance();
+  if (luminance > 0.35) {
+    return darken(color, 0.2);
+  }
+
+  return color;
 }
 
 Future<List<Color>> findImageColors(List<int> bytes) async {

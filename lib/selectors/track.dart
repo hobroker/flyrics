@@ -11,3 +11,5 @@ bool hasTrack(AppState state) {
 String getTrackName(AppState state) => getTrack(state)?.name;
 
 String getTrackArtist(AppState state) => getTrack(state)?.artist;
+
+bool trackHasArtwork(AppState state) => getTrack(state)?.artwork != null;

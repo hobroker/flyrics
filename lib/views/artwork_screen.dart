@@ -14,6 +14,7 @@ class ArtworkScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var height = UI(context).headerHeight;
+    var shadeWidth = height * .75;
 
     return Container(
       child: Stack(
@@ -27,33 +28,20 @@ class ArtworkScreen extends StatelessWidget {
             ),
           ),
           AnimatedContainer(
-            width: height / 2,
+            width: shadeWidth,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
-                colors: [fadeColor, Colors.transparent],
+                colors: [
+                  fadeColor.withOpacity(0.75),
+                  Colors.transparent,
+                ],
                 tileMode: TileMode.repeated,
               ),
             ),
             duration: Duration(milliseconds: 300),
           ),
-          Positioned(
-            top: height / 2,
-            child: AnimatedContainer(
-              width: height,
-              height: height / 2,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.bottomCenter,
-                  end: Alignment.topCenter,
-                  colors: [fadeColor, Colors.transparent],
-                  tileMode: TileMode.repeated,
-                ),
-              ),
-              duration: Duration(milliseconds: 300),
-            ),
-          )
         ],
       ),
     );

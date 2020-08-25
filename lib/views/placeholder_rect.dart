@@ -13,7 +13,7 @@ class PlaceholderRect extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      color: Theme.of(context).primaryColor,
+      color: Theme.of(context).primaryColorDark,
       duration: Duration(milliseconds: 300),
       width: this.width,
       height: this.height,

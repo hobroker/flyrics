@@ -13,11 +13,11 @@ class Artwork extends StatelessWidget {
       converter: (Store<AppState> store) {
         return _ViewModel(
           artworkBytes: getTrackArtworkAsBytes(store.state),
-          hasTrack: hasTrack(store.state),
+          isArtworkLoaded: isArtworkLoaded(store.state),
         );
       },
       builder: (context, vm) {
-        return vm.hasTrack
+        return vm.isArtworkLoaded
             ? ArtworkScreen(
                 bytes: vm.artworkBytes,
               )
@@ -28,11 +28,11 @@ class Artwork extends StatelessWidget {
 }
 
 class _ViewModel {
-  final bool hasTrack;
+  final bool isArtworkLoaded;
   final List<int> artworkBytes;
 
   _ViewModel({
     this.artworkBytes,
-    this.hasTrack,
+    this.isArtworkLoaded,
   });
 }

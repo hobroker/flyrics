@@ -17,3 +17,12 @@ Color lighten(Color color, [double amount = .1]) {
 
   return hslLight.toColor();
 }
+
+Color autoDarken(Color color) {
+  var luminance = color.computeLuminance();
+  if (luminance < 0.1) {
+    return color;
+  }
+
+  return luminance > 0.5 ? darken(color, 0.5) : lighten(color, 0.75);
+}

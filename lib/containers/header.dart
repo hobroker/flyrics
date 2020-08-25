@@ -16,7 +16,7 @@ class Header extends StatelessWidget {
       },
       builder: (context, vm) {
         return HeaderScreen(
-          backgroundColor: vm.backgroundColor,
+          backgroundColor: vm.backgroundColor ?? Theme.of(context).primaryColor,
         );
       },
     );

@@ -15,7 +15,7 @@ class TrackDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var textStyle = new TextStyle(
-      color: this.textColor,
+      color: this.textColor ?? Theme.of(context).textSelectionColor,
     );
 
     return Container(

@@ -19,6 +19,8 @@ String getTrackArtwork(AppState state) => getTrack(state)?.artwork;
 List<int> getTrackArtworkAsBytes(AppState state) =>
     getTrackState(state).artworkBytes;
 
+bool isArtworkLoaded(AppState state) => getTrackArtworkAsBytes(state) != null;
+
 String getTrackName(AppState state) => getTrack(state)?.name;
 
 String getTrackArtist(AppState state) => getTrack(state)?.artist;

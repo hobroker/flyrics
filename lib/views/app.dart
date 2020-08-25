@@ -34,7 +34,9 @@ class _AppState extends State<App> {
         home: HomePage(),
         theme: ThemeData(
           primaryColor: Color(0xff282828),
+          primaryColorDark: Color(0xff191414),
           accentColor: Color(0xff62D36E),
+          textSelectionColor: Color(0xffffffff),
         ),
       ),
     );

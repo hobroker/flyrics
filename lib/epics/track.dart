@@ -39,9 +39,7 @@ Stream<dynamic> findArtworkColorsEpic(
     );
 
     var backgroundColor = generator.dominantColor?.color;
-    var textColor = backgroundColor.computeLuminance() > 0.5
-        ? darken(backgroundColor, 0.5)
-        : lighten(backgroundColor, 0.75);
+    var textColor = autoDarken(backgroundColor);
 
     return FetchArtworkColorsSuccessAction(
       backgroundColor: backgroundColor,

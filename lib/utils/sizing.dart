@@ -13,7 +13,7 @@ class UI {
   static const Color accentColor = Color(0xff62D36E);
   static const Color textColor = Color(0xffffffff);
   
-  static Duration transitionDuration;
+  static Duration transitionDuration = Duration(milliseconds: 1500);
 
   UI(this.context) {
     var size = MediaQuery.of(context).size;

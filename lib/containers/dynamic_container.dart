@@ -5,10 +5,14 @@ import 'package:flyrics/utils/sizing.dart';
 
 class DynamicContainer extends StatelessWidget {
   final Widget child;
+  final double width;
+  final double height;
 
   DynamicContainer({
     Key key,
     @required this.child,
+    this.width,
+    this.height,
   }) : super(key: key);
 
   @override
@@ -16,12 +20,19 @@ class DynamicContainer extends StatelessWidget {
     return Connector(
       converter: getArtworkDominantColor,
       builder: (context, backgroundColor) {
-        return AnimatedContainer(
-          duration: UI.transitionDuration,
+        return Container(
+          width: width,
+          height: height,
           decoration: BoxDecoration(
             color: backgroundColor,
           ),
-          child: child,
+          child: AnimatedContainer(
+            duration: UI.transitionDuration,
+            decoration: BoxDecoration(
+              color: backgroundColor,
+            ),
+            child: child,
+          ),
         );
       },
     );

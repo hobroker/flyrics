@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:flyrics/models/lyrics_part.dart';
 
 @immutable
 class LyricsResult {

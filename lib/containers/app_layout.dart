@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flyrics/containers/dynamic_container.dart';
 import 'package:flyrics/selectors/app.dart';
 import 'package:flyrics/store/connector.dart';
 import 'package:flyrics/utils/sizing.dart';
@@ -12,7 +13,7 @@ class AppLayout extends StatelessWidget {
       converter: isSpotifyRunning,
       builder: (context, isRunning) {
         return Scaffold(
-          body: Container(
+          body: DynamicContainer(
             width: UI(context).appWidth,
             height: UI(context).appHeight,
             child: isRunning ? LayoutScreeen() : LayoutPlaceholder(),

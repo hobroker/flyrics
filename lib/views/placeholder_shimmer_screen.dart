@@ -27,7 +27,9 @@ class PlaceholderShimmerScreeen extends StatelessWidget {
       child: AnimatedContainer(
         width: width,
         height: height,
-        color: UI.primaryColor,
+        decoration: BoxDecoration(
+          color: UI.primaryColor,
+        ),
         duration: UI.transitionDuration,
       ),
     );

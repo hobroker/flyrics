@@ -27,18 +27,20 @@ class ArtworkScreen extends StatelessWidget {
               fit: BoxFit.fill,
             ),
           ),
-          AnimatedContainer(
+          Container(
             width: shadeWidth,
-            duration: UI.transitionDuration,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: [
-                  fadeColor.withOpacity(0.75),
-                  Colors.transparent,
-                ],
-                tileMode: TileMode.repeated,
+            child: AnimatedContainer(
+              duration: UI.transitionDuration,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    fadeColor.withOpacity(0.75),
+                    Colors.transparent,
+                  ],
+                  tileMode: TileMode.repeated,
+                ),
               ),
             ),
           ),

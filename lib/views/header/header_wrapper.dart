@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/containers/dynamic_container.dart';
 import 'package:flyrics/utils/sizing.dart';
 
 class HeaderWrapper extends StatelessWidget {
@@ -15,7 +14,7 @@ class HeaderWrapper extends StatelessWidget {
     return SizedBox(
       width: UI(context).headerWidth,
       height: UI(context).headerHeight,
-      child: DynamicContainer(
+      child: Container(
         child: Row(
           children: children,
         ),

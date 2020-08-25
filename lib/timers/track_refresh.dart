@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:flyrics/actions/player_actions.dart';
 import 'package:flyrics/actions/track_actions.dart';
 import 'package:flyrics/api/api.dart';
-import 'package:flyrics/selectors/timer.dart';
 import 'package:flyrics/selectors/player.dart';
+import 'package:flyrics/selectors/timer.dart';
 import 'package:flyrics/selectors/track.dart';
 import 'package:redux/redux.dart';
 
 void trackRefresh(Store store, {Duration every}) async {
   Timer.periodic(every, (Timer timer) async {
-    var shouldRun = checkIsRunningTimerActive(store.state);
+    var shouldRun = isCheckIsRunningTimerActive(store.state);
     if (!shouldRun) {
       return;
     }

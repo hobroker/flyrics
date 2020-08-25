@@ -44,4 +44,6 @@ class UI {
   double get trackArtistFontSize => relativeSize(headerHeight, .2, max: 18);
 
   double get lyricsFontSize => relativeSize(headerHeight, .185, max: 14);
+
+  double get geniusIconSize => relativeSize(headerHeight, .25, max: 20);
 }

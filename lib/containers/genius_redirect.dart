@@ -48,9 +48,7 @@ class _ViewModel {
 
   @override
   bool operator ==(other) {
-    return other.url == url &&
-        other.textColor == textColor &&
-        other.openUrl == openUrl;
+    return other.url == url && other.textColor == textColor;
   }
 
   @override

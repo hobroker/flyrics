@@ -12,21 +12,21 @@ class GeniusRedirectScreen extends StatelessWidget {
     @required this.iconColor,
   }) : super(key: key);
 
-  void onPressed() async {
-    openUrl();
-  }
-
   @override
   Widget build(BuildContext context) {
+    var ui = UI(context);
     return Align(
       alignment: Alignment.centerRight,
       child: Opacity(
         opacity: .5,
         child: IconButton(
           padding: EdgeInsets.all(0),
-          constraints: BoxConstraints(maxWidth: 16, maxHeight: 16),
+          constraints: BoxConstraints(
+            maxWidth: ui.geniusIconSize,
+            maxHeight: ui.geniusIconSize,
+          ),
           icon: SvgPicture.asset(UI.geniusIcon, color: UI.geniusAccentColor),
-          onPressed: onPressed,
+          onPressed: openUrl,
         ),
       ),
     );

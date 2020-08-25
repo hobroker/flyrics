@@ -24,12 +24,14 @@ class Connector<ViewModel> extends StatelessWidget {
 }
 
 class MappedConnector<bool> extends StatelessWidget {
-  final Map<String, Function(AppState state)> converter;
-  final Function(BuildContext context, dynamic vm) builder;
+  final Map<String, Function(AppState)> state;
+  final Map<String, Function(dynamic)> actions;
+  final Function(BuildContext, dynamic) builder;
 
   const MappedConnector({
     Key key,
-    this.converter,
+    this.state,
+    this.actions,
     this.builder,
   }) : super(key: key);
 
@@ -41,8 +43,12 @@ class MappedConnector<bool> extends StatelessWidget {
       converter: (Store<AppState> store) {
         var map = {};
 
-        converter.forEach((key, value) {
+        state.forEach((key, value) {
           map[key] = value(store.state);
+        });
+
+        actions.forEach((key, value) {
+          map[key] = value(store.dispatch);
         });
 
         return map;

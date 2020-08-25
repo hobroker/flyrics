@@ -1,8 +1,8 @@
 class CheckIsRunningStartAction {}
 
-class CheckIsRunningSuccessAction {
+class SetIsRunningAction {
   final bool isRunning;
 
-  CheckIsRunningSuccessAction(this.isRunning);
+  SetIsRunningAction(this.isRunning);
 }
 

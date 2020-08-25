@@ -23,10 +23,17 @@ final artworkStateReducer = combineReducers<ArtworkState>([
       colors: newArtworkState.colors,
     );
   }),
-  TypedReducer<ArtworkState, FetchArtworkColorsSuccessAction>((state, action) {
+  TypedReducer<ArtworkState, SetArtworkColorsAction>((state, action) {
     return state.copyWith(
       textColor: action.textColor,
       colors: action.colors,
+    );
+  }),
+  TypedReducer<ArtworkState, ResetArtworkColorsAction>((state, action) {
+    return ArtworkState(
+      isLoading: state.isLoading,
+      bytes: state.bytes,
+      url: state.url,
     );
   }),
   TypedReducer<ArtworkState, SetArtworkAsMissingAction>((state, action) {

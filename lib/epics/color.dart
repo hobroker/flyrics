@@ -1,3 +1,4 @@
+import 'package:flyrics/actions/is_running_actions.dart';
 import 'package:flyrics/utils/color.dart';
 import 'package:flyrics/actions/track_actions.dart';
 import 'package:flyrics/models/app_state.dart';
@@ -9,12 +10,18 @@ Stream<dynamic> findArtworkColorsEpic(
         .where((action) => action is FetchArtworkBytesSuccessAction)
         .asyncMap((action) => findImageColors(action.bytes))
         .map((colors) {
-      return FetchArtworkColorsSuccessAction(
+      return SetArtworkColorsAction(
         textColor: findOppositeColor(colors.first),
         colors: colors,
       );
     });
 
+Stream<dynamic> resetColorsEpic(Stream<dynamic> actions, store) => actions
+    .where((action) => action is SetIsRunningAction)
+    .map((action) => !action.isRunning)
+    .map((action) => ResetArtworkColorsAction());
+
 final colorEpics = combineEpics<AppState>([
   findArtworkColorsEpic,
+  resetColorsEpic,
 ]);

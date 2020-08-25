@@ -1,0 +1,2 @@
+class StartRefreshTimerAction {}
+class StopRefreshTimerAction {}

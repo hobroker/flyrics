@@ -8,7 +8,7 @@ import 'package:redux_epics/redux_epics.dart';
 Stream<dynamic> fetchTrackOnStartEpic(
         Stream<dynamic> actions, EpicStore<AppState> store) =>
     actions
-        .where((action) => action is CheckIsRunningSuccessAction)
+        .where((action) => action is SetIsRunningAction)
         .where((action) => action.isRunning)
         .map((isRunning) => FetchTrackStartAction());
 
@@ -23,7 +23,7 @@ Stream<dynamic> checkIsRunningEpic(
     actions
         .where((action) => action is CheckIsRunningStartAction)
         .asyncMap((action) => api.spotify.isRunning())
-        .map((value) => CheckIsRunningSuccessAction(value));
+        .map((value) => SetIsRunningAction(value));
 
 final startupEpics = combineEpics<AppState>([
   fetchTrackOnStartEpic,

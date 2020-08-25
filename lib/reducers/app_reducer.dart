@@ -4,6 +4,7 @@ import 'artwork_state_reducer.dart';
 import 'is_running_reducer.dart';
 import 'lyrics_reducer.dart';
 import 'search_reducer.dart';
+import 'timer_reducer.dart';
 import 'track_reducer.dart';
 
 AppState appReducer(AppState state, action) {
@@ -13,9 +14,10 @@ AppState appReducer(AppState state, action) {
 
   return AppState(
     track: trackReducer(state.track, action),
-    isRunning: isPlayingReducer(state.isRunning, action),
+    isRunning: isRunningReducer(state.isRunning, action),
     artwork: artworkStateReducer(state.artwork, action),
     search: searchReducer(state.search, action),
     lyrics: lyricsReducer(state.lyrics, action),
+    timer: timerReducer(state.timer, action),
   );
 }

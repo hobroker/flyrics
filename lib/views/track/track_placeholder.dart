@@ -21,7 +21,7 @@ class TrackPlaceholder extends StatelessWidget {
           isAnimated: isAnimated,
           width: UI(context).appWidth * randomDoubleBetween(0.6, 0.7),
         ),
-        Spacer(),
+        SizedBox(height: 4),
         PlaceholderContainer(
           height: 16,
           isAnimated: isAnimated,

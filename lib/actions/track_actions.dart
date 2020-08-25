@@ -25,11 +25,13 @@ class FetchArtworkBytesSuccessAction {
 
 class SetArtworkAsMissingAction {}
 
-class FetchArtworkColorsSuccessAction {
+class ResetArtworkColorsAction {}
+
+class SetArtworkColorsAction {
   final Color textColor;
   final List<Color> colors;
 
-  FetchArtworkColorsSuccessAction({
+  SetArtworkColorsAction({
     this.textColor,
     this.colors,
   });

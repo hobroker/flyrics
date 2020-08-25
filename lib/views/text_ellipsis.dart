@@ -10,8 +10,8 @@ class TextEllipsis extends StatelessWidget {
     this.style,
   }) : super(key: key);
 
-  addWhiteSpaces(text) {
-    return text.replaceAll("", "\u{200B}");
+  String addWhiteSpaces(text) {
+    return text.replaceAll('', '\u{200B}');
   }
 
   @override

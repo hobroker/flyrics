@@ -19,7 +19,7 @@ class HeaderScreen extends StatelessWidget {
       child: AnimatedContainer(
         duration: Duration(milliseconds: 300),
         decoration: BoxDecoration(
-          color: this.backgroundColor,
+          color: backgroundColor,
         ),
         child: Row(
           children: [

@@ -28,8 +28,8 @@ class PlaceholderShimmer extends StatelessWidget {
         return PlaceholderShimmerScreeen(
           backgroundColor: vm.backgroundColor,
           shineColor: vm.shineColor,
-          width: this.width,
-          height: this.height,
+          width: width,
+          height: height,
         );
       },
     );
@@ -46,6 +46,7 @@ class _ViewModel {
     @required this.shineColor,
   });
 
+  @override
   bool operator ==(other) {
     return other.backgroundColor == backgroundColor &&
         other.shineColor == shineColor;

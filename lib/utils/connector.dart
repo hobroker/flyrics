@@ -9,7 +9,7 @@ class Connector<ViewModel> extends StatelessWidget {
 
   Connector({this.converter, this.builder});
 
-  onWillChange(prevViewModel, newViewModel) => prevViewModel != newViewModel;
+  bool onWillChange(prevViewModel, newViewModel) => prevViewModel != newViewModel;
 
   @override
   Widget build(BuildContext context) {

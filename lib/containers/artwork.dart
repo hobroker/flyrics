@@ -15,14 +15,14 @@ class Artwork extends StatelessWidget {
         return _ViewModel(
           artworkBytes: getTrackArtworkAsBytes(store.state),
           isArtworkLoaded: shouldDisplayArtwork(store.state),
-          dominantColor: getArtworkDominantColor(store.state),
+          fadeColor: getArtworkDominantColor(store.state),
         );
       },
       builder: (context, vm) {
         return vm.isArtworkLoaded
             ? ArtworkScreen(
                 bytes: vm.artworkBytes,
-                fadeColor: vm.dominantColor ?? UI.primaryColor,
+                fadeColor: vm.fadeColor ?? UI.primaryColor,
               )
             : ArtworkPlaceholder();
       },
@@ -33,18 +33,19 @@ class Artwork extends StatelessWidget {
 class _ViewModel {
   final bool isArtworkLoaded;
   final List<int> artworkBytes;
-  final Color dominantColor;
+  final Color fadeColor;
 
   _ViewModel({
     this.artworkBytes,
     this.isArtworkLoaded,
-    this.dominantColor,
+    this.fadeColor,
   });
 
+  @override
   bool operator ==(other) {
     return other.isArtworkLoaded == isArtworkLoaded &&
         other.artworkBytes == artworkBytes &&
-        other.dominantColor == dominantColor;
+        other.fadeColor == fadeColor;
   }
 
   @override

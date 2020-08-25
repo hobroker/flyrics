@@ -7,7 +7,6 @@ class ArtworkState {
   final String url;
   final List<int> bytes;
   final bool shouldRefresh;
-  final Color dominantColor;
   final List<Color> colors;
   final Color textColor;
 
@@ -15,20 +14,20 @@ class ArtworkState {
     this.url,
     this.bytes,
     this.shouldRefresh = true,
-    this.dominantColor = UI.primaryColor,
-    this.colors = const [],
+    this.colors = const [UI.primaryColor],
     this.textColor = UI.textColor,
   });
+
+  Color get dominantColor => colors.first;
 
   ArtworkState rebuild(Function fn) {
     return fn(this);
   }
 
-  copyWith({
+  ArtworkState copyWith({
     url,
     bytes,
     shouldRefresh,
-    dominantColor,
     textColor,
     colors,
   }) {
@@ -36,17 +35,16 @@ class ArtworkState {
       url: url ?? this.url,
       bytes: bytes ?? this.bytes,
       shouldRefresh: shouldRefresh ?? this.shouldRefresh,
-      dominantColor: dominantColor ?? this.dominantColor,
       textColor: textColor ?? this.textColor,
       colors: colors ?? this.colors,
     );
   }
 
+  @override
   bool operator ==(other) {
     return other.url == url &&
         other.bytes == bytes &&
         other.shouldRefresh == shouldRefresh &&
-        other.dominantColor == dominantColor &&
         other.colors == colors &&
         other.textColor == textColor;
   }

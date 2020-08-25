@@ -41,6 +41,7 @@ class _ViewModel {
     @required this.isLoading,
   });
 
+  @override
   bool operator ==(other) {
     return other.backgroundColor == backgroundColor &&
         other.textColor == textColor &&

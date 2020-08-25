@@ -32,6 +32,7 @@ class _ViewModel {
     this.textColor,
   });
 
+  @override
   bool operator ==(other) {
     return other.backgroundColor == backgroundColor &&
         other.textColor == textColor;

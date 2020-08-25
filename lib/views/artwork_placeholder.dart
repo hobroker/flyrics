@@ -3,7 +3,7 @@ import 'package:flyrics/containers/placeholder_shimmer.dart';
 import 'package:flyrics/utils/sizing.dart';
 
 class ArtworkPlaceholder extends StatelessWidget {
-  getSize(context) {
+  double getSize(context) {
     return UI(context).headerHeight * 0.8;
   }
 
@@ -12,8 +12,8 @@ class ArtworkPlaceholder extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(right: 8.0, left: 8.0),
       child: PlaceholderShimmer(
-        height: this.getSize(context),
-        width: this.getSize(context),
+        height: getSize(context),
+        width: getSize(context),
       ),
     );
   }

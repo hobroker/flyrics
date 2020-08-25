@@ -1,15 +1,15 @@
+import 'package:flyrics/actions/track_actions.dart';
 import 'package:flyrics/models/app_state.dart';
-import 'package:flyrics/actions/app_actions.dart';
 import 'package:flyrics/actions/lyrics_actions.dart';
 import 'package:flyrics/actions/search_actions.dart';
 import 'package:flyrics/api/api.dart';
 import 'package:flyrics/selectors/search.dart';
 import 'package:redux_epics/redux_epics.dart';
 
-Stream<dynamic> searchLyricsOnAppStartEpic(
+Stream<dynamic> searchLyricsOnTrachFetchSuccessEpic(
         Stream<dynamic> actions, EpicStore<AppState> store) =>
     actions
-        .where((action) => action is AppStartedAction)
+        .where((action) => action is FetchTrackSuccessAction)
         .map((action) => SearchStartAction());
 
 Stream<dynamic> searchLyricsEpic(
@@ -38,7 +38,7 @@ Stream<dynamic> fetchLyricsEpic(
             .then((text) => FetchLyricsSuccessAction(text)));
 
 final searchEpics = combineEpics<AppState>([
-  searchLyricsOnAppStartEpic,
+  searchLyricsOnTrachFetchSuccessEpic,
   searchLyricsEpic,
   onSearchSuccessEpic,
   fetchLyricsEpic,

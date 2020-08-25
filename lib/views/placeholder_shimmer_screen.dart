@@ -23,8 +23,8 @@ class PlaceholderShimmerScreeen extends StatelessWidget {
       highlightColor: shineColor ?? UI.primaryColor,
       enabled: true,
       child: Container(
-        width: this.width,
-        height: this.height,
+        width: width,
+        height: height,
         color: UI.primaryColor,
       ),
     );

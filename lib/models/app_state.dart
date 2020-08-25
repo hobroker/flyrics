@@ -13,13 +13,14 @@ class AppState {
   final LyricsState lyrics;
 
   AppState({
-    this.isRunning: false,
-    this.track: const Track(),
-    this.artwork: const ArtworkState(),
-    this.search: const SearchState(),
-    this.lyrics: const LyricsState(),
+    this.isRunning = false,
+    this.track = const Track(),
+    this.artwork = const ArtworkState(),
+    this.search = const SearchState(),
+    this.lyrics = const LyricsState(),
   });
 
+  @override
   bool operator ==(other) {
     return other is AppState &&
         other.isRunning == isRunning &&

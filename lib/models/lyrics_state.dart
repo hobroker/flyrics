@@ -6,17 +6,18 @@ class LyricsState {
   final String text;
 
   const LyricsState({
-    this.isLoading: true,
+    this.isLoading = true,
     this.text,
   });
 
-  copyWith({isLoading, text}) {
+  LyricsState copyWith({isLoading, text}) {
     return LyricsState(
       isLoading: isLoading ?? this.isLoading,
       text: text ?? this.text,
     );
   }
 
+  @override
   bool operator ==(other) {
     return other is LyricsState &&
         other.isLoading == isLoading &&

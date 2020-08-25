@@ -13,5 +13,5 @@ class Secrets {
     );
   }
 
-  String getEnv(String key) => this.env[key];
+  String getEnv(String key) => env[key];
 }

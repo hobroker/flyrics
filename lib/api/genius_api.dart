@@ -11,7 +11,7 @@ class GeniusApi {
   Future<List<SearchResult>> search(String query) async {
     var uri = Uri.https('api.genius.com', 'search', {
       'q': query,
-      'access_token': this.accessToken,
+      'access_token': accessToken,
     });
     var response = await http.get(uri);
     var data = json.decode(response.body);

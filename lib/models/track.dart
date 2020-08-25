@@ -16,7 +16,7 @@ class Track {
     this.artwork,
   });
 
-  static fromJson(Map json) {
+  static Track fromJson(Map json) {
     return Track(
       id: json['id'],
       name: json['name'],
@@ -26,10 +26,9 @@ class Track {
     );
   }
 
-  bool isEmpty() {
-    return id == null;
-  }
+  bool isEmpty() => id == null;
 
+  @override
   bool operator ==(other) {
     return (other is Track && other.id == id);
   }

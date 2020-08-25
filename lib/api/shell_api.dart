@@ -3,25 +3,25 @@ import 'dart:io';
 class ShellApi {
   Future<String> _exec(String cmd, List<String> args) async {
     try {
-      final ProcessResult result = await Process.run(cmd, args);
+      var result = await Process.run(cmd, args);
 
       return result.stdout.trim();
     } catch (e) {
       print('error');
       print(e.error);
 
-      throw e;
+      rethrow;
     }
   }
 
-  Future<String> exec(String cmd, {List<String> args: const []}) async {
-    String result = await this._exec(cmd, args);
+  Future<String> exec(String cmd, {List<String> args = const []}) async {
+    var result = await _exec(cmd, args);
 
     return result.trim();
   }
 
   Future<String> runAppleScript(String cmd) async {
-    String result = await this.exec('osascript', args: ['-e $cmd']);
+    var result = await exec('osascript', args: ['-e $cmd']);
 
     return result;
   }

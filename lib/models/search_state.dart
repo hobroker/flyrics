@@ -7,17 +7,18 @@ class SearchState {
   final bool isLoading;
 
   const SearchState({
-    this.isLoading: false,
-    this.items: const [],
+    this.isLoading = false,
+    this.items = const [],
   });
 
-  copyWith({isLoading, items}) {
+  SearchState copyWith({isLoading, items}) {
     return SearchState(
       isLoading: isLoading ?? this.isLoading,
       items: items ?? this.items,
     );
   }
 
+  @override
   bool operator ==(other) {
     return other is SearchState &&
         other.isLoading == isLoading &&

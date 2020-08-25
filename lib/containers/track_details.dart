@@ -44,10 +44,11 @@ class _ViewModel {
     this.hasTrack,
     this.textColor,
   }) {
-    this.name = this.name?.replaceAll("", "\u{200B}");
-    this.artist = this.artist?.replaceAll("", "\u{200B}");
+    name = name?.replaceAll('', '\u{200B}');
+    artist = artist?.replaceAll('', '\u{200B}');
   }
 
+  @override
   bool operator ==(other) {
     return other.name == name &&
         other.artist == artist &&

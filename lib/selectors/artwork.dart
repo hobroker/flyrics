@@ -23,7 +23,7 @@ Color getArtworkDominantColor(AppState state) =>
 List<Color> getArtworkColors(AppState state) => getArtworkState(state)?.colors;
 
 bool artworkHasColors(AppState state) =>
-    getArtworkState(state)?.colors?.length != 0;
+    getArtworkState(state)?.colors?.length != 1;
 
 Color getArtworkColorByIndex(AppState state, int index) =>
     artworkHasColors(state) ? getArtworkColors(state)[index] : null;

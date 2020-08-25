@@ -12,17 +12,17 @@ class Api {
   ShellApi shell;
   UtilApi util;
 
-  init(Secrets secrets) {
-    this._secrets = secrets;
-    var geniusAccessToken = this._getSecret('GENIUS_API_KEY');
+  void init(Secrets secrets) {
+    _secrets = secrets;
+    var geniusAccessToken = _getSecret('GENIUS_API_KEY');
 
-    this.shell = ShellApi();
-    this.util = UtilApi();
-    this.spotify = SpotifyApi(shell: this.shell);
-    this.genius = GeniusApi(accessToken: geniusAccessToken);
+    shell = ShellApi();
+    util = UtilApi();
+    spotify = SpotifyApi(shell: shell);
+    genius = GeniusApi(accessToken: geniusAccessToken);
   }
 
-  String _getSecret(String key) => this._secrets.getEnv(key);
+  String _getSecret(String key) => _secrets.getEnv(key);
 }
 
 var api = Api();

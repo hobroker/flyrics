@@ -14,9 +14,9 @@ class UI {
   static const Color textColor = Color(0xffffffff);
 
   UI(this.context) {
-    var size = MediaQuery.of(this.context).size;
-    this.appHeight = size.height;
-    this.appWidth = size.width;
-    this.headerWidth = this.appWidth;
+    var size = MediaQuery.of(context).size;
+    appHeight = size.height;
+    appWidth = size.width;
+    headerWidth = appWidth;
   }
 }

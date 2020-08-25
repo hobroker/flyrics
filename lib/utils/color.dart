@@ -23,11 +23,14 @@ Color lighten(Color color, [double amount = .1]) {
 
 Color findOppositeColor(Color color) {
   var luminance = color.computeLuminance();
-//  if (luminance < 0.01) {
-//    return Colors.white;
-//  }
 
-  return luminance > 0.5 ? darken(color, 0.5) : lighten(color, 0.75);
+  if (luminance < 0.5) {
+    return lighten(color, 0.75);
+  }
+
+  var amount = luminance > 0.75 ? luminance : 0.5;
+
+  return darken(color, amount);
 }
 
 Color autoDarken(Color color) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/selectors/artwork.dart';
 import 'package:flyrics/selectors/lyrics.dart';
-import 'package:flyrics/utils/connector.dart';
+import 'package:flyrics/store/connector.dart';
 import 'package:flyrics/views/content_screen.dart';
 import 'package:redux/redux.dart';
 import 'package:flyrics/models/app_state.dart';

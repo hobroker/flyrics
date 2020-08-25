@@ -33,7 +33,7 @@ Stream<dynamic> fetchLyricsEpic(
         .where((action) => action is FetchLyricsStartAction)
         .map((action) => action.url)
         .asyncMap((url) => api.genius.fetchLyrics(url))
-        .map((text) => FetchLyricsSuccessAction('$text $text $text'));
+        .map((lyricsResult) => FetchLyricsSuccessAction(lyricsResult));
 
 final searchEpics = combineEpics<AppState>([
   searchLyricsOnTrachFetchSuccessEpic,

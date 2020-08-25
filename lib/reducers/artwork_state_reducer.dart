@@ -16,6 +16,13 @@ final artworkStateReducer = combineReducers<ArtworkState>([
       isLoading: false,
     );
   }),
+  TypedReducer<ArtworkState, FetchArtworkBytesStartAction>((state, action) {
+    const newArtworkState = ArtworkState();
+    return state.copyWith(
+      textColor: newArtworkState.textColor,
+      colors: newArtworkState.colors,
+    );
+  }),
   TypedReducer<ArtworkState, FetchArtworkColorsSuccessAction>((state, action) {
     return state.copyWith(
       textColor: action.textColor,

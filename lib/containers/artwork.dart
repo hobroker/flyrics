@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/selectors/artwork.dart';
-import 'package:flyrics/utils/connector.dart';
+import 'package:flyrics/store/connector.dart';
 import 'package:flyrics/views/empty_widget.dart';
 import 'package:redux/redux.dart';
 import 'package:flyrics/views/artwork_placeholder.dart';

@@ -17,13 +17,13 @@ class FetchArtworkBytesStartAction {
   FetchArtworkBytesStartAction(this.url);
 }
 
-class SetArtworkAsMissingAction {}
-
 class FetchArtworkBytesSuccessAction {
   final List<int> bytes;
 
   FetchArtworkBytesSuccessAction(this.bytes);
 }
+
+class SetArtworkAsMissingAction {}
 
 class FetchArtworkColorsSuccessAction {
   final Color textColor;

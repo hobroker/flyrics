@@ -15,6 +15,6 @@ LyricsModel getActiveLyrics(AppState state) {
 
 String getLyricsText(AppState state) => getActiveLyrics(state)?.text;
 
-bool hasActiveTrackLyrics(AppState state) => getLyricsText(state) != null;
+bool activeTrackHasLyrics(AppState state) => getLyricsText(state) != null;
 
 bool areLyricsLoading(AppState state) => getLyricsState(state).isLoading;

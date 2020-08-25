@@ -1,5 +1,4 @@
 import 'package:flyrics/actions/lyrics_actions.dart';
-import 'package:flyrics/actions/search_actions.dart';
 import 'package:flyrics/models/state/lyrics_state.dart';
 import 'package:flyrics/utils/map.dart';
 import 'package:redux/redux.dart';
@@ -11,7 +10,7 @@ final lyricsReducer = combineReducers<LyricsState>([
       isLoading: false,
     );
   }),
-  TypedReducer<LyricsState, SearchStartAction>((state, action) {
+  TypedReducer<LyricsState, SetLyricsLoadingAction>((state, action) {
     return state.copyWith(
       isLoading: true,
     );

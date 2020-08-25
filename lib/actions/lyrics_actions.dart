@@ -1,5 +1,7 @@
 import 'package:flyrics/models/lyrics_model.dart';
 
+class SetLyricsLoadingAction {}
+
 class FetchLyricsStartAction {
   final String url;
 

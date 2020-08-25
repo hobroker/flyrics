@@ -13,7 +13,7 @@ class Lyrics extends StatelessWidget {
       converter: (store) => _ViewModel(
         textColor: getArtworkTextColor(store.state),
         text: getLyricsText(store.state),
-        hasLyrics: hasActiveTrackLyrics(store.state),
+        hasLyrics: activeTrackHasLyrics(store.state),
         isLoading: areLyricsLoading(store.state),
       ),
       builder: (context, vm) {

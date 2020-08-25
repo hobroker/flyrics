@@ -4,7 +4,7 @@ class UI {
   final BuildContext context;
   double appHeight;
   double appWidth;
-  double headerHeight = 50;
+  double headerHeight;
   double headerWidth;
 
   static const Color primaryColor = Color(0xff282828);
@@ -12,7 +12,7 @@ class UI {
   static const Color darkColor = Color(0xff191414);
   static const Color accentColor = Color(0xff62D36E);
   static const Color textColor = Color(0xffffffff);
-  
+
   static Duration transitionDuration = Duration(milliseconds: 1500);
 
   UI(this.context) {
@@ -20,5 +20,6 @@ class UI {
     appHeight = size.height;
     appWidth = size.width;
     headerWidth = appWidth;
+    headerHeight = appWidth * .2;
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flyrics/utils/image.dart';
 import 'package:palette_generator/palette_generator.dart';
-
-import 'image.dart';
 
 Color darken(Color color, [double amount = .1]) {
   assert(amount >= 0 && amount <= 1);
@@ -35,7 +34,10 @@ Color findOppositeColor(Color color) {
 
 Color autoDarken(Color color) {
   var luminance = color.computeLuminance();
-  if (luminance > 0.35) {
+  if (luminance > 0.6) {
+    return darken(color, 0.35);
+  }
+  if (luminance > 0.3) {
     return darken(color, 0.2);
   }
 

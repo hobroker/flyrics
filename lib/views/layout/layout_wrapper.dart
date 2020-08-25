@@ -31,18 +31,15 @@ class LayoutWrapper extends StatelessWidget {
               backgroundColor: Colors.transparent,
               flexibleSpace: header,
             ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) => Container(
-                  child: body,
-                  padding: EdgeInsets.only(top: 8, left: 8, right: 4),
-                ),
-                childCount: 1,
+            SliverFillRemaining(
+              hasScrollBody: false,
+              fillOverscroll: true,
+              child: Container(
+                child: body,
+                padding: EdgeInsets.only(top: 8, left: 8, right: 4),
               ),
             ),
-            SliverPadding(
-              padding: EdgeInsets.only(bottom: 20),
-            ),
+            SliverPadding(padding: EdgeInsets.only(bottom: 20)),
           ],
         ),
         Positioned(

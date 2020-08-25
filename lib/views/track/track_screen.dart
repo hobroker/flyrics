@@ -24,10 +24,6 @@ class TrackScreen extends StatelessWidget {
 
   double getNameAvailableHeight(constraints) => constraints.maxHeight - 21.0;
 
-  double getNameHeight(constraints) => getNameMaxLines(constraints) == 1
-      ? 21.0
-      : getNameAvailableHeight(constraints);
-
   int getNameMaxLines(constraints) {
     var textPainter = paintText(
       name,

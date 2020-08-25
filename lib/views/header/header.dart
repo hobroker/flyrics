@@ -7,21 +7,13 @@ import 'package:flyrics/views/track/track_wrapper.dart';
 class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        var headerHeight = constraints.maxHeight;
-
-        return HeaderWrapper(
-          children: [
-            TrackWrapper(
-              child: TrackDetails(),
-            ),
-            Artwork(
-              height: headerHeight,
-            ),
-          ],
-        );
-      },
+    return HeaderWrapper(
+      children: [
+        TrackWrapper(
+          child: TrackDetails(),
+        ),
+        Artwork(),
+      ],
     );
   }
 }

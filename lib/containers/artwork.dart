@@ -6,10 +6,6 @@ import 'package:flyrics/views/artwork/artwork_placeholder.dart';
 import 'package:flyrics/views/artwork/artwork_screen.dart';
 
 class Artwork extends StatelessWidget {
-  final double height;
-
-  const Artwork({Key key, this.height}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Connector.state(

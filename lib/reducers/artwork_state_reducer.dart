@@ -29,6 +29,7 @@ final artworkStateReducer = combineReducers<ArtworkState>([
         action.id,
         (artwork) => artwork.copyWith(
           textColor: action.textColor,
+          dominantColor: action.dominantColor,
           colors: action.colors,
         ),
       ),

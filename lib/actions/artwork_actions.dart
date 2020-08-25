@@ -29,14 +29,17 @@ class ResetArtworkColorsAction with Action {}
 class SetArtworkColorsAction with Action {
   final String id;
   final Color textColor;
+  final Color dominantColor;
   final List<Color> colors;
 
   SetArtworkColorsAction({
     this.textColor,
+    this.dominantColor,
     this.colors,
     this.id,
   });
 
   @override
-  String toString() => '${runtimeType}($textColor, <Color>[...], $id)';
+  String toString() =>
+      '${runtimeType}($textColor, $dominantColor, <Color>[...], $id)';
 }

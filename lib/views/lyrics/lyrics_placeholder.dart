@@ -16,29 +16,27 @@ class LyricsPlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      var appWidth = constraints.maxWidth;
+    var appWidth = MediaQuery.of(context).size.width;
 
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: List.generate(
-          linesCount,
-          (index) {
-            if (index % 5 == 0) {
-              return SizedBox(height: height);
-            }
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: List.generate(
+        linesCount,
+        (index) {
+          if (index % 5 == 0) {
+            return SizedBox(height: height);
+          }
 
-            return Container(
-              margin: EdgeInsets.only(bottom: 4),
-              child: PlaceholderContainer(
-                height: height,
-                isAnimated: isAnimated,
-                width: genWidth(appWidth),
-              ),
-            );
-          },
-        ),
-      );
-    });
+          return Container(
+            margin: EdgeInsets.only(bottom: 4),
+            child: PlaceholderContainer(
+              height: height,
+              isAnimated: isAnimated,
+              width: genWidth(appWidth),
+            ),
+          );
+        },
+      ),
+    );
   }
 }

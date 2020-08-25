@@ -19,13 +19,13 @@ class TrackPlaceholder extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           PlaceholderContainer(
-            height: 20.0,
+            height: 16.0,
             isAnimated: isAnimated,
             width: appWidth * randomDoubleBetween(0.7, 0.9),
           ),
           SizedBox(height: 4),
           PlaceholderContainer(
-            height: 16,
+            height: 15,
             isAnimated: isAnimated,
             width: appWidth * randomDoubleBetween(0.5, 0.6),
           ),

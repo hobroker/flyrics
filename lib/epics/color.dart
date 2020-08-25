@@ -8,8 +8,10 @@ Stream findArtworkColorsEpic(Stream actions, store) => actions
         .where((action) => action is FetchArtworkBytesSuccessAction)
         .asyncMap((action) => findImageColors(action.bytes))
         .map((colors) {
+      var dominantColor = autoDarken(colors.first);
       return SetArtworkColorsAction(
-        textColor: findOppositeColor(colors.first),
+        dominantColor: dominantColor,
+        textColor: findOppositeColor(dominantColor),
         colors: colors,
         id: getActiveTrackId(store.state),
       );

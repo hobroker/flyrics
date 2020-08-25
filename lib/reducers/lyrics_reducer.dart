@@ -6,7 +6,7 @@ import 'package:redux/redux.dart';
 final lyricsReducer = combineReducers<LyricsState>([
   TypedReducer<LyricsState, FetchLyricsSuccessAction>((state, action) {
     return state.copyWith(
-      byId: state.byId.setValue(action.id, action.result),
+      byId: state.byId.setEntry(action.id, action.result),
       isLoading: false,
     );
   }),

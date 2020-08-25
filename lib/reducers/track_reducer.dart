@@ -13,7 +13,7 @@ final trackReducer = combineReducers<TrackState>([
     return state.copyWith(
       isLoading: false,
       activeId: action.track.id,
-      byId: state.byId.setValue(action.track.id, action.track),
+      byId: state.byId.setEntry(action.track.id, action.track),
     );
   }),
   TypedReducer<TrackState, ResetActiveIdAction>((state, action) {

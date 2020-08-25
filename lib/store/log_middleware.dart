@@ -8,5 +8,5 @@ class LogMiddleware<State> extends MiddlewareClass<State> {
     next(action);
   }
 
-  String _format(dynamic action) => '\t⏩️$action';
+  String _format(dynamic action) => '\t⏩ $action';
 }

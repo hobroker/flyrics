@@ -7,7 +7,7 @@ import 'package:redux/redux.dart';
 final artworkStateReducer = combineReducers<ArtworkState>([
   TypedReducer<ArtworkState, FetchArtworkBytesStartAction>((state, action) {
     return state.copyWith(
-      byId: state.byId.setValue(
+      byId: state.byId.setEntry(
           action.id,
           ArtworkModel(
             url: action.url,
@@ -18,14 +18,14 @@ final artworkStateReducer = combineReducers<ArtworkState>([
   }),
   TypedReducer<ArtworkState, FetchArtworkBytesSuccessAction>((state, action) {
     return state.copyWith(
-      byId: state.byId.updateValue(
+      byId: state.byId.updateEntry(
           action.id, (artwork) => artwork.copyWith(bytes: action.bytes)),
       isLoading: false,
     );
   }),
   TypedReducer<ArtworkState, SetArtworkColorsAction>((state, action) {
     return state.copyWith(
-      byId: state.byId.updateValue(
+      byId: state.byId.updateEntry(
         action.id,
         (artwork) => artwork.copyWith(
           textColor: action.textColor,

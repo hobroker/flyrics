@@ -20,25 +20,23 @@ class TrackDetailsScreen extends StatelessWidget {
       color: textColor ?? UI.textColor,
     );
 
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          TextEllipsis(
-            text: name,
-            style: textStyle.copyWith(
-              fontSize: 15.0,
-              fontWeight: FontWeight.w500,
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        TextEllipsis(
+          text: name,
+          style: textStyle.copyWith(
+            fontSize: 15.0,
+            fontWeight: FontWeight.w500,
           ),
-          TextEllipsis(
-            text: artist,
-            style: textStyle.copyWith(
-              fontSize: 13.0,
-            ),
+        ),
+        TextEllipsis(
+          text: artist,
+          style: textStyle.copyWith(
+            fontSize: 13.0,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

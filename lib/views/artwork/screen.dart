@@ -13,7 +13,6 @@ class ArtworkScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('fadeColor: $fadeColor');
     var height = UI(context).headerHeight;
     var shadeWidth = height * .75;
 

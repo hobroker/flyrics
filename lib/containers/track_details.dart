@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flyrics/selectors/artwork.dart';
 import 'package:flyrics/selectors/track.dart';
 import 'package:flyrics/store/connector.dart';
-import 'package:flyrics/views/track/track_details_placeholder.dart';
-import 'package:flyrics/views/track/track_details_screen.dart';
+import 'package:flyrics/views/track/placeholder.dart';
+import 'package:flyrics/views/track/screen.dart';
 
 class TrackDetails extends StatelessWidget {
   @override

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flyrics/containers/artwork.dart';
+import 'package:flyrics/containers/track_details.dart';
 import 'package:flyrics/selectors/artwork.dart';
 import 'package:flyrics/store/connector.dart';
-import 'package:flyrics/views/header_screen.dart';
+import 'package:flyrics/views/header_wrapper.dart';
+import 'package:flyrics/views/track/wrapper.dart';
 
 class Header extends StatelessWidget {
   @override
@@ -9,8 +12,14 @@ class Header extends StatelessWidget {
     return Connector(
       converter: getArtworkDominantColor,
       builder: (context, backgroundColor) {
-        return HeaderScreen(
+        return HeaderWrapperScreen(
           backgroundColor: backgroundColor,
+          children: [
+            TrackDetailsWrapper(
+              child: TrackDetails(),
+            ),
+            Artwork(),
+          ],
         );
       },
     );

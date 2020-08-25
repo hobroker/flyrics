@@ -10,7 +10,7 @@ String onlyLogActionFormatter<State>(
   dynamic action,
   DateTime timestamp,
 ) {
-  var result = '{$timestamp: $action}';
+  var result = '{-> $action}';
   print(result);
   return result;
 }

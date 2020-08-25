@@ -23,7 +23,7 @@ Stream<dynamic> fetchArtworkImageAsBytesEpic(Stream<dynamic> actions, store) =>
     actions
         .where((action) => action is FetchArtworkBytesStartAction)
         .map((action) => getTrackArtwork(store.state))
-        .asyncMap((url) => api.util.getBytes(url))
+        .asyncMap((url) => api.spotify.getImageBytes(url))
         .map((response) => FetchArtworkBytesSuccessAction(response));
 
 final artworkEpics = combineEpics<AppState>([

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flyrics/api/scripts.dart';
 import 'package:flyrics/api/shell_api.dart';
 import 'package:flyrics/models/track.dart';
+import 'package:http/http.dart' as http;
 
 class SpotifyApi {
   final ShellApi shell;
@@ -21,5 +22,11 @@ class SpotifyApi {
     var track = Track.fromJson(data);
 
     return track;
+  }
+
+  Future<List<int>> getImageBytes(String url) async {
+    var response = await http.get(url);
+
+    return response.bodyBytes;
   }
 }

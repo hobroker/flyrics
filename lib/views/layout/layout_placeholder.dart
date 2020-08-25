@@ -6,15 +6,11 @@ import 'package:flyrics/views/lyrics/lyrics_wrapper.dart';
 class LayoutPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        LyricsWrapper(
-          child: LyricsPlaceholder(
-            isAnimated: false,
-          ),
-          header: HeaderPlaceholder(),
-        )
-      ],
+    return LyricsWrapper(
+      body: LyricsPlaceholder(
+        isAnimated: false,
+      ),
+      header: HeaderPlaceholder(),
     );
   }
 }

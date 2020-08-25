@@ -7,14 +7,10 @@ import 'package:flyrics/views/lyrics/lyrics_wrapper.dart';
 class LayoutScreeen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        LyricsWrapper(
-          child: Lyrics(),
-          footer: Footer(),
-          header: Header(),
-        ),
-      ],
+    return LyricsWrapper(
+      header: Header(),
+      body: Lyrics(),
+      footer: Footer(),
     );
   }
 }

@@ -18,7 +18,7 @@ class LyricsScreen extends StatelessWidget {
         text,
         textAlign: TextAlign.start,
         style: TextStyle(
-          fontSize: UI(context).lyricsFontSize,
+          fontSize: 12,
           color: textColor,
         ),
       ),

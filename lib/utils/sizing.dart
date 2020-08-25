@@ -5,6 +5,7 @@ class UI {
   double appHeight;
   double appWidth;
   double headerWidth;
+  double footerHeight = 20;
 
   static const Color primaryColor = Color(0xff282828);
   static const Color primaryDarkColor = Color(0xff121212);
@@ -23,13 +24,6 @@ class UI {
     appWidth = size.width;
     headerWidth = appWidth;
   }
-
-  double get headerHeight => relativeSize(appWidth, .18, max: 80, min: 50);
-
-  double get footerHeight => relativeSize(headerHeight, .25, max: 20);
-
-  double get lyricsFontSize =>
-      relativeSize(headerHeight, .2, max: 14, min: 12);
 }
 
 double relativeSize(double main, double percent, {double max, double min}) {

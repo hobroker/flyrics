@@ -16,5 +16,5 @@ final appEpic = combineEpics<AppState>([
   startupEpics,
   searchEpics,
   lyricsEpics,
-  timerEpics,
+//  timerEpics,
 ]);

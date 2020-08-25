@@ -25,7 +25,7 @@ Store createStore() {
     initialState: AppState(),
     middleware: [
       epicMiddleware,
-//      loggingMiddleware,
+      loggingMiddleware,
     ],
   );
 

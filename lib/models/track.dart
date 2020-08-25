@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flyrics/utils/debug.dart';
 
 @immutable
 class Track {
@@ -24,6 +25,17 @@ class Track {
       artist: json['artist'],
       artwork: json['artwork'] == 'missing value' ? null : json['artwork'],
     );
+  }
+
+  @override
+  String toString() {
+    return stringify({
+      'id': id,
+      'name': name,
+      'album': album,
+      'artist': artist,
+      'artwork': artwork,
+    }, true);
   }
 
   bool isEmpty() => id == null;

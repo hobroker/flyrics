@@ -9,7 +9,7 @@ Stream<dynamic> fetchCurrentTrackEpic(
     actions
         .where((action) => action is FetchTrackStartAction)
         .asyncMap((action) => api.spotify.fetchCurrentTrack())
-        .where((track) => track != getTrack(store.state))
+        .where((track) => track != getActiveTrack(store.state))
         .map((track) => FetchTrackSuccessAction(track));
 
 final trackEpics = combineEpics<AppState>([

@@ -1,6 +1,6 @@
+import 'package:flyrics/actions/artwork_actions.dart';
 import 'package:flyrics/models/artwork_state.dart';
 import 'package:redux/redux.dart';
-import 'package:flyrics/actions/track_actions.dart';
 
 final artworkStateReducer = combineReducers<ArtworkState>([
   TypedReducer<ArtworkState, FetchArtworkBytesStartAction>((state, action) {

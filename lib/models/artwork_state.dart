@@ -8,6 +8,7 @@ class ArtworkState {
   final List<int> bytes;
   final bool shouldRefresh;
   final Color dominantColor;
+  final List<Color> colors;
   final Color textColor;
 
   const ArtworkState({
@@ -15,6 +16,7 @@ class ArtworkState {
     this.bytes,
     this.shouldRefresh = true,
     this.dominantColor = UI.primaryColor,
+    this.colors = const [],
     this.textColor = UI.textColor,
   });
 
@@ -28,6 +30,7 @@ class ArtworkState {
     shouldRefresh,
     dominantColor,
     textColor,
+    colors,
   }) {
     return ArtworkState(
       url: url ?? this.url,
@@ -35,6 +38,7 @@ class ArtworkState {
       shouldRefresh: shouldRefresh ?? this.shouldRefresh,
       dominantColor: dominantColor ?? this.dominantColor,
       textColor: textColor ?? this.textColor,
+      colors: colors ?? this.colors,
     );
   }
 
@@ -43,6 +47,7 @@ class ArtworkState {
         other.bytes == bytes &&
         other.shouldRefresh == shouldRefresh &&
         other.dominantColor == dominantColor &&
+        other.colors == colors &&
         other.textColor == textColor;
   }
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flyrics/containers/placeholder_shimmer.dart';
 import 'package:flyrics/utils/sizing.dart';
-import 'package:flyrics/views/placeholder_rect.dart';
 
 class ArtworkPlaceholder extends StatelessWidget {
   getSize(context) {
@@ -11,7 +11,7 @@ class ArtworkPlaceholder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(right: 8.0, left: 8.0),
-      child: PlaceholderRect(
+      child: PlaceholderShimmer(
         height: this.getSize(context),
         width: this.getSize(context),
       ),

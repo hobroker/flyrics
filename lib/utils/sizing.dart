@@ -4,13 +4,13 @@ class UI {
   final BuildContext context;
   double appHeight;
   double appWidth;
-  double headerHeight = 100;
+  double headerHeight = 50;
   double headerWidth;
 
   static const Color primaryColor = Color(0xff282828);
   static const Color primaryDarkColor = Color(0xff121212);
   static const Color darkColor = Color(0xff191414);
-  static const Color accentColoor = Color(0xff62D36E);
+  static const Color accentColor = Color(0xff62D36E);
   static const Color textColor = Color(0xffffffff);
 
   UI(this.context) {

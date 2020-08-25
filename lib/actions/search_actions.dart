@@ -1,9 +1,9 @@
 import 'package:flyrics/models/search_result.dart';
 
-class SearchLyricsStartAction {}
+class SearchStartAction {}
 
-class SearchLyricsSuccessAction {
+class SearchSuccessAction {
   final List<SearchResult> results;
 
-  SearchLyricsSuccessAction(this.results);
+  SearchSuccessAction(this.results);
 }

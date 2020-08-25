@@ -2,21 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flyrics/utils/sizing.dart';
 import 'package:shimmer/shimmer.dart';
 
-class PlaceholderRect extends StatelessWidget {
+class PlaceholderShimmerScreeen extends StatelessWidget {
   final double height;
   final double width;
+  final Color backgroundColor;
+  final Color shineColor;
 
-  PlaceholderRect({
+  PlaceholderShimmerScreeen({
     Key key,
     @required this.height,
     @required this.width,
+    this.backgroundColor = UI.accentColor,
+    this.shineColor = UI.primaryColor,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: UI.primaryDarkColor,
-      highlightColor: UI.primaryColor,
+      baseColor: backgroundColor ?? UI.primaryDarkColor,
+      highlightColor: shineColor ?? UI.primaryColor,
       enabled: true,
       child: Container(
         width: this.width,

@@ -1,32 +1,32 @@
-import 'package:redux_epics/redux_epics.dart';
+import 'package:flyrics/models/app_state.dart';
 import 'package:flyrics/actions/app_actions.dart';
 import 'package:flyrics/actions/lyrics_actions.dart';
 import 'package:flyrics/actions/search_actions.dart';
 import 'package:flyrics/api/api.dart';
 import 'package:flyrics/selectors/search.dart';
-import 'package:flyrics/models/app_state.dart';
+import 'package:redux_epics/redux_epics.dart';
 
 Stream<dynamic> searchLyricsOnAppStartEpic(
         Stream<dynamic> actions, EpicStore<AppState> store) =>
     actions
         .where((action) => action is AppStartedAction)
-        .map((action) => SearchLyricsStartAction());
+        .map((action) => SearchStartAction());
 
 Stream<dynamic> searchLyricsEpic(
         Stream<dynamic> actions, EpicStore<AppState> store) =>
     actions
-        .where((action) => action is SearchLyricsStartAction)
+        .where((action) => action is SearchStartAction)
         .map((action) => getSearchQuery(store.state))
         .asyncMap((query) => api.genius
             .search(query)
-            .then((results) => SearchLyricsSuccessAction(results)));
+            .then((results) => SearchSuccessAction(results)));
 
 Stream<dynamic> onSearchSuccessEpic(
         Stream<dynamic> actions, EpicStore<AppState> store) =>
     actions
-        .where((action) => action is SearchLyricsSuccessAction)
-        .map((action) => getSearchQuery(store.state))
-        .map((query) => FetchLyricsStartAction(query));
+        .where((action) => action is SearchSuccessAction)
+        .map((action) => getFirstSearchResultUrl(store.state))
+        .map((url) => FetchLyricsStartAction(url));
 
 Stream<dynamic> fetchLyricsEpic(
         Stream<dynamic> actions, EpicStore<AppState> store) =>
@@ -36,3 +36,10 @@ Stream<dynamic> fetchLyricsEpic(
         .asyncMap((url) => api.genius
             .fetchLyrics(url)
             .then((text) => FetchLyricsSuccessAction(text)));
+
+final searchEpics = combineEpics<AppState>([
+  searchLyricsOnAppStartEpic,
+  searchLyricsEpic,
+  onSearchSuccessEpic,
+  fetchLyricsEpic,
+]);

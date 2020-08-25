@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:palette_generator/palette_generator.dart';
+
+import 'load_image.dart';
 
 Color darken(Color color, [double amount = .1]) {
   assert(amount >= 0 && amount <= 1);
@@ -25,4 +28,16 @@ Color autoDarken(Color color) {
 //  }
 
   return luminance > 0.5 ? darken(color, 0.5) : lighten(color, 0.75);
+}
+
+Future<List<Color>> findImageColors(List<int> bytes) async {
+  var image = await loadImage(bytes);
+  var generator = await PaletteGenerator.fromImage(
+    image,
+    maximumColorCount: 10,
+  );
+
+  var colors = generator.colors.toList();
+
+  return colors;
 }

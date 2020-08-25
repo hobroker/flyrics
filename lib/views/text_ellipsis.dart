@@ -10,14 +10,14 @@ class TextEllipsis extends StatelessWidget {
     this.style,
   }) : super(key: key);
 
-  addWhiteSpace(text) {
+  addWhiteSpaces(text) {
     return text.replaceAll("", "\u{200B}");
   }
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      addWhiteSpace(text),
+      addWhiteSpaces(text),
       overflow: TextOverflow.ellipsis,
       style: style,
     );

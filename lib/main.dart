@@ -1,16 +1,14 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flyrics/epics/app_epic.dart';
 import 'package:flyrics/utils/distinct_store.dart';
 import 'package:flyrics/utils/secrets.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'actions/app_actions.dart';
-import 'actions/track_actions.dart';
 import 'api/api.dart';
 import 'models/app_state.dart';
 import 'reducers/app_reducer.dart';
 import 'views/app.dart';
+//import 'package:redux_logging/redux_logging.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,10 +23,6 @@ Future<void> main() async {
 //      new LoggingMiddleware.printer(),
     ],
   );
-
-  Timer.periodic(new Duration(milliseconds: 1500), (timer) {
-    store.dispatch(FetchTrackStartAction());
-  });
 
   runApp(App(
     store: store,

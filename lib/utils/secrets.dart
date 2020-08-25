@@ -1,11 +1,17 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class Secrets {
+  final Map env;
+
+  Secrets({this.env});
+
   static Future<Secrets> init() async {
     await DotEnv().load('.env');
 
-    return Secrets();
+    return Secrets(
+      env: DotEnv().env,
+    );
   }
 
-  String getEnv(String key) => DotEnv().env[key];
+  String getEnv(String key) => this.env[key];
 }

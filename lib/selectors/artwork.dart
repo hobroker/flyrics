@@ -20,4 +20,12 @@ bool shouldDisplayArtwork(AppState state) =>
 Color getArtworkDominantColor(AppState state) =>
     getArtworkState(state)?.dominantColor;
 
+List<Color> getArtworkColors(AppState state) => getArtworkState(state)?.colors;
+
+bool artworkHasColors(AppState state) =>
+    getArtworkState(state)?.colors?.length != 0;
+
+Color getArtworkColorByIndex(AppState state, int index) =>
+    artworkHasColors(state) ? getArtworkColors(state)[index] : null;
+
 Color getArtworkTextColor(AppState state) => getArtworkState(state)?.textColor;

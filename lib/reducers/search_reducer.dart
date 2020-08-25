@@ -3,12 +3,12 @@ import 'package:flyrics/models/search_state.dart';
 import 'package:redux/redux.dart';
 
 final searchReducer = combineReducers<SearchState>([
-  TypedReducer<SearchState, SearchLyricsStartAction>((state, action) {
+  TypedReducer<SearchState, SearchStartAction>((state, action) {
     return state.copyWith(
       isLoading: true,
     );
   }),
-  TypedReducer<SearchState, SearchLyricsSuccessAction>((state, action) {
+  TypedReducer<SearchState, SearchSuccessAction>((state, action) {
     return state.copyWith(
       items: action.results,
       isLoading: false,

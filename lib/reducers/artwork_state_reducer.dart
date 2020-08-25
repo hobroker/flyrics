@@ -19,6 +19,7 @@ final artworkStateReducer = combineReducers<ArtworkState>([
     return state.copyWith(
       textColor: action.textColor,
       dominantColor: action.dominantColor,
+      colors: action.colors,
     );
   }),
 ]);

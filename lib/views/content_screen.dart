@@ -31,13 +31,14 @@ class ContentScreen extends StatelessWidget {
             minHeight: height,
           ),
           child: SingleChildScrollView(
-            child: Row(
+            child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
                 Text(
                   text,
                   textAlign: TextAlign.start,
                   style: TextStyle(
+                    fontSize: 12,
                     color: textColor,
                   ),
                 )

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/timers/track_refresh.dart';
-import 'package:flyrics/utils/debug.dart';
 import 'package:redux/redux.dart';
 import 'utils/secrets.dart';
 import 'actions/app_actions.dart';

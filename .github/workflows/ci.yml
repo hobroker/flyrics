@@ -15,5 +15,5 @@ jobs:
           key: flutter-ce40de69b7b4f89c66d19c8dbd3bd86ae30f1bc6
       - run: echo "::set-env name=PATH::$PATH:`pwd`/flutter/bin"
       - run: flutter config --enable-macos-desktop
-#      - run: flutter precache
+      - run: flutter pub get
       - run: flutter build macos

@@ -13,6 +13,9 @@ jobs:
         with:
           path: flutter
           key: ${{ runner.os }}-flutter
+          restore-keys: |
+            ${{ runner.os }}-flutter-
+            ${{ runner.os }}-
 
       - name: Clone flutter source "dev"
         if: steps.cache-flutter.outputs.cache-hit != 'true'

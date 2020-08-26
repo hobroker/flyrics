@@ -1,0 +1,12 @@
+name: CI/CD
+
+on: push
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: /Users/ileahu/dev/open/flyrics/.circleci/config.yml
+      - run: export PATH="$PATH:/home/developer/flutter/bin"
+      - run: flutter doctor

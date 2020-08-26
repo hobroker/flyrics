@@ -27,14 +27,13 @@ jobs:
           name: Run tests
           command: flutter test
   build:
-    docker:
-      - image: cirrusci/flutter:dev
+    macos:
+      xcode: 11.3.0
     steps:
       - prepare
-      - run: flutter config --enable-macos-desktop
-      - run:
-          name: Build app
-          command: flutter build macos
+      - run: git clone https://github.com/flutter/flutter.git
+      - run: echo "PATH='$PATH:/home/developer/flutter/bin'" >> $BASH_ENV
+      - run: flutter doctor
 
 workflows:
   cicd:
@@ -42,6 +41,6 @@ workflows:
       - test
       - analyze
       - build:
-          requires:
-            - test
-            - analyze
+#          requires:
+#            - test
+#            - analyze

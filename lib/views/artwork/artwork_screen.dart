@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flyrics/utils/ux.dart';
 import 'package:flyrics/views/artwork/artwork_gradient.dart';
 
 class ArtworkScreen extends StatelessWidget {
@@ -10,7 +9,7 @@ class ArtworkScreen extends StatelessWidget {
   ArtworkScreen({
     Key key,
     @required this.bytes,
-    this.fadeColor = UX.primaryColor,
+    this.fadeColor,
   }) : super(key: key);
 
   Widget get _imageWidget => Image.memory(

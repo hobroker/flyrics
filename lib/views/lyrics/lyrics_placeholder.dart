@@ -3,9 +3,9 @@ import 'package:flyrics/containers/placeholder_container.dart';
 import 'package:flyrics/utils/random.dart';
 
 class LyricsPlaceholder extends StatelessWidget {
+  final bool isAnimated;
   final double height = 12;
   final int linesCount = 14;
-  final bool isAnimated;
 
   const LyricsPlaceholder({
     Key key,

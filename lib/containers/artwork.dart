@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flyrics/selectors/artwork.dart';
 import 'package:flyrics/store/connector.dart';
 import 'package:flyrics/utils/conditional.dart';
-import 'package:flyrics/utils/ux.dart';
 import 'package:flyrics/views/artwork/artwork_placeholder.dart';
 import 'package:flyrics/views/artwork/artwork_screen.dart';
 
@@ -14,7 +13,7 @@ class Artwork extends StatelessWidget {
         artworkBytes: getTrackArtworkAsBytes(state),
         isLoading: isArtworkLoading(state),
         hasBytes: activeTrackHasArtworkBytes(state),
-        fadeColor: getArtworkDominantColor(state) ?? UX.primaryColor,
+        fadeColor: resolvedDominantColor(state),
       ),
       builder: (context, vm) {
         return Conditional.single(

@@ -1,8 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flyrics/utils/ux.dart';
-
 @immutable
 class ArtworkModel {
   final String url;
@@ -14,16 +12,10 @@ class ArtworkModel {
   const ArtworkModel({
     this.url,
     this.bytes,
-    this.colors = const [UX.primaryColor],
-    this.textColor = UX.textColor,
-    this.dominantColor = UX.primaryColor,
+    this.colors = const <Color>[],
+    this.textColor,
+    this.dominantColor,
   });
-
-//  Color get dominantColor => autoDarken(colors.first);
-
-  ArtworkModel rebuild(Function fn) {
-    return fn(this);
-  }
 
   ArtworkModel copyWith({
     url,

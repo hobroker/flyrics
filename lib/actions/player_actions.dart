@@ -11,6 +11,12 @@ class SetIsRunningAction with Action {
   String toString() => '${runtimeType}($isRunning)';
 }
 
-class RefreshCheckIsRunningTimerAction with Action {}
+class RefreshCheckIsRunningTimerAction with Action {
+  @override
+  String toString() => null;
+}
 
-class RefreshCheckIsRunningAction with Action {}
+class RefreshCheckIsRunningAction with Action {
+  @override
+  String toString() => null;
+}

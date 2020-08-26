@@ -31,7 +31,8 @@ Stream retrigerRefershCurrentTrackEpic(Stream actions, store) => actions
 
 Stream refershCurrentTrackEpic(Stream actions, store) => actions
     .where((action) => action is RefreshCurrentTrackAction)
-    .where((action) => isPlayerRunning(store.state))
+    .where((action) =>
+        isPlayerRunning(store.state) && !isTrackLoading(store.state))
     .asyncMap((action) => api.spotify.fetchCurrentTrack())
     .where((track) => track != getActiveTrack(store.state))
     .map((track) => track == null

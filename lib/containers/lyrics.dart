@@ -11,7 +11,7 @@ class Lyrics extends StatelessWidget {
   Widget build(BuildContext context) {
     return Connector.state(
       converter: (state) => _ViewModel(
-        textColor: getArtworkTextColor(state),
+        textColor: resolveArtworkTextColor(state),
         text: getLyricsText(state),
         hasLyrics: activeTrackHasLyrics(state),
         isLoading: areLyricsLoading(state),

@@ -12,6 +12,7 @@ Stream stopCheckIsRunningTimerEpic(Stream actions, store) => actions
 
 Stream onStartupStartCheckIsRunningTimerEpic(Stream actions, store) => actions
     .where((action) => action is SetArtworkColorsAction)
+    .where((action) => !isCheckIsRunningTimerActive(store.state))
     .map((action) => SetCheckIsRunningTimerAction(true));
 
 Stream restartCheckIsRunningTimerEpic(Stream actions, store) => actions

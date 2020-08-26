@@ -16,8 +16,8 @@ class DynamicTooltip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Connector.state(
       converter: (state) => _ViewModel(
-        backgroundColor: getArtworkTextColor(state),
-        textColor: getArtworkDominantColor(state),
+        backgroundColor: resolveArtworkTextColor(state),
+        textColor: resolvedDominantColor(state),
       ),
       builder: (context, vm) {
         return Tooltip(

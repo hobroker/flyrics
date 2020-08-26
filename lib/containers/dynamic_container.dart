@@ -18,13 +18,13 @@ class DynamicContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Connector.state(
-      converter: getArtworkDominantColor,
+      converter: resolvedDominantColor,
       builder: (context, backgroundColor) {
         return Container(
           width: width,
           height: height,
           decoration: BoxDecoration(
-            color: backgroundColor ?? UX.primaryColor,
+            color: backgroundColor,
           ),
           child: AnimatedContainer(
             duration: UX.transitionDuration,

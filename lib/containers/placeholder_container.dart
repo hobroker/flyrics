@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/selectors/placeholder.dart';
 import 'package:flyrics/store/connector.dart';
-import 'package:flyrics/utils/ux.dart';
 import 'package:flyrics/views/placeholder_shimmer_screen.dart';
 
 class PlaceholderContainer extends StatelessWidget {
@@ -20,8 +19,8 @@ class PlaceholderContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Connector.state(
       converter: (state) => _ViewModel(
-        backgroundColor: getPlaceholderBgColor(state) ?? UX.primaryDarkColor,
-        shineColor: getPlaceholderFgColor(state) ?? UX.primaryColor,
+        backgroundColor: resolvePlaceholderBgColor(state),
+        shineColor: resolvePlaceholderFgColor(state),
       ),
       builder: (context, vm) {
         return PlaceholderShimmerScreeen(

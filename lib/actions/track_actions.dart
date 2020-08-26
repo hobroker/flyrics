@@ -16,6 +16,12 @@ class FetchTrackSuccessAction with Action {
 
 class ResetActiveIdAction with Action {}
 
-class RefreshCurrentTrackTimerAction with Action {}
+class RefreshCurrentTrackTimerAction with Action {
+  @override
+  String toString() => null;
+}
 
-class RefreshCurrentTrackAction with Action {}
+class RefreshCurrentTrackAction with Action {
+  @override
+  String toString() => null;
+}

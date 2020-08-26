@@ -10,10 +10,10 @@ class SetRefreshTrackTimerAction with Action {
 }
 
 class SetCheckIsRunningTimerAction with Action {
-  final bool value;
+  final bool isRunning;
 
-  SetCheckIsRunningTimerAction(this.value);
+  SetCheckIsRunningTimerAction(this.isRunning);
 
   @override
-  String toString() => '${runtimeType}($value)';
+  String toString() => '${runtimeType}($isRunning)';
 }

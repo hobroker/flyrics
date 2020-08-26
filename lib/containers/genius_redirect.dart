@@ -16,7 +16,7 @@ class GeniusRedirect extends StatelessWidget {
 
         return _ViewModel(
           url: url,
-          textColor: getArtworkTextColor(store.state),
+          textColor: resolveArtworkTextColor(store.state),
           openUrl: () => store.dispatch(OpenUrlAction(url)),
         );
       },

@@ -7,18 +7,18 @@ import 'package:redux/redux.dart';
 final lyricsReducer = combineReducers<LyricsState>([
   TypedReducer<LyricsState, FetchLyricsStartAction>((state, action) {
     return state.copyWith(
+      isLoading: true,
       byId: state.byId.setEntry(action.id, LyricsModel(url: action.url)),
-      isLoading: false,
     );
   }),
   TypedReducer<LyricsState, FetchLyricsSuccessAction>((state, action) {
     return state.copyWith(
+      isLoading: false,
       byId: state.byId.updateEntry(
           action.id,
           (entry) => entry != null
               ? entry.copyWith(text: action.text)
               : LyricsModel(text: action.text)),
-      isLoading: false,
     );
   }),
   TypedReducer<LyricsState, SetLyricsLoadingAction>((state, action) {

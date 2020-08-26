@@ -7,7 +7,7 @@ class ArtworkGradient extends StatelessWidget {
 
   ArtworkGradient({
     Key key,
-    this.fadeColor = UX.primaryColor,
+    this.fadeColor,
   }) : super(key: key);
 
   @override

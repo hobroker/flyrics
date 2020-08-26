@@ -3,7 +3,9 @@ import 'package:redux/redux.dart';
 class LogMiddleware<State> extends MiddlewareClass<State> {
   @override
   void call(Store<State> store, dynamic action, NextDispatcher next) {
-//    print(_format(action));
+    if (action.toString() != null) {
+      print(_format(action));
+    }
 
     next(action);
   }

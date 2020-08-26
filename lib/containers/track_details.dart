@@ -3,7 +3,6 @@ import 'package:flyrics/selectors/artwork.dart';
 import 'package:flyrics/selectors/track.dart';
 import 'package:flyrics/store/connector.dart';
 import 'package:flyrics/utils/conditional.dart';
-import 'package:flyrics/utils/ux.dart';
 import 'package:flyrics/views/track/track_placeholder.dart';
 import 'package:flyrics/views/track/track_screen.dart';
 
@@ -16,11 +15,11 @@ class TrackDetails extends StatelessWidget {
         hasTrack: hasTrack(state),
         name: getTrackName(state),
         artist: getTrackArtist(state),
-        textColor: getArtworkTextColor(state) ?? UX.textColor,
+        textColor: resolveArtworkTextColor(state),
       ),
       builder: (context, vm) {
         return Conditional.single(
-          when: !vm.isLoading && vm.hasTrack,
+          when: vm.hasTrack,
           render: () => TrackScreen(
             name: vm.name,
             artist: vm.artist,

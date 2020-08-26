@@ -3,6 +3,7 @@ import 'package:flyrics/models/artwork_model.dart';
 import 'package:flyrics/models/state/app_state.dart';
 import 'package:flyrics/models/state/artwork_state.dart';
 import 'package:flyrics/selectors/track.dart';
+import 'package:flyrics/utils/ux.dart';
 
 ArtworkState getArtworkState(AppState state) => state.artwork;
 
@@ -38,12 +39,18 @@ Color getArtworkDominantColor(AppState state) =>
 
 List<Color> getArtworkColors(AppState state) => getActiveArtwork(state)?.colors;
 
-bool artworkHasColors(AppState state) {
-  var length = getActiveArtwork(state)?.colors?.length;
-  return length != null && length > 1;
-}
+bool artworkHasColors(AppState state) =>
+    getActiveArtwork(state)?.colors?.isNotEmpty ?? false;
 
 Color getArtworkColorByIndex(AppState state, int index) =>
     artworkHasColors(state) ? getArtworkColors(state)[index] : null;
 
 Color getArtworkTextColor(AppState state) => getActiveArtwork(state)?.textColor;
+
+Color resolvedDominantColor(AppState state) =>
+    getArtworkDominantColor(state) ??
+    getArtworkLastDominantColor(state) ??
+    UX.primaryColor;
+
+Color resolveArtworkTextColor(AppState state) =>
+    getArtworkTextColor(state) ?? UX.textColor;

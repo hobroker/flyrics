@@ -10,6 +10,8 @@ String getLastActiveTrackId(AppState state) => state.track.lastActiveId;
 
 Map getTracksById(AppState state) => state.track.byId;
 
+bool isTrackLoading(AppState state) => state.track.isLoading;
+
 TrackModel getActiveTrack(AppState state) {
   var activeId = getActiveTrackId(state);
 
@@ -17,8 +19,6 @@ TrackModel getActiveTrack(AppState state) {
 }
 
 bool hasTrack(AppState state) => getActiveTrack(state) != null;
-
-bool isTrackLoading(AppState state) => getTrackState(state).isLoading;
 
 String getTrackName(AppState state) => getActiveTrack(state)?.name;
 

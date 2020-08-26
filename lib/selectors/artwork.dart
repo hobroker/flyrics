@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/models/artwork_model.dart';
 import 'package:flyrics/models/state/app_state.dart';
-import 'package:flyrics/models/state/artwork_state.dart';
 import 'package:flyrics/selectors/track.dart';
 import 'package:flyrics/utils/ux.dart';
 
-ArtworkState getArtworkState(AppState state) => state.artwork;
+Map getArtworkById(AppState state) => state.artwork.byId;
 
-Map getArtworkById(AppState state) => getArtworkState(state).byId;
+bool isArtworkLoading(AppState state) => state.artwork.isLoading;
 
 ArtworkModel getActiveArtwork(AppState state) {
   var activeId = getActiveTrackId(state);
@@ -28,8 +27,6 @@ List<int> getTrackArtworkAsBytes(AppState state) =>
 
 bool activeTrackHasArtworkBytes(AppState state) =>
     getTrackArtworkAsBytes(state) != null;
-
-bool isArtworkLoading(AppState state) => getArtworkState(state).isLoading;
 
 Color getArtworkLastDominantColor(AppState state) =>
     getLastActiveArtwork(state)?.dominantColor;

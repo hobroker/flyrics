@@ -14,10 +14,12 @@ class ArtworkPlaceholder extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        var size = constraints.maxHeight * randomDoubleBetween(0.7, 0.85);
+        var height = constraints.maxHeight;
+        var size = height * randomDoubleBetween(0.7, 0.85);
+        var margin = (height - size) / 2;
 
         return Container(
-          padding: const EdgeInsets.only(right: 8.0, left: 8.0),
+          margin: EdgeInsets.symmetric(horizontal: margin),
           child: PlaceholderContainer(
             height: size,
             width: size,

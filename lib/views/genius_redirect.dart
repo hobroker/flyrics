@@ -16,27 +16,31 @@ class GeniusRedirectScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DynamicTooltip(
-      message: 'Open in browser',
-      child: HoverBuilder<double>(
-        value: 0.5,
-        onEnter: (double opacity) => 1.0,
-        builder: (BuildContext context, double opacity) {
-          return AnimatedOpacity(
-            opacity: opacity,
-            duration: UX.transitionDuration,
-            child: IconButton(
-              padding: EdgeInsets.all(0),
-              constraints: BoxConstraints(
-                maxWidth: 20,
-                maxHeight: 20,
+    return LayoutBuilder(builder: (context, constraints) {
+      var height = constraints.maxHeight;
+
+      return DynamicTooltip(
+        message: 'Open in browser',
+        child: HoverBuilder<double>(
+          value: 0.5,
+          onEnter: (double opacity) => 1.0,
+          builder: (BuildContext context, double opacity) {
+            return AnimatedOpacity(
+              opacity: opacity,
+              duration: UX.transitionDuration,
+              child: IconButton(
+                padding: EdgeInsets.all(0),
+                constraints: BoxConstraints(
+                  maxWidth: height,
+                  maxHeight: height,
+                ),
+                icon: GeniusIcon(),
+                onPressed: openUrl,
               ),
-              icon: GeniusIcon(),
-              onPressed: openUrl,
-            ),
-          );
-        },
-      ),
-    );
+            );
+          },
+        ),
+      );
+    });
   }
 }

@@ -18,8 +18,8 @@ class SpotifyApi {
   }
 
   Future<TrackModel> fetchCurrentTrack() async {
-    var hasData = await isRunning();
-    if (!hasData) {
+    var willHaveData = await isRunning();
+    if (!willHaveData) {
       return null;
     }
 

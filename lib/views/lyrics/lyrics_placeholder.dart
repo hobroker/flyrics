@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/containers/placeholder_container.dart';
 import 'package:flyrics/utils/random.dart';
+import 'package:flyrics/utils/ux.dart';
 
 class LyricsPlaceholder extends StatelessWidget {
   final bool isAnimated;
@@ -28,7 +29,7 @@ class LyricsPlaceholder extends StatelessWidget {
           }
 
           return Container(
-            margin: EdgeInsets.only(bottom: 4),
+            margin: EdgeInsets.only(bottom: UX.spacingUnit),
             child: PlaceholderContainer(
               height: height,
               isAnimated: isAnimated,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flyrics/utils/ux.dart';
 
 class TrackWrapper extends StatelessWidget {
   final Widget child;
@@ -12,7 +13,10 @@ class TrackWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+        padding: EdgeInsets.symmetric(
+          vertical: UX.spacingUnit,
+          horizontal: UX.spacingUnit * 2,
+        ),
         child: Container(
           child: child,
         ),

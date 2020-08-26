@@ -1,4 +1,3 @@
-import 'package:flyrics/actions/app_actions.dart';
 import 'package:flyrics/actions/player_actions.dart';
 import 'package:flyrics/actions/track_actions.dart';
 import 'package:flyrics/api/api.dart';
@@ -17,7 +16,7 @@ Stream fetchCurrentTrackEpic(Stream actions, store) => actions
         : FetchTrackSuccessAction(track));
 
 Stream startRefershCurrentTrackEpic(Stream actions, store) => actions
-    .where((action) => action is AppStartedAction)
+    .where((action) => action is FetchTrackStartAction)
     .map((action) => RefreshCurrentTrackTimerAction());
 
 Stream trigerRefershCurrentTrackEpic(Stream actions, store) => actions
@@ -31,6 +30,7 @@ Stream retrigerRefershCurrentTrackEpic(Stream actions, store) => actions
 
 Stream refershCurrentTrackEpic(Stream actions, store) => actions
     .where((action) => action is RefreshCurrentTrackAction)
+    .debounce(Duration(milliseconds: 1500))
     .where((action) =>
         isPlayerRunning(store.state) && !isTrackLoading(store.state))
     .asyncMap((action) => api.spotify.fetchCurrentTrack())

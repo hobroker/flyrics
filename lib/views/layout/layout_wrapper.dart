@@ -1,13 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flyrics/utils/ux.dart';
 import 'package:flyrics/views/empty_widget.dart';
+import 'package:flyrics/views/layout/layout_body.dart';
+import 'package:flyrics/views/layout/layout_footer.dart';
+import 'package:flyrics/views/layout/layout_header.dart';
 
 class LayoutWrapper extends StatelessWidget {
   final Widget header;
   final Widget body;
   final Widget footer;
-  final double headerMinHeight = 50;
-  final double headerMaxHeight = 75;
 
   LayoutWrapper({
     Key key,
@@ -18,36 +20,19 @@ class LayoutWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        CustomScrollView(
+    return Container(
+      padding: EdgeInsets.only(right: UX.spacingUnit),
+      child: CupertinoScrollbar(
+        thicknessWhileDragging: UX.spacingUnit * 2,
+        thickness: UX.spacingUnit,
+        child: CustomScrollView(
           slivers: [
-            SliverAppBar(
-              floating: true,
-              pinned: true,
-              collapsedHeight: headerMinHeight,
-              toolbarHeight: 0,
-              expandedHeight: headerMaxHeight,
-              backgroundColor: Colors.transparent,
-              flexibleSpace: header,
-            ),
-            SliverFillRemaining(
-              hasScrollBody: false,
-              fillOverscroll: true,
-              child: Container(
-                child: body,
-                padding: EdgeInsets.only(top: 8, left: 8, right: 4),
-              ),
-            ),
-            SliverPadding(padding: EdgeInsets.only(bottom: 20)),
+            LayoutHeader(child: header),
+            LayoutBody(child: body),
+            LayoutFooter(child: footer),
           ],
         ),
-        Positioned(
-          bottom: 0,
-          right: 0,
-          child: footer,
-        )
-      ],
+      ),
     );
   }
 }

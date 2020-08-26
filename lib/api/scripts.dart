@@ -1,6 +1,6 @@
 class Scripts {
   static final isSpotifyRunning = '''
-    get running of application "Spotify"
+    tell application "System Events" to (name of processes) contains "Spotify"
   ''';
 
   static final getCurrentTrack = '''

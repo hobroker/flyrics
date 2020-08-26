@@ -9,4 +9,6 @@ class UX {
 //  static const Color accentColor = Color(0xff62D36E);
 
   static Duration transitionDuration = Duration(milliseconds: 300);
+
+  static double spacingUnit = 4;
 }

@@ -1,10 +1,20 @@
-version: 2
+version: 2.1
+
+commands:
+  prepare:
+    description: "Prepare project"
+    steps:
+      - checkout
+      - run:
+          name: Create .env
+          command: touch .env
+
 jobs:
   analyze:
     docker:
       - image: cirrusci/flutter:dev
     steps:
-      - checkout
+      - prepare
       - run:
           name: Run analyze
           command: flutter analyze
@@ -12,14 +22,26 @@ jobs:
     docker:
       - image: cirrusci/flutter:dev
     steps:
-      - checkout
+      - prepare
       - run:
           name: Run tests
           command: flutter test
+  build:
+    docker:
+      - image: cirrusci/flutter:dev
+    steps:
+      - prepare
+      - run: flutter config --enable-macos-desktop
+      - run:
+          name: Build app
+          command: flutter build macos
 
 workflows:
-  version: 2
-  ci:
+  cicd:
     jobs:
       - test
       - analyze
+      - build:
+          requires:
+            - test
+            - analyze

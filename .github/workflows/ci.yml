@@ -7,6 +7,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - run: git clone https://github.com/flutter/flutter.git
-      - run: export PATH="$PATH:/home/developer/flutter/bin"
+      - run: git clone https://github.com/flutter/flutter.git -b stable --depth 1
+      - run: export PATH="$PATH:`pwd`/flutter/bin"
+#      - run: flutter precache
       - run: flutter doctor

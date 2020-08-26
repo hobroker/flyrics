@@ -1,7 +1,7 @@
 import 'package:flyrics/actions/lyrics_actions.dart';
 import 'package:flyrics/models/lyrics_model.dart';
 import 'package:flyrics/models/state/lyrics_state.dart';
-import 'package:flyrics/utils/hash_map_extension.dart';
+import 'package:flyrics/modules/hash_map_extension.dart';
 import 'package:redux/redux.dart';
 
 final lyricsReducer = combineReducers<LyricsState>([

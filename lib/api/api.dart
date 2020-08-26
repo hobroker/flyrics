@@ -1,6 +1,6 @@
 import 'package:flyrics/api/http_client.dart';
 import 'package:flyrics/api/url.dart';
-import 'package:flyrics/utils/config.dart';
+import 'package:flyrics/modules/config.dart';
 
 import 'genius_api.dart';
 import 'shell_api.dart';

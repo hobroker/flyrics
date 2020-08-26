@@ -16,6 +16,7 @@ dependencies:
   html: ^0.14.0+3
   flutter_svg: ^0.18.1
   mockito: ^4.1.1
+  flutter_i18n: ^0.19.1
   flutter:
     sdk: flutter
 
@@ -30,3 +31,4 @@ flutter:
   assets:
     - .env
     - assets/icons/genius.svg
+    - assets/i18n/en.json

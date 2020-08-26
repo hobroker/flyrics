@@ -1,7 +1,7 @@
 import 'package:flyrics/actions/artwork_actions.dart';
 import 'package:flyrics/models/artwork_model.dart';
 import 'package:flyrics/models/state/artwork_state.dart';
-import 'package:flyrics/utils/hash_map_extension.dart';
+import 'package:flyrics/modules/hash_map_extension.dart';
 import 'package:redux/redux.dart';
 
 final artworkStateReducer = combineReducers<ArtworkState>([

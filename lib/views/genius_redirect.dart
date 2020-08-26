@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flyrics/containers/dynamic_tooltip.dart';
 import 'package:flyrics/utils/ux.dart';
 import 'package:flyrics/views/hover_builder.dart';
@@ -20,7 +21,7 @@ class GeniusRedirectScreen extends StatelessWidget {
       var height = constraints.maxHeight;
 
       return DynamicTooltip(
-        message: 'Open in browser',
+        message: FlutterI18n.translate(context, 'lyrics.open_in_browser'),
         child: HoverBuilder<double>(
           value: 0.5,
           onEnter: (double opacity) => 1.0,

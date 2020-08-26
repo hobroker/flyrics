@@ -7,6 +7,6 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - run: /Users/ileahu/dev/open/flyrics/.circleci/config.yml
+      - run: git clone https://github.com/flutter/flutter.git
       - run: export PATH="$PATH:/home/developer/flutter/bin"
       - run: flutter doctor

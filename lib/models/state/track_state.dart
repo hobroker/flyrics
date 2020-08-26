@@ -8,11 +8,13 @@ import 'package:flyrics/utils/debug.dart';
 class TrackState {
   final HashMap<String, TrackModel> byId;
   final String activeId;
+  final String lastActiveId;
   final bool isLoading;
 
   const TrackState({
     this.byId,
     this.activeId,
+    this.lastActiveId,
     this.isLoading,
   });
 
@@ -20,14 +22,16 @@ class TrackState {
     return TrackState(
       byId: HashMap<String, TrackModel>(),
       activeId: null,
+      lastActiveId: null,
       isLoading: false,
     );
   }
 
-  TrackState copyWith({byId, isLoading, activeId}) {
+  TrackState copyWith({byId, isLoading, activeId, lastActiveId}) {
     return TrackState(
       byId: byId ?? this.byId,
       activeId: activeId ?? this.activeId,
+      lastActiveId: lastActiveId ?? this.lastActiveId,
       isLoading: isLoading ?? this.isLoading,
     );
   }

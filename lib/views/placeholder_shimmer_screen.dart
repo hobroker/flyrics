@@ -21,8 +21,8 @@ class PlaceholderShimmerScreeen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: backgroundColor ?? UX.primaryDarkColor,
-      highlightColor: shineColor ?? UX.primaryColor,
+      baseColor: backgroundColor,
+      highlightColor: shineColor,
       enabled: isAnimated,
       child: AnimatedContainer(
         width: width,

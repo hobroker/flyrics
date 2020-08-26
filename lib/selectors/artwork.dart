@@ -14,6 +14,12 @@ ArtworkModel getActiveArtwork(AppState state) {
   return getArtworkById(state)[activeId];
 }
 
+ArtworkModel getLastActiveArtwork(AppState state) {
+  var lastActiveId = getLastActiveTrackId(state);
+
+  return getArtworkById(state)[lastActiveId];
+}
+
 String getArtworkUrl(AppState state) => getActiveArtwork(state)?.url;
 
 List<int> getTrackArtworkAsBytes(AppState state) =>
@@ -23,6 +29,9 @@ bool activeTrackHasArtworkBytes(AppState state) =>
     getTrackArtworkAsBytes(state) != null;
 
 bool isArtworkLoading(AppState state) => getArtworkState(state).isLoading;
+
+Color getArtworkLastDominantColor(AppState state) =>
+    getLastActiveArtwork(state)?.dominantColor;
 
 Color getArtworkDominantColor(AppState state) =>
     getActiveArtwork(state)?.dominantColor;

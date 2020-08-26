@@ -13,8 +13,11 @@ final lyricsReducer = combineReducers<LyricsState>([
   }),
   TypedReducer<LyricsState, FetchLyricsSuccessAction>((state, action) {
     return state.copyWith(
-      byId: state.byId
-          .updateEntry(action.id, (entry) => entry.copyWith(text: action.text)),
+      byId: state.byId.updateEntry(
+          action.id,
+          (entry) => entry != null
+              ? entry.copyWith(text: action.text)
+              : LyricsModel(text: action.text)),
       isLoading: false,
     );
   }),

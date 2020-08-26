@@ -18,7 +18,7 @@ class Lyrics extends StatelessWidget {
       ),
       builder: (context, vm) {
         return Conditional.single(
-          when: !vm.isLoading && vm.hasLyrics,
+          when: vm.hasLyrics,
           render: () => LyricsScreen(
             textColor: vm.textColor,
             text: vm.text,

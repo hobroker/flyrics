@@ -3,7 +3,6 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flyrics/actions/app_actions.dart';
 import 'package:flyrics/containers/home_page.dart';
 import 'package:flyrics/models/state/app_state.dart';
-import 'package:flyrics/selectors/player.dart';
 import 'package:redux/redux.dart';
 
 class App extends StatelessWidget {
@@ -26,7 +25,6 @@ class App extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: HomePage(
           onInit: _onInit,
-          isRunning: isPlayerRunning(store.state),
         ),
       ),
     );

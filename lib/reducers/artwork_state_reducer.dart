@@ -11,7 +11,7 @@ final artworkStateReducer = combineReducers<ArtworkState>([
           action.id,
           ArtworkModel(
             url: action.url,
-            bytes: null,
+            dominantColor: null,
           )),
       isLoading: true,
     );

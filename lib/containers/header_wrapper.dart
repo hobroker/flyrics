@@ -14,7 +14,8 @@ class HeaderWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Connector.state(
-      converter: getArtworkDominantColor,
+      converter: (state) =>
+          getArtworkDominantColor(state) ?? getArtworkLastDominantColor(state),
       builder: (context, backgroundColor) => HeaderWrapperScreen(
         backgroundColor: backgroundColor,
         children: children,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/utils/painter.dart';
-import 'package:flyrics/utils/ux.dart';
 import 'package:flyrics/views/text_ellipsis.dart';
 
 class TrackScreen extends StatelessWidget {
@@ -15,7 +14,7 @@ class TrackScreen extends StatelessWidget {
     this.textColor,
   }) : super(key: key);
 
-  TextStyle get _textStyle => TextStyle(color: textColor ?? UX.textColor);
+  TextStyle get _textStyle => TextStyle(color: textColor);
 
   TextStyle get _nameTextStyle =>
       _textStyle.copyWith(fontSize: 16, fontWeight: FontWeight.w500);

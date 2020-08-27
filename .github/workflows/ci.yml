@@ -17,7 +17,7 @@ jobs:
         run: flutter test
   build:
     runs-on: macos-latest
-    needs: [analyze, test]
+#    needs: [analyze, test]
     steps:
       - uses: actions/checkout@v2
       - name: Cache flutter

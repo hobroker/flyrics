@@ -10,8 +10,10 @@ jobs:
       - uses: subosito/flutter-action@v1.3.2
         with:
           channel: 'dev'
-      - run: touch .env
-      - run: flutter pub get
+      - name: Prepare .env
+        run: touch .env
+      - name: Install dependencies
+        run: flutter pub get
       - name: Run analyze
         run: flutter analyze
   test:
@@ -21,8 +23,10 @@ jobs:
       - uses: subosito/flutter-action@v1.3.2
         with:
           channel: 'dev'
-      - run: touch .env
-      - run: flutter pub get
+      - name: Prepare .env
+        run: touch .env
+      - name: Install dependencies
+        run: flutter pub get
       - name: Run tests
         run: flutter test
   build:
@@ -39,7 +43,8 @@ jobs:
         run: flutter pub get
       - name: Prepare .env
         run: touch .env
-      - run: flutter build macos
+      - name: Build app for macOS
+        run: flutter build macos
       - name: Upload build to artifacts
         uses: actions/upload-artifact@v2
         with:

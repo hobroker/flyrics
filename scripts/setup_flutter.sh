@@ -2,6 +2,8 @@
 
 set -e
 
+pwd
+exit 1;
 export_path() {
   NEW_PATH="$PATH:$(pwd)/flutter/bin"
   echo "::set-env name=PATH::$NEW_PATH"

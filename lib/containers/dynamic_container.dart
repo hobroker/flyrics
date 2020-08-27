@@ -20,19 +20,14 @@ class DynamicContainer extends StatelessWidget {
     return Connector.state(
       converter: resolvedDominantColor,
       builder: (context, backgroundColor) {
-        return Container(
+        return AnimatedContainer(
           width: width,
           height: height,
+          duration: UX.transitionDuration,
           decoration: BoxDecoration(
             color: backgroundColor,
           ),
-          child: AnimatedContainer(
-            duration: UX.transitionDuration,
-            decoration: BoxDecoration(
-              color: backgroundColor,
-            ),
-            child: child,
-          ),
+          child: child,
         );
       },
     );

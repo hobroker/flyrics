@@ -18,7 +18,7 @@ jobs:
       - name: Build app for macOS
         run: flutter build macos --obfuscate --split-debug-info=lib/
       - name: Fix executable
-        run: chmod +x build/macos/Build/Products/Release/flyrics.app/Contents/MacOS/flyrics
+        run: codesign --deep --force --verbose --sign DAACE11D8B14861874DFBA07854372C6A4E3E425 build/macos/Build/Products/Release/flyrics.app
       - name: Upload build to artifacts
         uses: actions/upload-artifact@v2
         with:

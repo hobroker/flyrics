@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v1
+      - uses: subosito/flutter-action@v1.3.2
         with:
           channel: 'dev'
       - run: touch .env
@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v1
+      - uses: subosito/flutter-action@v1.3.2
         with:
           channel: 'dev'
       - run: touch .env
@@ -37,7 +37,7 @@ jobs:
           path: flutter
           key: ${{ runner.os }}-flutter
           restore-keys: |
-            ${{ runner.os }}-flutter-
+            ${{ runner.os }}-flutter
             ${{ runner.os }}-
 
       - name: Clone flutter source "dev"

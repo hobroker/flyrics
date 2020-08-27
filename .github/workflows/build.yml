@@ -23,4 +23,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: macos
-          path: build/macos/Build/Products/Release/flyrics.app
+          path: build/macos/Build/Products/Release

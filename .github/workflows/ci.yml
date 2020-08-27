@@ -6,13 +6,19 @@ jobs:
   analyze:
     runs-on: ubuntu-latest
     steps:
-      - uses: cirrusci/flutter:dev
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'dev'
+      - run: flutter pub get
       - name: Run analyze
         run: flutter analyze
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: cirrusci/flutter:dev
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'dev'
+      - run: flutter pub get
       - name: Run tests
         run: flutter test
   build:

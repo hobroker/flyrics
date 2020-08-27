@@ -2,19 +2,24 @@
 
 set -e
 
+# save project source path
 PROJECT_PATH=$(pwd)
 
-echo "> clone flutter"
+# cd outside of the project source
 cd ..
-git clone https://github.com/flutter/flutter.git -b dev --depth 1
-NEW_PATH="$PATH:$(pwd)/flutter/bin"
-echo "::set-env name=PATH::$NEW_PATH"
-export PATH="$NEW_PATH"
 
+git clone https://github.com/flutter/flutter.git -b dev --depth 1
+
+# export flutter bin PATH
+NEW_PATH="$PATH:$(pwd)/flutter/bin"
+echo "::set-env name=PATH::$NEW_PATH" # for next github action steps
+export PATH="$NEW_PATH" # for next commands in this file
+
+# cd in the project source
 cd "${PROJECT_PATH}"
 
-echo "> run pub get"
+# run pub get
 flutter pub get
 
-echo "> create .env file"
+# create .env file
 touch .env

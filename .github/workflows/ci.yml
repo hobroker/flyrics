@@ -9,6 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: flutter pub get
+      - run: touch .env
       - name: Run analyze
         run: flutter analyze
   test:
@@ -17,6 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: flutter pub get
+      - run: touch .env
       - name: Run tests
         run: flutter test
   build:

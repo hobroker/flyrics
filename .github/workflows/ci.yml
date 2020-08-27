@@ -41,7 +41,7 @@ jobs:
         run: touch .env
       - run: flutter build macos
       - name: Upload build to artifacts
-          uses: actions/upload-artifact@v2
-          with:
-            name: macos
-            path: build/macos
+        uses: actions/upload-artifact@v2
+        with:
+          name: macos
+          path: build/macos

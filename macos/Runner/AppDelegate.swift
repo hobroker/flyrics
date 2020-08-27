@@ -18,7 +18,7 @@ class AppDelegate: FlutterAppDelegate {
     let popover = NSPopover()
     popover.contentSize = NSSize(width: 300, height: 500)
     popover.behavior = .transient
-    //popover.contentViewController = flutterViewController
+    popover.contentViewController = flutterViewController
     self.popover = popover
 
     // Create the status item
@@ -27,7 +27,7 @@ class AppDelegate: FlutterAppDelegate {
     //openPopover()
 
     if let button = statusBarItem.button {
-      button.title = "LF"
+      button.image = NSImage(named: "StatusIcon")
       button.action = #selector(togglePopover(_:))
     }
   }

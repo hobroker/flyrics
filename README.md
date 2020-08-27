@@ -1,3 +1,2 @@
 # flyrics
-
-https://i.imgur.com/Faq35Df.png
+![screenshot](https://i.imgur.com/Faq35Df.png)

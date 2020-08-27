@@ -1,4 +1,4 @@
-name: CI/CD
+name: CI
 
 on: push
 
@@ -16,16 +16,5 @@ jobs:
         run: flutter pub get
       - name: Run analyze
         run: flutter analyze
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v1.3.2
-        with:
-          channel: 'dev'
-      - name: Prepare .env
-        run: touch .env
-      - name: Install dependencies
-        run: flutter pub get
       - name: Run tests
         run: flutter test

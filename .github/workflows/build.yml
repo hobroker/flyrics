@@ -1,0 +1,29 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - 'dev'
+      - 'master'
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1.3.2
+        with:
+          channel: 'dev'
+      - name: Enable macos desktop support
+        run: flutter config --enable-macos-desktop
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Prepare .env
+        run: touch .env
+      - name: Build app for macOS
+        run: flutter build macos
+      - name: Upload build to artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: macos
+          path: build/macos/Build/Products

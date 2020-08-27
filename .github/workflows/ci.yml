@@ -3,8 +3,19 @@ name: CI/CD
 on: push
 
 jobs:
-  prepare:
+  analyze:
+    container: cirrusci/flutter:dev
+    steps:
+      - name: Run analyze
+        run: flutter analyze
+  test:
+    container: cirrusci/flutter:dev
+    steps:
+      - name: Run tests
+        run: flutter test
+  build:
     runs-on: macos-latest
+    needs: [analyze, test]
     steps:
       - uses: actions/checkout@v2
       - name: Cache flutter
@@ -28,20 +39,4 @@ jobs:
         run: flutter pub get
       - name: Prepare .env
         run: touch .env
-  test:
-    runs-on: macos-latest
-    needs: prepare
-    steps:
-      - name: Run tests
-        run: flutter test
-  analyze:
-    runs-on: macos-latest
-    needs: prepare
-    steps:
-      - name: Run analyze
-        run: flutter analyze
-  build:
-    runs-on: macos-latest
-    needs: [test, analyze]
-    steps:
       - run: flutter build macos

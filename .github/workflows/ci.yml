@@ -30,21 +30,9 @@ jobs:
 #    needs: [analyze, test]
     steps:
       - uses: actions/checkout@v2
-      - name: Cache flutter
-        id: cache-flutter
-        uses: actions/cache@v2
-        with:
-          path: flutter
-          key: ${{ runner.os }}-flutter
-          restore-keys: |
-            ${{ runner.os }}-flutter
-            ${{ runner.os }}-
-
-      - name: Clone flutter source "dev"
-        if: steps.cache-flutter.outputs.cache-hit != 'true'
-        run: git clone https://github.com/flutter/flutter.git -b dev --depth 1
-      - name: Set flutten in $PATH
-        run: echo "::set-env name=PATH::$PATH:`pwd`/flutter/bin"
+      - uses: subosito/flutter-action@v1.3.2
+          with:
+            channel: 'dev'
       - name: Enable macos desktop support
         run: flutter config --enable-macos-desktop
       - name: Install dependencies

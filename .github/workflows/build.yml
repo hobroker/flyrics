@@ -16,9 +16,11 @@ jobs:
       - name: Enable macos desktop support
         run: flutter config --enable-macos-desktop
       - name: Build app for macOS
-        run: flutter build macos --debug
+        run: flutter build macos
+      - name: Fix executable
+        run: chmod +x build/macos/Build/Products/Release/flyrics.app/Contents/MacOS/flyrics
       - name: Upload build to artifacts
         uses: actions/upload-artifact@v2
         with:
           name: macos
-          path: build/macos/Build/Products
+          path: build/macos/Build/Products/Release/flyrics.app

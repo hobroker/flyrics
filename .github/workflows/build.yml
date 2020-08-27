@@ -13,6 +13,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Setup flutter
         run: bash scripts/setup_flutter.sh
+      - name: Enable macos desktop support
+        run: flutter config --enable-macos-desktop
       - name: Build app for macOS
         run: flutter build macos
       - name: Upload build to artifacts

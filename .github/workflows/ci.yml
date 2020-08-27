@@ -5,16 +5,14 @@ on: push
 jobs:
   analyze:
     runs-on: ubuntu-latest
-    container:
-      image: cirrusci/flutter:dev
     steps:
+      - uses: cirrusci/flutter:dev
       - name: Run analyze
         run: flutter analyze
   test:
     runs-on: ubuntu-latest
-    container:
-      image: cirrusci/flutter:dev
     steps:
+      - uses: cirrusci/flutter:dev
       - name: Run tests
         run: flutter test
   build:

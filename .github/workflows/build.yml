@@ -16,7 +16,7 @@ jobs:
       - name: Enable macos desktop support
         run: flutter config --enable-macos-desktop
       - name: Build app for macOS
-        run: flutter build macos
+        run: flutter build macos --debug
       - name: Upload build to artifacts
         uses: actions/upload-artifact@v2
         with:

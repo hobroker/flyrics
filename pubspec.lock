@@ -7,14 +7,14 @@ packages:
       name: _fe_analyzer_shared
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.0.0"
+    version: "8.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.39.17"
+    version: "0.40.0"
   args:
     dependency: transitive
     description:
@@ -454,7 +454,7 @@ packages:
       name: test
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.16.0-nullsafety.1"
+    version: "1.16.0-nullsafety.2"
   test_api:
     dependency: transitive
     description:
@@ -468,7 +468,7 @@ packages:
       name: test_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.12-nullsafety.1"
+    version: "0.3.12-nullsafety.2"
   typed_data:
     dependency: transitive
     description:

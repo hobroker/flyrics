@@ -4,7 +4,6 @@ import 'package:flutter_redux_hooks/flutter_redux_hooks.dart';
 import 'package:flyrics/models/state/app_state.dart';
 import 'package:flyrics/selectors/artwork.dart';
 import 'package:flyrics/selectors/track.dart';
-import 'package:flyrics/utils/conditional.dart';
 import 'package:flyrics/views/track/track_placeholder.dart';
 import 'package:flyrics/views/track/track_screen.dart';
 
@@ -17,16 +16,16 @@ class TrackDetails extends HookWidget {
     final artist = useSelector<AppState, String>(getTrackArtist);
     final textColor = useSelector<AppState, Color>(resolveArtworkTextColor);
 
-    return Conditional.single(
-      when: trackExists,
-      render: () => TrackScreen(
+    if (trackExists) {
+      return TrackScreen(
         name: name,
         artist: artist,
         textColor: textColor,
-      ),
-      fallback: () => TrackPlaceholder(
-        isAnimated: isLoading,
-      ),
+      );
+    }
+
+    return TrackPlaceholder(
+      isAnimated: isLoading,
     );
   }
 }

@@ -3,7 +3,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_redux_hooks/flutter_redux_hooks.dart';
 import 'package:flyrics/models/state/app_state.dart';
 import 'package:flyrics/selectors/artwork.dart';
-import 'package:flyrics/utils/conditional.dart';
 import 'package:flyrics/views/artwork/artwork_placeholder.dart';
 import 'package:flyrics/views/artwork/artwork_screen.dart';
 
@@ -16,15 +15,15 @@ class Artwork extends HookWidget {
     final hasBytes = useSelector<AppState, bool>(activeTrackHasArtworkBytes);
     final fadeColor = useSelector<AppState, Color>(resolvedDominantColor);
 
-    return Conditional.single(
-      when: !isLoading && hasBytes,
-      render: () => ArtworkScreen(
+    if (!isLoading && hasBytes) {
+      return ArtworkScreen(
         bytes: artworkBytes,
         fadeColor: fadeColor,
-      ),
-      fallback: () => ArtworkPlaceholder(
-        isAnimated: isLoading,
-      ),
+      );
+    }
+
+    return ArtworkPlaceholder(
+      isAnimated: isLoading,
     );
   }
 }

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_redux_hooks/flutter_redux_hooks.dart';
-import 'package:flyrics/views/primary_container.dart';
 import 'package:flyrics/hooks/effect.dart';
 import 'package:flyrics/models/state/app_state.dart';
 import 'package:flyrics/selectors/player.dart';
-import 'package:flyrics/utils/conditional.dart';
 import 'package:flyrics/views/layout/layout_placeholder.dart';
 import 'package:flyrics/views/layout/layout_screen.dart';
+import 'package:flyrics/views/primary_container.dart';
 
 class HomePage extends HookWidget {
   final Function onInit;
@@ -27,13 +26,10 @@ class HomePage extends HookWidget {
       body: LayoutBuilder(
         builder: (context, constraints) {
           return PrimaryContainer(
-              width: constraints.maxWidth,
-              height: constraints.maxHeight,
-              child: Conditional.single(
-                when: isRunning,
-                render: () => LayoutScreeen(),
-                fallback: () => LayoutPlaceholder(),
-              ));
+            width: constraints.maxWidth,
+            height: constraints.maxHeight,
+            child: isRunning ? LayoutScreeen() : LayoutPlaceholder(),
+          );
         },
       ),
     );

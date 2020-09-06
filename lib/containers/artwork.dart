@@ -1,58 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_redux_hooks/flutter_redux_hooks.dart';
+import 'package:flyrics/models/state/app_state.dart';
 import 'package:flyrics/selectors/artwork.dart';
-import 'package:flyrics/store/connector.dart';
 import 'package:flyrics/utils/conditional.dart';
 import 'package:flyrics/views/artwork/artwork_placeholder.dart';
 import 'package:flyrics/views/artwork/artwork_screen.dart';
 
-class Artwork extends StatelessWidget {
+class Artwork extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    return Connector.state(
-      converter: (state) => _ViewModel(
-        artworkBytes: getTrackArtworkAsBytes(state),
-        isLoading: isArtworkLoading(state),
-        hasBytes: activeTrackHasArtworkBytes(state),
-        fadeColor: resolvedDominantColor(state),
+    final artworkBytes =
+        useSelector<AppState, List<int>>(getTrackArtworkAsBytes);
+    final isLoading = useSelector<AppState, bool>(isArtworkLoading);
+    final hasBytes = useSelector<AppState, bool>(activeTrackHasArtworkBytes);
+    final fadeColor = useSelector<AppState, Color>(resolvedDominantColor);
+
+    return Conditional.single(
+      when: !isLoading && hasBytes,
+      render: () => ArtworkScreen(
+        bytes: artworkBytes,
+        fadeColor: fadeColor,
       ),
-      builder: (context, vm) {
-        return Conditional.single(
-          when: !vm.isLoading && vm.hasBytes,
-          render: () => ArtworkScreen(
-            bytes: vm.artworkBytes,
-            fadeColor: vm.fadeColor,
-          ),
-          fallback: () => ArtworkPlaceholder(
-            isAnimated: vm.isLoading,
-          ),
-        );
-      },
+      fallback: () => ArtworkPlaceholder(
+        isAnimated: isLoading,
+      ),
     );
   }
-}
-
-@immutable
-class _ViewModel {
-  final bool isLoading;
-  final bool hasBytes;
-  final List<int> artworkBytes;
-  final Color fadeColor;
-
-  _ViewModel({
-    @required this.artworkBytes,
-    @required this.isLoading,
-    @required this.fadeColor,
-    @required this.hasBytes,
-  });
-
-  @override
-  bool operator ==(other) {
-    return other.isLoading == isLoading &&
-        other.artworkBytes == artworkBytes &&
-        other.hasBytes == hasBytes &&
-        other.fadeColor == fadeColor;
-  }
-
-  @override
-  int get hashCode => super.hashCode;
 }

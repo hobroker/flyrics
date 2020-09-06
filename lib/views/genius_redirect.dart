@@ -6,7 +6,7 @@ import 'package:flyrics/actions/app_actions.dart';
 import 'package:flyrics/views/primary_tooltip.dart';
 import 'package:flyrics/models/state/app_state.dart';
 import 'package:flyrics/selectors/lyrics.dart';
-import 'package:flyrics/utils/ux.dart';
+import 'package:flyrics/constants/ux.dart';
 import 'package:flyrics/views/empty_widget.dart';
 import 'package:flyrics/views/hover_builder.dart';
 import 'package:flyrics/views/icons/genius_icon.dart';

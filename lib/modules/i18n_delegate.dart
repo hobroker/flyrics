@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:flyrics/constants/assets_path.dart';
+import 'package:flyrics/constants/asset_constants.dart';
 import 'package:flyrics/utils/debug.dart';
 
 var i18nDelegate = FlutterI18nDelegate(

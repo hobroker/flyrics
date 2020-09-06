@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/utils/ux.dart';
+import 'package:flyrics/constants/ux.dart';
 import 'package:flyrics/views/text_ellipsis.dart';
 import 'package:flyrics/views/track/track_name.dart';
 

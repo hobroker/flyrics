@@ -3,7 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_redux_hooks/flutter_redux_hooks.dart';
 import 'package:flyrics/models/state/app_state.dart';
 import 'package:flyrics/selectors/placeholder.dart';
-import 'package:flyrics/utils/ux.dart';
+import 'package:flyrics/constants/ux.dart';
 import 'package:shimmer/shimmer.dart';
 
 class PlaceholderShimmer extends HookWidget {

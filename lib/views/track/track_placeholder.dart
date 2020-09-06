@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/containers/placeholder_container.dart';
 import 'package:flyrics/utils/random.dart';
 import 'package:flyrics/utils/ux.dart';
+import 'package:flyrics/views/placeholder_shimmer.dart';
 
 class TrackPlaceholder extends StatelessWidget {
   final bool isAnimated;
@@ -19,13 +19,13 @@ class TrackPlaceholder extends StatelessWidget {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          PlaceholderContainer(
+          PlaceholderShimmer(
             height: 16.0,
             isAnimated: isAnimated,
             width: appWidth * randomDoubleBetween(0.7, 0.9),
           ),
           SizedBox(height: UX.spacingUnit),
-          PlaceholderContainer(
+          PlaceholderShimmer(
             height: 15,
             isAnimated: isAnimated,
             width: appWidth * randomDoubleBetween(0.5, 0.6),

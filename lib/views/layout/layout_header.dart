@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flyrics/containers/dynamic_container.dart';
+import 'package:flyrics/views/primary_container.dart';
 import 'package:flyrics/views/sliver_header_delegate.dart';
 
 class LayoutHeader extends StatelessWidget {
@@ -20,7 +20,7 @@ class LayoutHeader extends StatelessWidget {
       delegate: SliverHeaderDelegate(
         minHeight: minHeight,
         maxHeight: maxHeight,
-        child: DynamicContainer(
+        child: PrimaryContainer(
           child: child,
         ),
       ),

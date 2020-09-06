@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/containers/placeholder_container.dart';
 import 'package:flyrics/utils/random.dart';
+import 'package:flyrics/views/placeholder_shimmer.dart';
 
 class ArtworkPlaceholder extends StatelessWidget {
   final bool isAnimated;
@@ -20,7 +20,7 @@ class ArtworkPlaceholder extends StatelessWidget {
 
         return Container(
           margin: EdgeInsets.symmetric(horizontal: margin),
-          child: PlaceholderContainer(
+          child: PlaceholderShimmer(
             height: size,
             width: size,
             isAnimated: isAnimated,

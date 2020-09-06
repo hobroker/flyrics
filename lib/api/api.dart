@@ -6,6 +6,8 @@ import 'genius_api.dart';
 import 'shell_api.dart';
 import 'spotify_api.dart';
 
+final api = Api();
+
 class Api {
   SpotifyApi spotify;
   GeniusApi genius;
@@ -29,5 +31,3 @@ class Api {
 
   String _getConfig(String key) => _config.get(key);
 }
-
-var api = Api();

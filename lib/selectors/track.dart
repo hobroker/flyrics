@@ -6,7 +6,7 @@ TrackState getTrackState(AppState state) => state.track;
 
 String getActiveTrackId(AppState state) => state.track.activeId;
 
-String getLastActiveTrackId(AppState state) => state.track.lastActiveId;
+String getLastActiveTrackId(state) => state.track.lastActiveId;
 
 Map getTracksById(AppState state) => state.track.byId;
 

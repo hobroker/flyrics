@@ -1,12 +1,12 @@
 import 'package:flyrics/store/action.dart';
 
-class CheckIsRunningStartAction with Action {}
+class CheckIsRunningStartAction with ReduxAction {}
 
-class SetIsRunningAction with Action {
+class SetIsRunningAction with ReduxAction {
   final bool isRunning;
 
   SetIsRunningAction(this.isRunning);
 
   @override
-  String toString() => '${runtimeType}($isRunning)';
+  List get args => [isRunning];
 }

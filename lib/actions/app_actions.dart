@@ -1,8 +1,8 @@
 import 'package:flyrics/store/action.dart';
 
-class AppStartedAction with Action {}
+class AppStartedAction with ReduxAction {}
 
-class OpenUrlAction with Action {
+class OpenUrlAction with ReduxAction {
   final String url;
 
   OpenUrlAction(this.url);

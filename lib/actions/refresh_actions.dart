@@ -1,21 +1,21 @@
 import 'package:flyrics/store/action.dart';
 
-class RefreshCurrentTrackTimerAction with Action {
+class RefreshCurrentTrackTimerAction with ReduxAction {
   @override
   String toString() => null;
 }
 
-class RefreshCurrentTrackAction with Action {
+class RefreshCurrentTrackAction with ReduxAction {
   @override
   String toString() => null;
 }
 
-class RefreshCheckIsRunningTimerAction with Action {
+class RefreshCheckIsRunningTimerAction with ReduxAction {
   @override
   String toString() => null;
 }
 
-class RefreshCheckIsRunningAction with Action {
+class RefreshCheckIsRunningAction with ReduxAction {
   @override
   String toString() => null;
 }

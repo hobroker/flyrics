@@ -40,6 +40,11 @@ Stream refershCurrentTrackEpic(Stream actions, store) => actions
         ? SetIsRunningAction(false)
         : FetchTrackSuccessAction(track));
 
+Stream saveLastActiveId(Stream actions, store) => actions
+    .where((action) => action is FetchTrackSuccessAction)
+    .map((_) => getActiveTrackId(store.state))
+    .map((activeId) => SaveLastActiveIdAction(activeId));
+
 Stream resetActiveIdEpic(Stream actions, store) => actions
     .where((action) => action is SetIsRunningAction)
     .where((action) => !action.isRunning)
@@ -52,4 +57,5 @@ final trackEpics = combineEpics<AppState>([
   trigerRefershCurrentTrackEpic,
   retrigerRefershCurrentTrackEpic,
   refershCurrentTrackEpic,
+  saveLastActiveId,
 ]);

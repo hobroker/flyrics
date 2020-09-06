@@ -1,13 +1,13 @@
 import 'package:redux/redux.dart';
 
-class LogMiddleware<State> extends MiddlewareClass<State> {
+class LogMiddleware<AppState> extends MiddlewareClass<AppState> {
   @override
-  void call(Store<State> store, dynamic action, NextDispatcher next) {
+  void call(Store<AppState> store, dynamic action, NextDispatcher next) {
+    next(action);
+
     if (action.toString() != null) {
       print(_format(action));
     }
-
-    next(action);
   }
 
   String _format(dynamic action) => '\t⏩ $action';

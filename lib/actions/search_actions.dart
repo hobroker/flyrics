@@ -1,13 +1,13 @@
 import 'package:flyrics/models/search_result_model.dart';
 import 'package:flyrics/store/action.dart';
 
-class SearchStartAction with Action {}
+class SearchStartAction with ReduxAction {}
 
-class SearchSuccessAction {
+class SearchSuccessAction with ReduxAction {
   final List<SearchResultModel> results;
 
   SearchSuccessAction(this.results);
 
   @override
-  String toString() => '${runtimeType}(<SearchResultModel>[...])';
+  List get args => ['<SearchResultModel>[...]'];
 }

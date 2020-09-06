@@ -7,20 +7,12 @@ class CheckTrackAction with ReduxAction {}
 
 class FetchTrackSuccessAction with ReduxAction {
   final TrackModel track;
+  final String lastActiveId;
 
-  FetchTrackSuccessAction(this.track);
-
-  @override
-  List get args => [track];
-}
-
-class SaveLastActiveIdAction with ReduxAction {
-  final String activeId;
-
-  SaveLastActiveIdAction(this.activeId);
+  FetchTrackSuccessAction(this.track, {this.lastActiveId});
 
   @override
-  List get args => [activeId];
+  List get args => [track, lastActiveId];
 }
 
 class ResetActiveIdAction with ReduxAction {}

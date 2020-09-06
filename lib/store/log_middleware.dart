@@ -1,8 +1,8 @@
 import 'package:redux/redux.dart';
 
-class LogMiddleware<AppState> extends MiddlewareClass<AppState> {
+class LogMiddleware extends MiddlewareClass {
   @override
-  void call(Store<AppState> store, dynamic action, NextDispatcher next) {
+  void call(Store store, dynamic action, NextDispatcher next) {
     next(action);
 
     if (action.toString() != null) {

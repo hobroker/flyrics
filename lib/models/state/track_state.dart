@@ -41,6 +41,7 @@ class TrackState {
     return stringify({
       'byId': byId,
       'activeId': activeId,
+      'lastActiveId': lastActiveId,
       'isLoading': isLoading,
     }, true);
   }
@@ -50,6 +51,7 @@ class TrackState {
     return other is TrackState &&
         other.byId == byId &&
         other.activeId == activeId &&
+        other.lastActiveId == lastActiveId &&
         other.isLoading == isLoading;
   }
 

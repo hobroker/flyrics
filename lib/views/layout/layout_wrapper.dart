@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flyrics/utils/ux.dart';
+import 'package:flyrics/constants/ux.dart';
 import 'package:flyrics/views/empty_widget.dart';
-import 'package:flyrics/views/layout/layout_body.dart';
-import 'package:flyrics/views/layout/layout_footer.dart';
-import 'package:flyrics/views/layout/layout_header.dart';
+import 'package:flyrics/views/layout/body_sliver.dart';
+import 'package:flyrics/views/layout/footer_sliver.dart';
+import 'package:flyrics/views/layout/header_sliver.dart';
 
 class LayoutWrapper extends StatelessWidget {
   final Widget header;
@@ -27,9 +27,9 @@ class LayoutWrapper extends StatelessWidget {
         thickness: UX.spacingUnit,
         child: CustomScrollView(
           slivers: [
-            LayoutHeader(child: header),
-            LayoutBody(child: body),
-            LayoutFooter(child: footer),
+            HeaderSliver(child: header),
+            BodySliver(child: body),
+            FooterSliver(child: footer),
           ],
         ),
       ),

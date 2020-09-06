@@ -15,7 +15,7 @@ class ArtworkPlaceholder extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         var height = constraints.maxHeight;
-        var size = height * randomDoubleBetween(0.7, 0.85);
+        var size = height * randomBetween(0.7, 0.85);
         var margin = (height - size) / 2;
 
         return Container(

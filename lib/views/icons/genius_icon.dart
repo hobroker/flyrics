@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/constants/assets_path.dart';
+import 'package:flyrics/constants/asset_constants.dart';
 import 'package:flyrics/views/icons/base_icon.dart';
 
 class GeniusIcon extends StatelessWidget {

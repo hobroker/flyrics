@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:redux/redux.dart';
 
 class LogMiddleware extends MiddlewareClass {
@@ -6,7 +7,7 @@ class LogMiddleware extends MiddlewareClass {
     next(action);
 
     if (action.toString() != null) {
-      print(_format(action));
+      debugPrint(_format(action));
     }
   }
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flyrics/constants/ux.dart';
 import 'package:flyrics/utils/random.dart';
-import 'package:flyrics/utils/ux.dart';
 import 'package:flyrics/views/placeholder_shimmer.dart';
 
 class TrackPlaceholder extends StatelessWidget {
@@ -22,13 +22,13 @@ class TrackPlaceholder extends StatelessWidget {
           PlaceholderShimmer(
             height: 16.0,
             isAnimated: isAnimated,
-            width: appWidth * randomDoubleBetween(0.7, 0.9),
+            width: appWidth * randomBetween(0.7, 0.9),
           ),
           SizedBox(height: UX.spacingUnit),
           PlaceholderShimmer(
             height: 15,
             isAnimated: isAnimated,
-            width: appWidth * randomDoubleBetween(0.5, 0.6),
+            width: appWidth * randomBetween(0.5, 0.6),
           ),
         ],
       );

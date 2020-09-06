@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flyrics/models/artwork_model.dart';
 import 'package:flyrics/models/state/app_state.dart';
 import 'package:flyrics/selectors/track.dart';
-import 'package:flyrics/utils/ux.dart';
+import 'package:flyrics/constants/ux.dart';
 
 Map getArtworkById(AppState state) => state.artwork.byId;
 

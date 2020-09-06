@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/utils/random.dart';
-import 'package:flyrics/utils/ux.dart';
+import 'package:flyrics/constants/ux.dart';
 import 'package:flyrics/views/placeholder_shimmer.dart';
 
 class LyricsPlaceholder extends StatelessWidget {
@@ -13,7 +13,7 @@ class LyricsPlaceholder extends StatelessWidget {
     this.isAnimated = true,
   }) : super(key: key);
 
-  double genWidth(appWidth) => appWidth * randomDoubleBetween(0.6, 0.8);
+  double genWidth(appWidth) => appWidth * randomBetween(0.6, 0.8);
 
   @override
   Widget build(BuildContext context) {

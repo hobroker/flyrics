@@ -16,7 +16,7 @@ void main() {
   group('GeniusApi', () {
     group('.search()', () {
       test('should return a list with expected search results', () async {
-        var client = MockHttpClient();
+        final client = MockHttpClient();
         when(client.get(any)).thenAnswer((_) async => {
               'response': {
                 'hits': [
@@ -29,9 +29,8 @@ void main() {
                 ]
               }
             });
-        var api = Api().init(Config({}), httpClient: client);
-
-        var list = await api.genius.search('something');
+        final api = Api(Config({}), client: client);
+        final list = await api.genius.search('something');
 
         expect(
             list,
@@ -43,13 +42,12 @@ void main() {
       });
 
       test('should return an empty list', () async {
-        var client = MockHttpClient();
+        final client = MockHttpClient();
         when(client.get(any)).thenAnswer((_) async => {
               'response': {'hits': []}
             });
-        var api = Api().init(Config({}), httpClient: client);
-
-        var list = await api.genius.search('something');
+        final api = Api(Config({}), client: client);
+        final list = await api.genius.search('something');
 
         expect(list, equals([]));
       });

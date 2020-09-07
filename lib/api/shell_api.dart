@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:flyrics/utils/debug.dart';
 
-class ShellApi {
+class Terminal {
+  const Terminal();
+
   Future<String> _exec(String cmd, List<String> args) async {
     try {
       var result = await Process.run(cmd, args);
@@ -25,5 +27,9 @@ class ShellApi {
     var result = await exec('osascript', args: ['-e $cmd']);
 
     return result;
+  }
+
+  Future openUrl(String url) async {
+    await exec('open', args: [url]);
   }
 }

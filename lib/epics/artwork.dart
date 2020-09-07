@@ -2,6 +2,7 @@ import 'package:flyrics/actions/artwork_actions.dart';
 import 'package:flyrics/actions/track_actions.dart';
 import 'package:flyrics/api/api.dart';
 import 'package:flyrics/models/state/app_state.dart';
+import 'package:flyrics/modules/locator.dart';
 import 'package:flyrics/selectors/artwork.dart';
 import 'package:flyrics/selectors/track.dart';
 import 'package:redux_epics/redux_epics.dart';
@@ -28,7 +29,7 @@ Stream setArtworkAsMissingEpic(Stream actions, store) => actions
 Stream fetchArtworkImageAsBytesEpic(Stream actions, store) => actions
         .where((action) => action is FetchArtworkBytesStartAction)
         .map((action) => getTrackArtwork(store.state))
-        .asyncMap((url) => api.spotify.getImageBytes(url))
+        .asyncMap((url) => I<Api>().spotify.getImageBytes(url))
         .map((response) {
       var id = getActiveTrackId(store.state);
       return FetchArtworkBytesSuccessAction(

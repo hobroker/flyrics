@@ -6,6 +6,5 @@ final _isRunningReducer = combineReducers<bool>([
   TypedReducer<bool, SetIsRunningAction>((state, action) => action.isRunning),
 ]);
 
-final playerReducer = (PlayerState state, action) => PlayerState(
-      isRunning: _isRunningReducer(state.isRunning, action),
-    );
+final playerReducer = (PlayerStateBuilder b, action) =>
+    b..isRunning = _isRunningReducer(b.isRunning, action);

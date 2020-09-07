@@ -1,48 +1,24 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:built_value/built_value.dart';
+import 'package:flutter/painting.dart';
 
-@immutable
-class ArtworkModel {
-  final String url;
-  final List<int> bytes;
-  final List<Color> colors;
-  final Color textColor;
-  final Color dominantColor;
+part 'artwork_model.g.dart';
 
-  const ArtworkModel({
-    this.url,
-    this.bytes,
-    this.colors = const <Color>[],
-    this.textColor,
-    this.dominantColor,
-  });
+abstract class ArtworkModel
+    implements Built<ArtworkModel, ArtworkModelBuilder> {
+  List<int> get bytes;
 
-  ArtworkModel copyWith({
-    url,
-    bytes,
-    textColor,
-    dominantColor,
-    colors,
-    isLoading,
-  }) {
-    return ArtworkModel(
-      url: url ?? this.url,
-      bytes: bytes ?? this.bytes,
-      textColor: textColor ?? this.textColor,
-      dominantColor: dominantColor ?? this.dominantColor,
-      colors: colors ?? this.colors,
-    );
-  }
+  List<Color> get colors;
 
-  @override
-  bool operator ==(other) {
-    return other is ArtworkModel &&
-        other.url == url &&
-        other.bytes == bytes &&
-        other.colors == colors &&
-        other.textColor == textColor;
-  }
+  @nullable
+  Color get textColor;
 
-  @override
-  int get hashCode => super.hashCode;
+  @nullable
+  Color get dominantColor;
+
+  String get url;
+
+  ArtworkModel._();
+
+  factory ArtworkModel([void Function(ArtworkModelBuilder) updates]) =
+      _$ArtworkModel;
 }

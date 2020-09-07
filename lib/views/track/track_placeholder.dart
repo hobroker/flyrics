@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_redux_hooks/flutter_redux_hooks.dart';
 import 'package:flyrics/constants/ux.dart';
+import 'package:flyrics/models/state/app_state.dart';
+import 'package:flyrics/selectors/track.dart';
 import 'package:flyrics/utils/random.dart';
 import 'package:flyrics/views/placeholder_shimmer.dart';
 
-class TrackPlaceholder extends StatelessWidget {
-  final bool isAnimated;
-
-  const TrackPlaceholder({
-    Key key,
-    this.isAnimated = true,
-  }) : super(key: key);
-
+class TrackPlaceholder extends HookWidget {
   @override
   Widget build(BuildContext context) {
+    final isAnimated = useSelector<AppState, bool>(isTrackLoading);
+
     return LayoutBuilder(builder: (context, constraints) {
       var appWidth = constraints.maxWidth;
 

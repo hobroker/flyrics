@@ -28,7 +28,7 @@ class AppState {
   factory AppState.init() {
     return AppState(
       player: PlayerStateBuilder().build(),
-      timer: TimerState.init(),
+      timer: TimerStateBuilder().build(),
       track: TrackState.init(),
       artwork: ArtworkStateBuilder().build(),
       search: SearchState.init(),

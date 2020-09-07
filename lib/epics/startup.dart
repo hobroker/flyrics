@@ -8,7 +8,7 @@ import 'package:redux_epics/redux_epics.dart';
 
 Stream fetchTrackOnStartEpic(Stream actions, store) => actions
     .where((action) => action is SetIsRunningAction)
-    .where((action) => action.isRunning)
+    .where((action) => action.payload)
     .map((isRunning) => FetchTrackStartAction());
 
 Stream checkIsRunningOnStartEpic(Stream actions, store) => actions

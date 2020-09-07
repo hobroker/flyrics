@@ -1,18 +1,16 @@
 import 'package:flyrics/actions/timer_actions.dart';
 import 'package:flyrics/models/state/timer_state.dart';
+import 'package:flyrics/store/reducer_util.dart';
 import 'package:redux/redux.dart';
 
 final _checkIsRunning = combineReducers<bool>([
-  TypedReducer<bool, SetCheckIsRunningTimerAction>(
-      (state, action) => action.isRunning),
+  TypedReducer<bool, SetCheckIsRunningTimerAction>(reducePayload),
 ]);
 
 final _refreshTrack = combineReducers<bool>([
-  TypedReducer<bool, SetRefreshTrackTimerAction>(
-      (state, action) => action.value),
+  TypedReducer<bool, SetRefreshTrackTimerAction>(reducePayload),
 ]);
 
-final timerReducer = (TimerState state, action) => TimerState(
-      refreshTrack: _refreshTrack(state.refreshTrack, action),
-      checkIsRunning: _checkIsRunning(state.checkIsRunning, action),
-    );
+final timerReducer = (TimerStateBuilder state, action) => TimerStateBuilder()
+  ..refreshTrack = _refreshTrack(state.refreshTrack, action)
+  ..checkIsRunning = _checkIsRunning(state.checkIsRunning, action);

@@ -49,7 +49,7 @@ Stream refershCurrentTrackEpic(Stream actions, store) => actions
 
 Stream resetActiveIdEpic(Stream actions, store) => actions
     .where((action) => action is SetIsRunningAction)
-    .where((action) => !action.isRunning)
+    .where((action) => !action.payload)
     .map((action) => ResetActiveIdAction());
 
 final trackEpics = combineEpics<AppState>([

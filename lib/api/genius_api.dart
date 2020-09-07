@@ -1,7 +1,9 @@
 import 'dart:convert';
 
+import 'package:built_collection/built_collection.dart';
 import 'package:flyrics/api/http_client.dart';
-import 'package:flyrics/models/search_result_model.dart';
+import 'package:flyrics/models/search_result.dart';
+import 'package:flyrics/utils/serialize.dart';
 import 'package:html/parser.dart';
 
 class GeniusApi {
@@ -12,15 +14,14 @@ class GeniusApi {
 
   GeniusApi(this.client, {this.accessToken});
 
-  Future<List<SearchResultModel>> search(String query) async {
+  Future<BuiltList<SearchResult>> search(String query) async {
     var uri = Uri.https(baseUrl, 'search', {
       'q': query,
       'access_token': accessToken,
     });
     var data = await client.get(uri);
     var items = data['response']['hits'].map((item) => item['result']);
-    var list = List<SearchResultModel>.from(
-        items.map((item) => SearchResultModel.fromJson(item)));
+    var list = deserializeListOf<SearchResult>(items);
 
     return list;
   }

@@ -1,4 +1,4 @@
-import 'package:flyrics/models/search_result_model.dart';
+import 'package:flyrics/models/search_result.dart';
 import 'package:flyrics/models/state/app_state.dart';
 import 'package:flyrics/models/state/search_state.dart';
 import 'package:flyrics/selectors/track.dart';
@@ -14,7 +14,7 @@ SearchState getSearchState(AppState state) => state.search;
 
 bool searchHasResults(AppState state) => state.search.results.isNotEmpty;
 
-SearchResultModel getFirstSearchResult(AppState state) =>
+SearchResult getFirstSearchResult(AppState state) =>
     searchHasResults(state) ? getSearchState(state).results.first : null;
 
 String getFirstSearchResultUrl(AppState state) =>

@@ -16,9 +16,6 @@ class _$LyricsModel extends LyricsModel {
       (new LyricsModelBuilder()..update(updates)).build();
 
   _$LyricsModel._({this.text, this.url}) : super._() {
-    if (text == null) {
-      throw new BuiltValueNullFieldError('LyricsModel', 'text');
-    }
     if (url == null) {
       throw new BuiltValueNullFieldError('LyricsModel', 'url');
     }

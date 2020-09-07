@@ -3,6 +3,7 @@ import 'package:built_value/built_value.dart';
 part 'lyrics_model.g.dart';
 
 abstract class LyricsModel implements Built<LyricsModel, LyricsModelBuilder> {
+  @nullable
   String get text;
 
   String get url;

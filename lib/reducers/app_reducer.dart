@@ -18,6 +18,6 @@ AppState appReducer(AppState state, action) {
     artwork: artworkStateReducer(state.artwork.toBuilder(), action).build(),
     search: searchReducer(state.search, action),
     lyrics: lyricsReducer(state.lyrics, action),
-    timer: timerReducer(state.timer, action),
+    timer: timerReducer(state.timer.toBuilder(), action).build(),
   );
 }

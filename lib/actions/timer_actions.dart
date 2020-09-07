@@ -1,19 +1,19 @@
 import 'package:flyrics/store/action.dart';
 
 class SetRefreshTrackTimerAction with ReduxAction {
-  final bool value;
+  final bool payload;
 
-  SetRefreshTrackTimerAction(this.value);
+  SetRefreshTrackTimerAction(this.payload);
 
   @override
-  List get args => [value];
+  List get args => [payload];
 }
 
 class SetCheckIsRunningTimerAction with ReduxAction {
-  final bool isRunning;
+  final bool payload;
 
-  SetCheckIsRunningTimerAction(this.isRunning);
+  SetCheckIsRunningTimerAction(this.payload);
 
   @override
-  List get args => [isRunning];
+  List get args => [payload];
 }

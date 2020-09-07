@@ -1,39 +1,19 @@
-import 'dart:collection';
-
-import 'package:flutter/foundation.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
 import 'package:flyrics/models/lyrics_model.dart';
 
-@immutable
-class LyricsState {
-  final bool isLoading;
-  final HashMap<String, LyricsModel> byId;
+part 'lyrics_state.g.dart';
 
-  const LyricsState({
-    this.isLoading,
-    this.byId,
-  });
+abstract class LyricsState implements Built<LyricsState, LyricsStateBuilder> {
+  bool get isLoading;
 
-  factory LyricsState.init() {
-    return LyricsState(
-      isLoading: false,
-      byId: HashMap<String, LyricsModel>(),
-    );
-  }
+  BuiltMap<String, LyricsModel> get byId;
 
-  LyricsState copyWith({isLoading, byId}) {
-    return LyricsState(
-      isLoading: isLoading ?? this.isLoading,
-      byId: byId ?? this.byId,
-    );
-  }
+  LyricsState._();
 
-  @override
-  bool operator ==(other) {
-    return other is LyricsState &&
-        other.isLoading == isLoading &&
-        other.byId == byId;
-  }
+  factory LyricsState([void Function(LyricsStateBuilder) updates]) =
+      _$LyricsState;
 
-  @override
-  int get hashCode => super.hashCode;
+  static void _initializeBuilder(LyricsStateBuilder builder) =>
+      builder..isLoading = false;
 }

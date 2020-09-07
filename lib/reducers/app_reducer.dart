@@ -14,8 +14,8 @@ AppState appReducer(AppState state, action) {
 
   return AppState(
     track: trackReducer(state.track, action),
-    player: playerReducer(state.player, action),
-    artwork: artworkStateReducer(state.artwork, action),
+    player: playerReducer(state.player.toBuilder(), action).build(),
+    artwork: artworkStateReducer(state.artwork.toBuilder(), action).build(),
     search: searchReducer(state.search, action),
     lyrics: lyricsReducer(state.lyrics, action),
     timer: timerReducer(state.timer, action),

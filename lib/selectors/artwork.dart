@@ -1,10 +1,11 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flyrics/models/artwork_model.dart';
 import 'package:flyrics/models/state/app_state.dart';
 import 'package:flyrics/selectors/track.dart';
 import 'package:flyrics/constants/ux.dart';
 
-Map getArtworkById(AppState state) => state.artwork.byId;
+BuiltMap getArtworkById(AppState state) => state.artwork.byId;
 
 bool isArtworkLoading(AppState state) => state.artwork.isLoading;
 

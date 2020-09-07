@@ -27,10 +27,10 @@ class AppState {
 
   factory AppState.init() {
     return AppState(
-      player: PlayerState.init(),
+      player: PlayerStateBuilder().build(),
       timer: TimerState.init(),
       track: TrackState.init(),
-      artwork: ArtworkState.init(),
+      artwork: ArtworkStateBuilder().build(),
       search: SearchState.init(),
       lyrics: LyricsState.init(),
     );

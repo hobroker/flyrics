@@ -3,7 +3,7 @@ import 'package:flyrics/models/state/player_state.dart';
 import 'package:redux/redux.dart';
 
 final _isRunningReducer = combineReducers<bool>([
-  TypedReducer<bool, SetIsRunningAction>((state, action) => action.isRunning),
+  TypedReducer<bool, SetIsRunningAction>((state, action) => action.payload),
 ]);
 
 final playerReducer = (PlayerStateBuilder b, action) =>

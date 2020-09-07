@@ -32,7 +32,7 @@ class AppState {
       track: TrackState.init(),
       artwork: ArtworkStateBuilder().build(),
       search: SearchState.init(),
-      lyrics: LyricsState.init(),
+      lyrics: LyricsStateBuilder().build(),
     );
   }
 

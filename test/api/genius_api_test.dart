@@ -35,10 +35,13 @@ void main() {
         expect(
             list,
             equals([
-              SearchResult(url: '//one', title: 'one'),
-              SearchResult(url: '//two', title: 'two'),
+              SearchResult((b) => b
+                ..url = '//one'
+                ..title = 'one'),
+              SearchResult((b) => b
+                ..url = '//two'
+                ..title = 'two'),
             ]));
-
       });
 
       test('should return an empty list', () async {

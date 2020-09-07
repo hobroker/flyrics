@@ -1,10 +1,11 @@
-import 'package:flyrics/models/search_result_model.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:flyrics/models/search_result.dart';
 import 'package:flyrics/store/action.dart';
 
 class SearchStartAction with ReduxAction {}
 
 class SearchSuccessAction with ReduxAction {
-  final List<SearchResultModel> results;
+  final BuiltList<SearchResult> results;
 
   SearchSuccessAction(this.results);
 

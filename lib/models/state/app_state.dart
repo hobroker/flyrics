@@ -31,7 +31,7 @@ class AppState {
       timer: TimerStateBuilder().build(),
       track: TrackState.init(),
       artwork: ArtworkStateBuilder().build(),
-      search: SearchState.init(),
+      search: SearchStateBuilder().build(),
       lyrics: LyricsStateBuilder().build(),
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flyrics/api/api.dart';
 import 'package:flyrics/api/http_client.dart';
-import 'package:flyrics/models/search_result_model.dart';
+import 'package:flyrics/models/search_result.dart';
 import 'package:flyrics/modules/config.dart';
 import 'package:flyrics/utils/debug.dart';
 import 'package:http/http.dart' as http;
@@ -35,8 +35,8 @@ void main() {
         expect(
             list,
             equals([
-              SearchResultModel(url: '//one', title: 'one'),
-              SearchResultModel(url: '//two', title: 'two'),
+              SearchResult(url: '//one', title: 'one'),
+              SearchResult(url: '//two', title: 'two'),
             ]));
 
       });

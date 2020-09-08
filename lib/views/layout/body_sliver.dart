@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flyrics/utils/ux.dart';
+import 'package:flyrics/constants/ux.dart';
 
-class LayoutBody extends StatelessWidget {
+class BodySliver extends StatelessWidget {
   final Widget child;
 
-  LayoutBody({
+  BodySliver({
     Key key,
     @required this.child,
   }) : super(key: key);

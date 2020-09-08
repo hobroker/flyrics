@@ -1,22 +1,12 @@
-import 'package:flyrics/store/action.dart';
+import 'package:flyrics/modules/store/action.dart';
 
-class CheckIsRunningStartAction with Action {}
+class CheckIsRunningStartAction with ReduxAction {}
 
-class SetIsRunningAction with Action {
-  final bool isRunning;
+class SetIsRunningAction with ReduxAction {
+  final bool payload;
 
-  SetIsRunningAction(this.isRunning);
+  SetIsRunningAction(this.payload);
 
   @override
-  String toString() => '${runtimeType}($isRunning)';
-}
-
-class RefreshCheckIsRunningTimerAction with Action {
-  @override
-  String toString() => null;
-}
-
-class RefreshCheckIsRunningAction with Action {
-  @override
-  String toString() => null;
+  List get args => [payload];
 }

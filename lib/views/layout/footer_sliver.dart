@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flyrics/utils/ux.dart';
+import 'package:flyrics/constants/ux.dart';
 
-class LayoutFooter extends StatelessWidget {
+class FooterSliver extends StatelessWidget {
   final double height = 20;
   final Widget child;
 
-  LayoutFooter({
+  FooterSliver({
     Key key,
     @required this.child,
   }) : super(key: key);

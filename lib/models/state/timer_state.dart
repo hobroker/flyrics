@@ -1,36 +1,17 @@
-import 'package:flutter/foundation.dart';
+import 'package:built_value/built_value.dart';
 
-@immutable
-class TimerState {
-  final bool refreshTrack;
-  final bool checkIsRunning;
+part 'timer_state.g.dart';
 
-  const TimerState({
-    this.refreshTrack,
-    this.checkIsRunning,
-  });
+abstract class TimerState implements Built<TimerState, TimerStateBuilder> {
+  bool get refreshTrack;
 
-  factory TimerState.init() {
-    return TimerState(
-      refreshTrack: false,
-      checkIsRunning: false,
-    );
-  }
+  bool get checkIsRunning;
 
-  TimerState copyWith({refreshTrack, checkIsRunning}) {
-    return TimerState(
-      refreshTrack: refreshTrack ?? this.refreshTrack,
-      checkIsRunning: checkIsRunning ?? this.checkIsRunning,
-    );
-  }
+  TimerState._();
 
-  @override
-  bool operator ==(other) {
-    return other is TimerState &&
-        other.refreshTrack == refreshTrack &&
-        other.checkIsRunning == checkIsRunning;
-  }
+  factory TimerState([void Function(TimerStateBuilder) updates]) = _$TimerState;
 
-  @override
-  int get hashCode => super.hashCode;
+  static void _initializeBuilder(TimerStateBuilder builder) => builder
+    ..checkIsRunning = false
+    ..refreshTrack = false;
 }

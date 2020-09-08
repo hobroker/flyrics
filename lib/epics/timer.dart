@@ -17,7 +17,7 @@ Stream onStartupStartCheckIsRunningTimerEpic(Stream actions, store) => actions
 
 Stream restartCheckIsRunningTimerEpic(Stream actions, store) => actions
     .where((action) => action is SetIsRunningAction)
-    .where((action) => !action.isRunning)
+    .where((action) => !action.payload)
     .map((action) => SetCheckIsRunningTimerAction(true));
 
 Stream stopRefreshingTrackTimerEpic(Stream actions, store) => actions

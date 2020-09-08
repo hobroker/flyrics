@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/containers/genius_redirect.dart';
+import 'package:flyrics/views/genius_redirect.dart';
 
 class Footer extends StatelessWidget {
   @override

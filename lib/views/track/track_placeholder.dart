@@ -1,34 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/containers/placeholder_container.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flyrics/constants/ux.dart';
+import 'package:flyrics/hooks/store.dart';
+import 'package:flyrics/selectors/track.dart';
 import 'package:flyrics/utils/random.dart';
-import 'package:flyrics/utils/ux.dart';
+import 'package:flyrics/views/placeholder_shimmer.dart';
 
-class TrackPlaceholder extends StatelessWidget {
-  final bool isAnimated;
-
-  const TrackPlaceholder({
-    Key key,
-    this.isAnimated = true,
-  }) : super(key: key);
-
+class TrackPlaceholder extends HookWidget {
   @override
   Widget build(BuildContext context) {
+    final isAnimated = useSelector(isTrackLoading);
+
     return LayoutBuilder(builder: (context, constraints) {
       var appWidth = constraints.maxWidth;
 
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          PlaceholderContainer(
+          PlaceholderShimmer(
             height: 16.0,
             isAnimated: isAnimated,
-            width: appWidth * randomDoubleBetween(0.7, 0.9),
+            width: appWidth * randomBetween(0.7, 0.9),
           ),
           SizedBox(height: UX.spacingUnit),
-          PlaceholderContainer(
+          PlaceholderShimmer(
             height: 15,
             isAnimated: isAnimated,
-            width: appWidth * randomDoubleBetween(0.5, 0.6),
+            width: appWidth * randomBetween(0.5, 0.6),
           ),
         ],
       );

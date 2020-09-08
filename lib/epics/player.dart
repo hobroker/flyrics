@@ -1,7 +1,9 @@
 import 'package:flyrics/actions/app_actions.dart';
 import 'package:flyrics/actions/player_actions.dart';
+import 'package:flyrics/actions/refresh_actions.dart';
 import 'package:flyrics/api/api.dart';
 import 'package:flyrics/models/state/app_state.dart';
+import 'package:flyrics/modules/locator.dart';
 import 'package:flyrics/selectors/player.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:stream_transform/stream_transform.dart';
@@ -21,7 +23,7 @@ Stream retrigerCheckIsRunningEpic(Stream actions, store) => actions
 
 Stream refershCheckIsRunningEpic(Stream actions, store) => actions
     .where((action) => action is RefreshCheckIsRunningAction)
-    .asyncMap((action) => api.spotify.isRunning())
+    .asyncMap((action) => I<Api>().spotify.isRunning())
     .where((isRunning) => isRunning != isPlayerRunning(store.state))
     .map((isRunning) => SetIsRunningAction(isRunning));
 

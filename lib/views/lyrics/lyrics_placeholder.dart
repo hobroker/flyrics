@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/containers/placeholder_container.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flyrics/constants/ux.dart';
+import 'package:flyrics/hooks/store.dart';
+import 'package:flyrics/selectors/lyrics.dart';
 import 'package:flyrics/utils/random.dart';
-import 'package:flyrics/utils/ux.dart';
+import 'package:flyrics/views/placeholder_shimmer.dart';
 
-class LyricsPlaceholder extends StatelessWidget {
-  final bool isAnimated;
+class LyricsPlaceholder extends HookWidget {
   final double height = 12;
   final int linesCount = 14;
 
-  const LyricsPlaceholder({
-    Key key,
-    this.isAnimated = true,
-  }) : super(key: key);
-
-  double genWidth(appWidth) => appWidth * randomDoubleBetween(0.6, 0.8);
+  double genWidth(appWidth) => appWidth * randomBetween(0.6, 0.8);
 
   @override
   Widget build(BuildContext context) {
-    var appWidth = MediaQuery.of(context).size.width;
+    final isAnimated = useSelector(areLyricsLoading);
+    final appWidth = MediaQuery.of(context).size.width;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,7 +28,7 @@ class LyricsPlaceholder extends StatelessWidget {
 
           return Container(
             margin: EdgeInsets.only(bottom: UX.spacingUnit),
-            child: PlaceholderContainer(
+            child: PlaceholderShimmer(
               height: height,
               isAnimated: isAnimated,
               width: genWidth(appWidth),

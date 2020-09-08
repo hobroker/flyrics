@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/utils/ux.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flyrics/constants/ux.dart';
+import 'package:flyrics/hooks/store.dart';
+import 'package:flyrics/selectors/placeholder.dart';
 import 'package:shimmer/shimmer.dart';
 
-class PlaceholderShimmerScreeen extends StatelessWidget {
+class PlaceholderShimmer extends HookWidget {
   final double height;
   final double width;
   final Color backgroundColor;
   final Color shineColor;
   final bool isAnimated;
 
-  PlaceholderShimmerScreeen({
+  PlaceholderShimmer({
     Key key,
     @required this.height,
     @required this.width,
@@ -20,6 +23,9 @@ class PlaceholderShimmerScreeen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final backgroundColor = useSelector(resolvePlaceholderBgColor);
+    final shineColor = useSelector(resolvePlaceholderFgColor);
+
     return Shimmer.fromColors(
       baseColor: backgroundColor,
       highlightColor: shineColor,

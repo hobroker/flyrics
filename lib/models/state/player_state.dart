@@ -1,38 +1,15 @@
-import 'package:flutter/foundation.dart';
-import 'package:flyrics/utils/debug.dart';
+import 'package:built_value/built_value.dart';
 
-@immutable
-class PlayerState {
-  final bool isRunning;
+part 'player_state.g.dart';
 
-  const PlayerState({
-    this.isRunning,
-  });
+abstract class PlayerState implements Built<PlayerState, PlayerStateBuilder> {
+  bool get isRunning;
 
-  factory PlayerState.init() {
-    return PlayerState(
-      isRunning: false,
-    );
-  }
+  PlayerState._();
 
-  PlayerState copyWith({isRunning}) {
-    return PlayerState(
-      isRunning: isRunning ?? this.isRunning,
-    );
-  }
+  factory PlayerState([void Function(PlayerStateBuilder) updates]) =
+      _$PlayerState;
 
-  @override
-  String toString() {
-    return stringify({
-      'isRunning': isRunning,
-    }, true);
-  }
-
-  @override
-  bool operator ==(other) {
-    return (other is PlayerState && other.isRunning == isRunning);
-  }
-
-  @override
-  int get hashCode => super.hashCode;
+  static void _initializeBuilder(PlayerStateBuilder builder) =>
+      builder..isRunning = false;
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/utils/ux.dart';
+import 'package:flyrics/constants/ux.dart';
 
 class TrackWrapper extends StatelessWidget {
   final Widget child;

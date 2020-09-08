@@ -1,37 +1,19 @@
-import 'package:flutter/foundation.dart';
-import 'package:flyrics/models/search_result_model.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:flyrics/models/search_result.dart';
 
-@immutable
-class SearchState {
-  final bool isLoading;
-  final List<SearchResultModel> results;
+part 'search_state.g.dart';
 
-  const SearchState({
-    this.isLoading,
-    this.results,
-  });
+abstract class SearchState implements Built<SearchState, SearchStateBuilder> {
+  bool get isLoading;
 
-  factory SearchState.init() {
-    return SearchState(
-      isLoading: false,
-      results: [],
-    );
-  }
+  BuiltList<SearchResult> get results;
 
-  SearchState copyWith({isLoading, results}) {
-    return SearchState(
-      isLoading: isLoading ?? this.isLoading,
-      results: results ?? this.results,
-    );
-  }
+  SearchState._();
 
-  @override
-  bool operator ==(other) {
-    return other is SearchState &&
-        other.isLoading == isLoading &&
-        other.results == results;
-  }
+  factory SearchState([void Function(SearchStateBuilder) updates]) =
+      _$SearchState;
 
-  @override
-  int get hashCode => super.hashCode;
+  static void _initializeBuilder(SearchStateBuilder builder) => builder
+    ..isLoading = false;
 }

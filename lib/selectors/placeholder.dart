@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/models/state/app_state.dart';
 import 'package:flyrics/selectors/artwork.dart';
-import 'package:flyrics/utils/ux.dart';
+import 'package:flyrics/constants/ux.dart';
 
 Color resolvePlaceholderBgColor(AppState state) =>
     getArtworkColorByIndex(state, 1) ?? UX.primaryDarkColor;

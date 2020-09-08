@@ -1,23 +1,23 @@
-import 'package:flyrics/store/action.dart';
+import 'package:flyrics/modules/store/action.dart';
 
-class SetLyricsLoadingAction with Action {}
+class SetLyricsLoadingAction with ReduxAction {}
 
-class FetchLyricsStartAction with Action {
+class FetchLyricsStartAction with ReduxAction {
   final String url;
   final String id;
 
   FetchLyricsStartAction(this.url, {this.id});
 
   @override
-  String toString() => '${runtimeType}($url, id: $id)';
+  List get args => [url, id];
 }
 
-class FetchLyricsSuccessAction with Action {
+class FetchLyricsSuccessAction with ReduxAction {
   final String id;
   final String text;
 
   FetchLyricsSuccessAction(this.text, {this.id});
 
   @override
-  String toString() => '${runtimeType}("...", id: $id)';
+  List get args => ['"..."', id];
 }

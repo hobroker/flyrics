@@ -1,26 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/containers/placeholder_container.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flyrics/hooks/store.dart';
+import 'package:flyrics/selectors/artwork.dart';
 import 'package:flyrics/utils/random.dart';
+import 'package:flyrics/views/placeholder_shimmer.dart';
 
-class ArtworkPlaceholder extends StatelessWidget {
-  final bool isAnimated;
-
-  const ArtworkPlaceholder({
-    Key key,
-    this.isAnimated = true,
-  }) : super(key: key);
-
+class ArtworkPlaceholder extends HookWidget {
   @override
   Widget build(BuildContext context) {
+    final isAnimated = useSelector(isArtworkLoading);
+
     return LayoutBuilder(
       builder: (context, constraints) {
         var height = constraints.maxHeight;
-        var size = height * randomDoubleBetween(0.7, 0.85);
+        var size = height * randomBetween(0.7, 0.85);
         var margin = (height - size) / 2;
 
         return Container(
           margin: EdgeInsets.symmetric(horizontal: margin),
-          child: PlaceholderContainer(
+          child: PlaceholderShimmer(
             height: size,
             width: size,
             isAnimated: isAnimated,

@@ -1,7 +1,9 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
 void debug(key, value) {
-  print('>| $key: $value');
+  debugPrint('>| $key: $value');
 }
 
 String stringify(Map json, [bool beautify = false]) {

@@ -22,27 +22,27 @@ class AppDelegate: FlutterAppDelegate {
     self.popover = popover
 
     // Create the status item
-    statusBarItem = NSStatusBar.system.statusItem(withLength: CGFloat(NSStatusItem.variableLength))
+    // statusBarItem = NSStatusBar.system.statusItem(withLength: CGFloat(NSStatusItem.variableLength))
 
     //openPopover()
 
-    if let button = statusBarItem.button {
-      button.image = NSImage(named: "StatusIcon")
-      button.action = #selector(togglePopover(_:))
-    }
+    // if let button = statusBarItem.button {
+    //   button.image = NSImage(named: "StatusIcon")
+    //   button.action = #selector(togglePopover(_:))
+    // }
   }
 
-  @objc func togglePopover(_ sender: AnyObject?) {
-    if popover.isShown {
-      popover.performClose(sender)
-    } else {
-      openPopover()
-    }
-  }
+  // @objc func togglePopover(_ sender: AnyObject?) {
+  //   if popover.isShown {
+  //     popover.performClose(sender)
+  //   } else {
+  //     openPopover()
+  //   }
+  // }
 
-  @objc func openPopover() {
-    if let button = statusBarItem.button {
-      popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
-    }
-  }
+  // @objc func openPopover() {
+  //   if let button = statusBarItem.button {
+  //     popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
+  //   }
+  // }
 }

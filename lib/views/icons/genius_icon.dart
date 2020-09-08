@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/utils/assets_path.dart';
+import 'package:flyrics/constants/asset_constants.dart';
 import 'package:flyrics/views/icons/base_icon.dart';
 
 class GeniusIcon extends StatelessWidget {
@@ -12,7 +12,7 @@ class GeniusIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseIcon(
       color: Color(0xffFFFE7D),
-      name: AssetsPath.geniusIcon,
+      name: AssetConstants.geniusIcon,
       width: height,
       height: height,
     );

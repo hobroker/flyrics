@@ -1,48 +1,20 @@
-import 'dart:collection';
-
-import 'package:flutter/foundation.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
 import 'package:flyrics/models/artwork_model.dart';
-import 'package:flyrics/utils/debug.dart';
 
-@immutable
-class ArtworkState {
-  final bool isLoading;
-  final HashMap<String, ArtworkModel> byId;
+part 'artwork_state.g.dart';
 
-  const ArtworkState({
-    this.isLoading,
-    this.byId,
-  });
+abstract class ArtworkState
+    implements Built<ArtworkState, ArtworkStateBuilder> {
+  bool get isLoading;
 
-  factory ArtworkState.init() {
-    return ArtworkState(
-      isLoading: false,
-      byId: HashMap<String, ArtworkModel>(),
-    );
-  }
+  BuiltMap<String, ArtworkModel> get byId;
 
-  ArtworkState copyWith({byId, isLoading}) {
-    return ArtworkState(
-      byId: byId ?? this.byId,
-      isLoading: isLoading ?? this.isLoading,
-    );
-  }
+  ArtworkState._();
 
-  @override
-  String toString() {
-    return stringify({
-      'byId': byId,
-      'isLoading': isLoading,
-    }, true);
-  }
+  factory ArtworkState([void Function(ArtworkStateBuilder) updates]) =
+      _$ArtworkState;
 
-  @override
-  bool operator ==(other) {
-    return (other is ArtworkState &&
-        other.byId == byId &&
-        other.isLoading == isLoading);
-  }
-
-  @override
-  int get hashCode => super.hashCode;
+  static void _initializeBuilder(ArtworkStateBuilder builder) =>
+      builder..isLoading = false;
 }

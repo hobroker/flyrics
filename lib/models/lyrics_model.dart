@@ -1,27 +1,17 @@
-import 'package:flutter/foundation.dart';
+import 'package:built_value/built_value.dart';
 
-@immutable
-class LyricsModel {
-  final String text;
-  final String url;
+part 'lyrics_model.g.dart';
 
-  const LyricsModel({
-    this.text,
-    this.url,
-  });
+abstract class LyricsModel implements Built<LyricsModel, LyricsModelBuilder> {
+  @nullable
+  String get text;
 
-  LyricsModel copyWith({text, url}) {
-    return LyricsModel(
-      text: text ?? this.text,
-      url: url ?? this.url,
-    );
-  }
+  String get url;
 
-  @override
-  bool operator ==(other) {
-    return other is LyricsModel && other.text == text && other.url == url;
-  }
+  LyricsModel._();
 
-  @override
-  int get hashCode => super.hashCode;
+  factory LyricsModel([void Function(LyricsModelBuilder) updates]) =
+      _$LyricsModel;
+
+  static void _initializeBuilder(LyricsModelBuilder builder) => builder;
 }

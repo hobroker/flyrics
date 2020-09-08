@@ -6,7 +6,7 @@ import 'package:flyrics/api/shell_api.dart';
 import 'package:flyrics/models/track_model.dart';
 
 class SpotifyApi {
-  final ShellApi shell;
+  final Terminal shell;
   final HttpClient client;
 
   SpotifyApi(this.client, {this.shell});

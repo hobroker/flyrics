@@ -235,13 +235,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.0"
-  flutter_redux_hooks:
-    dependency: "direct main"
-    description:
-      name: flutter_redux_hooks
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.1"
   flutter_svg:
     dependency: "direct main"
     description:

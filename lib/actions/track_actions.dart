@@ -1,5 +1,5 @@
 import 'package:flyrics/models/track_model.dart';
-import 'package:flyrics/store/action.dart';
+import 'package:flyrics/modules/store/action.dart';
 
 class FetchTrackStartAction with ReduxAction {}
 

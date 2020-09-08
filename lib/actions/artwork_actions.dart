@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:flyrics/store/action.dart';
+import 'package:flyrics/modules/store/action.dart';
 
 class FetchArtworkBytesStartAction with ReduxAction {
   final String id;

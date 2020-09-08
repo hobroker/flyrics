@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:flutter_redux_hooks/flutter_redux_hooks.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flyrics/actions/app_actions.dart';
 import 'package:flyrics/containers/home_page.dart';
 import 'package:flyrics/models/state/app_state.dart';

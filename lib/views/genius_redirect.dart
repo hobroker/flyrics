@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:flutter_redux_hooks/flutter_redux_hooks.dart';
 import 'package:flyrics/actions/app_actions.dart';
-import 'package:flyrics/views/primary_tooltip.dart';
-import 'package:flyrics/models/state/app_state.dart';
-import 'package:flyrics/selectors/lyrics.dart';
 import 'package:flyrics/constants/ux.dart';
+import 'package:flyrics/hooks/store.dart';
+import 'package:flyrics/selectors/lyrics.dart';
 import 'package:flyrics/views/empty_widget.dart';
 import 'package:flyrics/views/hover_builder.dart';
 import 'package:flyrics/views/icons/genius_icon.dart';
+import 'package:flyrics/views/primary_tooltip.dart';
 
 class GeniusRedirect extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    final dispatch = useDispatch<AppState>();
-    final lyricsUrl = useSelector<AppState, String>(getLyricsUrl);
+    final dispatch = useDispatch();
+    final lyricsUrl = useSelector(getLyricsUrl);
     final _openUrl = () => dispatch(OpenUrlAction(lyricsUrl));
 
     if (lyricsUrl == null) {

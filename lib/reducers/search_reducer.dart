@@ -2,7 +2,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:flyrics/actions/search_actions.dart';
 import 'package:flyrics/models/search_result.dart';
 import 'package:flyrics/models/state/search_state.dart';
-import 'package:flyrics/store/reducer_util.dart';
+import 'package:flyrics/modules/store/reducer_util.dart';
 import 'package:redux/redux.dart';
 
 final _isLoadingReducer = combineReducers<bool>([

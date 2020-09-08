@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_redux_hooks/flutter_redux_hooks.dart';
-import 'package:flyrics/models/state/app_state.dart';
+import 'package:flyrics/hooks/store.dart';
 import 'package:flyrics/selectors/artwork.dart';
 import 'package:flyrics/views/artwork/artwork_gradient.dart';
 
@@ -25,8 +24,8 @@ class ArtworkScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bytes = useSelector<AppState, List<int>>(getTrackArtworkAsBytes);
-    final fadeColor = useSelector<AppState, Color>(resolvedDominantColor);
+    final bytes = useSelector(getTrackArtworkAsBytes);
+    final fadeColor = useSelector(resolvedDominantColor);
     final _imageWidget = _getImageWidget(bytes);
 
     return MouseRegion(

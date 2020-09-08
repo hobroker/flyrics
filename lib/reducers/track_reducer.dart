@@ -4,7 +4,7 @@ import 'package:flyrics/actions/track_actions.dart';
 import 'package:flyrics/models/state/track_state.dart';
 import 'package:flyrics/models/track_model.dart';
 import 'package:flyrics/modules/hash_map_extension.dart';
-import 'package:flyrics/store/reducer_util.dart';
+import 'package:flyrics/modules/store/reducer_util.dart';
 import 'package:redux/redux.dart';
 
 final _isLoadingReducer = combineReducers<bool>([

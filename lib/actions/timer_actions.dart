@@ -1,4 +1,4 @@
-import 'package:flyrics/store/action.dart';
+import 'package:flyrics/modules/store/action.dart';
 
 class SetRefreshTrackTimerAction with ReduxAction {
   final bool payload;

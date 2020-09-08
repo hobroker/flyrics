@@ -1,6 +1,6 @@
 import 'package:flyrics/actions/timer_actions.dart';
 import 'package:flyrics/models/state/timer_state.dart';
-import 'package:flyrics/store/reducer_util.dart';
+import 'package:flyrics/modules/store/reducer_util.dart';
 import 'package:redux/redux.dart';
 
 final _checkIsRunning = combineReducers<bool>([

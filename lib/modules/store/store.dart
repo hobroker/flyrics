@@ -1,7 +1,7 @@
 import 'package:flyrics/epics/app_epic.dart';
 import 'package:flyrics/models/state/app_state.dart';
 import 'package:flyrics/reducers/app_reducer.dart';
-import 'package:flyrics/store/log_middleware.dart';
+import 'package:flyrics/modules/store/log_middleware.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_epics/redux_epics.dart';
 

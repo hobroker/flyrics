@@ -1,6 +1,6 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:flyrics/models/search_result.dart';
-import 'package:flyrics/store/action.dart';
+import 'package:flyrics/modules/store/action.dart';
 
 class SearchStartAction with ReduxAction {}
 

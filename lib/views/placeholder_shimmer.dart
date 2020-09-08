@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_redux_hooks/flutter_redux_hooks.dart';
-import 'package:flyrics/models/state/app_state.dart';
-import 'package:flyrics/selectors/placeholder.dart';
 import 'package:flyrics/constants/ux.dart';
+import 'package:flyrics/hooks/store.dart';
+import 'package:flyrics/selectors/placeholder.dart';
 import 'package:shimmer/shimmer.dart';
 
 class PlaceholderShimmer extends HookWidget {
@@ -24,9 +23,8 @@ class PlaceholderShimmer extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final backgroundColor =
-        useSelector<AppState, Color>(resolvePlaceholderBgColor);
-    final shineColor = useSelector<AppState, Color>(resolvePlaceholderFgColor);
+    final backgroundColor = useSelector(resolvePlaceholderBgColor);
+    final shineColor = useSelector(resolvePlaceholderFgColor);
 
     return Shimmer.fromColors(
       baseColor: backgroundColor,

@@ -12,7 +12,7 @@ Function useDispatch() => useStore().dispatch;
 dynamic useSelector(Selector selector) {
   final store = useStore();
   final snap = useStream<dynamic>(
-    store.onChange.map(selector).distinct(not_equal),
+    store.onChange.map(selector).distinct(notEqual),
     initialData: selector(store.state),
   );
 

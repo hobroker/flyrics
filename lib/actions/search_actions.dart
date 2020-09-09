@@ -5,10 +5,10 @@ import 'package:flyrics/modules/store/action.dart';
 class SearchStartAction with ReduxAction {}
 
 class SearchSuccessAction with ReduxAction {
-  final BuiltList<SearchResult> results;
+  final BuiltList<SearchResult> payload;
 
-  SearchSuccessAction(this.results);
+  SearchSuccessAction(this.payload);
 
   @override
-  List get args => ['<SearchResultModel>[...]'];
+  List get args => ['BuiltList<SearchResult>[...]'];
 }

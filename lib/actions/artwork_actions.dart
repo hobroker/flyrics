@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:flyrics/models/artwork_model.dart';
 import 'package:flyrics/modules/store/action.dart';
 
 class FetchArtworkBytesStartAction with ReduxAction {
@@ -28,17 +27,10 @@ class ResetArtworkColorsAction with ReduxAction {}
 
 class SetArtworkColorsAction with ReduxAction {
   final String id;
-  final Color textColor;
-  final Color dominantColor;
-  final List<Color> colors;
+  final ArtworkModel artwork;
 
-  SetArtworkColorsAction({
-    this.textColor,
-    this.dominantColor,
-    this.colors,
-    this.id,
-  });
+  SetArtworkColorsAction(this.artwork, {this.id});
 
   @override
-  List get args => [textColor, dominantColor, '<Color>[...]', id];
+  List get args => [artwork, id];
 }

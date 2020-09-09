@@ -2,11 +2,6 @@ import 'package:flyrics/modules/store/action.dart';
 
 class CheckIsRunningStartAction with ReduxAction {}
 
-class SetIsRunningAction with ReduxAction {
-  final bool payload;
-
-  SetIsRunningAction(this.payload);
-
-  @override
-  List get args => [payload];
+class SetIsRunningAction extends SingleParameterAction<bool> {
+  SetIsRunningAction(bool payload) : super(payload);
 }

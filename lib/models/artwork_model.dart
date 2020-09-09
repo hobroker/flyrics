@@ -5,8 +5,10 @@ part 'artwork_model.g.dart';
 
 abstract class ArtworkModel
     implements Built<ArtworkModel, ArtworkModelBuilder> {
+  @nullable
   List<int> get bytes;
 
+  @nullable
   List<Color> get colors;
 
   @nullable

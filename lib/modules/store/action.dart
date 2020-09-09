@@ -9,3 +9,12 @@ mixin ReduxAction {
 
   String _joinArgs() => args.isEmpty ? '{}' : '{ ${args.join(', ')} }';
 }
+
+abstract class SingleParameterAction<T> with ReduxAction {
+  final T payload;
+
+  SingleParameterAction(this.payload);
+
+  @override
+  List get args => [payload];
+}

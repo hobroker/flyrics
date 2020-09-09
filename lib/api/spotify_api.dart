@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'package:flyrics/api/http_client.dart';
 import 'package:flyrics/api/scripts.dart';
 import 'package:flyrics/api/shell_api.dart';
-import 'package:flyrics/models/track_model.dart';
+import 'package:flyrics/models/track.dart';
+import 'package:flyrics/utils/serialize.dart';
 
 class SpotifyApi {
   final Terminal shell;
@@ -12,31 +13,27 @@ class SpotifyApi {
   SpotifyApi(this.client, {this.shell});
 
   Future<bool> isRunning() async {
-    var result = await shell.runAppleScript(Scripts.isSpotifyRunning);
+    final result = await shell.runAppleScript(Scripts.isSpotifyRunning);
 
     return result == 'true';
   }
 
-  Future<TrackModel> fetchCurrentTrack() async {
-    var willHaveData = await isRunning();
+  Future<Track> fetchCurrentTrack() async {
+    final willHaveData = await isRunning();
     if (!willHaveData) {
       return null;
     }
 
-    var result = await shell.runAppleScript(Scripts.getCurrentTrack);
+    final result = await shell.runAppleScript(Scripts.getCurrentTrack);
     if (result == null || result.isEmpty) {
       return null;
     }
 
     var data = json.decode(result);
-    var track = TrackModel.fromJson(data);
+    final track = deserialize<Track>(data);
 
     return track;
   }
 
-  Future<List<int>> getImageBytes(String url) async {
-    var response = await client.getRaw(url);
-
-    return response.bodyBytes;
-  }
+  Future<List<int>> getImageBytes(String url) async => client.getBytes(url);
 }

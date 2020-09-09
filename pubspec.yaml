@@ -38,3 +38,6 @@ flutter:
     - .env
     - assets/icons/genius.svg
     - assets/i18n/en.json
+
+scripts:
+  codegen: flutter packages pub run build_runner watch

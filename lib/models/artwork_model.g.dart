@@ -23,11 +23,7 @@ class _$ArtworkModel extends ArtworkModel {
 
   _$ArtworkModel._(
       {this.bytes, this.colors, this.textColor, this.dominantColor, this.url})
-      : super._() {
-    if (url == null) {
-      throw new BuiltValueNullFieldError('ArtworkModel', 'url');
-    }
-  }
+      : super._();
 
   @override
   ArtworkModel rebuild(void Function(ArtworkModelBuilder) updates) =>

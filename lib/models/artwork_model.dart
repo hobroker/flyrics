@@ -17,6 +17,7 @@ abstract class ArtworkModel
   @nullable
   Color get dominantColor;
 
+  @nullable
   String get url;
 
   ArtworkModel._();

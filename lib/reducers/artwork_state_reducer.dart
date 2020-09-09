@@ -22,7 +22,11 @@ final _byIdReducer = combineReducers<MapBuilder<String, ArtworkModel>>([
       (b) => b..bytes = action.bytes,
     )),
   TypedReducer<MapBuilder<String, ArtworkModel>, SetArtworkColorsAction>(
-    (state, action) => state..[action.id] = action.artwork,
+    (state, action) => state
+      ..[action.id] = state[action.id].rebuild((b) => b
+        ..colors = action.artwork.colors
+        ..dominantColor = action.artwork.dominantColor
+        ..textColor = action.artwork.textColor),
   ),
 ]);
 

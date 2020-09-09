@@ -29,8 +29,7 @@ class SpotifyApi {
       return null;
     }
 
-    var data = json.decode(result);
-    final track = deserialize<Track>(data);
+    final track = deserializeRaw<Track>(result);
 
     return track;
   }

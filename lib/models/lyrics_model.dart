@@ -6,6 +6,7 @@ abstract class LyricsModel implements Built<LyricsModel, LyricsModelBuilder> {
   @nullable
   String get text;
 
+  @nullable
   String get url;
 
   LyricsModel._();

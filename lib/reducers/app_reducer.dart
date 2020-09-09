@@ -12,12 +12,12 @@ AppState appReducer(AppState state, action) {
     return state;
   }
 
-  return AppState(
-    track: trackReducer(state.track, action),
-    player: playerReducer(state.player.toBuilder(), action).build(),
-    artwork: artworkStateReducer(state.artwork.toBuilder(), action).build(),
-    search: searchReducer(state.search.toBuilder(), action).build(),
-    lyrics: lyricsReducer(state.lyrics.toBuilder(), action).build(),
-    timer: timerReducer(state.timer.toBuilder(), action).build(),
+  return state.rebuild((b) => b
+  ..track = trackReducer(b.track, action)
+  ..player = playerReducer(b.player, action)
+  ..artwork = artworkStateReducer(b.artwork, action)
+  ..search = searchReducer(b.search, action)
+  ..lyrics = lyricsReducer(b.lyrics, action)
+  ..timer = timerReducer(b.timer, action)
   );
 }

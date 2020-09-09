@@ -15,13 +15,13 @@ class GeniusApi {
   GeniusApi(this.client, {this.accessToken});
 
   Future<BuiltList<SearchResult>> search(String query) async {
-    var uri = Uri.https(baseUrl, 'search', {
+    final uri = Uri.https(baseUrl, 'search', {
       'q': query,
       'access_token': accessToken,
     });
-    var data = await client.get(uri);
-    var items = data['response']['hits'].map((item) => item['result']);
-    var list = deserializeListOf<SearchResult>(items);
+    final data = await client.get(uri);
+    final items = data['response']['hits'].map((item) => item['result']);
+    final list = deserializeListOf<SearchResult>(items);
 
     return list;
   }
@@ -29,9 +29,9 @@ class GeniusApi {
   Future<String> _fetchLyricsText(url, {int loop = 0}) async {
     loop++;
 
-    var response = await client.getRaw(url);
-    var document = parse(response.body);
-    var $pageData = document.querySelector('meta[itemprop="page_data"]');
+    final response = await client.getRaw(url);
+    final document = parse(response.body);
+    final $pageData = document.querySelector('meta[itemprop="page_data"]');
 
     if ($pageData == null) {
       if (loop == GeniusApi.MAX_FETCH_LOOPS) {
@@ -42,10 +42,10 @@ class GeniusApi {
       return _fetchLyricsText(url, loop: loop);
     }
 
-    var content = json.decode($pageData.attributes['content']);
-    var html = content['lyrics_data']['body']['html'];
-    var $fragment = parseFragment(html);
-    var text = $fragment.text.replaceAll(RegExp(r'\s+$'), '');
+    final content = json.decode($pageData.attributes['content']);
+    final html = content['lyrics_data']['body']['html'];
+    final $fragment = parseFragment(html);
+    final text = $fragment.text.replaceAll(RegExp(r'\s+$'), '');
 
     return text;
   }

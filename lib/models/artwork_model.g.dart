@@ -24,12 +24,6 @@ class _$ArtworkModel extends ArtworkModel {
   _$ArtworkModel._(
       {this.bytes, this.colors, this.textColor, this.dominantColor, this.url})
       : super._() {
-    if (bytes == null) {
-      throw new BuiltValueNullFieldError('ArtworkModel', 'bytes');
-    }
-    if (colors == null) {
-      throw new BuiltValueNullFieldError('ArtworkModel', 'colors');
-    }
     if (url == null) {
       throw new BuiltValueNullFieldError('ArtworkModel', 'url');
     }

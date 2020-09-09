@@ -1,60 +1,24 @@
-import 'dart:collection';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:flyrics/models/track.dart';
 
-import 'package:flutter/foundation.dart';
-import 'package:flyrics/models/track_model.dart';
-import 'package:flyrics/utils/debug.dart';
+part 'track_state.g.dart';
 
-@immutable
-class TrackState {
-  final HashMap<String, TrackModel> byId;
-  final String activeId;
-  final String lastActiveId;
-  final bool isLoading;
+abstract class TrackState implements Built<TrackState, TrackStateBuilder> {
+  BuiltMap<String, Track> get byId;
 
-  const TrackState({
-    this.byId,
-    this.activeId,
-    this.lastActiveId,
-    this.isLoading,
-  });
+  @nullable
+  String get activeId;
 
-  factory TrackState.init() {
-    return TrackState(
-      byId: HashMap<String, TrackModel>(),
-      activeId: null,
-      lastActiveId: null,
-      isLoading: false,
-    );
-  }
+  @nullable
+  String get lastActiveId;
 
-  TrackState copyWith({byId, isLoading, activeId, lastActiveId}) {
-    return TrackState(
-      byId: byId ?? this.byId,
-      activeId: activeId ?? this.activeId,
-      lastActiveId: lastActiveId ?? this.lastActiveId,
-      isLoading: isLoading ?? this.isLoading,
-    );
-  }
+  bool get isLoading;
 
-  @override
-  String toString() {
-    return stringify({
-      'byId': byId,
-      'activeId': activeId,
-      'lastActiveId': lastActiveId,
-      'isLoading': isLoading,
-    }, true);
-  }
+  TrackState._();
 
-  @override
-  bool operator ==(other) {
-    return other is TrackState &&
-        other.byId == byId &&
-        other.activeId == activeId &&
-        other.lastActiveId == lastActiveId &&
-        other.isLoading == isLoading;
-  }
+  factory TrackState([void Function(TrackStateBuilder) updates]) = _$TrackState;
 
-  @override
-  int get hashCode => super.hashCode;
+  static void _initializeBuilder(TrackStateBuilder builder) =>
+      builder..isLoading = false;
 }

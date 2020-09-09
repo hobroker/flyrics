@@ -13,31 +13,16 @@ final _isLoadingReducer = combineReducers<bool>([
 
 final _byIdReducer = combineReducers<MapBuilder<String, ArtworkModel>>([
   TypedReducer<MapBuilder<String, ArtworkModel>, FetchArtworkBytesStartAction>(
-    (state, action) => state
-      ..[action.id] = ArtworkModel((b) => b
-        ..url = action.url
-        ..bytes = []
-        ..colors = []
-        ..dominantColor = null
-        ..textColor = null),
+    (state, action) =>
+        state..[action.id] = ArtworkModel((b) => b..url = action.url),
   ),
   TypedReducer<MapBuilder<String, ArtworkModel>,
-      FetchArtworkBytesSuccessAction>((state, action) {
-    state
-      ..[action.id] = state[action.id].rebuild(
-        (b) => b..bytes = action.bytes,
-      );
-
-    return state;
-  }),
+      FetchArtworkBytesSuccessAction>((state, action) => state
+    ..[action.id] = state[action.id].rebuild(
+      (b) => b..bytes = action.bytes,
+    )),
   TypedReducer<MapBuilder<String, ArtworkModel>, SetArtworkColorsAction>(
-    (state, action) => state
-      ..[action.id] = state[action.id].rebuild(
-        (b) => b
-          ..textColor = action.textColor
-          ..dominantColor = action.dominantColor
-          ..colors = action.colors,
-      ),
+    (state, action) => state..[action.id] = action.artwork,
   ),
 ]);
 

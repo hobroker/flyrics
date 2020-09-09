@@ -1,52 +1,29 @@
-import 'package:flutter/foundation.dart';
+import 'package:built_value/built_value.dart';
+import 'package:flyrics/models/state/artwork_state.dart';
+import 'package:flyrics/models/state/lyrics_state.dart';
+import 'package:flyrics/models/state/player_state.dart';
+import 'package:flyrics/models/state/search_state.dart';
+import 'package:flyrics/models/state/timer_state.dart';
+import 'package:flyrics/models/state/track_state.dart';
 
-import 'artwork_state.dart';
-import 'lyrics_state.dart';
-import 'player_state.dart';
-import 'search_state.dart';
-import 'timer_state.dart';
-import 'track_state.dart';
+part 'app_state.g.dart';
 
-@immutable
-class AppState {
-  final PlayerState player;
-  final TrackState track;
-  final ArtworkState artwork;
-  final SearchState search;
-  final LyricsState lyrics;
-  final TimerState timer;
+abstract class AppState implements Built<AppState, AppStateBuilder> {
+  PlayerState get player;
 
-  AppState({
-    this.player,
-    this.timer,
-    this.track,
-    this.artwork,
-    this.search,
-    this.lyrics,
-  });
+  TrackState get track;
 
-  factory AppState.init() {
-    return AppState(
-      player: PlayerStateBuilder().build(),
-      timer: TimerStateBuilder().build(),
-      track: TrackState.init(),
-      artwork: ArtworkStateBuilder().build(),
-      search: SearchStateBuilder().build(),
-      lyrics: LyricsStateBuilder().build(),
-    );
-  }
+  ArtworkState get artwork;
 
-  @override
-  bool operator ==(other) {
-    return other is AppState &&
-        other.player == player &&
-        other.track == track &&
-        other.lyrics == lyrics &&
-        other.search == search &&
-        other.timer == timer &&
-        other.artwork == artwork;
-  }
+  SearchState get search;
 
-  @override
-  int get hashCode => super.hashCode;
+  LyricsState get lyrics;
+
+  TimerState get timer;
+
+  AppState._();
+
+  factory AppState([void Function(AppStateBuilder) updates]) = _$AppState;
+
+  static void _initializeBuilder(AppStateBuilder builder) => builder;
 }

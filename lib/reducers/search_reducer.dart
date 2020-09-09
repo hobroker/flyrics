@@ -14,7 +14,7 @@ final _resultsReducer = combineReducers<ListBuilder<SearchResult>>([
   TypedReducer<ListBuilder<SearchResult>, SearchStartAction>(
       reduceAlways<ListBuilder<SearchResult>>(ListBuilder<SearchResult>())),
   TypedReducer<ListBuilder<SearchResult>, SearchSuccessAction>(
-      (state, action) => action.results.toBuilder()),
+      (state, action) => action.payload.toBuilder()),
 ]);
 
 final searchReducer = (SearchStateBuilder state, action) => SearchStateBuilder()

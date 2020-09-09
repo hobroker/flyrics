@@ -15,11 +15,7 @@ class _$LyricsModel extends LyricsModel {
   factory _$LyricsModel([void Function(LyricsModelBuilder) updates]) =>
       (new LyricsModelBuilder()..update(updates)).build();
 
-  _$LyricsModel._({this.text, this.url}) : super._() {
-    if (url == null) {
-      throw new BuiltValueNullFieldError('LyricsModel', 'url');
-    }
-  }
+  _$LyricsModel._({this.text, this.url}) : super._();
 
   @override
   LyricsModel rebuild(void Function(LyricsModelBuilder) updates) =>

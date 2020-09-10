@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flyrics/hooks/store.dart';
-import 'package:flyrics/selectors/artwork.dart';
+import 'package:flyrics/controllers/track_controller.dart';
 import 'package:flyrics/views/artwork/artwork_gradient.dart';
+import 'package:get/get.dart';
 
-class ArtworkScreen extends HookWidget {
+class ArtworkScreen extends StatelessWidget {
   Widget _getImageWidget(bytes) => Image.memory(
         bytes,
         fit: BoxFit.fill,
@@ -22,11 +21,11 @@ class ArtworkScreen extends HookWidget {
     );
   }
 
+  final c = Get.find<TrackController>();
+
   @override
   Widget build(BuildContext context) {
-    final bytes = useSelector(getTrackArtworkAsBytes);
-    final fadeColor = useSelector(resolvedDominantColor);
-    final _imageWidget = _getImageWidget(bytes);
+    final _imageWidget = _getImageWidget(c.artworkBytes);
 
     return MouseRegion(
       cursor: SystemMouseCursors.click,
@@ -35,8 +34,10 @@ class ArtworkScreen extends HookWidget {
         child: Stack(
           children: [
             _imageWidget,
-            ArtworkGradient(
-              fadeColor: fadeColor,
+            Obx(
+              () => ArtworkGradient(
+                fadeColor: c.artworkDominantColor,
+              ),
             ),
           ],
         ),

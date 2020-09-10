@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flyrics/hooks/store.dart';
-import 'package:flyrics/selectors/artwork.dart';
+import 'package:flyrics/controllers/track_controller.dart';
 import 'package:flyrics/views/artwork/artwork_placeholder.dart';
 import 'package:flyrics/views/artwork/artwork_screen.dart';
+import 'package:get/get.dart';
 
-class Artwork extends HookWidget {
+class Artwork extends StatelessWidget {
+  final c = Get.find<TrackController>();
+
   @override
   Widget build(BuildContext context) {
-    final isLoading = useSelector(isArtworkLoading);
-    final hasBytes = useSelector(activeTrackHasArtworkBytes);
-
-    return !isLoading && hasBytes ? ArtworkScreen() : ArtworkPlaceholder();
+    return Obx(() => c.isArtwokLoading || !c.artworkHasBytes
+        ? ArtworkPlaceholder()
+        : ArtworkScreen());
   }
 }

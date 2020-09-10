@@ -1,34 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flyrics/hooks/store.dart';
-import 'package:flyrics/selectors/artwork.dart';
+import 'package:flyrics/controllers/track_controller.dart';
+import 'package:get/get.dart';
 
-class PrimaryTooltip extends HookWidget {
+class PrimaryTooltip extends StatelessWidget {
   final String message;
   final Widget child;
 
-  const PrimaryTooltip({
+  PrimaryTooltip({
     Key key,
     @required this.message,
     @required this.child,
   }) : super(key: key);
 
+  final c = Get.find<TrackController>();
+
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = useSelector(resolveArtworkTextColor);
-    final textColor = useSelector(resolvedDominantColor);
-
-    return Tooltip(
-      message: message,
-      child: child,
-      verticalOffset: 16,
-      textStyle: TextStyle(
-        color: textColor,
-        height: 1,
-      ),
-      padding: EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: backgroundColor,
+    return Obx(
+      () => Tooltip(
+        message: message,
+        child: child,
+        verticalOffset: 16,
+        textStyle: TextStyle(
+          color: c.artworkDominantColor,
+          height: 1,
+        ),
+        padding: EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: c.artworkTextColor,
+        ),
       ),
     );
   }

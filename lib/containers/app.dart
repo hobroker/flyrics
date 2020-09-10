@@ -4,6 +4,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flyrics/actions/app_actions.dart';
 import 'package:flyrics/containers/home_page.dart';
 import 'package:flyrics/models/state/app_state.dart';
+import 'package:get/get.dart';
 import 'package:redux/redux.dart';
 
 class App extends StatelessWidget {
@@ -24,7 +25,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreProvider<AppState>(
       store: store,
-      child: MaterialApp(
+      child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         localizationsDelegates: [localizationsDelegate],
         supportedLocales: [Locale('en', '')],

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flyrics/hooks/store.dart';
-import 'package:flyrics/selectors/artwork.dart';
 import 'package:flyrics/constants/ux.dart';
+import 'package:flyrics/controllers/track_controller.dart';
+import 'package:get/get.dart';
 
-class PrimaryContainer extends HookWidget {
+class PrimaryContainer extends StatelessWidget {
   final Widget child;
   final double width;
   final double height;
+
+  final c = Get.find<TrackController>();
 
   PrimaryContainer({
     Key key,
@@ -18,16 +19,16 @@ class PrimaryContainer extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = useSelector(resolvedDominantColor);
-
-    return AnimatedContainer(
-      width: width,
-      height: height,
-      duration: UX.transitionDuration,
-      decoration: BoxDecoration(
-        color: backgroundColor,
+    return Obx(
+      () => AnimatedContainer(
+        width: width,
+        height: height,
+        duration: UX.transitionDuration,
+        decoration: BoxDecoration(
+          color: c.artworkDominantColor,
+        ),
+        child: child,
       ),
-      child: child,
     );
   }
 }

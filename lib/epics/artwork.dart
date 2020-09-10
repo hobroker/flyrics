@@ -29,7 +29,7 @@ Stream setArtworkAsMissingEpic(Stream actions, store) => actions
 Stream fetchArtworkImageAsBytesEpic(Stream actions, store) => actions
         .where((action) => action is FetchArtworkBytesStartAction)
         .map((action) => getTrackArtwork(store.state))
-        .asyncMap((url) => I<Api>().spotify.getImageBytes(url))
+        .asyncMap((url) => I<Api>().spotify.fetchImageBytes(url))
         .map((response) {
       var id = getActiveTrackId(store.state);
       return FetchArtworkBytesSuccessAction(

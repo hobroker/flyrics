@@ -34,5 +34,5 @@ class SpotifyApi {
     return track;
   }
 
-  Future<List<int>> getImageBytes(String url) async => client.getBytes(url);
+  Future<List<int>> fetchImageBytes(String url) async => client.getBytes(url);
 }

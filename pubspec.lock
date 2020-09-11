@@ -161,7 +161,7 @@ packages:
       name: coverage
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.14.0"
+    version: "0.14.1"
   crypto:
     dependency: transitive
     description:
@@ -215,7 +215,7 @@ packages:
       name: flutter_hooks
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.13.2"
+    version: "0.14.0"
   flutter_i18n:
     dependency: "direct main"
     description:
@@ -228,6 +228,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_mobx:
+    dependency: "direct main"
+    description:
+      name: flutter_mobx
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0+2"
   flutter_redux:
     dependency: "direct main"
     description:
@@ -324,6 +331,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
+  json_serializable:
+    dependency: "direct main"
+    description:
+      name: json_serializable
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.4.1"
   logging:
     dependency: transitive
     description:
@@ -379,7 +393,7 @@ packages:
       name: mockito
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.1"
+    version: "4.1.2"
   node_interop:
     dependency: transitive
     description:
@@ -608,7 +622,7 @@ packages:
       name: test
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.16.0-nullsafety.2"
+    version: "1.16.0-nullsafety.4"
   test_api:
     dependency: transitive
     description:
@@ -622,7 +636,7 @@ packages:
       name: test_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.12-nullsafety.2"
+    version: "0.3.12-nullsafety.4"
   timing:
     dependency: transitive
     description:
@@ -650,7 +664,7 @@ packages:
       name: vm_service
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.0"
+    version: "5.0.0+1"
   watcher:
     dependency: transitive
     description:
@@ -678,7 +692,7 @@ packages:
       name: xml
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.4.1"
+    version: "4.5.0"
   xml2json:
     dependency: transitive
     description:

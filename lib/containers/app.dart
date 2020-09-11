@@ -4,6 +4,8 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flyrics/actions/app_actions.dart';
 import 'package:flyrics/containers/home_page.dart';
 import 'package:flyrics/models/state/app_state.dart';
+import 'package:flyrics/modules/locator.dart';
+import 'package:flyrics/states/player_store.dart';
 import 'package:redux/redux.dart';
 
 class App extends StatelessWidget {
@@ -17,6 +19,9 @@ class App extends StatelessWidget {
   }) : super(key: key);
 
   void _onInit() {
+    final _player = I<PlayerStore>();
+
+    _player.fetchIsRunning();
     store.dispatch(AppStartedAction());
   }
 

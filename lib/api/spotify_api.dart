@@ -34,5 +34,14 @@ class SpotifyApi {
     return track;
   }
 
+  Future<Map> fetchCurrentTrack2() async {
+    final result = await shell.runAppleScript(Scripts.getCurrentTrack);
+    if (result == null || result.isEmpty) {
+      return null;
+    }
+
+    return json.decode(result);
+  }
+
   Future<List<int>> getImageBytes(String url) async => client.getBytes(url);
 }

@@ -9,6 +9,13 @@ part of 'artwork_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$ArtworkStore on ArtworkStoreBase, Store {
+  Computed<bool> _$hasBytesComputed;
+
+  @override
+  bool get hasBytes =>
+      (_$hasBytesComputed ??= Computed<bool>(() => super.hasBytes,
+              name: 'ArtworkStoreBase.hasBytes'))
+          .value;
   Computed<Color> _$dominantColorComputed;
 
   @override
@@ -16,6 +23,27 @@ mixin _$ArtworkStore on ArtworkStoreBase, Store {
       (_$dominantColorComputed ??= Computed<Color>(() => super.dominantColor,
               name: 'ArtworkStoreBase.dominantColor'))
           .value;
+  Computed<Color> _$textColorComputed;
+
+  @override
+  Color get textColor =>
+      (_$textColorComputed ??= Computed<Color>(() => super.textColor,
+              name: 'ArtworkStoreBase.textColor'))
+          .value;
+  Computed<Color> _$placeholderBgColorComputed;
+
+  @override
+  Color get placeholderBgColor => (_$placeholderBgColorComputed ??=
+          Computed<Color>(() => super.placeholderBgColor,
+              name: 'ArtworkStoreBase.placeholderBgColor'))
+      .value;
+  Computed<Color> _$placeholderFgColorComputed;
+
+  @override
+  Color get placeholderFgColor => (_$placeholderFgColorComputed ??=
+          Computed<Color>(() => super.placeholderFgColor,
+              name: 'ArtworkStoreBase.placeholderFgColor'))
+      .value;
 
   final _$isLoadingAtom = Atom(name: 'ArtworkStoreBase.isLoading');
 
@@ -82,7 +110,11 @@ mixin _$ArtworkStore on ArtworkStoreBase, Store {
 isLoading: ${isLoading},
 bytes: ${bytes},
 colors: ${colors},
-dominantColor: ${dominantColor}
+hasBytes: ${hasBytes},
+dominantColor: ${dominantColor},
+textColor: ${textColor},
+placeholderBgColor: ${placeholderBgColor},
+placeholderFgColor: ${placeholderFgColor}
     ''';
   }
 }

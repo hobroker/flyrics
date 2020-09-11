@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flyrics/hooks/store.dart';
-import 'package:flyrics/selectors/artwork.dart';
+import 'package:flyrics/modules/locator.dart';
+import 'package:flyrics/states/track_store.dart';
+import 'package:flyrics/utils/o.dart';
 import 'package:flyrics/views/artwork/artwork_gradient.dart';
 
-class ArtworkScreen extends HookWidget {
+class ArtworkScreen extends StatelessWidget {
+  final _track = I<TrackStore>();
+
   Widget _getImageWidget(bytes) => Image.memory(
         bytes,
         fit: BoxFit.fill,
@@ -24,22 +26,27 @@ class ArtworkScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bytes = useSelector(getTrackArtworkAsBytes);
-    final fadeColor = useSelector(resolvedDominantColor);
-    final _imageWidget = _getImageWidget(bytes);
-
     return MouseRegion(
       cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        onTap: () => _showImageDialog(context, _imageWidget),
-        child: Stack(
-          children: [
-            _imageWidget,
-            ArtworkGradient(
-              fadeColor: fadeColor,
-            ),
-          ],
-        ),
+      child: O(
+        () {
+          final child = Stack(
+            children: [
+              Image.memory(
+                _track.artwork.bytes,
+                fit: BoxFit.fill,
+              ),
+              ArtworkGradient(
+                fadeColor: _track.artwork.dominantColor,
+              ),
+            ],
+          );
+
+          return GestureDetector(
+            onTap: () => _showImageDialog(context, child.children.first),
+            child: child,
+          );
+        },
       ),
     );
   }

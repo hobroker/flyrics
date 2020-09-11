@@ -15,21 +15,21 @@ abstract class TrackStoreBase with Store {
   @observable
   TrackModelStore track;
 
-  @observable
-  ArtworkStore artwork;
+  final ArtworkStore artwork;
 
-  final ArtworkStore artworkStore;
-
-  TrackStoreBase({this.artworkStore});
+  TrackStoreBase({this.artwork});
 
   @action
   Future fetchCurrentTrack() async {
-    isLoading=true;
+    isLoading = true;
     final json = await I<Api>().spotify.fetchCurrentTrack2();
 
     track = TrackModelStore.fromJson(json);
-    isLoading=false;
+    isLoading = false;
 
-    await artworkStore.fetchBytes(track.artwork);
+    await artwork.fetchBytes(track.artwork);
   }
+
+  @computed
+  bool get hasTrack => track != null && !isLoading;
 }

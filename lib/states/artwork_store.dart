@@ -19,15 +19,21 @@ abstract class ArtworkStoreBase with Store {
   List<int> bytes;
 
   @observable
-  List<Color> colors;
+  List<Color> colors = [UX.primaryColor];
+
+  ArtworkStoreBase() {
+    autorun((_) {
+      if (bytes != null) {
+        fetchColors();
+      }
+    });
+  }
 
   @action
   Future fetchBytes(String url) async {
     isLoading = true;
     bytes = await I<Api>().spotify.getImageBytes(url);
     isLoading = false;
-
-    await fetchColors();
   }
 
   @action
@@ -36,7 +42,10 @@ abstract class ArtworkStoreBase with Store {
   }
 
   @computed
-  Color get dominantColor => colors.first.autoDarkened ?? UX.primaryColor;
+  bool get hasBytes => !isLoading && bytes != null;
+
+  @computed
+  Color get dominantColor => colors.first.autoDarkened;
 
   @computed
   Color get textColor => dominantColor.opposite ?? UX.textColor;
@@ -45,5 +54,5 @@ abstract class ArtworkStoreBase with Store {
   Color get placeholderBgColor => colors[1] ?? UX.primaryDarkColor;
 
   @computed
-  Color get placeholderFgColor => colors.first ?? UX.primaryColor;
+  Color get placeholderFgColor => colors[0] ?? UX.primaryColor;
 }

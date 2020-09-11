@@ -1,43 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flyrics/constants/ux.dart';
-import 'package:flyrics/hooks/store.dart';
-import 'package:flyrics/selectors/artwork.dart';
-import 'package:flyrics/selectors/track.dart';
+import 'package:flyrics/modules/locator.dart';
+import 'package:flyrics/states/track_store.dart';
+import 'package:flyrics/utils/o.dart';
 import 'package:flyrics/views/text_ellipsis.dart';
 import 'package:flyrics/views/track/track_name.dart';
-import 'package:flyrics/views/track/track_placeholder.dart';
 
-class TrackScreen extends HookWidget {
+class TrackScreen extends StatelessWidget {
+  final _track = I<TrackStore>();
+
   @override
   Widget build(BuildContext context) {
-    final trackExists = useSelector(hasTrack);
-    final name = useSelector(getTrackName);
-    final artist = useSelector(getTrackArtist);
-    final textColor = useSelector(resolveArtworkTextColor);
-
-    if (!trackExists) {
-      return TrackPlaceholder();
-    }
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Flexible(
-          child: TrackName(
-            name: name,
-            textColor: textColor,
+    return O(
+      () => Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Flexible(
+            child: TrackName(
+              name: _track.track.name,
+              textColor: _track.artwork.textColor,
+            ),
           ),
-        ),
-        SizedBox(height: UX.spacingUnit),
-        TextEllipsis(
-          text: artist,
-          style: TextStyle(
-            color: textColor,
-            fontSize: 15,
+          SizedBox(height: UX.spacingUnit),
+          TextEllipsis(
+            text: _track.track.artist,
+            style: TextStyle(
+              color: _track.artwork.textColor,
+              fontSize: 15,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

@@ -9,6 +9,13 @@ part of 'track_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$TrackStore on TrackStoreBase, Store {
+  Computed<bool> _$hasTrackComputed;
+
+  @override
+  bool get hasTrack => (_$hasTrackComputed ??=
+          Computed<bool>(() => super.hasTrack, name: 'TrackStoreBase.hasTrack'))
+      .value;
+
   final _$isLoadingAtom = Atom(name: 'TrackStoreBase.isLoading');
 
   @override
@@ -39,21 +46,6 @@ mixin _$TrackStore on TrackStoreBase, Store {
     });
   }
 
-  final _$artworkAtom = Atom(name: 'TrackStoreBase.artwork');
-
-  @override
-  ArtworkStore get artwork {
-    _$artworkAtom.reportRead();
-    return super.artwork;
-  }
-
-  @override
-  set artwork(ArtworkStore value) {
-    _$artworkAtom.reportWrite(value, super.artwork, () {
-      super.artwork = value;
-    });
-  }
-
   final _$fetchCurrentTrackAsyncAction =
       AsyncAction('TrackStoreBase.fetchCurrentTrack');
 
@@ -67,7 +59,7 @@ mixin _$TrackStore on TrackStoreBase, Store {
     return '''
 isLoading: ${isLoading},
 track: ${track},
-artwork: ${artwork}
+hasTrack: ${hasTrack}
     ''';
   }
 }

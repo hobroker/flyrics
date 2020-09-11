@@ -19,7 +19,7 @@ Future setupLocator() async {
 
   I.registerSingleton<ArtworkStore>(ArtworkStore());
   I.registerSingleton<TrackStore>(TrackStore(
-    artworkStore: I<ArtworkStore>(),
+    artwork: I<ArtworkStore>(),
   ));
   I.registerSingleton<PlayerStore>(PlayerStore(
     trackStore: I<TrackStore>(),

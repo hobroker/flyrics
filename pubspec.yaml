@@ -18,7 +18,7 @@ dependencies:
   get_it: ^4.0.4
   html: ^0.14.0+3
   http: ^0.12.2
-  json_serializable: ^3.4.1
+  json_annotation: ^3.0.1
   mobx: ^1.2.1+2
   mockito: ^4.1.1
   palette_generator: ^0.2.3
@@ -30,6 +30,7 @@ dev_dependencies:
   built_value_generator: ^7.1.0
   flutter_test:
     sdk: flutter
+  json_serializable: ^3.4.1
   mobx_codegen: ^1.1.0+1
   pedantic: ^1.9.0
   test: ^1.15.3

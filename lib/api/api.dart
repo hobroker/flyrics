@@ -1,26 +1,26 @@
+import 'package:flyrics/api/config.dart';
 import 'package:flyrics/api/http_client.dart';
-import 'package:flyrics/modules/config.dart';
 
-import 'genius_api.dart';
-import 'shell_api.dart';
-import 'spotify_api.dart';
+import 'genius.dart';
+import 'spotify.dart';
+import 'terminal.dart';
 
 class Api {
-  final Config _config;
-  SpotifyApi spotify;
-  GeniusApi genius;
-  Terminal shell;
-  HttpClient client;
+  final ConfigService _config;
+  final HttpClient client;
+  final TerminalService terminal;
+  SpotifyService spotify;
+  GeniusService genius;
 
   Api(
     this._config, {
     this.client = const HttpClient(),
-    this.shell = const Terminal(),
+    this.terminal = const TerminalService(),
   }) {
     var geniusAccessToken = _getConfig('GENIUS_API_KEY');
 
-    spotify = SpotifyApi(client, shell: shell);
-    genius = GeniusApi(client, accessToken: geniusAccessToken);
+    spotify = SpotifyService(client, terminal: terminal);
+    genius = GeniusService(client, accessToken: geniusAccessToken);
   }
 
   String _getConfig(String key) => _config.get(key);

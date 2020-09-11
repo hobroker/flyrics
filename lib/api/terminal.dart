@@ -2,20 +2,8 @@ import 'dart:io';
 
 import 'package:flyrics/utils/debug.dart';
 
-class Terminal {
-  const Terminal();
-
-  Future<String> _exec(String cmd, List<String> args) async {
-    try {
-      var result = await Process.run(cmd, args);
-
-      return result.stdout.trim();
-    } catch (e) {
-      debug('error', e.error);
-
-      rethrow;
-    }
-  }
+class TerminalService {
+  const TerminalService();
 
   Future<String> exec(String cmd, {List<String> args = const []}) async {
     var result = await _exec(cmd, args);
@@ -31,5 +19,17 @@ class Terminal {
 
   Future openUrl(String url) async {
     await exec('open', args: [url]);
+  }
+
+  Future<String> _exec(String cmd, List<String> args) async {
+    try {
+      var result = await Process.run(cmd, args);
+
+      return result.stdout.trim();
+    } catch (e) {
+      debug('error', e.error);
+
+      rethrow;
+    }
   }
 }

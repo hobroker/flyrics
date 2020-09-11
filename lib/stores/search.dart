@@ -1,12 +1,11 @@
-import 'package:built_collection/built_collection.dart';
-import 'package:flyrics/api/api.dart';
-import 'package:flyrics/api/shell_api.dart';
-import 'package:flyrics/models/search_result.dart';
+import 'package:flyrics/api/genius.dart';
+import 'package:flyrics/api/terminal.dart';
+import 'package:flyrics/models/search_item.dart';
 import 'package:flyrics/modules/locator.dart';
 import 'package:flyrics/utils/fp.dart';
 import 'package:mobx/mobx.dart';
 
-part 'search_store.g.dart';
+part 'search.g.dart';
 
 class SearchStore = SearchStoreBase with _$SearchStore;
 
@@ -18,7 +17,7 @@ abstract class SearchStoreBase with Store {
   String query;
 
   @observable
-  BuiltList<SearchResult> results;
+  List<SearchItem> results;
 
   SearchStoreBase() {
     when((_) => isNotNull(query), searchCurrentQuery);
@@ -26,12 +25,15 @@ abstract class SearchStoreBase with Store {
 
   @action
   Future searchCurrentQuery() async {
-    results = await I<Api>().genius.search(query);
+    results = await I<GeniusService>().search(query).catchError((e) {
+      print(e);
+      return [];
+    });
   }
 
   @action
   Future openActiveResultInBrowser() async {
-    await I<Terminal>().openUrl(activeResultUrl);
+    await I<TerminalService>().openUrl(activeResultUrl);
   }
 
   @computed

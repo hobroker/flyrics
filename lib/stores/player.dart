@@ -1,11 +1,12 @@
 import 'package:flyrics/api/api.dart';
+import 'package:flyrics/api/spotify.dart';
 import 'package:flyrics/modules/locator.dart';
-import 'package:flyrics/stores/search_store.dart';
-import 'package:flyrics/stores/track_store.dart';
+import 'package:flyrics/stores/search.dart';
+import 'package:flyrics/stores/track.dart';
 import 'package:flyrics/utils/fp.dart';
 import 'package:mobx/mobx.dart';
 
-part 'player_store.g.dart';
+part 'player.g.dart';
 
 class PlayerStore = PlayerStoreBase with _$PlayerStore;
 
@@ -27,7 +28,7 @@ abstract class PlayerStoreBase with Store {
 
   @action
   Future fetchIsRunning() async {
-    isRunning = await I<Api>().spotify.isRunning();
+    isRunning = await I<SpotifyService>().isRunning();
   }
 
   @action

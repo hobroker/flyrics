@@ -6,7 +6,7 @@ part of 'log_entry.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-LogEntry _$LogEntryFromJson(Map<String, dynamic> json) {
+LogEntry _$LogEntryFromJson(Map json) {
   return LogEntry(
     type: _$enumDecode(_$LogTypeEnumMap, json['type']),
     message: json['message'] as String,

@@ -62,13 +62,11 @@ mixin _$SearchStore on SearchStoreBase, Store {
     });
   }
 
-  final _$searchCurrentQueryAsyncAction =
-      AsyncAction('SearchStoreBase.searchCurrentQuery');
+  final _$searchQueryAsyncAction = AsyncAction('SearchStoreBase.searchQuery');
 
   @override
-  Future<dynamic> searchCurrentQuery() {
-    return _$searchCurrentQueryAsyncAction
-        .run(() => super.searchCurrentQuery());
+  Future<dynamic> searchQuery(String str) {
+    return _$searchQueryAsyncAction.run(() => super.searchQuery(str));
   }
 
   final _$openActiveResultInBrowserAsyncAction =

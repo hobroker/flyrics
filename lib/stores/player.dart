@@ -1,4 +1,3 @@
-import 'package:flyrics/api/api.dart';
 import 'package:flyrics/api/spotify.dart';
 import 'package:flyrics/modules/locator.dart';
 import 'package:flyrics/stores/search.dart';
@@ -14,14 +13,16 @@ abstract class PlayerStoreBase with Store {
   @observable
   bool isRunning = false;
 
-  final TrackStore track;
-  final SearchStore search;
+  final TrackStore track = TrackStore();
+  final SearchStore search = SearchStore();
 
-  PlayerStoreBase({
-    this.track,
-    this.search,
-  }) {
+  PlayerStoreBase() {
+    fetchIsRunning();
+    watchTrackRefresh();
     when((_) => isRunning, track.fetchCurrentTrack);
+  }
+
+  void watchTrackRefresh() {
     when((_) => isNotNull(track.track), updateSearchQuery);
     when((_) => search.results.isNotEmpty, triggerLyricsFetch);
   }

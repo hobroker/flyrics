@@ -17,10 +17,17 @@ class Api {
     this.client = const HttpClient(),
     this.terminal = const TerminalService(),
   }) {
-    var geniusAccessToken = _getConfig('GENIUS_API_KEY');
+    final geniusAccessToken = _getConfig('GENIUS_API_KEY');
 
-    spotify = SpotifyService(client, terminal: terminal);
-    genius = GeniusService(client, accessToken: geniusAccessToken);
+    spotify = SpotifyService(
+      client: client,
+      terminal: terminal,
+    );
+
+    genius = GeniusService(
+      client: client,
+      accessToken: geniusAccessToken,
+    );
   }
 
   String _getConfig(String key) => _config.get(key);

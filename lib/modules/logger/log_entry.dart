@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'log_entry.g.dart';
 
 enum LogType { info, error, warning }
 
+@immutable
 @JsonSerializable(nullable: false)
 class LogEntry {
   final LogType type;
@@ -11,12 +13,14 @@ class LogEntry {
   final DateTime dateTime;
   final dynamic extra;
 
-  LogEntry({
+  const LogEntry({
     this.type,
     this.message,
     this.dateTime,
     this.extra,
   });
 
-  Map<String, dynamic> toJson() => _$LogEntryToJson(this);
+  factory LogEntry.fromJson(Map json) => _$LogEntryFromJson(json);
+
+  Map toJson() => _$LogEntryToJson(this);
 }

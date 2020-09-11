@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flyrics/containers/o.dart';
 import 'package:flyrics/modules/locator.dart';
 import 'package:flyrics/stores/track.dart';
-import 'package:flyrics/containers/o.dart';
 import 'package:flyrics/views/artwork/artwork_gradient.dart';
 
 class ArtworkScreen extends StatelessWidget {

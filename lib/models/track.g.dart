@@ -6,7 +6,7 @@ part of 'track.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Track _$TrackFromJson(Map<String, dynamic> json) {
+Track _$TrackFromJson(Map json) {
   return Track(
     id: json['id'] as String,
     name: json['name'] as String,

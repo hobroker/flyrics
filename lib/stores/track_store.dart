@@ -1,7 +1,9 @@
 import 'package:flyrics/api/api.dart';
 import 'package:flyrics/modules/locator.dart';
-import 'package:flyrics/states/artwork_store.dart';
-import 'package:flyrics/states/track_model.dart';
+import 'package:flyrics/stores/artwork_store.dart';
+import 'package:flyrics/stores/lyrics_store.dart';
+import 'package:flyrics/stores/track_model.dart';
+import 'package:flyrics/utils/fp.dart';
 import 'package:mobx/mobx.dart';
 
 part 'track_store.g.dart';
@@ -16,8 +18,16 @@ abstract class TrackStoreBase with Store {
   TrackModelStore track;
 
   final ArtworkStore artwork;
+  final LyricsStore lyrics;
 
-  TrackStoreBase({this.artwork});
+  TrackStoreBase({
+    this.artwork,
+    this.lyrics,
+  }) {
+    when((_) => isNotNull(track), () {
+      artwork.fetchBytes(track.artwork);
+    });
+  }
 
   @action
   Future fetchCurrentTrack() async {
@@ -26,8 +36,6 @@ abstract class TrackStoreBase with Store {
 
     track = TrackModelStore.fromJson(json);
     isLoading = false;
-
-    await artwork.fetchBytes(track.artwork);
   }
 
   @computed

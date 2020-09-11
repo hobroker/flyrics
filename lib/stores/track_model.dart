@@ -12,7 +12,6 @@ class TrackModelStore extends TrackModelStoreBase with _$TrackModelStore {
 }
 
 abstract class TrackModelStoreBase with Store {
-  @observable
   String id;
 
   @observable

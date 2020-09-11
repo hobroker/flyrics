@@ -4,6 +4,7 @@ import 'package:flyrics/api/api.dart';
 import 'package:flyrics/constants/ux.dart';
 import 'package:flyrics/modules/color_extension.dart';
 import 'package:flyrics/modules/locator.dart';
+import 'package:flyrics/utils/fp.dart';
 import 'package:flyrics/utils/image.dart';
 import 'package:mobx/mobx.dart';
 
@@ -19,14 +20,10 @@ abstract class ArtworkStoreBase with Store {
   List<int> bytes;
 
   @observable
-  List<Color> colors = [UX.primaryColor];
+  List<Color> colors = [];
 
   ArtworkStoreBase() {
-    autorun((_) {
-      if (bytes != null) {
-        fetchColors();
-      }
-    });
+    when((_) => isNotNull(bytes), fetchColors);
   }
 
   @action
@@ -45,14 +42,17 @@ abstract class ArtworkStoreBase with Store {
   bool get hasBytes => !isLoading && bytes != null;
 
   @computed
-  Color get dominantColor => colors.first.autoDarkened;
+  Color get dominantColor =>
+      colors.isNotEmpty ? colors.first.autoDarkened : UX.primaryColor;
 
   @computed
   Color get textColor => dominantColor.opposite ?? UX.textColor;
 
   @computed
-  Color get placeholderBgColor => colors[1] ?? UX.primaryDarkColor;
+  Color get placeholderBgColor =>
+      colors.isNotEmpty ? colors[1] : UX.primaryDarkColor;
 
   @computed
-  Color get placeholderFgColor => colors[0] ?? UX.primaryColor;
+  Color get placeholderFgColor =>
+      colors.isNotEmpty ? colors[0] : UX.primaryColor;
 }

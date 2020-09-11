@@ -31,7 +31,7 @@ class AppLogger {
 
   Future dump() async {
     final data = json.encode(_logItems);
-    debugPrint('data: ${data}');
+    debugPrint('AppLogger dump: ${data}');
   }
 
   void reset() {

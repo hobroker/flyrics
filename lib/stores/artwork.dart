@@ -23,6 +23,7 @@ abstract class ArtworkStoreBase with Store {
   List<Color> colors;
 
   ArtworkStoreBase() {
+    resetColors();
     when((_) => isNotNull(bytes), fetchColors);
   }
 
@@ -35,23 +36,30 @@ abstract class ArtworkStoreBase with Store {
 
   @action
   Future fetchColors() async {
-    colors = await findImageColors(bytes);
+    try {
+      colors = await findImageColors(bytes);
+    } catch (error) {
+      resetColors();
+    }
+  }
+
+  @action
+  void resetColors() {
+    colors = [UX.primaryColor, UX.primaryDarkColor];
   }
 
   @computed
   bool get hasBytes => !isLoading && bytes != null;
 
   @computed
-  Color get dominantColor => colors?.elementAt(0) != null
-      ? colors.first.autoDarkened
-      : UX.primaryColor;
+  Color get dominantColor => colors.first.autoDarkened;
 
   @computed
-  Color get textColor => dominantColor.opposite ?? UX.textColor;
+  Color get textColor => dominantColor.opposite;
 
   @computed
-  Color get placeholderBgColor => colors?.elementAt(1) ?? UX.primaryDarkColor;
+  Color get placeholderBgColor => colors[1];
 
   @computed
-  Color get placeholderFgColor => colors?.elementAt(0) ?? UX.primaryColor;
+  Color get placeholderFgColor => colors.first;
 }

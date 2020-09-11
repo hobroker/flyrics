@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/constants/ux.dart';
 import 'package:flyrics/modules/locator.dart';
-import 'package:flyrics/states/track_store.dart';
+import 'package:flyrics/stores/track_store.dart';
 import 'package:flyrics/utils/o.dart';
 import 'package:flyrics/views/text_ellipsis.dart';
 import 'package:flyrics/views/track/track_name.dart';

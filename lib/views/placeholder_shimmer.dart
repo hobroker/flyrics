@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flyrics/constants/ux.dart';
-import 'package:flyrics/hooks/store.dart';
-import 'package:flyrics/selectors/placeholder.dart';
+import 'package:flyrics/modules/locator.dart';
+import 'package:flyrics/stores/track_store.dart';
+import 'package:flyrics/utils/o.dart';
 import 'package:shimmer/shimmer.dart';
 
-class PlaceholderShimmer extends HookWidget {
+class PlaceholderShimmer extends StatelessWidget {
   final double height;
   final double width;
   final Color backgroundColor;
   final Color shineColor;
   final bool isAnimated;
+
+  final _track = I<TrackStore>();
 
   PlaceholderShimmer({
     Key key,
@@ -23,21 +25,20 @@ class PlaceholderShimmer extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = useSelector(resolvePlaceholderBgColor);
-    final shineColor = useSelector(resolvePlaceholderFgColor);
-
-    return Shimmer.fromColors(
-      baseColor: backgroundColor,
-      highlightColor: shineColor,
-      enabled: isAnimated,
-      child: AnimatedContainer(
-        width: width,
-        height: height,
-        decoration: BoxDecoration(
-          color: shineColor,
-          borderRadius: BorderRadius.circular(2),
+    return O(
+      () => Shimmer.fromColors(
+        baseColor: _track.artwork.placeholderBgColor,
+        highlightColor: _track.artwork.placeholderFgColor,
+        enabled: isAnimated,
+        child: AnimatedContainer(
+          width: width,
+          height: height,
+          decoration: BoxDecoration(
+            color: _track.artwork.placeholderFgColor,
+            borderRadius: BorderRadius.circular(2),
+          ),
+          duration: UX.transitionDuration,
         ),
-        duration: UX.transitionDuration,
       ),
     );
   }

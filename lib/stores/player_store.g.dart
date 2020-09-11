@@ -24,21 +24,6 @@ mixin _$PlayerStore on PlayerStoreBase, Store {
     });
   }
 
-  final _$artworkAtom = Atom(name: 'PlayerStoreBase.artwork');
-
-  @override
-  ArtworkModel get artwork {
-    _$artworkAtom.reportRead();
-    return super.artwork;
-  }
-
-  @override
-  set artwork(ArtworkModel value) {
-    _$artworkAtom.reportWrite(value, super.artwork, () {
-      super.artwork = value;
-    });
-  }
-
   final _$fetchIsRunningAsyncAction =
       AsyncAction('PlayerStoreBase.fetchIsRunning');
 
@@ -47,11 +32,35 @@ mixin _$PlayerStore on PlayerStoreBase, Store {
     return _$fetchIsRunningAsyncAction.run(() => super.fetchIsRunning());
   }
 
+  final _$PlayerStoreBaseActionController =
+      ActionController(name: 'PlayerStoreBase');
+
+  @override
+  void updateSearchQuery() {
+    final _$actionInfo = _$PlayerStoreBaseActionController.startAction(
+        name: 'PlayerStoreBase.updateSearchQuery');
+    try {
+      return super.updateSearchQuery();
+    } finally {
+      _$PlayerStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void triggerLyricsFetch() {
+    final _$actionInfo = _$PlayerStoreBaseActionController.startAction(
+        name: 'PlayerStoreBase.triggerLyricsFetch');
+    try {
+      return super.triggerLyricsFetch();
+    } finally {
+      _$PlayerStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
-isRunning: ${isRunning},
-artwork: ${artwork}
+isRunning: ${isRunning}
     ''';
   }
 }

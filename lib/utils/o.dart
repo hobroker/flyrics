@@ -5,17 +5,17 @@ typedef WidgetFn = Widget Function();
 typedef BoolFn = bool Function();
 
 class O extends StatelessWidget {
-  final WidgetFn _builder;
+  final WidgetFn builder;
 
-  const O(this._builder, {Key key}) : super(key: key);
+  const O(this.builder, {Key key}) : super(key: key);
 
   factory O.branch(
-    BoolFn condition,
+    BoolFn predicate,
     WidgetFn truthy,
     WidgetFn falsy,
   ) =>
-      O(() => condition() ? truthy() : falsy());
+      O(() => predicate() ? truthy() : falsy());
 
   @override
-  Widget build(BuildContext context) => Observer(builder: (_) => _builder());
+  Widget build(BuildContext context) => Observer(builder: (_) => builder());
 }

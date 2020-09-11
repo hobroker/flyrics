@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flyrics/constants/ux.dart';
-import 'package:flyrics/hooks/store.dart';
-import 'package:flyrics/selectors/lyrics.dart';
+import 'package:flyrics/modules/locator.dart';
+import 'package:flyrics/stores/track_store.dart';
+import 'package:flyrics/utils/o.dart';
 import 'package:flyrics/utils/random.dart';
 import 'package:flyrics/views/placeholder_shimmer.dart';
 
-class LyricsPlaceholder extends HookWidget {
+class LyricsPlaceholder extends StatelessWidget {
   final double height = 12;
   final int linesCount = 14;
+
+  final _track = I<TrackStore>();
 
   double genWidth(appWidth) => appWidth * randomBetween(0.6, 0.8);
 
   @override
   Widget build(BuildContext context) {
-    final isAnimated = useSelector(areLyricsLoading);
     final appWidth = MediaQuery.of(context).size.width;
 
     return Column(
@@ -28,10 +29,12 @@ class LyricsPlaceholder extends HookWidget {
 
           return Container(
             margin: EdgeInsets.only(bottom: UX.spacingUnit),
-            child: PlaceholderShimmer(
-              height: height,
-              isAnimated: isAnimated,
-              width: genWidth(appWidth),
+            child: O(
+              () => PlaceholderShimmer(
+                height: height,
+                isAnimated: _track.lyrics.isLoading,
+                width: genWidth(appWidth),
+              ),
             ),
           );
         },

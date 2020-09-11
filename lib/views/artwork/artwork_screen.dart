@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flyrics/modules/locator.dart';
-import 'package:flyrics/states/track_store.dart';
+import 'package:flyrics/stores/track_store.dart';
 import 'package:flyrics/utils/o.dart';
 import 'package:flyrics/views/artwork/artwork_gradient.dart';
 
 class ArtworkScreen extends StatelessWidget {
   final _track = I<TrackStore>();
-
-  Widget _getImageWidget(bytes) => Image.memory(
-        bytes,
-        fit: BoxFit.fill,
-      );
 
   void _showImageDialog(context, child) {
     showDialog(

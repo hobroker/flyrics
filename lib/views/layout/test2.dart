@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flyrics/modules/locator.dart';
-import 'package:flyrics/states/test_store.dart';
+import 'package:flyrics/stores/test_store.dart';
 
 class Test2 extends StatelessWidget {
   final _track = I<TestStore>();

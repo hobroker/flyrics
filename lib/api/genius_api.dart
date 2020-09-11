@@ -8,7 +8,7 @@ import 'package:html/parser.dart';
 
 class GeniusApi {
   final String accessToken;
-  static int MAX_FETCH_LOOPS = 10;
+  static final int _MAX_FETCH_LOOPS = 10;
   final String baseUrl = 'api.genius.com';
   final HttpClient client;
 
@@ -26,6 +26,9 @@ class GeniusApi {
     return list;
   }
 
+  Future<List<SearchResult>> search2(String query) =>
+      search(query).then((results) => results.toList(growable: false));
+
   Future<String> _fetchLyricsText(url, {int loop = 0}) async {
     loop++;
 
@@ -34,9 +37,9 @@ class GeniusApi {
     final $pageData = document.querySelector('meta[itemprop="page_data"]');
 
     if ($pageData == null) {
-      if (loop == GeniusApi.MAX_FETCH_LOOPS) {
+      if (loop == GeniusApi._MAX_FETCH_LOOPS) {
         throw Exception(
-            'no page data after ${GeniusApi.MAX_FETCH_LOOPS} tries');
+            'no page data after ${GeniusApi._MAX_FETCH_LOOPS} tries');
       }
 
       return _fetchLyricsText(url, loop: loop);

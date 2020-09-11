@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/modules/locator.dart';
-import 'package:flyrics/states/track_store.dart';
+import 'package:flyrics/stores/track_store.dart';
 import 'package:flyrics/utils/o.dart';
 import 'package:flyrics/views/artwork/artwork_placeholder.dart';
 import 'package:flyrics/views/artwork/artwork_screen.dart';

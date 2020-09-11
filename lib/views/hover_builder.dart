@@ -29,22 +29,26 @@ class _HoverBuilderState<Value> extends State<HoverBuilder<Value>> {
     state = init;
   }
 
+  void _onExit(event) {
+    setState(() {
+      if (widget.onExit == null) {
+        state = init;
+      } else {
+        state = widget.onExit(state);
+      }
+    });
+  }
+
+  void _onEnter(event) {
+    setState(() => state = widget.onEnter(state));
+  }
+
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
       child: widget.builder(context, state),
-      onEnter: (event) {
-        setState(() => state = widget.onEnter(state));
-      },
-      onExit: (event) {
-        setState(() {
-          if (widget.onExit == null) {
-            state = init;
-          } else {
-            state = widget.onExit(state);
-          }
-        });
-      },
+      onEnter: _onEnter,
+      onExit: _onExit,
     );
   }
 }

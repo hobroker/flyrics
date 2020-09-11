@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flyrics/constants/ux.dart';
+import 'package:flyrics/containers/o.dart';
 import 'package:flyrics/modules/locator.dart';
 import 'package:flyrics/stores/player.dart';
 import 'package:flyrics/utils/fp.dart';
-import 'package:flyrics/utils/o.dart';
-import 'package:flyrics/views/empty_widget.dart';
 import 'package:flyrics/views/hover_builder.dart';
 import 'package:flyrics/views/icons/genius_icon.dart';
 import 'package:flyrics/views/primary_tooltip.dart';
@@ -15,11 +14,10 @@ class GeniusRedirect extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return O.branch(
-      () => isNull(_player.search.activeResultUrl),
-      () => EmptyWidget(),
+    return O.when(
+      () => isNotNull(_player.search.activeResultUrl),
       () => LayoutBuilder(builder: (context, constraints) {
-        var height = constraints.maxHeight;
+        final size = constraints.maxHeight;
 
         return PrimaryTooltip(
           message: FlutterI18n.translate(context, 'lyrics.open_in_browser'),
@@ -33,8 +31,8 @@ class GeniusRedirect extends StatelessWidget {
                 child: IconButton(
                   padding: EdgeInsets.all(0),
                   constraints: BoxConstraints(
-                    maxWidth: height,
-                    maxHeight: height,
+                    maxWidth: size,
+                    maxHeight: size,
                   ),
                   icon: GeniusIcon(),
                   onPressed: _player.search.openActiveResultInBrowser,

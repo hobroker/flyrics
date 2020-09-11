@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/modules/locator.dart';
 import 'package:flyrics/stores/track.dart';
-import 'package:flyrics/utils/o.dart';
+import 'package:flyrics/containers/o.dart';
 
 class LyricsScreen extends StatelessWidget {
   final _track = I<TrackStore>();

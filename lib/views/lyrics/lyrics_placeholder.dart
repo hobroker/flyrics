@@ -6,7 +6,6 @@ import 'package:flyrics/hooks/media.dart';
 import 'package:flyrics/modules/locator.dart';
 import 'package:flyrics/stores/track.dart';
 import 'package:flyrics/utils/random.dart';
-import 'package:flyrics/views/map_list.dart';
 import 'package:flyrics/views/placeholder_shimmer.dart';
 
 class LyricsPlaceholder extends HookWidget {
@@ -43,4 +42,10 @@ class LyricsPlaceholder extends HookWidget {
       children: mapList<Widget>(list, _buildLine),
     );
   }
+}
+
+List mapList<T>(List list, Widget Function(dynamic, int) builder) {
+  var idx = 0;
+
+  return list.map((item) => builder(item, idx++)).toList(growable: false);
 }

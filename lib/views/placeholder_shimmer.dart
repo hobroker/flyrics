@@ -3,6 +3,7 @@ import 'package:flyrics/constants/ux.dart';
 import 'package:flyrics/containers/o.dart';
 import 'package:flyrics/modules/locator.dart';
 import 'package:flyrics/stores/track.dart';
+import 'package:flyrics/views/empty_widget.dart';
 import 'package:shimmer/shimmer.dart';
 
 class PlaceholderShimmer extends StatelessWidget {
@@ -19,13 +20,13 @@ class PlaceholderShimmer extends StatelessWidget {
 
   PlaceholderShimmer({
     Key key,
-    this.height,
-    this.width,
+    this.height = 0,
+    this.width = 0,
     this.computeWidth,
     this.computeHeight,
-    this.align = false,
     this.backgroundColor,
     this.shineColor,
+    this.align = false,
     this.isAnimated = true,
   }) : super(key: key);
 
@@ -83,6 +84,10 @@ class PlaceholderShimmer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (width == 0 || height == 0) {
+      return EmptyWidget();
+    }
+
     return _wrap(_build());
   }
 }

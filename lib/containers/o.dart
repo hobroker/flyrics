@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flyrics/views/empty_widget.dart';
 
 typedef WidgetFn = Widget Function();
 typedef BoolFn = bool Function();
@@ -15,6 +16,9 @@ class O extends StatelessWidget {
     WidgetFn falsy,
   ) =>
       O(() => predicate() ? truthy() : falsy());
+
+  factory O.when(BoolFn predicate, WidgetFn truthy) =>
+      O(() => predicate() ? truthy() : EmptyWidget());
 
   @override
   Widget build(BuildContext context) => Observer(builder: (_) => builder());

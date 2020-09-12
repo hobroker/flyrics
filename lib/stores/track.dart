@@ -17,13 +17,10 @@ abstract class TrackStoreBase with Store {
   @observable
   Track track;
 
-  final ArtworkStore artwork;
-  final LyricsStore lyrics;
+  final ArtworkStore artwork = ArtworkStore();
+  final LyricsStore lyrics = LyricsStore();
 
-  TrackStoreBase({
-    this.artwork,
-    this.lyrics,
-  }) {
+  TrackStoreBase() {
     when((_) => isNotNull(track), () {
       artwork.fetchBytes(track.artwork);
     });

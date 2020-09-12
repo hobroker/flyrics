@@ -10,7 +10,7 @@ class GeniusService {
   final String baseUrl = 'api.genius.com';
   final HttpClient client;
 
-  GeniusService(this.client, {this.accessToken});
+  GeniusService({this.client, this.accessToken});
 
   Future<List<SearchItem>> search(String query) async {
     final uri = Uri.https(baseUrl, 'search', {

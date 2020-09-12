@@ -9,8 +9,7 @@ class SearchItem {
 
   SearchItem({this.title, this.url});
 
-  factory SearchItem.fromJson(Map<String, dynamic> json) =>
-      _$SearchItemFromJson(json);
+  factory SearchItem.fromJson(Map json) => _$SearchItemFromJson(json);
 
-  Map<String, dynamic> toJson() => _$SearchItemToJson(this);
+  Map toJson() => _$SearchItemToJson(this);
 }

@@ -6,7 +6,7 @@ part of 'search_item.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SearchItem _$SearchItemFromJson(Map<String, dynamic> json) {
+SearchItem _$SearchItemFromJson(Map json) {
   return SearchItem(
     title: json['title'] as String,
     url: json['url'] as String,

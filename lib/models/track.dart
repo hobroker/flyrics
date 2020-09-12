@@ -12,7 +12,7 @@ class Track {
 
   Track({this.id, this.name, this.album, this.artist, this.artwork});
 
-  factory Track.fromJson(Map<String, dynamic> json) => _$TrackFromJson(json);
+  factory Track.fromJson(Map json) => _$TrackFromJson(json);
 
-  Map<String, dynamic> toJson() => _$TrackToJson(this);
+  Map toJson() => _$TrackToJson(this);
 }

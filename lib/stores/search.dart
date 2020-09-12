@@ -2,7 +2,6 @@ import 'package:flyrics/api/genius.dart';
 import 'package:flyrics/api/terminal.dart';
 import 'package:flyrics/models/search_item.dart';
 import 'package:flyrics/modules/locator.dart';
-import 'package:flyrics/utils/fp.dart';
 import 'package:mobx/mobx.dart';
 
 part 'search.g.dart';
@@ -20,15 +19,12 @@ abstract class SearchStoreBase with Store {
   List<SearchItem> results;
 
   SearchStoreBase() {
-    when((_) => isNotNull(query), searchCurrentQuery);
+    reaction((_) => query, searchQuery);
   }
 
   @action
-  Future searchCurrentQuery() async {
-    results = await I<GeniusService>().search(query).catchError((e) {
-      print(e);
-      return [];
-    });
+  Future searchQuery(String str) async {
+    results = await I<GeniusService>().search(str);
   }
 
   @action
@@ -37,5 +33,5 @@ abstract class SearchStoreBase with Store {
   }
 
   @computed
-  String get activeResultUrl => results?.first?.url;
+  String get activeResultUrl => results?.elementAt(0)?.url;
 }

@@ -9,7 +9,7 @@ class SpotifyService {
   final TerminalService terminal;
   final HttpClient client;
 
-  SpotifyService(this.client, {this.terminal});
+  SpotifyService({this.client, this.terminal});
 
   Future<bool> isRunning() async {
     final result = await terminal.runAppleScript(_isSpotifyRunning);

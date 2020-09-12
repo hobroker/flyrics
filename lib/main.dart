@@ -16,5 +16,6 @@ Future<void> main() async {
     player: player,
   );
 
+  player.start();
   runApp(App());
 }

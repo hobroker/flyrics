@@ -17,9 +17,12 @@ abstract class PlayerStoreBase with Store {
   final SearchStore search = SearchStore();
 
   PlayerStoreBase() {
-    fetchIsRunning();
     watchTrackRefresh();
     when((_) => isRunning, track.fetchCurrentTrack);
+  }
+
+  void start() {
+    fetchIsRunning();
   }
 
   void watchTrackRefresh() {

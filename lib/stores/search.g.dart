@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'search_store.dart';
+part of 'search.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -50,13 +50,13 @@ mixin _$SearchStore on SearchStoreBase, Store {
   final _$resultsAtom = Atom(name: 'SearchStoreBase.results');
 
   @override
-  BuiltList<SearchResult> get results {
+  List<SearchItem> get results {
     _$resultsAtom.reportRead();
     return super.results;
   }
 
   @override
-  set results(BuiltList<SearchResult> value) {
+  set results(List<SearchItem> value) {
     _$resultsAtom.reportWrite(value, super.results, () {
       super.results = value;
     });

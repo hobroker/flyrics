@@ -3,7 +3,7 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flyrics/containers/home_page.dart';
 import 'package:flyrics/modules/i18n_delegate.dart';
 import 'package:flyrics/modules/locator.dart';
-import 'package:flyrics/stores/player_store.dart';
+import 'package:flyrics/stores/player.dart';
 
 class App extends StatelessWidget {
   final _player = I<PlayerStore>();

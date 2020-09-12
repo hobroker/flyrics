@@ -1,9 +1,10 @@
-class Scripts {
-  static final isSpotifyRunning = '''
+part of '../spotify.dart';
+
+final _isSpotifyRunning = '''
     tell application "System Events" to (name of processes) contains "Spotify"
   ''';
 
-  static final getCurrentTrack = '''
+final _getCurrentTrack = '''
     on escape_quotes(string_to_escape)
       set AppleScript's text item delimiters to the "\\""
       set the item_list to every text item of string_to_escape
@@ -30,4 +31,3 @@ class Scripts {
       set ctrack to ctrack & "}"
     end tell
     ''';
-}

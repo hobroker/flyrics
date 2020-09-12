@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flyrics/constants/ux.dart';
 import 'package:flyrics/modules/locator.dart';
-import 'package:flyrics/stores/player_store.dart';
+import 'package:flyrics/stores/player.dart';
 import 'package:flyrics/utils/fp.dart';
 import 'package:flyrics/utils/o.dart';
 import 'package:flyrics/views/empty_widget.dart';

@@ -1,9 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+import 'package:flyrics/modules/logger/log_entry.dart';
 
 class AppLogger {
-  List<_LogItem> _logItems = [];
+  List<LogEntry> _logItems = [];
 
   AppLogger();
 
@@ -12,7 +13,7 @@ class AppLogger {
     String message,
     dynamic extra,
   }) {
-    _logItems.add(_LogItem(
+    _logItems.add(LogEntry(
       type: type,
       message: message,
       dateTime: DateTime.now(),
@@ -21,7 +22,7 @@ class AppLogger {
   }
 
   void logError(error) {
-    _logItems.add(_LogItem(
+    _logItems.add(LogEntry(
       type: LogType.error,
       message: 'Error',
       dateTime: DateTime.now(),
@@ -38,26 +39,3 @@ class AppLogger {
     _logItems = [];
   }
 }
-
-class _LogItem {
-  final LogType type;
-  final String message;
-  final DateTime dateTime;
-  final dynamic extra;
-
-  _LogItem({
-    this.type,
-    this.message,
-    this.dateTime,
-    this.extra,
-  });
-
-  Map toJson() => {
-        'type': type.toString(),
-        'message': message,
-        'dateTime': dateTime.toString(),
-        'extra': extra.toString(),
-      };
-}
-
-enum LogType { info, error, warning }

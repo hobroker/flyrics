@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'lyrics_store.dart';
+part of 'track.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,8 +8,15 @@ part of 'lyrics_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$LyricsStore on LyricsStoreBase, Store {
-  final _$isLoadingAtom = Atom(name: 'LyricsStoreBase.isLoading');
+mixin _$TrackStore on TrackStoreBase, Store {
+  Computed<bool> _$hasTrackComputed;
+
+  @override
+  bool get hasTrack => (_$hasTrackComputed ??=
+          Computed<bool>(() => super.hasTrack, name: 'TrackStoreBase.hasTrack'))
+      .value;
+
+  final _$isLoadingAtom = Atom(name: 'TrackStoreBase.isLoading');
 
   @override
   bool get isLoading {
@@ -24,35 +31,35 @@ mixin _$LyricsStore on LyricsStoreBase, Store {
     });
   }
 
-  final _$textAtom = Atom(name: 'LyricsStoreBase.text');
+  final _$trackAtom = Atom(name: 'TrackStoreBase.track');
 
   @override
-  String get text {
-    _$textAtom.reportRead();
-    return super.text;
+  Track get track {
+    _$trackAtom.reportRead();
+    return super.track;
   }
 
   @override
-  set text(String value) {
-    _$textAtom.reportWrite(value, super.text, () {
-      super.text = value;
+  set track(Track value) {
+    _$trackAtom.reportWrite(value, super.track, () {
+      super.track = value;
     });
   }
 
-  final _$fetchGeniusLyricsAsyncAction =
-      AsyncAction('LyricsStoreBase.fetchGeniusLyrics');
+  final _$fetchCurrentTrackAsyncAction =
+      AsyncAction('TrackStoreBase.fetchCurrentTrack');
 
   @override
-  Future<dynamic> fetchGeniusLyrics(String url) {
-    return _$fetchGeniusLyricsAsyncAction
-        .run(() => super.fetchGeniusLyrics(url));
+  Future<dynamic> fetchCurrentTrack() {
+    return _$fetchCurrentTrackAsyncAction.run(() => super.fetchCurrentTrack());
   }
 
   @override
   String toString() {
     return '''
 isLoading: ${isLoading},
-text: ${text}
+track: ${track},
+hasTrack: ${hasTrack}
     ''';
   }
 }

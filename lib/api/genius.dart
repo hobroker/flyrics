@@ -1,33 +1,29 @@
 import 'dart:convert';
 
-import 'package:built_collection/built_collection.dart';
 import 'package:flyrics/api/http_client.dart';
-import 'package:flyrics/models/search_result.dart';
-import 'package:flyrics/utils/serialize.dart';
+import 'package:flyrics/models/search_item.dart';
 import 'package:html/parser.dart';
 
-class GeniusApi {
+class GeniusService {
   final String accessToken;
   static final int _MAX_FETCH_LOOPS = 10;
   final String baseUrl = 'api.genius.com';
   final HttpClient client;
 
-  GeniusApi(this.client, {this.accessToken});
+  GeniusService(this.client, {this.accessToken});
 
-  Future<BuiltList<SearchResult>> search(String query) async {
+  Future<List<SearchItem>> search(String query) async {
     final uri = Uri.https(baseUrl, 'search', {
       'q': query,
       'access_token': accessToken,
     });
     final data = await client.get(uri);
     final items = data['response']['hits'].map((item) => item['result']);
-    final list = deserializeListOf<SearchResult>(items);
+    final list =
+        List<SearchItem>.from(items.map((item) => SearchItem.fromJson(item)));
 
     return list;
   }
-
-  Future<List<SearchResult>> search2(String query) =>
-      search(query).then((results) => results.toList(growable: false));
 
   Future<String> _fetchLyricsText(url, {int loop = 0}) async {
     loop++;
@@ -37,9 +33,9 @@ class GeniusApi {
     final $pageData = document.querySelector('meta[itemprop="page_data"]');
 
     if ($pageData == null) {
-      if (loop == GeniusApi._MAX_FETCH_LOOPS) {
+      if (loop == GeniusService._MAX_FETCH_LOOPS) {
         throw Exception(
-            'no page data after ${GeniusApi._MAX_FETCH_LOOPS} tries');
+            'no page data after ${GeniusService._MAX_FETCH_LOOPS} tries');
       }
 
       return _fetchLyricsText(url, loop: loop);

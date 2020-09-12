@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:flyrics/api/api.dart';
+import 'package:flyrics/api/spotify.dart';
 import 'package:flyrics/constants/ux.dart';
 import 'package:flyrics/modules/color_extension.dart';
 import 'package:flyrics/modules/locator.dart';
@@ -8,7 +8,7 @@ import 'package:flyrics/utils/fp.dart';
 import 'package:flyrics/utils/image.dart';
 import 'package:mobx/mobx.dart';
 
-part 'artwork_store.g.dart';
+part 'artwork.g.dart';
 
 class ArtworkStore = ArtworkStoreBase with _$ArtworkStore;
 
@@ -20,7 +20,7 @@ abstract class ArtworkStoreBase with Store {
   List<int> bytes;
 
   @observable
-  List<Color> colors = [];
+  List<Color> colors;
 
   ArtworkStoreBase() {
     when((_) => isNotNull(bytes), fetchColors);
@@ -29,7 +29,7 @@ abstract class ArtworkStoreBase with Store {
   @action
   Future fetchBytes(String url) async {
     isLoading = true;
-    bytes = await I<Api>().spotify.getImageBytes(url);
+    bytes = await I<SpotifyService>().getImageBytes(url);
     isLoading = false;
   }
 
@@ -42,17 +42,16 @@ abstract class ArtworkStoreBase with Store {
   bool get hasBytes => !isLoading && bytes != null;
 
   @computed
-  Color get dominantColor =>
-      colors.isNotEmpty ? colors.first.autoDarkened : UX.primaryColor;
+  Color get dominantColor => colors?.elementAt(0) != null
+      ? colors.first.autoDarkened
+      : UX.primaryColor;
 
   @computed
   Color get textColor => dominantColor.opposite ?? UX.textColor;
 
   @computed
-  Color get placeholderBgColor =>
-      colors.isNotEmpty ? colors[1] : UX.primaryDarkColor;
+  Color get placeholderBgColor => colors?.elementAt(1) ?? UX.primaryDarkColor;
 
   @computed
-  Color get placeholderFgColor =>
-      colors.isNotEmpty ? colors[0] : UX.primaryColor;
+  Color get placeholderFgColor => colors?.elementAt(0) ?? UX.primaryColor;
 }

@@ -1,24 +1,18 @@
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'track.g.dart';
 
-abstract class Track implements Built<Track, TrackBuilder> {
-  String get id;
+@JsonSerializable()
+class Track {
+  final String id;
+  final String name;
+  final String album;
+  final String artist;
+  final String artwork;
 
-  String get name;
+  Track({this.id, this.name, this.album, this.artist, this.artwork});
 
-  String get album;
+  factory Track.fromJson(Map<String, dynamic> json) => _$TrackFromJson(json);
 
-  String get artist;
-
-  String get artwork;
-
-  Track._();
-
-  factory Track([void Function(TrackBuilder) updates]) = _$Track;
-
-  static Serializer<Track> get serializer => _$trackSerializer;
-
-  static void _initializeBuilder(TrackBuilder builder) => builder;
+  Map<String, dynamic> toJson() => _$TrackToJson(this);
 }

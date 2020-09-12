@@ -1,12 +1,12 @@
-import 'package:flyrics/api/api.dart';
+import 'package:flyrics/api/spotify.dart';
+import 'package:flyrics/models/track.dart';
 import 'package:flyrics/modules/locator.dart';
-import 'package:flyrics/stores/artwork_store.dart';
-import 'package:flyrics/stores/lyrics_store.dart';
-import 'package:flyrics/stores/track_model.dart';
+import 'package:flyrics/stores/artwork.dart';
+import 'package:flyrics/stores/lyrics.dart';
 import 'package:flyrics/utils/fp.dart';
 import 'package:mobx/mobx.dart';
 
-part 'track_store.g.dart';
+part 'track.g.dart';
 
 class TrackStore = TrackStoreBase with _$TrackStore;
 
@@ -15,7 +15,7 @@ abstract class TrackStoreBase with Store {
   bool isLoading = false;
 
   @observable
-  TrackModelStore track;
+  Track track;
 
   final ArtworkStore artwork;
   final LyricsStore lyrics;
@@ -32,9 +32,9 @@ abstract class TrackStoreBase with Store {
   @action
   Future fetchCurrentTrack() async {
     isLoading = true;
-    final json = await I<Api>().spotify.fetchCurrentTrack2();
+    final json = await I<SpotifyService>().fetchCurrentTrack();
 
-    track = TrackModelStore.fromJson(json);
+    track = Track.fromJson(json);
     isLoading = false;
   }
 

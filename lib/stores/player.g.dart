@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'player_store.dart';
+part of 'player.dart';
 
 // **************************************************************************
 // StoreGenerator

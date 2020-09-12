@@ -104,6 +104,20 @@ mixin _$ArtworkStore on ArtworkStoreBase, Store {
     return _$fetchColorsAsyncAction.run(() => super.fetchColors());
   }
 
+  final _$ArtworkStoreBaseActionController =
+      ActionController(name: 'ArtworkStoreBase');
+
+  @override
+  void resetColors() {
+    final _$actionInfo = _$ArtworkStoreBaseActionController.startAction(
+        name: 'ArtworkStoreBase.resetColors');
+    try {
+      return super.resetColors();
+    } finally {
+      _$ArtworkStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''

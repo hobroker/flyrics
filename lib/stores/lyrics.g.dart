@@ -24,6 +24,21 @@ mixin _$LyricsStore on LyricsStoreBase, Store {
     });
   }
 
+  final _$errorAtom = Atom(name: 'LyricsStoreBase.error');
+
+  @override
+  Object get error {
+    _$errorAtom.reportRead();
+    return super.error;
+  }
+
+  @override
+  set error(Object value) {
+    _$errorAtom.reportWrite(value, super.error, () {
+      super.error = value;
+    });
+  }
+
   final _$textAtom = Atom(name: 'LyricsStoreBase.text');
 
   @override
@@ -52,6 +67,7 @@ mixin _$LyricsStore on LyricsStoreBase, Store {
   String toString() {
     return '''
 isLoading: ${isLoading},
+error: ${error},
 text: ${text}
     ''';
   }

@@ -1,3 +1,4 @@
+import 'package:flyrics/utils/debug.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'track.g.dart';
@@ -15,4 +16,7 @@ class Track {
   factory Track.fromJson(Map json) => _$TrackFromJson(json);
 
   Map toJson() => _$TrackToJson(this);
+
+  @override
+  String toString() => 'Track ${stringify(toJson(), true)}';
 }

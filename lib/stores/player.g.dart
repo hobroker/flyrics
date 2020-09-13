@@ -24,43 +24,33 @@ mixin _$PlayerStore on PlayerStoreBase, Store {
     });
   }
 
-  final _$fetchIsRunningAsyncAction =
-      AsyncAction('PlayerStoreBase.fetchIsRunning');
+  final _$isWorkingAtom = Atom(name: 'PlayerStoreBase.isWorking');
 
   @override
-  Future<dynamic> fetchIsRunning() {
-    return _$fetchIsRunningAsyncAction.run(() => super.fetchIsRunning());
-  }
-
-  final _$PlayerStoreBaseActionController =
-      ActionController(name: 'PlayerStoreBase');
-
-  @override
-  void updateSearchQuery() {
-    final _$actionInfo = _$PlayerStoreBaseActionController.startAction(
-        name: 'PlayerStoreBase.updateSearchQuery');
-    try {
-      return super.updateSearchQuery();
-    } finally {
-      _$PlayerStoreBaseActionController.endAction(_$actionInfo);
-    }
+  bool get isWorking {
+    _$isWorkingAtom.reportRead();
+    return super.isWorking;
   }
 
   @override
-  void triggerLyricsFetch() {
-    final _$actionInfo = _$PlayerStoreBaseActionController.startAction(
-        name: 'PlayerStoreBase.triggerLyricsFetch');
-    try {
-      return super.triggerLyricsFetch();
-    } finally {
-      _$PlayerStoreBaseActionController.endAction(_$actionInfo);
-    }
+  set isWorking(bool value) {
+    _$isWorkingAtom.reportWrite(value, super.isWorking, () {
+      super.isWorking = value;
+    });
+  }
+
+  final _$refreshFlowAsyncAction = AsyncAction('PlayerStoreBase.refreshFlow');
+
+  @override
+  Future<dynamic> refreshFlow() {
+    return _$refreshFlowAsyncAction.run(() => super.refreshFlow());
   }
 
   @override
   String toString() {
     return '''
-isRunning: ${isRunning}
+isRunning: ${isRunning},
+isWorking: ${isWorking}
     ''';
   }
 }

@@ -1,8 +1,9 @@
+import 'dart:async';
+
 import 'package:flyrics/api/spotify.dart';
 import 'package:flyrics/modules/locator.dart';
 import 'package:flyrics/stores/search.dart';
 import 'package:flyrics/stores/track.dart';
-import 'package:flyrics/utils/fp.dart';
 import 'package:mobx/mobx.dart';
 
 part 'player.g.dart';
@@ -13,38 +14,40 @@ abstract class PlayerStoreBase with Store {
   @observable
   bool isRunning = false;
 
+  @observable
+  bool isWorking = false;
+
   final TrackStore track = TrackStore();
   final SearchStore search = SearchStore();
 
-  PlayerStoreBase() {
-    watchTrackRefresh();
-    when((_) => isRunning, track.fetchCurrentTrack);
-  }
-
   void start() {
-    fetchIsRunning();
-  }
-
-  void watchTrackRefresh() {
-    when((_) => isNotNull(track.track), updateSearchQuery);
-    when((_) => search.results.isNotEmpty, triggerLyricsFetch);
+    refreshFlow();
   }
 
   @action
-  Future fetchIsRunning() async {
+  Future refreshFlow() async {
+    isWorking = true;
     isRunning = await I<SpotifyService>().isRunning();
+
+    if (!isRunning) {
+      return;
+    }
+
+    final newTrack = await track.updateCurrentTrack();
+    if (newTrack != null) {
+      track.lyrics.text = null;
+      await track.artwork.fetchBytes(newTrack.artwork);
+
+      final query = '${newTrack.artist} ${newTrack.name}';
+      await search.searchQuery(query);
+      await track.lyrics.fetchGeniusLyrics(search.activeResultUrl);
+    }
+
+    isWorking = false;
+    startTimer();
   }
 
-  @action
-  void updateSearchQuery() {
-    search.query = '${track.track.artist} ${track.track.name}';
-  }
-
-  @action
-  void triggerLyricsFetch() {
-    final result = search.results.first;
-    final url = result.url;
-
-    track.lyrics.fetchGeniusLyrics(url);
+  void startTimer() {
+    Timer(Duration(milliseconds: 1500), refreshFlow);
   }
 }

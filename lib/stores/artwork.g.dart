@@ -60,6 +60,21 @@ mixin _$ArtworkStore on ArtworkStoreBase, Store {
     });
   }
 
+  final _$errorAtom = Atom(name: 'ArtworkStoreBase.error');
+
+  @override
+  Object get error {
+    _$errorAtom.reportRead();
+    return super.error;
+  }
+
+  @override
+  set error(Object value) {
+    _$errorAtom.reportWrite(value, super.error, () {
+      super.error = value;
+    });
+  }
+
   final _$bytesAtom = Atom(name: 'ArtworkStoreBase.bytes');
 
   @override
@@ -100,8 +115,8 @@ mixin _$ArtworkStore on ArtworkStoreBase, Store {
   final _$fetchColorsAsyncAction = AsyncAction('ArtworkStoreBase.fetchColors');
 
   @override
-  Future<dynamic> fetchColors() {
-    return _$fetchColorsAsyncAction.run(() => super.fetchColors());
+  Future<dynamic> fetchColors(List<int> bytes) {
+    return _$fetchColorsAsyncAction.run(() => super.fetchColors(bytes));
   }
 
   final _$ArtworkStoreBaseActionController =
@@ -122,6 +137,7 @@ mixin _$ArtworkStore on ArtworkStoreBase, Store {
   String toString() {
     return '''
 isLoading: ${isLoading},
+error: ${error},
 bytes: ${bytes},
 colors: ${colors},
 hasBytes: ${hasBytes},

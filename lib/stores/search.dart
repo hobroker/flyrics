@@ -16,14 +16,15 @@ abstract class SearchStoreBase with Store {
   String query;
 
   @observable
-  List<SearchItem> results;
+  List<SearchItem> results = [];
 
   SearchStoreBase() {
-    reaction((_) => query, searchQuery);
+    // reaction((_) => query, searchQuery);
   }
 
   @action
   Future searchQuery(String str) async {
+    results = [];
     results = await I<GeniusService>().search(str);
   }
 
@@ -33,5 +34,5 @@ abstract class SearchStoreBase with Store {
   }
 
   @computed
-  String get activeResultUrl => results?.elementAt(0)?.url;
+  String get activeResultUrl => results.isNotEmpty ? results.first.url : null;
 }

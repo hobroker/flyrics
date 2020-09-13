@@ -4,7 +4,6 @@ import 'package:flyrics/api/spotify.dart';
 import 'package:flyrics/constants/ux.dart';
 import 'package:flyrics/modules/color_extension.dart';
 import 'package:flyrics/modules/locator.dart';
-import 'package:flyrics/utils/fp.dart';
 import 'package:flyrics/utils/image.dart';
 import 'package:mobx/mobx.dart';
 
@@ -17,6 +16,9 @@ abstract class ArtworkStoreBase with Store {
   bool isLoading = false;
 
   @observable
+  Object error;
+
+  @observable
   List<int> bytes;
 
   @observable
@@ -24,21 +26,29 @@ abstract class ArtworkStoreBase with Store {
 
   ArtworkStoreBase() {
     resetColors();
-    when((_) => isNotNull(bytes), fetchColors);
+    reaction<List<int>>((_) => bytes, (bytes) => fetchColors(bytes));
   }
 
   @action
   Future fetchBytes(String url) async {
     isLoading = true;
-    bytes = await I<SpotifyService>().getImageBytes(url);
+    try {
+      bytes = await I<SpotifyService>().getImageBytes(url);
+    } catch (err) {
+      error = err;
+    }
     isLoading = false;
   }
 
   @action
-  Future fetchColors() async {
+  Future fetchColors(List<int> bytes) async {
+    if (bytes.isEmpty) {
+      return;
+    }
+
     try {
       colors = await findImageColors(bytes);
-    } catch (error) {
+    } catch (err) {
       resetColors();
     }
   }

@@ -21,12 +21,10 @@ class LyricsPlaceholder extends HookWidget {
         ? SizedBox(height: height)
         : Container(
             margin: EdgeInsets.only(bottom: UX.spacingUnit),
-            child: O(
-              () => PlaceholderShimmer(
-                height: height,
-                isAnimated: _track.lyrics.isLoading,
-                width: item,
-              ),
+            child: PlaceholderShimmer(
+              height: height,
+              isAnimated: _track.lyrics.isLoading,
+              width: item,
             ),
           );
   }
@@ -37,9 +35,11 @@ class LyricsPlaceholder extends HookWidget {
     final list = List.generate(linesCount, (idx) => genWidth(appWidth))
         .toList(growable: false);
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: mapList<Widget>(list, _buildLine),
+    return O(
+      () => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: mapList<Widget>(list, _buildLine),
+      ),
     );
   }
 }

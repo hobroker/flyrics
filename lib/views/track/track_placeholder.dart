@@ -11,27 +11,25 @@ class TrackPlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      var appWidth = constraints.maxWidth;
-
-      return O(
-        () => Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            PlaceholderShimmer(
-              height: 16.0,
-              isAnimated: _track.isLoading,
-              width: appWidth * randomBetween(0.7, 0.9),
-            ),
-            SizedBox(height: UX.spacingUnit),
-            PlaceholderShimmer(
-              height: 15,
-              isAnimated: _track.isLoading,
-              width: appWidth * randomBetween(0.5, 0.6),
-            ),
-          ],
-        ),
-      );
-    });
+    return O(
+      () => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          PlaceholderShimmer(
+            align: true,
+            height: 16.0,
+            isAnimated: _track.isLoading,
+            computeWidth: (max) => max * randomBetween(0.7, 0.9),
+          ),
+          SizedBox(height: UX.spacingUnit),
+          PlaceholderShimmer(
+            align: true,
+            height: 15,
+            isAnimated: _track.isLoading,
+            computeWidth: (max) => max * randomBetween(0.5, 0.6),
+          ),
+        ],
+      ),
+    );
   }
 }

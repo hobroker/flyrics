@@ -11,12 +11,19 @@ abstract class LyricsStoreBase with Store {
   bool isLoading = false;
 
   @observable
+  Object error;
+
+  @observable
   String text;
 
   @action
   Future fetchGeniusLyrics(String url) async {
     isLoading = true;
-    text = await I<GeniusService>().fetchLyrics(url);
+    try {
+      text = await I<GeniusService>().fetchLyrics(url);
+    } catch (err) {
+      error = err;
+    }
     isLoading = false;
   }
 }

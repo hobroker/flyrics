@@ -28,30 +28,38 @@ class GeniusService {
   Future<String> _fetchLyricsText(url, {int loop = 0}) async {
     loop++;
 
-    final response = await client.getRaw(url);
-    final document = parse(response.body);
-    final $pageData = document.querySelector('meta[itemprop="page_data"]');
-
-    if ($pageData == null) {
-      if (loop == GeniusService._MAX_FETCH_LOOPS) {
-        throw Exception(
-            'no page data after ${GeniusService._MAX_FETCH_LOOPS} tries');
-      }
-
-      return _fetchLyricsText(url, loop: loop);
+    if (loop == GeniusService._MAX_FETCH_LOOPS) {
+      throw Exception('loop limit reached');
     }
 
-    final content = json.decode($pageData.attributes['content']);
-    final html = content['lyrics_data']['body']['html'];
-    final $fragment = parseFragment(html);
-    final text = $fragment.text.replaceAll(RegExp(r'\s+$'), '');
+    try {
+      final response = await client.getRaw(url);
+      final document = parse(response.body);
+      final $pageData = document.querySelector('meta[itemprop="page_data"]');
 
-    return text;
+      if ($pageData == null) {
+        throw Exception();
+      }
+
+      final content = json.decode($pageData.attributes['content']);
+      final html = content['lyrics_data']['body']['html'];
+      final $fragment = parseFragment(html);
+      final text = $fragment.text.replaceAll(RegExp(r'\s+$'), '');
+
+      return text;
+    } catch (e) {
+      return _fetchLyricsText(url, loop: loop);
+    }
   }
 
   Future<String> fetchLyrics(String url) async {
-    var result = await _fetchLyricsText(url);
+    try {
+      final result = await _fetchLyricsText(url);
 
-    return result;
+      return result;
+    } catch (e) {
+      throw Exception(
+          'no lyrics after ${GeniusService._MAX_FETCH_LOOPS} tries');
+    }
   }
 }

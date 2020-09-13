@@ -31,6 +31,21 @@ mixin _$TrackStore on TrackStoreBase, Store {
     });
   }
 
+  final _$isNewTrackAtom = Atom(name: 'TrackStoreBase.isNewTrack');
+
+  @override
+  bool get isNewTrack {
+    _$isNewTrackAtom.reportRead();
+    return super.isNewTrack;
+  }
+
+  @override
+  set isNewTrack(bool value) {
+    _$isNewTrackAtom.reportWrite(value, super.isNewTrack, () {
+      super.isNewTrack = value;
+    });
+  }
+
   final _$trackAtom = Atom(name: 'TrackStoreBase.track');
 
   @override
@@ -46,19 +61,37 @@ mixin _$TrackStore on TrackStoreBase, Store {
     });
   }
 
-  final _$fetchCurrentTrackAsyncAction =
-      AsyncAction('TrackStoreBase.fetchCurrentTrack');
+  final _$errorAtom = Atom(name: 'TrackStoreBase.error');
 
   @override
-  Future<dynamic> fetchCurrentTrack() {
-    return _$fetchCurrentTrackAsyncAction.run(() => super.fetchCurrentTrack());
+  Object get error {
+    _$errorAtom.reportRead();
+    return super.error;
+  }
+
+  @override
+  set error(Object value) {
+    _$errorAtom.reportWrite(value, super.error, () {
+      super.error = value;
+    });
+  }
+
+  final _$updateCurrentTrackAsyncAction =
+      AsyncAction('TrackStoreBase.updateCurrentTrack');
+
+  @override
+  Future<dynamic> updateCurrentTrack() {
+    return _$updateCurrentTrackAsyncAction
+        .run(() => super.updateCurrentTrack());
   }
 
   @override
   String toString() {
     return '''
 isLoading: ${isLoading},
+isNewTrack: ${isNewTrack},
 track: ${track},
+error: ${error},
 hasTrack: ${hasTrack}
     ''';
   }

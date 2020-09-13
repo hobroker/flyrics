@@ -3,7 +3,6 @@ import 'package:flyrics/models/track.dart';
 import 'package:flyrics/modules/locator.dart';
 import 'package:flyrics/stores/artwork.dart';
 import 'package:flyrics/stores/lyrics.dart';
-import 'package:flyrics/utils/fp.dart';
 import 'package:mobx/mobx.dart';
 
 part 'track.g.dart';
@@ -15,24 +14,38 @@ abstract class TrackStoreBase with Store {
   bool isLoading = false;
 
   @observable
+  bool isNewTrack = false;
+
+  @observable
   Track track;
+
+  @observable
+  Object error;
 
   final ArtworkStore artwork = ArtworkStore();
   final LyricsStore lyrics = LyricsStore();
 
-  TrackStoreBase() {
-    when((_) => isNotNull(track), () {
-      artwork.fetchBytes(track.artwork);
-    });
-  }
-
   @action
-  Future fetchCurrentTrack() async {
-    isLoading = true;
-    final json = await I<SpotifyService>().fetchCurrentTrack();
+  Future updateCurrentTrack() async {
+    if (track == null) {
+      isLoading = true;
+    }
 
-    track = Track.fromJson(json);
-    isLoading = false;
+    try {
+      final json = await I<SpotifyService>().fetchCurrentTrack();
+      final isNewTrack = track == null || json['id'] != track.id;
+
+      if (isNewTrack) {
+        track = Track.fromJson(json);
+        isLoading = false;
+
+        return track;
+      }
+    } catch (err) {
+      error = err;
+    }
+
+    return null;
   }
 
   @computed

@@ -1,4 +1,4 @@
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flyrics/modules/injection.dart';
+import 'package:flyrics/modules/provider/injection.dart';
 
-T useInjection<T>() => Injection.get<T>(useContext());
+T useInjection<T>() => Provider.get<T>(useContext());

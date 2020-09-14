@@ -1,58 +1,57 @@
 import 'package:flutter/widgets.dart';
 
-typedef InjectionFactory<T extends Object> = T Function(T Function<T>() get);
-typedef _InjectionFactoryProvider = Iterable<InjectionFactory> Function();
+typedef Get = T Function<T>();
+typedef ProviderFactory<T extends Object> = T Function(Get get);
+typedef PoviderFactory = Object Function(T Function<T>());
 typedef CanCreate = bool Function(Type type);
 typedef OnCreate = void Function(Object service);
 typedef OnDispose = void Function(Object service);
 
-class _Injection extends InheritedWidget {
-  const _Injection({
+class _Provider extends InheritedWidget {
+  const _Provider({
     Key key,
-    @required this.injectionController,
+    @required this.controller,
     @required Widget child,
-  })  : assert(injectionController != null && child != null),
+  })  : assert(controller != null && child != null),
         super(key: key, child: child);
 
-  final InjectionController injectionController;
+  final ProviderController controller;
 
-  static InjectionController of(BuildContext context) {
+  static ProviderController of(BuildContext context) {
     final element =
-        context.getElementForInheritedWidgetOfExactType<_Injection>();
+        context.getElementForInheritedWidgetOfExactType<_Provider>();
     if (element != null) {
-      return (element.widget as _Injection).injectionController;
+      return (element.widget as _Provider).controller;
     } else {
       return null;
     }
   }
 
   @override
-  bool updateShouldNotify(_Injection old) {
+  bool updateShouldNotify(_Provider old) {
     return false;
   }
 }
 
-class Injection extends StatefulWidget {
-  const Injection({
+class Provider extends StatefulWidget {
+  const Provider({
     Key key,
-    this.providers,
-    this.provider,
+    this.factories,
     this.canCreate,
     this.onCreate,
     this.onDispose,
     this.child,
   }) : super(key: key);
 
-  final _InjectionFactoryProvider providers;
-  final InjectionFactory provider;
+  final Iterable<ProviderFactory> factories;
   final CanCreate canCreate;
   final OnCreate onCreate;
   final OnDispose onDispose;
 
   final Widget child;
 
-  static InjectionController of(BuildContext context) {
-    return _Injection.of(context);
+  static ProviderController of(BuildContext context) {
+    return _Provider.of(context);
   }
 
   static T get<T>(BuildContext context, {bool returnNullIfNotFound = false}) {
@@ -75,7 +74,7 @@ class Injection extends StatefulWidget {
     }
   }
 
-  static InjectionFactory<T> getFactory<T>(BuildContext context) {
+  static ProviderFactory<T> getFactory<T>(BuildContext context) {
     return of(context)?.getFactory<T>(searchAllAncestors: true);
   }
 
@@ -91,8 +90,8 @@ class Injection extends StatefulWidget {
     InjectionInjector.root._onDispose = onDispose;
   }
 
-  static void provideForRoot(Iterable<InjectionFactory> factories) {
-    InjectionInjector.root.provide(factories);
+  static void provideForRoot(Iterable<ProviderFactory> factories) {
+    InjectionInjector.root.provideMany(factories);
   }
 
   static void useRootAsDefault([bool useRootAsDefault = true]) {
@@ -104,77 +103,75 @@ class Injection extends StatefulWidget {
   }
 
   @override
-  _InjectionState createState() => _InjectionState();
+  _ProviderState createState() => _ProviderState();
 }
 
-abstract class InjectionController {
+abstract class ProviderController {
   T get<T>();
 
-  InjectionFactory<T> getFactory<T>({bool searchAllAncestors = false});
+  ProviderFactory<T> getFactory<T>({bool searchAllAncestors = false});
 }
 
-class _InjectionState extends State<Injection> implements InjectionController {
-  InjectionInjector _injection;
+class _ProviderState extends State<Provider> implements ProviderController {
+  InjectionInjector _provider;
 
   @override
   void initState() {
     super.initState();
-    _injection = InjectionInjector._(get);
+    _provider = InjectionInjector._(get);
     _setUpProviders();
     _setUpCallbacks();
   }
 
   @override
-  void didUpdateWidget(Injection oldWidget) {
+  void didUpdateWidget(Provider oldWidget) {
     super.didUpdateWidget(oldWidget);
     _setUpCallbacks();
   }
 
   @override
   void dispose() {
-    _injection.clear();
+    _provider.clear();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return _Injection(injectionController: this, child: widget.child);
+    return _Provider(controller: this, child: widget.child);
   }
 
   @override
   T get<T>() {
-    return _injection.get<T>() ??
-        Injection.get<T>(context, returnNullIfNotFound: true) ??
+    return _provider.get<T>() ??
+        Provider.get<T>(context, returnNullIfNotFound: true) ??
         InjectionInjector.root.get<T>();
   }
 
   @override
-  InjectionFactory<T> getFactory<T>({bool searchAllAncestors = false}) {
+  ProviderFactory<T> getFactory<T>({bool searchAllAncestors = false}) {
     if (searchAllAncestors) {
       if (InjectionInjector._useRootAsDefault) {
         return InjectionInjector.root.get<T>() ??
-            _injection.getFactory<T>() ??
-            Injection.getFactory<T>(context);
+            _provider.getFactory<T>() ??
+            Provider.getFactory<T>(context);
       } else {
-        return _injection.getFactory<T>() ??
-            Injection.getFactory<T>(context) ??
+        return _provider.getFactory<T>() ??
+            Provider.getFactory<T>(context) ??
             InjectionInjector.root.get<T>();
       }
     } else {
-      return _injection.getFactory<T>();
+      return _provider.getFactory<T>();
     }
   }
 
   void _setUpProviders() {
-    final _providers = widget.providers ?? () => [widget.provider];
-
-    _injection.provide(_providers());
+    _provider.provideMany(widget.factories);
   }
 
   void _setUpCallbacks() {
-    _injection._canCreate = widget.canCreate;
-    _injection._onCreate = widget.onCreate;
-    _injection._onDispose = widget.onDispose;
+    _provider._canCreate = widget.canCreate;
+    _provider._onCreate = widget.onCreate;
+    _provider._onDispose = widget.onDispose;
   }
 }
 
@@ -197,12 +194,16 @@ class InjectionInjector {
 
   OnDispose _onDispose;
 
-  final _factories = <InjectionFactory>{};
+  final _factories = <ProviderFactory>{};
 
   final _services = <Type, Object>{};
 
-  void provide(Iterable<InjectionFactory> factories) {
+  void provideMany(Iterable<ProviderFactory> factories) {
     _factories.addAll(factories);
+  }
+
+  void provideOne(ProviderFactory factory) {
+    _factories.add(factory);
   }
 
   T get<T>() {
@@ -218,8 +219,8 @@ class InjectionInjector {
     return null;
   }
 
-  InjectionFactory<T> getFactory<T>() {
-    return _factories.lastWhereOrNull((f) => f is InjectionFactory<T>);
+  ProviderFactory<T> getFactory<T>() {
+    return _factories.lastWhereOrNull((f) => f is ProviderFactory<T>);
   }
 
   T create<T>() {

@@ -45,6 +45,8 @@ abstract class PlayerStoreBase with Store {
       geniusService: geniusService,
       terminalService: terminalService,
     );
+
+    start();
   }
 
   void start() {

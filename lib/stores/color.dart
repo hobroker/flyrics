@@ -31,6 +31,7 @@ abstract class ColorStoreBase with Store {
     try {
       colors = await findImageColors(bytes);
     } catch (err) {
+      error = err;
       resetColors();
     }
   }

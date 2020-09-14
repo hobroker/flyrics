@@ -1,10 +1,12 @@
 import 'dart:convert';
 
-import 'package:flyrics/api/http_client.dart';
-import 'package:flyrics/api/terminal.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flyrics/services/http_client.dart';
+import 'package:flyrics/services/terminal.dart';
 
 part 'parts/spotify_scripts.dart';
 
+@immutable
 class SpotifyService {
   final TerminalService terminal;
   final HttpClient client;

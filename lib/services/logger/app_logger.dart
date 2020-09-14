@@ -1,10 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:flyrics/modules/logger/log_entry.dart';
+import 'package:flyrics/services/logger/log_entry.dart';
 
+@immutable
 class AppLogger {
-  List<LogEntry> _logItems = [];
+  final List<LogEntry> _logItems = [];
 
   AppLogger();
 
@@ -36,6 +37,6 @@ class AppLogger {
   }
 
   void reset() {
-    _logItems = [];
+    _logItems.clear();
   }
 }

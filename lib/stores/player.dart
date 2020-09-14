@@ -1,9 +1,16 @@
 import 'dart:async';
 
-import 'package:flyrics/api/spotify.dart';
-import 'package:flyrics/modules/locator.dart';
+import 'package:flyrics/models/track.dart';
+import 'package:flyrics/services/genius.dart';
+import 'package:flyrics/services/spotify.dart';
+import 'package:flyrics/services/terminal.dart';
+import 'package:flyrics/services/ux.dart';
+import 'package:flyrics/stores/artwork.dart';
+import 'package:flyrics/stores/color.dart';
+import 'package:flyrics/stores/lyrics.dart';
 import 'package:flyrics/stores/search.dart';
 import 'package:flyrics/stores/track.dart';
+import 'package:flyrics/utils/fp.dart';
 import 'package:mobx/mobx.dart';
 
 part 'player.g.dart';
@@ -17,37 +24,95 @@ abstract class PlayerStoreBase with Store {
   @observable
   bool isWorking = false;
 
-  final TrackStore track = TrackStore();
-  final SearchStore search = SearchStore();
+  TrackStore track;
+  ArtworkStore artwork;
+  ColorStore color;
+  LyricsStore lyrics;
+
+  final SpotifyService spotifyService;
+
+  PlayerStoreBase({
+    this.spotifyService,
+    GeniusService geniusService,
+    TerminalService terminalService,
+    UX ux,
+  }) {
+    track = TrackStore(spotifyService: spotifyService);
+    artwork = ArtworkStore(spotifyService: spotifyService);
+    lyrics = LyricsStore(
+      geniusService: geniusService,
+      search: SearchStore(
+        geniusService: geniusService,
+        terminalService: terminalService,
+      ),
+    );
+    color = ColorStore(ux: ux);
+
+    start();
+  }
 
   void start() {
-    refreshFlow();
+    reaction<List<int>>(
+      (_) => artwork.bytes,
+      (bytes) => color.fetchColors(bytes),
+    );
+
+    reaction<Track>(
+      (_) => track.track,
+      (track) => artwork.fetchBytes(track.artwork),
+    );
+
+    reaction<Track>(
+      (_) => track.track,
+      (track) async {
+        try {
+          await lyrics.updateLyrics(track);
+        } finally {
+          isWorking = false;
+        }
+      },
+    );
+
+    _runRefreshFlow(now: true);
+  }
+
+  @computed
+  bool get areLyricsLoading => lyrics.isLoading || lyrics.search.isLoading;
+
+  @computed
+  bool get canShowLyrics => !areLyricsLoading && isNotNull(lyrics.text);
+
+  @action
+  Future updateIsRunning() async {
+    isRunning = await spotifyService.isRunning();
   }
 
   @action
   Future refreshFlow() async {
     isWorking = true;
-    isRunning = await I<SpotifyService>().isRunning();
+    await updateIsRunning();
+    when((_) => !isWorking, _runRefreshFlow);
 
     if (!isRunning) {
+      isWorking = false;
+
       return;
     }
 
-    final newTrack = await track.updateCurrentTrack();
-    if (newTrack != null) {
-      track.lyrics.text = null;
-      await track.artwork.fetchBytes(newTrack.artwork);
+    final oldId = track.track?.id;
 
-      final query = '${newTrack.artist} ${newTrack.name}';
-      await search.searchQuery(query);
-      await track.lyrics.fetchGeniusLyrics(search.activeResultUrl);
+    await track.fetchCurrentTrack();
+
+    if (track.track?.id == oldId) {
+      isWorking = false;
     }
-
-    isWorking = false;
-    startTimer();
   }
 
-  void startTimer() {
-    Timer(Duration(milliseconds: 1500), refreshFlow);
+  void _runRefreshFlow({bool now = false}) {
+    if (now) {
+      refreshFlow();
+    } else {
+      Timer(Duration(milliseconds: 1500), refreshFlow);
+    }
   }
 }

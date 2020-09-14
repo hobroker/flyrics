@@ -76,13 +76,12 @@ mixin _$TrackStore on TrackStoreBase, Store {
     });
   }
 
-  final _$updateCurrentTrackAsyncAction =
-      AsyncAction('TrackStoreBase.updateCurrentTrack');
+  final _$fetchCurrentTrackAsyncAction =
+      AsyncAction('TrackStoreBase.fetchCurrentTrack');
 
   @override
-  Future<dynamic> updateCurrentTrack() {
-    return _$updateCurrentTrackAsyncAction
-        .run(() => super.updateCurrentTrack());
+  Future<dynamic> fetchCurrentTrack() {
+    return _$fetchCurrentTrackAsyncAction.run(() => super.fetchCurrentTrack());
   }
 
   @override

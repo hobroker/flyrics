@@ -1,7 +1,6 @@
-import 'package:flyrics/api/genius.dart';
-import 'package:flyrics/api/terminal.dart';
 import 'package:flyrics/models/search_item.dart';
-import 'package:flyrics/modules/locator.dart';
+import 'package:flyrics/services/genius.dart';
+import 'package:flyrics/services/terminal.dart';
 import 'package:mobx/mobx.dart';
 
 part 'search.g.dart';
@@ -18,21 +17,24 @@ abstract class SearchStoreBase with Store {
   @observable
   List<SearchItem> results = [];
 
-  SearchStoreBase() {
-    // reaction((_) => query, searchQuery);
-  }
+  final GeniusService geniusService;
+  final TerminalService terminalService;
+
+  SearchStoreBase({this.geniusService, this.terminalService});
 
   @action
   Future searchQuery(String str) async {
+    isLoading = true;
     results = [];
-    final list = await I<GeniusService>().search(str);
+    final list = await geniusService.search(str);
     results =
         List<SearchItem>.from(list.map((item) => SearchItem.fromJson(item)));
+    isLoading = false;
   }
 
   @action
   Future openActiveResultInBrowser() async {
-    await I<TerminalService>().openUrl(activeResultUrl);
+    await terminalService.openUrl(activeResultUrl);
   }
 
   @computed

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flyrics/constants/ux.dart';
 import 'package:flyrics/containers/o.dart';
-import 'package:flyrics/hooks/injection.dart';
-import 'package:flyrics/modules/locator.dart';
+import 'package:flyrics/hooks/injections.dart';
 import 'package:flyrics/views/text_ellipsis.dart';
 import 'package:flyrics/views/track/track_name.dart';
 
@@ -11,6 +9,7 @@ class TrackScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final _track = useTrackStore();
+    final ux = useUX();
 
     return O(
       () => Column(
@@ -22,7 +21,7 @@ class TrackScreen extends HookWidget {
               textColor: _track.artwork.textColor,
             ),
           ),
-          SizedBox(height: I<UX>().spacingUnit),
+          SizedBox(height: ux.spacingUnit),
           TextEllipsis(
             text: _track.track.artist,
             style: TextStyle(

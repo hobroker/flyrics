@@ -39,6 +39,14 @@ mixin _$PlayerStore on PlayerStoreBase, Store {
     });
   }
 
+  final _$updateIsRunningAsyncAction =
+      AsyncAction('PlayerStoreBase.updateIsRunning');
+
+  @override
+  Future<dynamic> updateIsRunning() {
+    return _$updateIsRunningAsyncAction.run(() => super.updateIsRunning());
+  }
+
   final _$refreshFlowAsyncAction = AsyncAction('PlayerStoreBase.refreshFlow');
 
   @override

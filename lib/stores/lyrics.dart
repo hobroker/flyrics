@@ -1,5 +1,4 @@
 import 'package:flyrics/api/genius.dart';
-import 'package:flyrics/modules/locator.dart';
 import 'package:mobx/mobx.dart';
 
 part 'lyrics.g.dart';
@@ -16,11 +15,15 @@ abstract class LyricsStoreBase with Store {
   @observable
   String text;
 
+  final GeniusService geniusService;
+
+  LyricsStoreBase({this.geniusService});
+
   @action
   Future fetchGeniusLyrics(String url) async {
     isLoading = true;
     try {
-      text = await I<GeniusService>().fetchLyrics(url);
+      text = await geniusService.fetchLyrics(url);
     } catch (err) {
       error = err;
     }

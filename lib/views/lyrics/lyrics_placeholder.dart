@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flyrics/constants/ux.dart';
 import 'package:flyrics/containers/o.dart';
+import 'package:flyrics/hooks/injections.dart';
 import 'package:flyrics/hooks/media.dart';
-import 'package:flyrics/hooks/injection.dart';
-import 'package:flyrics/modules/locator.dart';
 import 'package:flyrics/utils/random.dart';
 import 'package:flyrics/views/placeholder_shimmer.dart';
 
@@ -14,11 +12,13 @@ class LyricsPlaceholder extends HookWidget {
 
   double genWidth(appWidth) => appWidth * randomBetween(0.6, 0.8);
 
-  Widget Function(double, int) _buildLine(bool isLoading) => (item, index) {
+  Widget Function(double, int) _buildLine(
+          {bool isLoading, double spacingUnit}) =>
+      (item, index) {
         return index % 5 == 0
             ? SizedBox(height: height)
             : Container(
-                margin: EdgeInsets.only(bottom: I<UX>().spacingUnit),
+                margin: EdgeInsets.only(bottom: spacingUnit),
                 child: PlaceholderShimmer(
                   height: height,
                   isAnimated: isLoading,
@@ -30,13 +30,17 @@ class LyricsPlaceholder extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final _track = useTrackStore();
+    final spacingUnit = useUX().spacingUnit;
     final appWidth = useMediaSize().width;
     final list = List.generate(linesCount, (idx) => genWidth(appWidth))
         .toList(growable: false);
 
     return O(
       () {
-        final _lineBuilder = _buildLine(_track.lyrics.isLoading);
+        final _lineBuilder = _buildLine(
+          isLoading: _track.lyrics.isLoading,
+          spacingUnit: spacingUnit,
+        );
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,

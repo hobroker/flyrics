@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flyrics/api/spotify.dart';
 import 'package:flyrics/constants/ux.dart';
 import 'package:flyrics/modules/color_extension.dart';
-import 'package:flyrics/modules/locator.dart';
 import 'package:flyrics/utils/image.dart';
 import 'package:mobx/mobx.dart';
 
@@ -24,7 +23,10 @@ abstract class ArtworkStoreBase with Store {
   @observable
   List<Color> colors;
 
-  ArtworkStoreBase() {
+  final SpotifyService spotifyService;
+  final UX ux;
+
+  ArtworkStoreBase({this.spotifyService, this.ux}) {
     resetColors();
     reaction<List<int>>((_) => bytes, (bytes) => fetchColors(bytes));
   }
@@ -33,7 +35,7 @@ abstract class ArtworkStoreBase with Store {
   Future fetchBytes(String url) async {
     isLoading = true;
     try {
-      bytes = await I<SpotifyService>().getImageBytes(url);
+      bytes = await spotifyService.getImageBytes(url);
     } catch (err) {
       error = err;
     }
@@ -55,7 +57,7 @@ abstract class ArtworkStoreBase with Store {
 
   @action
   void resetColors() {
-    colors = [I<UX>().primaryColor, I<UX>().primaryDarkColor];
+    colors = [ux.primaryColor, ux.primaryDarkColor];
   }
 
   @computed

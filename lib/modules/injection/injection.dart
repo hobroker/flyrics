@@ -35,7 +35,8 @@ class _Injection extends InheritedWidget {
 class Injection extends StatefulWidget {
   const Injection({
     Key key,
-    @required this.providers,
+    this.providers,
+    this.provider,
     this.canCreate,
     this.onCreate,
     this.onDispose,
@@ -43,6 +44,7 @@ class Injection extends StatefulWidget {
   }) : super(key: key);
 
   final _InjectionFactoryProvider providers;
+  final InjectionFactory provider;
   final CanCreate canCreate;
   final OnCreate onCreate;
   final OnDispose onDispose;
@@ -164,9 +166,9 @@ class _InjectionState extends State<Injection> implements InjectionController {
   }
 
   void _setUpProviders() {
-    if (widget.providers != null) {
-      _injection.provide(widget.providers());
-    }
+    final _providers = widget.providers ?? () => [widget.provider];
+
+    _injection.provide(_providers());
   }
 
   void _setUpCallbacks() {

@@ -1,9 +1,12 @@
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flyrics/modules/injection/injection.dart';
+import 'package:flyrics/api/api.dart';
+import 'package:flyrics/constants/ux.dart';
+import 'package:flyrics/hooks/use_injection.dart';
 import 'package:flyrics/stores/player.dart';
 import 'package:flyrics/stores/track.dart';
 
-T useInjection<T>() => Injection.get<T>(useContext());
+Api useApi() => useInjection<Api>();
+
+UX useUX() => useInjection<UX>();
 
 PlayerStore usePlayerStore() => useInjection<PlayerStore>();
 

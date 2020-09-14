@@ -1,7 +1,11 @@
 import 'dart:async';
 
+import 'package:flyrics/api/genius.dart';
 import 'package:flyrics/api/spotify.dart';
-import 'package:flyrics/modules/locator.dart';
+import 'package:flyrics/api/terminal.dart';
+import 'package:flyrics/constants/ux.dart';
+import 'package:flyrics/stores/artwork.dart';
+import 'package:flyrics/stores/lyrics.dart';
 import 'package:flyrics/stores/search.dart';
 import 'package:flyrics/stores/track.dart';
 import 'package:mobx/mobx.dart';
@@ -17,17 +21,41 @@ abstract class PlayerStoreBase with Store {
   @observable
   bool isWorking = false;
 
-  final TrackStore track = TrackStore();
-  final SearchStore search = SearchStore();
+  TrackStore track;
+  SearchStore search;
+
+  final SpotifyService spotifyService;
+
+  PlayerStoreBase({
+    this.spotifyService,
+    GeniusService geniusService,
+    TerminalService terminalService,
+    UX ux,
+  }) {
+    track = TrackStore(
+      spotifyService: spotifyService,
+      artwork: ArtworkStore(spotifyService: spotifyService, ux: ux),
+      lyrics: LyricsStore(geniusService: geniusService),
+    );
+    search = SearchStore(
+      geniusService: geniusService,
+      terminalService: terminalService,
+    );
+  }
 
   void start() {
     refreshFlow();
   }
 
   @action
+  Future updateIsRunning() async {
+    isRunning = await spotifyService.isRunning();
+  }
+
+  @action
   Future refreshFlow() async {
     isWorking = true;
-    isRunning = await I<SpotifyService>().isRunning();
+    await updateIsRunning();
 
     if (!isRunning) {
       return;

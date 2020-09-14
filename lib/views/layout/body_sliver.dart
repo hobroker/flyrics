@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flyrics/constants/ux.dart';
-import 'package:flyrics/modules/locator.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flyrics/hooks/injections.dart';
 
-class BodySliver extends StatelessWidget {
+class BodySliver extends HookWidget {
   final Widget child;
 
   BodySliver({
@@ -13,15 +13,17 @@ class BodySliver extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final spacingUnit = useUX().spacingUnit;
+
     return SliverFillRemaining(
       hasScrollBody: false,
       fillOverscroll: false,
       child: Container(
         child: child,
         padding: EdgeInsets.only(
-          top: I<UX>().spacingUnit * 2,
-          left: I<UX>().spacingUnit * 2,
-          right: I<UX>().spacingUnit,
+          top: spacingUnit * 2,
+          left: spacingUnit * 2,
+          right: spacingUnit,
         ),
       ),
     );

@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flyrics/utils/debug.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'track.g.dart';
 
 @JsonSerializable()
+@immutable
 class Track {
   final String id;
   final String name;

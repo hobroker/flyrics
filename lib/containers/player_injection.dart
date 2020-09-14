@@ -7,7 +7,7 @@ class PlayerInjection extends StatelessWidget {
 
   const PlayerInjection(this.child, {Key key}) : super(key: key);
 
-  void _onCreate(player) => (player as PlayerStore).start();
+  void _onCreate(player) => player.start();
 
   @override
   Widget build(BuildContext context) {

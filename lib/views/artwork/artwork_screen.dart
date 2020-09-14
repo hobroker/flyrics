@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flyrics/containers/o.dart';
-import 'package:flyrics/hooks/provider.dart';
+import 'package:flyrics/hooks/injection.dart';
 import 'package:flyrics/views/artwork/artwork_gradient.dart';
 
 class ArtworkScreen extends HookWidget {

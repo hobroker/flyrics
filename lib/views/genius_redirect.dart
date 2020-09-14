@@ -3,7 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flyrics/constants/ux.dart';
 import 'package:flyrics/containers/o.dart';
-import 'package:flyrics/hooks/provider.dart';
+import 'package:flyrics/hooks/injection.dart';
 import 'package:flyrics/modules/locator.dart';
 import 'package:flyrics/utils/fp.dart';
 import 'package:flyrics/views/hover_builder.dart';

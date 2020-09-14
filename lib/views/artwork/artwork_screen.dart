@@ -20,6 +20,7 @@ class ArtworkScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final _artwork = useArtworkStore();
+    final _color = useColorStore();
 
     return MouseRegion(
       cursor: SystemMouseCursors.click,
@@ -32,7 +33,7 @@ class ArtworkScreen extends HookWidget {
                 fit: BoxFit.fill,
               ),
               ArtworkGradient(
-                color: _artwork.dominantColor,
+                color: _color.dominantColor,
               ),
             ],
           );

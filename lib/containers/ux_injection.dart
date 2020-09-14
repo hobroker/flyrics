@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flyrics/constants/ux.dart';
 import 'package:flyrics/hooks/use_theme.dart';
 import 'package:flyrics/modules/injection.dart';
+import 'package:flyrics/services/ux.dart';
 
 class UXInjection extends HookWidget {
   final Widget child;

@@ -1,10 +1,4 @@
-import 'dart:ui';
-
-import 'package:flutter/material.dart';
 import 'package:flyrics/services/spotify.dart';
-import 'package:flyrics/constants/ux.dart';
-import 'package:flyrics/modules/color_extension.dart';
-import 'package:flyrics/utils/image.dart';
 import 'package:mobx/mobx.dart';
 
 part 'artwork.g.dart';
@@ -21,16 +15,9 @@ abstract class ArtworkStoreBase with Store {
   @observable
   List<int> bytes;
 
-  @observable
-  List<Color> colors;
-
   final SpotifyService spotifyService;
-  final UX ux;
 
-  ArtworkStoreBase({this.spotifyService, this.ux}) {
-    resetColors();
-    reaction<List<int>>((_) => bytes, (bytes) => fetchColors(bytes));
-  }
+  ArtworkStoreBase({this.spotifyService});
 
   @action
   Future fetchBytes(String url) async {
@@ -43,36 +30,6 @@ abstract class ArtworkStoreBase with Store {
     isLoading = false;
   }
 
-  @action
-  Future fetchColors(List<int> bytes) async {
-    if (bytes.isEmpty) {
-      return;
-    }
-
-    try {
-      colors = await findImageColors(bytes);
-    } catch (err) {
-      resetColors();
-    }
-  }
-
-  @action
-  void resetColors() {
-    colors = [ux.primaryColor, ux.primaryColorDark];
-  }
-
   @computed
   bool get hasBytes => !isLoading && bytes != null;
-
-  @computed
-  Color get dominantColor => colors.first.autoDarkened;
-
-  @computed
-  Color get textColor => dominantColor.opposite;
-
-  @computed
-  Color get placeholderBgColor => colors[1];
-
-  @computed
-  Color get placeholderFgColor => colors.first;
 }

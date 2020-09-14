@@ -1,6 +1,6 @@
+import 'package:flyrics/models/search_item.dart';
 import 'package:flyrics/services/genius.dart';
 import 'package:flyrics/services/terminal.dart';
-import 'package:flyrics/models/search_item.dart';
 import 'package:mobx/mobx.dart';
 
 part 'search.g.dart';

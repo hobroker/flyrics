@@ -7,7 +7,7 @@ class LyricsScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final _lyrics = useLyricsStore();
-    final _artwork = useArtworkStore();
+    final _color = useColorStore();
 
     return Container(
       child: O(
@@ -16,7 +16,7 @@ class LyricsScreen extends HookWidget {
           textAlign: TextAlign.start,
           style: TextStyle(
             fontSize: 12,
-            color: _artwork.textColor,
+            color: _color.textColor,
             height: 1.3,
           ),
         ),

@@ -1,5 +1,5 @@
-import 'package:flyrics/services/spotify.dart';
 import 'package:flyrics/models/track.dart';
+import 'package:flyrics/services/spotify.dart';
 import 'package:mobx/mobx.dart';
 
 part 'track.g.dart';

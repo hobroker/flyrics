@@ -17,7 +17,7 @@ class PrimaryContainer extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _artwork = useArtworkStore();
+    final _color = useColorStore();
     final ux = useUX();
 
     return O(
@@ -26,7 +26,7 @@ class PrimaryContainer extends HookWidget {
         height: height,
         duration: ux.transitionDuration,
         decoration: BoxDecoration(
-          color: _artwork.dominantColor,
+          color: _color.dominantColor,
         ),
         child: child,
       ),

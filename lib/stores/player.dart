@@ -1,10 +1,11 @@
 import 'dart:async';
 
-import 'package:flyrics/constants/ux.dart';
 import 'package:flyrics/services/genius.dart';
 import 'package:flyrics/services/spotify.dart';
 import 'package:flyrics/services/terminal.dart';
+import 'package:flyrics/services/ux.dart';
 import 'package:flyrics/stores/artwork.dart';
+import 'package:flyrics/stores/color.dart';
 import 'package:flyrics/stores/lyrics.dart';
 import 'package:flyrics/stores/search.dart';
 import 'package:flyrics/stores/track.dart';
@@ -25,6 +26,7 @@ abstract class PlayerStoreBase with Store {
   TrackStore track;
   SearchStore search;
   ArtworkStore artwork;
+  ColorStore color;
   LyricsStore lyrics;
 
   final SpotifyService spotifyService;
@@ -35,16 +37,10 @@ abstract class PlayerStoreBase with Store {
     TerminalService terminalService,
     UX ux,
   }) {
-    track = TrackStore(
-      spotifyService: spotifyService,
-    );
-    artwork = ArtworkStore(
-      spotifyService: spotifyService,
-      ux: ux,
-    );
-    lyrics = LyricsStore(
-      geniusService: geniusService,
-    );
+    track = TrackStore(spotifyService: spotifyService);
+    artwork = ArtworkStore(spotifyService: spotifyService);
+    lyrics = LyricsStore(geniusService: geniusService);
+    color = ColorStore(ux: ux);
     search = SearchStore(
       geniusService: geniusService,
       terminalService: terminalService,
@@ -52,6 +48,11 @@ abstract class PlayerStoreBase with Store {
   }
 
   void start() {
+    reaction<List<int>>(
+      (_) => artwork.bytes,
+      (bytes) => color.fetchColors(bytes),
+    );
+
     refreshFlow();
   }
 

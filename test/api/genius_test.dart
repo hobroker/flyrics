@@ -9,6 +9,7 @@ import 'package:mockito/mockito.dart';
 Future<http.Response> mockResolvedJson(response) async =>
     http.Response(stringify(response, false), 200);
 
+// ignore: must_be_immutable
 class MockHttpClient extends Mock implements HttpClient {}
 
 void main() {

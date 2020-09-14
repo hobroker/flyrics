@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flyrics/constants/ux.dart';
-import 'package:flyrics/modules/locator.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flyrics/hooks/injections.dart';
 
-class FooterSliver extends StatelessWidget {
+class FooterSliver extends HookWidget {
   final Widget child;
 
   FooterSliver({
@@ -13,13 +13,15 @@ class FooterSliver extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ux = useUX();
+
     return SliverFillRemaining(
       hasScrollBody: false,
       fillOverscroll: false,
       child: Container(
         child: child,
-        height: I<UX>().footerHeight,
-        margin: EdgeInsets.all(I<UX>().spacingUnit * 2),
+        height: ux.footerHeight,
+        margin: EdgeInsets.all(ux.spacingUnit * 2),
       ),
     );
   }

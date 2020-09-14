@@ -1,5 +1,6 @@
-import 'package:flyrics/api/genius.dart';
-import 'package:flyrics/modules/locator.dart';
+import 'package:flyrics/models/track.dart';
+import 'package:flyrics/services/genius.dart';
+import 'package:flyrics/stores/search.dart';
 import 'package:mobx/mobx.dart';
 
 part 'lyrics.g.dart';
@@ -16,11 +17,27 @@ abstract class LyricsStoreBase with Store {
   @observable
   String text;
 
+  final GeniusService geniusService;
+  final SearchStore search;
+
+  LyricsStoreBase({this.geniusService, this.search});
+
+  @action
+  Future updateLyrics(Track track) async {
+    isLoading = true;
+    final query = '${track.artist} ${track.name}';
+
+    await search.searchQuery(query);
+    await fetchGeniusLyrics(search.activeResultUrl);
+
+    isLoading = false;
+  }
+
   @action
   Future fetchGeniusLyrics(String url) async {
     isLoading = true;
     try {
-      text = await I<GeniusService>().fetchLyrics(url);
+      text = await geniusService.fetchLyrics(url);
     } catch (err) {
       error = err;
     }

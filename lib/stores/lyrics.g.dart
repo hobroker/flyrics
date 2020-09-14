@@ -54,6 +54,13 @@ mixin _$LyricsStore on LyricsStoreBase, Store {
     });
   }
 
+  final _$updateLyricsAsyncAction = AsyncAction('LyricsStoreBase.updateLyrics');
+
+  @override
+  Future<dynamic> updateLyrics(Track track) {
+    return _$updateLyricsAsyncAction.run(() => super.updateLyrics(track));
+  }
+
   final _$fetchGeniusLyricsAsyncAction =
       AsyncAction('LyricsStoreBase.fetchGeniusLyrics');
 

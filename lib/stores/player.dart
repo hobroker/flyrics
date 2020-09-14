@@ -105,7 +105,7 @@ abstract class PlayerStoreBase with Store {
 
     if (track.track?.id == oldId) {
       isWorking = false;
-    } else {}
+    }
   }
 
   void _runRefreshFlow({bool now = false}) {

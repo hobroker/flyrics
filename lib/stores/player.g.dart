@@ -16,6 +16,13 @@ mixin _$PlayerStore on PlayerStoreBase, Store {
           () => super.areLyricsLoading,
           name: 'PlayerStoreBase.areLyricsLoading'))
       .value;
+  Computed<bool> _$canShowLyricsComputed;
+
+  @override
+  bool get canShowLyrics =>
+      (_$canShowLyricsComputed ??= Computed<bool>(() => super.canShowLyrics,
+              name: 'PlayerStoreBase.canShowLyrics'))
+          .value;
 
   final _$isRunningAtom = Atom(name: 'PlayerStoreBase.isRunning');
 
@@ -67,7 +74,8 @@ mixin _$PlayerStore on PlayerStoreBase, Store {
     return '''
 isRunning: ${isRunning},
 isWorking: ${isWorking},
-areLyricsLoading: ${areLyricsLoading}
+areLyricsLoading: ${areLyricsLoading},
+canShowLyrics: ${canShowLyrics}
     ''';
   }
 }

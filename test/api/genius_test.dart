@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flyrics/api/config.dart';
-import 'package:flyrics/api/genius.dart';
-import 'package:flyrics/api/http_client.dart';
+import 'package:flyrics/services/config.dart';
+import 'package:flyrics/services/genius.dart';
+import 'package:flyrics/services/http_client.dart';
 import 'package:flyrics/utils/debug.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';

@@ -9,12 +9,11 @@ class Lyrics extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final _player = usePlayerStore();
-    final _lyrics = useLyricsStore();
 
     return O.branch(
-      () => _player.areLyricsLoading || _lyrics.text == null,
-      () => LyricsPlaceholder(),
+      () => _player.canShowLyrics,
       () => LyricsScreen(),
+      () => LyricsPlaceholder(),
     );
   }
 }

@@ -1,5 +1,5 @@
-import 'package:flyrics/api/genius.dart';
-import 'package:flyrics/api/terminal.dart';
+import 'package:flyrics/services/genius.dart';
+import 'package:flyrics/services/terminal.dart';
 import 'package:flyrics/models/search_item.dart';
 import 'package:mobx/mobx.dart';
 

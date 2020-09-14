@@ -1,13 +1,14 @@
 import 'dart:async';
 
-import 'package:flyrics/api/genius.dart';
-import 'package:flyrics/api/spotify.dart';
-import 'package:flyrics/api/terminal.dart';
 import 'package:flyrics/constants/ux.dart';
+import 'package:flyrics/services/genius.dart';
+import 'package:flyrics/services/spotify.dart';
+import 'package:flyrics/services/terminal.dart';
 import 'package:flyrics/stores/artwork.dart';
 import 'package:flyrics/stores/lyrics.dart';
 import 'package:flyrics/stores/search.dart';
 import 'package:flyrics/stores/track.dart';
+import 'package:flyrics/utils/fp.dart';
 import 'package:mobx/mobx.dart';
 
 part 'player.g.dart';
@@ -56,6 +57,9 @@ abstract class PlayerStoreBase with Store {
 
   @computed
   bool get areLyricsLoading => lyrics.isLoading || search.isLoading;
+
+  @computed
+  bool get canShowLyrics => !areLyricsLoading && isNotNull(lyrics.text);
 
   @action
   Future updateIsRunning() async {

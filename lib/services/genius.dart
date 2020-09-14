@@ -1,11 +1,14 @@
 import 'dart:convert';
 
-import 'package:flyrics/api/config.dart';
-import 'package:flyrics/api/http_client.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flyrics/services/config.dart';
+import 'package:flyrics/services/http_client.dart';
 import 'package:html/parser.dart';
 
+final int _MAX_FETCH_LOOPS = 10;
+
+@immutable
 class GeniusService {
-  static final int _MAX_FETCH_LOOPS = 10;
   final String baseUrl = 'api.genius.com';
   final HttpClient client;
   final ConfigService config;
@@ -29,7 +32,7 @@ class GeniusService {
   Future<String> _fetchLyricsText(url, {int loop = 0}) async {
     loop++;
 
-    if (loop == GeniusService._MAX_FETCH_LOOPS) {
+    if (loop == _MAX_FETCH_LOOPS) {
       throw Exception('loop limit reached');
     }
 
@@ -59,8 +62,7 @@ class GeniusService {
 
       return result;
     } catch (e) {
-      throw Exception(
-          'no lyrics after ${GeniusService._MAX_FETCH_LOOPS} tries');
+      throw Exception('no lyrics after ${_MAX_FETCH_LOOPS} tries');
     }
   }
 }

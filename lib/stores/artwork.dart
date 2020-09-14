@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flyrics/api/spotify.dart';
+import 'package:flyrics/services/spotify.dart';
 import 'package:flyrics/constants/ux.dart';
 import 'package:flyrics/modules/color_extension.dart';
 import 'package:flyrics/utils/image.dart';

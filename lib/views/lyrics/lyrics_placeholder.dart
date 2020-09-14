@@ -3,56 +3,66 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flyrics/containers/o.dart';
 import 'package:flyrics/hooks/injections.dart';
 import 'package:flyrics/hooks/media.dart';
+import 'package:flyrics/utils/list.dart';
 import 'package:flyrics/utils/random.dart';
 import 'package:flyrics/views/placeholder_shimmer.dart';
 
 class LyricsPlaceholder extends HookWidget {
-  final double height = 12;
-  final int linesCount = 14;
-
-  double genWidth(appWidth) => appWidth * randomBetween(0.6, 0.8);
-
-  Widget Function(double, int) _buildLine(
-          {bool isLoading, double spacingUnit}) =>
-      (item, index) {
-        return index % 5 == 0
-            ? SizedBox(height: height)
-            : Container(
-                margin: EdgeInsets.only(bottom: spacingUnit),
-                child: PlaceholderShimmer(
-                  height: height,
-                  isAnimated: isLoading,
-                  width: item,
-                ),
-              );
-      };
+  final int _linesCount = 14;
 
   @override
   Widget build(BuildContext context) {
-    final _player = usePlayerStore();
     final ux = useUX();
-    final appWidth = useMediaSize().width;
-    final list = List.generate(linesCount, (idx) => genWidth(appWidth))
-        .toList(growable: false);
+    final _player = usePlayerStore();
+    final maxWidth = useMediaSize().width;
 
     return O(
       () {
-        final _lineBuilder = _buildLine(
-          isLoading: _player.areLyricsLoading,
-          spacingUnit: ux.spacingUnit,
-        );
-
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: mapList<Widget>(list, _lineBuilder),
+          children: generateListOf<_LyricsLine>(
+            _linesCount,
+            (idx) => _LyricsLine(
+              index: idx,
+              maxWidth: maxWidth,
+              isAnimated: _player.areLyricsLoading,
+              bottomSpacing: ux.spacingUnit,
+            ),
+          ),
         );
       },
     );
   }
 }
 
-List mapList<T>(List list, Widget Function(double, int) builder) {
-  var idx = 0;
+class _LyricsLine extends StatelessWidget {
+  final int index;
+  final double bottomSpacing;
+  final bool isAnimated;
+  final double maxWidth;
+  final double _height = 12;
 
-  return list.map((item) => builder(item, idx++)).toList(growable: false);
+  const _LyricsLine({
+    Key key,
+    this.index,
+    this.bottomSpacing,
+    this.isAnimated,
+    this.maxWidth,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    if (index % 5 == 0) {
+      return SizedBox(height: _height);
+    }
+
+    return Container(
+      margin: EdgeInsets.only(bottom: bottomSpacing),
+      child: PlaceholderShimmer(
+        height: _height,
+        isAnimated: isAnimated,
+        width: maxWidth * randomBetween(0.6, 0.8),
+      ),
+    );
+  }
 }

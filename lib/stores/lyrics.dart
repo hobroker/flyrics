@@ -1,4 +1,4 @@
-import 'package:flyrics/api/genius.dart';
+import 'package:flyrics/services/genius.dart';
 import 'package:mobx/mobx.dart';
 
 part 'lyrics.g.dart';

@@ -1,7 +1,9 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flyrics/utils/debug.dart';
 
+@immutable
 class TerminalService {
   const TerminalService();
 
@@ -18,7 +20,7 @@ class TerminalService {
   }
 
   Future openUrl(String url) async {
-    await exec('open', args: [url]);
+    await _exec('open', [url]);
   }
 
   Future<String> _exec(String cmd, List<String> args) async {

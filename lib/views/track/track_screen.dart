@@ -8,6 +8,7 @@ import 'package:flyrics/views/track/track_name.dart';
 class TrackScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
+    final _artwork = useArtworkStore();
     final _track = useTrackStore();
     final ux = useUX();
 
@@ -18,14 +19,14 @@ class TrackScreen extends HookWidget {
           Flexible(
             child: TrackName(
               name: _track.track.name,
-              textColor: _track.artwork.textColor,
+              textColor: _artwork.textColor,
             ),
           ),
           SizedBox(height: ux.spacingUnit),
           TextEllipsis(
             text: _track.track.artist,
             style: TextStyle(
-              color: _track.artwork.textColor,
+              color: _artwork.textColor,
               fontSize: 15,
             ),
           ),

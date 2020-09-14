@@ -51,12 +51,12 @@ class PlaceholderShimmer extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _track = useTrackStore();
+    final _artwork = useArtworkStore();
     final ux = useUX();
 
     return O(() {
-      final bg = _track.artwork.placeholderBgColor;
-      final fg = _track.artwork.placeholderFgColor;
+      final bg = _artwork.placeholderBgColor;
+      final fg = _artwork.placeholderFgColor;
 
       return _wrapper(
         (width, height) => Shimmer.fromColors(

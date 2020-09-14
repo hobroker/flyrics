@@ -6,16 +6,17 @@ import 'package:flyrics/hooks/injections.dart';
 class LyricsScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    final _track = useTrackStore();
+    final _lyrics = useLyricsStore();
+    final _artwork = useArtworkStore();
 
     return Container(
       child: O(
         () => SelectableText(
-          _track.lyrics.text,
+          _lyrics.text,
           textAlign: TextAlign.start,
           style: TextStyle(
             fontSize: 12,
-            color: _track.artwork.textColor,
+            color: _artwork.textColor,
             height: 1.3,
           ),
         ),

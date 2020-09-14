@@ -23,6 +23,8 @@ abstract class PlayerStoreBase with Store {
 
   TrackStore track;
   SearchStore search;
+  ArtworkStore artwork;
+  LyricsStore lyrics;
 
   final SpotifyService spotifyService;
 
@@ -34,8 +36,13 @@ abstract class PlayerStoreBase with Store {
   }) {
     track = TrackStore(
       spotifyService: spotifyService,
-      artwork: ArtworkStore(spotifyService: spotifyService, ux: ux),
-      lyrics: LyricsStore(geniusService: geniusService),
+    );
+    artwork = ArtworkStore(
+      spotifyService: spotifyService,
+      ux: ux,
+    );
+    lyrics = LyricsStore(
+      geniusService: geniusService,
     );
     search = SearchStore(
       geniusService: geniusService,
@@ -46,6 +53,9 @@ abstract class PlayerStoreBase with Store {
   void start() {
     refreshFlow();
   }
+
+  @computed
+  bool get areLyricsLoading => lyrics.isLoading || search.isLoading;
 
   @action
   Future updateIsRunning() async {
@@ -63,12 +73,12 @@ abstract class PlayerStoreBase with Store {
 
     final newTrack = await track.updateCurrentTrack();
     if (newTrack != null) {
-      track.lyrics.text = null;
-      await track.artwork.fetchBytes(newTrack.artwork);
+      lyrics.text = null;
+      await artwork.fetchBytes(newTrack.artwork);
 
       final query = '${newTrack.artist} ${newTrack.name}';
       await search.searchQuery(query);
-      await track.lyrics.fetchGeniusLyrics(search.activeResultUrl);
+      await lyrics.fetchGeniusLyrics(search.activeResultUrl);
     }
 
     isWorking = false;

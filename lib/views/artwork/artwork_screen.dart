@@ -19,7 +19,7 @@ class ArtworkScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _track = useTrackStore();
+    final _artwork = useArtworkStore();
 
     return MouseRegion(
       cursor: SystemMouseCursors.click,
@@ -28,11 +28,11 @@ class ArtworkScreen extends HookWidget {
           final child = Stack(
             children: [
               Image.memory(
-                _track.artwork.bytes,
+                _artwork.bytes,
                 fit: BoxFit.fill,
               ),
               ArtworkGradient(
-                color: _track.artwork.dominantColor,
+                color: _artwork.dominantColor,
               ),
             ],
           );

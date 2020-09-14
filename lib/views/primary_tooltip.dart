@@ -15,7 +15,7 @@ class PrimaryTooltip extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _track = useTrackStore();
+    final _artwork = useArtworkStore();
 
     return O(
       () => Tooltip(
@@ -23,12 +23,12 @@ class PrimaryTooltip extends HookWidget {
         child: child,
         verticalOffset: 16,
         textStyle: TextStyle(
-          color: _track.artwork.dominantColor,
+          color: _artwork.dominantColor,
           height: 1,
         ),
         padding: EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: _track.artwork.textColor,
+          color: _artwork.textColor,
         ),
       ),
     );

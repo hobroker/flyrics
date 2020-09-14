@@ -8,9 +8,10 @@ import 'package:flyrics/views/artwork/artwork_screen.dart';
 class Artwork extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    final _track = useTrackStore();
+    final _artwork = useArtworkStore();
+
     return O.branch(
-      () => _track.artwork.hasBytes,
+      () => _artwork.hasBytes,
       () => ArtworkScreen(),
       () => ArtworkPlaceholder(),
     );

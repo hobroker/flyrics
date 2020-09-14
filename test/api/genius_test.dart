@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flyrics/api/api.dart';
 import 'package:flyrics/api/config.dart';
+import 'package:flyrics/api/genius.dart';
 import 'package:flyrics/api/http_client.dart';
 import 'package:flyrics/utils/debug.dart';
 import 'package:http/http.dart' as http;
@@ -28,8 +28,11 @@ void main() {
                 ]
               }
             });
-        final api = Api(ConfigService({}), client: client);
-        final list = await api.genius.search('something');
+        final genius = GeniusService(
+          client: client,
+          config: ConfigService({}),
+        );
+        final list = await genius.search('something');
 
         expect(
             list,
@@ -44,8 +47,11 @@ void main() {
         when(client.get(any)).thenAnswer((_) async => {
               'response': {'hits': []}
             });
-        final api = Api(ConfigService({}), client: client);
-        final list = await api.genius.search('something');
+        final genius = GeniusService(
+          client: client,
+          config: ConfigService({}),
+        );
+        final list = await genius.search('something');
 
         expect(list, equals([]));
       });

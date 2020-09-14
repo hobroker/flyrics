@@ -7,7 +7,7 @@ import 'package:flyrics/views/placeholder_shimmer.dart';
 class ArtworkPlaceholder extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    final _track = useTrackStore();
+    final _artwork = useArtworkStore();
 
     return LayoutBuilder(builder: (context, constraints) {
       final height = constraints.maxHeight;
@@ -20,7 +20,7 @@ class ArtworkPlaceholder extends HookWidget {
           () => PlaceholderShimmer(
             height: size,
             width: size,
-            isAnimated: _track.artwork.isLoading,
+            isAnimated: _artwork.isLoading,
           ),
         ),
       );

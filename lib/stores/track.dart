@@ -1,7 +1,5 @@
 import 'package:flyrics/api/spotify.dart';
 import 'package:flyrics/models/track.dart';
-import 'package:flyrics/stores/artwork.dart';
-import 'package:flyrics/stores/lyrics.dart';
 import 'package:mobx/mobx.dart';
 
 part 'track.g.dart';
@@ -21,11 +19,9 @@ abstract class TrackStoreBase with Store {
   @observable
   Object error;
 
-  final ArtworkStore artwork;
-  final LyricsStore lyrics;
   final SpotifyService spotifyService;
 
-  TrackStoreBase({this.spotifyService, this.artwork, this.lyrics});
+  TrackStoreBase({this.spotifyService});
 
   @action
   Future updateCurrentTrack() async {

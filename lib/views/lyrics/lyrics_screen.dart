@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flyrics/hooks/store.dart';
-import 'package:flyrics/selectors/artwork.dart';
-import 'package:flyrics/selectors/lyrics.dart';
+import 'package:flyrics/containers/o.dart';
+import 'package:flyrics/hooks/provider.dart';
 
 class LyricsScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    final textColor = useSelector(resolveArtworkTextColor);
-    final text = useSelector(getLyricsText);
+    final _track = useTrackStore();
 
     return Container(
-      child: SelectableText(
-        text,
-        textAlign: TextAlign.start,
-        style: TextStyle(
-          fontSize: 12,
-          color: textColor,
-          height: 1.3,
+      child: O(
+        () => SelectableText(
+          _track.lyrics.text,
+          textAlign: TextAlign.start,
+          style: TextStyle(
+            fontSize: 12,
+            color: _track.artwork.textColor,
+            height: 1.3,
+          ),
         ),
       ),
     );

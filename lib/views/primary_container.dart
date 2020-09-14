@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flyrics/hooks/store.dart';
-import 'package:flyrics/selectors/artwork.dart';
 import 'package:flyrics/constants/ux.dart';
+import 'package:flyrics/containers/o.dart';
+import 'package:flyrics/hooks/provider.dart';
+import 'package:flyrics/modules/locator.dart';
 
 class PrimaryContainer extends HookWidget {
   final Widget child;
@@ -18,16 +19,18 @@ class PrimaryContainer extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = useSelector(resolvedDominantColor);
+    final _track = useTrackStore();
 
-    return AnimatedContainer(
-      width: width,
-      height: height,
-      duration: UX.transitionDuration,
-      decoration: BoxDecoration(
-        color: backgroundColor,
+    return O(
+      () => AnimatedContainer(
+        width: width,
+        height: height,
+        duration: I<UX>().transitionDuration,
+        decoration: BoxDecoration(
+          color: _track.artwork.dominantColor,
+        ),
+        child: child,
       ),
-      child: child,
     );
   }
 }

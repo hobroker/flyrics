@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flyrics/constants/ux.dart';
+import 'package:flyrics/modules/locator.dart';
 
 class BodySliver extends StatelessWidget {
   final Widget child;
@@ -18,9 +19,9 @@ class BodySliver extends StatelessWidget {
       child: Container(
         child: child,
         padding: EdgeInsets.only(
-          top: UX.spacingUnit * 2,
-          left: UX.spacingUnit * 2,
-          right: UX.spacingUnit,
+          top: I<UX>().spacingUnit * 2,
+          left: I<UX>().spacingUnit * 2,
+          right: I<UX>().spacingUnit,
         ),
       ),
     );

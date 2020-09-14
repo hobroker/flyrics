@@ -4,15 +4,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 class BaseIcon extends StatelessWidget {
   final String name;
   final Color color;
-  final double width;
-  final double height;
+  final double size;
 
   BaseIcon({
     Key key,
-    @required this.name,
-    @required this.color,
-    this.width,
-    this.height,
+    this.size,
+    this.name,
+    this.color,
   }) : super(key: key);
 
   @override
@@ -20,8 +18,8 @@ class BaseIcon extends StatelessWidget {
     return SvgPicture.asset(
       name,
       color: color,
-      width: width,
-      height: height,
+      width: size,
+      height: size,
     );
   }
 }

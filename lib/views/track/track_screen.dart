@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flyrics/constants/ux.dart';
 import 'package:flyrics/containers/o.dart';
 import 'package:flyrics/hooks/provider.dart';
+import 'package:flyrics/modules/locator.dart';
 import 'package:flyrics/views/text_ellipsis.dart';
 import 'package:flyrics/views/track/track_name.dart';
 
@@ -21,7 +22,7 @@ class TrackScreen extends HookWidget {
               textColor: _track.artwork.textColor,
             ),
           ),
-          SizedBox(height: UX.spacingUnit),
+          SizedBox(height: I<UX>().spacingUnit),
           TextEllipsis(
             text: _track.track.artist,
             style: TextStyle(

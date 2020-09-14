@@ -4,6 +4,7 @@ import 'package:flyrics/constants/ux.dart';
 import 'package:flyrics/containers/o.dart';
 import 'package:flyrics/hooks/media.dart';
 import 'package:flyrics/hooks/provider.dart';
+import 'package:flyrics/modules/locator.dart';
 import 'package:flyrics/utils/random.dart';
 import 'package:flyrics/views/placeholder_shimmer.dart';
 
@@ -17,7 +18,7 @@ class LyricsPlaceholder extends HookWidget {
         return index % 5 == 0
             ? SizedBox(height: height)
             : Container(
-                margin: EdgeInsets.only(bottom: UX.spacingUnit),
+                margin: EdgeInsets.only(bottom: I<UX>().spacingUnit),
                 child: PlaceholderShimmer(
                   height: height,
                   isAnimated: isLoading,

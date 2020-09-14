@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flyrics/constants/ux.dart';
+import 'package:flyrics/modules/locator.dart';
 
 class ArtworkGradient extends StatelessWidget {
   final Color color;
@@ -19,7 +20,7 @@ class ArtworkGradient extends StatelessWidget {
       return Container(
         width: shadeWidth,
         child: AnimatedContainer(
-          duration: UX.transitionDuration,
+          duration: I<UX>().transitionDuration,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.centerLeft,

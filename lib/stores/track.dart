@@ -24,7 +24,7 @@ abstract class TrackStoreBase with Store {
   TrackStoreBase({this.spotifyService});
 
   @action
-  Future updateCurrentTrack() async {
+  Future fetchCurrentTrack() async {
     if (track == null) {
       isLoading = true;
     }
@@ -36,14 +36,10 @@ abstract class TrackStoreBase with Store {
       if (isNewTrack) {
         track = Track.fromJson(json);
         isLoading = false;
-
-        return track;
       }
     } catch (err) {
       error = err;
     }
-
-    return null;
   }
 
   @computed

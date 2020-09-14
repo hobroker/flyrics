@@ -17,7 +17,5 @@ Future<void> main() async {
     (find) => GeniusService(config: config, client: find()),
   ]);
 
-  runApp(
-    App(),
-  );
+  runApp(App());
 }

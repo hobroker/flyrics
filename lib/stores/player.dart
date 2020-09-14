@@ -70,19 +70,25 @@ abstract class PlayerStoreBase with Store {
     if (!isRunning) {
       return;
     }
+    final oldId = track.track?.id;
+    final isNewTrack = (_) => track.track?.id != oldId;
 
-    final newTrack = await track.updateCurrentTrack();
-    if (newTrack != null) {
-      final query = '${newTrack.artist} ${newTrack.name}';
-      lyrics.text = null;
+    await track.fetchCurrentTrack();
 
-      await Future.wait([
-        artwork.fetchBytes(newTrack.artwork),
-        () async {
-          await search.searchQuery(query);
-          await lyrics.fetchGeniusLyrics(search.activeResultUrl);
-        }()
-      ]);
+    final _updateArtwork = when(isNewTrack, () async {
+      await artwork.fetchBytes(track.track.artwork);
+    });
+
+    final _updateLyrics = when(isNewTrack, () async {
+      final query = '${track.track.artist} ${track.track.name}';
+
+      await search.searchQuery(query);
+      await lyrics.fetchGeniusLyrics(search.activeResultUrl);
+    });
+
+    if (!isNewTrack(null)) {
+      _updateLyrics();
+      _updateArtwork();
     }
 
     isWorking = false;

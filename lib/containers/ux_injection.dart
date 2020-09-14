@@ -4,13 +4,10 @@ import 'package:flyrics/constants/ux.dart';
 import 'package:flyrics/hooks/use_theme.dart';
 import 'package:flyrics/modules/injection.dart';
 
-class PageWrapper extends HookWidget {
+class UXInjection extends HookWidget {
   final Widget child;
 
-  const PageWrapper({
-    Key key,
-    this.child,
-  }) : super(key: key);
+  const UXInjection(this.child, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

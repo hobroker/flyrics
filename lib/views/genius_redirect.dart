@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flyrics/constants/ux.dart';
 import 'package:flyrics/containers/o.dart';
-import 'package:flyrics/modules/locator.dart';
-import 'package:flyrics/stores/player.dart';
+import 'package:flyrics/hooks/provider.dart';
 import 'package:flyrics/utils/fp.dart';
 import 'package:flyrics/views/hover_builder.dart';
 import 'package:flyrics/views/icons/genius_icon.dart';
 import 'package:flyrics/views/primary_tooltip.dart';
 
-class GeniusRedirect extends StatelessWidget {
-  final _player = I<PlayerStore>();
-
+class GeniusRedirect extends HookWidget {
   @override
   Widget build(BuildContext context) {
+    final _player = usePlayerStore();
+
     return O.when(
       () => isNotNull(_player.search.activeResultUrl),
       () => LayoutBuilder(builder: (context, constraints) {

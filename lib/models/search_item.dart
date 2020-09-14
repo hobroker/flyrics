@@ -1,3 +1,4 @@
+import 'package:flyrics/utils/debug.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'search_item.g.dart';
@@ -12,4 +13,7 @@ class SearchItem {
   factory SearchItem.fromJson(Map json) => _$SearchItemFromJson(json);
 
   Map toJson() => _$SearchItemToJson(this);
+
+  @override
+  String toString() => 'SearchItem ${stringify(toJson(), true)}';
 }

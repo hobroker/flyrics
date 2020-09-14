@@ -9,13 +9,12 @@ part of 'artwork.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$ArtworkStore on ArtworkStoreBase, Store {
-  Computed<bool> _$hasBytesComputed;
+  Computed<bool> _$canShowComputed;
 
   @override
-  bool get hasBytes =>
-      (_$hasBytesComputed ??= Computed<bool>(() => super.hasBytes,
-              name: 'ArtworkStoreBase.hasBytes'))
-          .value;
+  bool get canShow => (_$canShowComputed ??=
+          Computed<bool>(() => super.canShow, name: 'ArtworkStoreBase.canShow'))
+      .value;
 
   final _$isLoadingAtom = Atom(name: 'ArtworkStoreBase.isLoading');
 
@@ -75,7 +74,7 @@ mixin _$ArtworkStore on ArtworkStoreBase, Store {
 isLoading: ${isLoading},
 error: ${error},
 bytes: ${bytes},
-hasBytes: ${hasBytes}
+canShow: ${canShow}
     ''';
   }
 }

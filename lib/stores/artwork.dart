@@ -31,5 +31,5 @@ abstract class ArtworkStoreBase with Store {
   }
 
   @computed
-  bool get hasBytes => !isLoading && bytes != null;
+  bool get canShow => !isLoading && bytes != null;
 }

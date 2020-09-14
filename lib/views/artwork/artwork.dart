@@ -11,7 +11,7 @@ class Artwork extends HookWidget {
     final _artwork = useArtworkStore();
 
     return O.branch(
-      () => _artwork.hasBytes,
+      () => _artwork.canShow,
       () => ArtworkScreen(),
       () => ArtworkPlaceholder(),
     );

@@ -12,29 +12,27 @@ class ArtworkGradient extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final height = constraints.maxHeight;
-        final shadeWidth = height * .75;
+    return LayoutBuilder(builder: (context, constraints) {
+      final height = constraints.maxHeight;
+      final shadeWidth = height * .75;
 
-        return Container(
-          width: shadeWidth,
-          child: AnimatedContainer(
-            duration: UX.transitionDuration,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                tileMode: TileMode.repeated,
-                colors: [
-                  color.withOpacity(0.75),
-                  Colors.transparent,
-                ],
-              ),
+      return Container(
+        width: shadeWidth,
+        child: AnimatedContainer(
+          duration: UX.transitionDuration,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              tileMode: TileMode.repeated,
+              colors: [
+                color.withOpacity(0.75),
+                Colors.transparent,
+              ],
             ),
           ),
-        );
-      },
-    );
+        ),
+      );
+    });
   }
 }

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flyrics/containers/o.dart';
-import 'package:flyrics/modules/locator.dart';
-import 'package:flyrics/stores/track.dart';
+import 'package:flyrics/hooks/provider.dart';
 
-class PrimaryTooltip extends StatelessWidget {
+class PrimaryTooltip extends HookWidget {
   final String message;
   final Widget child;
-
-  final _track = I<TrackStore>();
 
   PrimaryTooltip({
     Key key,
@@ -17,6 +15,8 @@ class PrimaryTooltip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _track = useTrackStore();
+
     return O(
       () => Tooltip(
         message: message,

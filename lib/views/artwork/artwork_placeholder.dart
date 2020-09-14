@@ -1,31 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flyrics/containers/o.dart';
-import 'package:flyrics/modules/locator.dart';
-import 'package:flyrics/stores/track.dart';
+import 'package:flyrics/hooks/provider.dart';
 import 'package:flyrics/views/placeholder_shimmer.dart';
 
-class ArtworkPlaceholder extends StatelessWidget {
-  final _track = I<TrackStore>();
-
+class ArtworkPlaceholder extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        var height = constraints.maxHeight;
-        var size = height * 0.8;
-        var margin = (height - size) / 2;
+    final _track = useTrackStore();
 
-        return Container(
-          margin: EdgeInsets.symmetric(horizontal: margin),
-          child: O(
-            () => PlaceholderShimmer(
-              height: size,
-              width: size,
-              isAnimated: _track.artwork.isLoading,
-            ),
+    return LayoutBuilder(builder: (context, constraints) {
+      final height = constraints.maxHeight;
+      final size = height * 0.8;
+      final margin = (height - size) / 2;
+
+      return Container(
+        margin: EdgeInsets.symmetric(horizontal: margin),
+        child: O(
+          () => PlaceholderShimmer(
+            height: size,
+            width: size,
+            isAnimated: _track.artwork.isLoading,
           ),
-        );
-      },
-    );
+        ),
+      );
+    });
   }
 }

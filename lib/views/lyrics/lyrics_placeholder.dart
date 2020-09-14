@@ -29,7 +29,7 @@ class LyricsPlaceholder extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _lyrics = useLyricsStore();
+    final _player = usePlayerStore();
     final ux = useUX();
     final appWidth = useMediaSize().width;
     final list = List.generate(linesCount, (idx) => genWidth(appWidth))
@@ -38,7 +38,7 @@ class LyricsPlaceholder extends HookWidget {
     return O(
       () {
         final _lineBuilder = _buildLine(
-          isLoading: _lyrics.isLoading,
+          isLoading: _player.areLyricsLoading,
           spacingUnit: ux.spacingUnit,
         );
 

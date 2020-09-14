@@ -5,10 +5,10 @@ import 'package:flyrics/api/http_client.dart';
 import 'package:flyrics/api/spotify.dart';
 import 'package:flyrics/api/terminal.dart';
 import 'package:flyrics/containers/app.dart';
-import 'package:flyrics/modules/injection/injection.dart';
+import 'package:flyrics/modules/injection.dart';
 
 Future<void> main() async {
-  final config = await ConfigService.init();
+  final config = await ConfigService.create();
 
   Injection.provideForRoot([
     (_) => HttpClient(),

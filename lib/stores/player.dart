@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flyrics/api/genius.dart';
 import 'package:flyrics/api/spotify.dart';
 import 'package:flyrics/api/terminal.dart';
@@ -74,12 +73,16 @@ abstract class PlayerStoreBase with Store {
 
     final newTrack = await track.updateCurrentTrack();
     if (newTrack != null) {
-      lyrics.text = null;
-      await artwork.fetchBytes(newTrack.artwork);
-
       final query = '${newTrack.artist} ${newTrack.name}';
-      await search.searchQuery(query);
-      await lyrics.fetchGeniusLyrics(search.activeResultUrl);
+      lyrics.text = null;
+
+      await Future.wait([
+        artwork.fetchBytes(newTrack.artwork),
+        () async {
+          await search.searchQuery(query);
+          await lyrics.fetchGeniusLyrics(search.activeResultUrl);
+        }()
+      ]);
     }
 
     isWorking = false;

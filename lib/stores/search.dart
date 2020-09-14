@@ -24,10 +24,12 @@ abstract class SearchStoreBase with Store {
 
   @action
   Future searchQuery(String str) async {
+    isLoading = true;
     results = [];
     final list = await geniusService.search(str);
     results =
         List<SearchItem>.from(list.map((item) => SearchItem.fromJson(item)));
+    isLoading = false;
   }
 
   @action

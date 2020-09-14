@@ -21,13 +21,13 @@ class LayoutWrapper extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final spacingUnit = useUX().spacingUnit;
+    final ux = useUX();
 
     return Container(
-      padding: EdgeInsets.only(right: spacingUnit),
+      padding: EdgeInsets.only(right: ux.spacingUnit),
       child: CupertinoScrollbar(
-        thicknessWhileDragging: spacingUnit * 2,
-        thickness: spacingUnit,
+        thicknessWhileDragging: ux.spacingUnit * 2,
+        thickness: ux.spacingUnit,
         child: CustomScrollView(
           slivers: [
             HeaderSliver(child: header),

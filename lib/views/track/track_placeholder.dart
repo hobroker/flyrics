@@ -8,7 +8,7 @@ import 'package:flyrics/views/placeholder_shimmer.dart';
 class TrackPlaceholder extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    final spacingUnit = useUX().spacingUnit;
+    final ux = useUX();
     final _track = useTrackStore();
 
     return O(
@@ -20,7 +20,7 @@ class TrackPlaceholder extends HookWidget {
             isAnimated: _track.isLoading,
             widthRatio: randomBetween(0.7, 0.9),
           ),
-          SizedBox(height: spacingUnit),
+          SizedBox(height: ux.spacingUnit),
           PlaceholderShimmer(
             height: 15,
             isAnimated: _track.isLoading,

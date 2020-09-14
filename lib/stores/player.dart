@@ -1,9 +1,9 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flyrics/api/genius.dart';
 import 'package:flyrics/api/spotify.dart';
 import 'package:flyrics/api/terminal.dart';
-import 'package:flyrics/constants/ux.dart';
 import 'package:flyrics/stores/artwork.dart';
 import 'package:flyrics/stores/lyrics.dart';
 import 'package:flyrics/stores/search.dart';
@@ -32,14 +32,14 @@ abstract class PlayerStoreBase with Store {
     this.spotifyService,
     GeniusService geniusService,
     TerminalService terminalService,
-    UX ux,
+    ThemeData theme,
   }) {
     track = TrackStore(
       spotifyService: spotifyService,
     );
     artwork = ArtworkStore(
       spotifyService: spotifyService,
-      ux: ux,
+      theme: theme,
     );
     lyrics = LyricsStore(
       geniusService: geniusService,

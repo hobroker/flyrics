@@ -15,7 +15,7 @@ class ServicesInjector extends StatelessWidget {
   const ServicesInjector({
     Key key,
     @required this.config,
-    this.child,
+    @required this.child,
   }) : super(key: key);
 
   @override

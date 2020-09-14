@@ -13,7 +13,7 @@ class BodySliver extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final spacingUnit = useUX().spacingUnit;
+    final ux = useUX();
 
     return SliverFillRemaining(
       hasScrollBody: false,
@@ -21,9 +21,9 @@ class BodySliver extends HookWidget {
       child: Container(
         child: child,
         padding: EdgeInsets.only(
-          top: spacingUnit * 2,
-          left: spacingUnit * 2,
-          right: spacingUnit,
+          top: ux.spacingUnit * 2,
+          left: ux.spacingUnit * 2,
+          right: ux.spacingUnit,
         ),
       ),
     );

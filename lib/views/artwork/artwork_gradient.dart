@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flyrics/constants/ux.dart';
-import 'package:flyrics/modules/locator.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flyrics/hooks/injections.dart';
 
-class ArtworkGradient extends StatelessWidget {
+class ArtworkGradient extends HookWidget {
   final Color color;
 
   ArtworkGradient({
@@ -13,6 +13,8 @@ class ArtworkGradient extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ux = useUX();
+
     return LayoutBuilder(builder: (context, constraints) {
       final height = constraints.maxHeight;
       final shadeWidth = height * .75;
@@ -20,7 +22,7 @@ class ArtworkGradient extends StatelessWidget {
       return Container(
         width: shadeWidth,
         child: AnimatedContainer(
-          duration: I<UX>().transitionDuration,
+          duration: ux.transitionDuration,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.centerLeft,

@@ -1,11 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+@immutable
 class UX {
-  UX();
+  final ThemeData theme;
 
-  final Color primaryColor = Color(0xff282828);
-  final Color primaryDarkColor = Color(0xff121212);
-  final Color textColor = Color(0xffffffff);
+  UX({this.theme});
+
+  Color get primaryColor => theme.primaryColor;
+
+  Color get primaryColorDark => theme.primaryColorDark;
 
   final Duration transitionDuration = Duration(milliseconds: 300);
 

@@ -5,8 +5,8 @@ class ConfigService {
 
   ConfigService(this.env);
 
-  static Future<ConfigService> init() async {
-    await DotEnv().load('.env');
+  static Future<ConfigService> create([String filename = '.env']) async {
+    await DotEnv().load(filename);
 
     return ConfigService(DotEnv().env);
   }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/constants/ux.dart';
-import 'package:flyrics/modules/locator.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flyrics/hooks/injections.dart';
 
-class TrackWrapper extends StatelessWidget {
+class TrackWrapper extends HookWidget {
   final Widget child;
 
   TrackWrapper({
@@ -12,11 +12,13 @@ class TrackWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ux = useUX();
+
     return Expanded(
       child: Container(
         padding: EdgeInsets.symmetric(
-          vertical: I<UX>().spacingUnit,
-          horizontal: I<UX>().spacingUnit * 2,
+          vertical: ux.spacingUnit,
+          horizontal: ux.spacingUnit * 2,
         ),
         child: Container(
           child: child,

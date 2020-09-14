@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/api/api.dart';
-import 'package:flyrics/api/config.dart';
 import 'package:flyrics/containers/app.dart';
-import 'package:flyrics/modules/locator.dart';
+import 'package:flyrics/factories.dart';
+import 'package:flyrics/modules/provider/injection.dart';
+import 'package:flyrics/services/config.dart';
 
 Future<void> main() async {
-  final config = await ConfigService.init();
-  final api = Api(config);
+  final config = await ConfigService.create();
 
-  setupLocator(api: api);
+  Provider.provideForRoot([
+    httpClientFactory,
+    terminalFactory,
+    spotifyFactory,
+    geniusFactory(config),
+  ]);
 
   runApp(App());
 }

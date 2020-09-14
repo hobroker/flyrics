@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flyrics/constants/ux.dart';
-import 'package:flyrics/modules/locator.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flyrics/hooks/injections.dart';
 import 'package:flyrics/views/primary_container.dart';
 import 'package:flyrics/views/sliver_header_delegate.dart';
 
-class HeaderSliver extends StatelessWidget {
+class HeaderSliver extends HookWidget {
   final Widget child;
+
   HeaderSliver({
     Key key,
     @required this.child,
@@ -14,11 +15,12 @@ class HeaderSliver extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ux = useUX();
     return SliverPersistentHeader(
       pinned: true,
       delegate: SliverHeaderDelegate(
-        minHeight: I<UX>().headerMinHeight,
-        maxHeight: I<UX>().headerMaxHeight,
+        minHeight: ux.headerMinHeight,
+        maxHeight: ux.headerMaxHeight,
         child: PrimaryContainer(
           child: child,
         ),

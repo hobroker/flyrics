@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flyrics/api/api.dart';
-import 'package:flyrics/api/config.dart';
-import 'package:flyrics/api/http_client.dart';
+import 'package:flyrics/services/config.dart';
+import 'package:flyrics/services/genius.dart';
+import 'package:flyrics/services/http_client.dart';
 import 'package:flyrics/utils/debug.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
@@ -9,6 +9,7 @@ import 'package:mockito/mockito.dart';
 Future<http.Response> mockResolvedJson(response) async =>
     http.Response(stringify(response, false), 200);
 
+// ignore: must_be_immutable
 class MockHttpClient extends Mock implements HttpClient {}
 
 void main() {
@@ -28,8 +29,11 @@ void main() {
                 ]
               }
             });
-        final api = Api(ConfigService({}), client: client);
-        final list = await api.genius.search('something');
+        final genius = GeniusService(
+          client: client,
+          config: ConfigService({}),
+        );
+        final list = await genius.search('something');
 
         expect(
             list,
@@ -44,8 +48,11 @@ void main() {
         when(client.get(any)).thenAnswer((_) async => {
               'response': {'hits': []}
             });
-        final api = Api(ConfigService({}), client: client);
-        final list = await api.genius.search('something');
+        final genius = GeniusService(
+          client: client,
+          config: ConfigService({}),
+        );
+        final list = await genius.search('something');
 
         expect(list, equals([]));
       });

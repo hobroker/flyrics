@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flyrics/api/spotify.dart';
+import 'package:flyrics/constants/ux.dart';
 import 'package:flyrics/modules/color_extension.dart';
 import 'package:flyrics/utils/image.dart';
 import 'package:mobx/mobx.dart';
@@ -24,9 +25,9 @@ abstract class ArtworkStoreBase with Store {
   List<Color> colors;
 
   final SpotifyService spotifyService;
-  final ThemeData theme;
+  final UX ux;
 
-  ArtworkStoreBase({this.spotifyService, this.theme}) {
+  ArtworkStoreBase({this.spotifyService, this.ux}) {
     resetColors();
     reaction<List<int>>((_) => bytes, (bytes) => fetchColors(bytes));
   }
@@ -57,7 +58,7 @@ abstract class ArtworkStoreBase with Store {
 
   @action
   void resetColors() {
-    colors = [theme.primaryColor, theme.primaryColorDark];
+    colors = [ux.primaryColor, ux.primaryColorDark];
   }
 
   @computed

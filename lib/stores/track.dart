@@ -35,8 +35,9 @@ abstract class TrackStoreBase with Store {
 
       if (isNewTrack) {
         track = Track.fromJson(json);
-        isLoading = false;
       }
+
+      isLoading = false;
     } catch (err) {
       error = err;
     }

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flyrics/models/track.dart';
 import 'package:flyrics/services/genius.dart';
 import 'package:flyrics/services/spotify.dart';
 import 'package:flyrics/services/terminal.dart';
@@ -24,7 +25,6 @@ abstract class PlayerStoreBase with Store {
   bool isWorking = false;
 
   TrackStore track;
-  SearchStore search;
   ArtworkStore artwork;
   ColorStore color;
   LyricsStore lyrics;
@@ -39,12 +39,14 @@ abstract class PlayerStoreBase with Store {
   }) {
     track = TrackStore(spotifyService: spotifyService);
     artwork = ArtworkStore(spotifyService: spotifyService);
-    lyrics = LyricsStore(geniusService: geniusService);
-    color = ColorStore(ux: ux);
-    search = SearchStore(
+    lyrics = LyricsStore(
       geniusService: geniusService,
-      terminalService: terminalService,
+      search: SearchStore(
+        geniusService: geniusService,
+        terminalService: terminalService,
+      ),
     );
+    color = ColorStore(ux: ux);
 
     start();
   }
@@ -55,11 +57,27 @@ abstract class PlayerStoreBase with Store {
       (bytes) => color.fetchColors(bytes),
     );
 
+    reaction<Track>(
+      (_) => track.track,
+      (track) => artwork.fetchBytes(track.artwork),
+    );
+
+    reaction<Track>(
+      (_) => track.track,
+      (track) async {
+        try {
+          await lyrics.updateLyrics(track);
+        } finally {
+          isWorking = false;
+        }
+      },
+    );
+
     _runRefreshFlow(now: true);
   }
 
   @computed
-  bool get areLyricsLoading => lyrics.isLoading || search.isLoading;
+  bool get areLyricsLoading => lyrics.isLoading || lyrics.search.isLoading;
 
   @computed
   bool get canShowLyrics => !areLyricsLoading && isNotNull(lyrics.text);
@@ -85,21 +103,9 @@ abstract class PlayerStoreBase with Store {
 
     await track.fetchCurrentTrack();
 
-    if (track.track?.id != oldId) {
-      await Future.wait([
-        artwork.fetchBytes(track.track.artwork),
-        () async {
-          final query = '${track.track.artist} ${track.track.name}';
-
-          await search.searchQuery(query);
-          await lyrics.fetchGeniusLyrics(search.activeResultUrl);
-
-          isWorking = false;
-        }()
-      ]);
-    } else {
+    if (track.track?.id == oldId) {
       isWorking = false;
-    }
+    } else {}
   }
 
   void _runRefreshFlow({bool now = false}) {

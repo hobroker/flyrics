@@ -5,7 +5,9 @@ part 'search_item.g.dart';
 
 @JsonSerializable()
 class SearchItem {
+  @JsonKey(name: 'full_title')
   final String title;
+
   final String url;
 
   SearchItem({this.title, this.url});

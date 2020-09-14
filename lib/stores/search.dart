@@ -25,7 +25,9 @@ abstract class SearchStoreBase with Store {
   @action
   Future searchQuery(String str) async {
     results = [];
-    results = await I<GeniusService>().search(str);
+    final list = await I<GeniusService>().search(str);
+    results =
+        List<SearchItem>.from(list.map((item) => SearchItem.fromJson(item)));
   }
 
   @action

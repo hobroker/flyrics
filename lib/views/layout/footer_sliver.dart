@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flyrics/constants/ux.dart';
+import 'package:flyrics/modules/locator.dart';
 
 class FooterSliver extends StatelessWidget {
-  final double height = 20;
   final Widget child;
 
   FooterSliver({
@@ -18,8 +18,8 @@ class FooterSliver extends StatelessWidget {
       fillOverscroll: false,
       child: Container(
         child: child,
-        height: height,
-        margin: EdgeInsets.all(UX.spacingUnit * 2),
+        height: I<UX>().footerHeight,
+        margin: EdgeInsets.all(I<UX>().spacingUnit * 2),
       ),
     );
   }

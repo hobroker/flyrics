@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flyrics/hooks/store.dart';
-import 'package:flyrics/selectors/artwork.dart';
+import 'package:flyrics/containers/o.dart';
+import 'package:flyrics/hooks/provider.dart';
 import 'package:flyrics/views/artwork/artwork_gradient.dart';
 
 class ArtworkScreen extends HookWidget {
-  Widget _getImageWidget(bytes) => Image.memory(
-        bytes,
-        fit: BoxFit.fill,
-      );
-
   void _showImageDialog(context, child) {
     showDialog(
       context: context,
@@ -24,22 +19,29 @@ class ArtworkScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bytes = useSelector(getTrackArtworkAsBytes);
-    final fadeColor = useSelector(resolvedDominantColor);
-    final _imageWidget = _getImageWidget(bytes);
+    final _track = useTrackStore();
 
     return MouseRegion(
       cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        onTap: () => _showImageDialog(context, _imageWidget),
-        child: Stack(
-          children: [
-            _imageWidget,
-            ArtworkGradient(
-              fadeColor: fadeColor,
-            ),
-          ],
-        ),
+      child: O(
+        () {
+          final child = Stack(
+            children: [
+              Image.memory(
+                _track.artwork.bytes,
+                fit: BoxFit.fill,
+              ),
+              ArtworkGradient(
+                color: _track.artwork.dominantColor,
+              ),
+            ],
+          );
+
+          return GestureDetector(
+            onTap: () => _showImageDialog(context, child.children.first),
+            child: child,
+          );
+        },
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flyrics/constants/ux.dart';
+import 'package:flyrics/modules/locator.dart';
 import 'package:flyrics/views/empty_widget.dart';
 import 'package:flyrics/views/layout/body_sliver.dart';
 import 'package:flyrics/views/layout/footer_sliver.dart';
@@ -21,10 +22,10 @@ class LayoutWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(right: UX.spacingUnit),
+      padding: EdgeInsets.only(right: I<UX>().spacingUnit),
       child: CupertinoScrollbar(
-        thicknessWhileDragging: UX.spacingUnit * 2,
-        thickness: UX.spacingUnit,
+        thicknessWhileDragging: I<UX>().spacingUnit * 2,
+        thickness: I<UX>().spacingUnit,
         child: CustomScrollView(
           slivers: [
             HeaderSliver(child: header),

@@ -1,0 +1,11 @@
+targets:
+  $default:
+    builders:
+      json_serializable:
+        options:
+          any_map: true
+          nullable: false
+          include_if_null: true
+      store_generator:
+        generate_for:
+          - lib/stores/*.dart

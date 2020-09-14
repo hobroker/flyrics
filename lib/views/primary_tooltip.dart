@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flyrics/hooks/store.dart';
-import 'package:flyrics/selectors/artwork.dart';
+import 'package:flyrics/containers/o.dart';
+import 'package:flyrics/hooks/provider.dart';
 
 class PrimaryTooltip extends HookWidget {
   final String message;
   final Widget child;
 
-  const PrimaryTooltip({
+  PrimaryTooltip({
     Key key,
     @required this.message,
     @required this.child,
@@ -15,20 +15,21 @@ class PrimaryTooltip extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = useSelector(resolveArtworkTextColor);
-    final textColor = useSelector(resolvedDominantColor);
+    final _track = useTrackStore();
 
-    return Tooltip(
-      message: message,
-      child: child,
-      verticalOffset: 16,
-      textStyle: TextStyle(
-        color: textColor,
-        height: 1,
-      ),
-      padding: EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: backgroundColor,
+    return O(
+      () => Tooltip(
+        message: message,
+        child: child,
+        verticalOffset: 16,
+        textStyle: TextStyle(
+          color: _track.artwork.dominantColor,
+          height: 1,
+        ),
+        padding: EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: _track.artwork.textColor,
+        ),
       ),
     );
   }

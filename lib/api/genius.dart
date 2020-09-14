@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flyrics/api/http_client.dart';
-import 'package:flyrics/models/search_item.dart';
 import 'package:html/parser.dart';
 
 class GeniusService {
@@ -12,17 +11,16 @@ class GeniusService {
 
   GeniusService({this.client, this.accessToken});
 
-  Future<List<SearchItem>> search(String query) async {
+  Future<List<Map>> search(String query) async {
     final uri = Uri.https(baseUrl, 'search', {
       'q': query,
       'access_token': accessToken,
     });
     final data = await client.get(uri);
-    final items = data['response']['hits'].map((item) => item['result']);
-    final list =
-        List<SearchItem>.from(items.map((item) => SearchItem.fromJson(item)));
+    final items =
+        List<Map>.from(data['response']['hits'].map((item) => item['result']));
 
-    return list;
+    return items;
   }
 
   Future<String> _fetchLyricsText(url, {int loop = 0}) async {

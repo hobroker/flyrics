@@ -2,6 +2,7 @@ import 'package:flyrics/api/api.dart';
 import 'package:flyrics/api/genius.dart';
 import 'package:flyrics/api/spotify.dart';
 import 'package:flyrics/api/terminal.dart';
+import 'package:flyrics/constants/ux.dart';
 import 'package:flyrics/modules/logger/app_logger.dart';
 import 'package:get_it/get_it.dart';
 
@@ -16,4 +17,7 @@ void setupLocator({Api api}) {
 
   // logger
   I.registerSingleton<AppLogger>(AppLogger());
+
+  // ux
+  I.registerSingleton<UX>(UX());
 }

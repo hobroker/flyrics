@@ -55,7 +55,7 @@ abstract class ArtworkStoreBase with Store {
 
   @action
   void resetColors() {
-    colors = [UX.primaryColor, UX.primaryDarkColor];
+    colors = [I<UX>().primaryColor, I<UX>().primaryDarkColor];
   }
 
   @computed

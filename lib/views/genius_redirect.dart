@@ -4,6 +4,7 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flyrics/constants/ux.dart';
 import 'package:flyrics/containers/o.dart';
 import 'package:flyrics/hooks/provider.dart';
+import 'package:flyrics/modules/locator.dart';
 import 'package:flyrics/utils/fp.dart';
 import 'package:flyrics/views/hover_builder.dart';
 import 'package:flyrics/views/icons/genius_icon.dart';
@@ -27,7 +28,7 @@ class GeniusRedirect extends HookWidget {
             builder: (BuildContext context, double opacity) {
               return AnimatedOpacity(
                 opacity: opacity,
-                duration: UX.transitionDuration,
+                duration: I<UX>().transitionDuration,
                 child: IconButton(
                   padding: EdgeInsets.all(0),
                   constraints: BoxConstraints(

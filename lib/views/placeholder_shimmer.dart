@@ -3,13 +3,14 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flyrics/constants/ux.dart';
 import 'package:flyrics/containers/o.dart';
 import 'package:flyrics/hooks/provider.dart';
+import 'package:flyrics/modules/locator.dart';
 import 'package:shimmer/shimmer.dart';
 
 class PlaceholderShimmer extends HookWidget {
   final double height;
   final double width;
-  final Function(double) computeWidth;
-  final Function(double) computeHeight;
+  final double widthRatio;
+  final double heightRatio;
   final Color backgroundColor;
   final Color shineColor;
   final bool isAnimated;
@@ -19,8 +20,8 @@ class PlaceholderShimmer extends HookWidget {
     Key key,
     this.height = 0,
     this.width = 0,
-    this.computeWidth,
-    this.computeHeight,
+    this.widthRatio = 1,
+    this.heightRatio = 1,
     this.backgroundColor,
     this.shineColor,
     this.align = false,
@@ -34,8 +35,8 @@ class PlaceholderShimmer extends HookWidget {
     } else {
       child = LayoutBuilder(builder: (context, constraints) {
         return builder(
-          width > 0 ? width : computeWidth(constraints.maxWidth),
-          height > 0 ? height : computeHeight(constraints.maxHeight),
+          width > 0 ? width : constraints.maxWidth * widthRatio,
+          height > 0 ? height : constraints.maxHeight * widthRatio,
         );
       });
     }
@@ -66,7 +67,7 @@ class PlaceholderShimmer extends HookWidget {
           child: AnimatedContainer(
             width: width,
             height: height,
-            duration: UX.transitionDuration,
+            duration: I<UX>().transitionDuration,
             decoration: BoxDecoration(
               color: fg,
               borderRadius: BorderRadius.circular(2),

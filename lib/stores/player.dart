@@ -53,7 +53,7 @@ abstract class PlayerStoreBase with Store {
       (bytes) => color.fetchColors(bytes),
     );
 
-    refreshFlow();
+    _runRefreshFlow(now: true);
   }
 
   @computed
@@ -71,10 +71,14 @@ abstract class PlayerStoreBase with Store {
   Future refreshFlow() async {
     isWorking = true;
     await updateIsRunning();
+    when((_) => !isWorking, _runRefreshFlow);
 
     if (!isRunning) {
+      isWorking = false;
+
       return;
     }
+
     final oldId = track.track?.id;
     final isNewTrack = (_) => track.track?.id != oldId;
 
@@ -89,18 +93,23 @@ abstract class PlayerStoreBase with Store {
 
       await search.searchQuery(query);
       await lyrics.fetchGeniusLyrics(search.activeResultUrl);
+
+      isWorking = false;
     });
 
     if (!isNewTrack(null)) {
       _updateLyrics();
       _updateArtwork();
-    }
 
-    isWorking = false;
-    startTimer();
+      isWorking = false;
+    }
   }
 
-  void startTimer() {
-    Timer(Duration(milliseconds: 1500), refreshFlow);
+  void _runRefreshFlow({bool now = false}) {
+    if (now) {
+      refreshFlow();
+    } else {
+      Timer(Duration(milliseconds: 1500), refreshFlow);
+    }
   }
 }

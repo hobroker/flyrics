@@ -11,6 +11,9 @@ abstract class SearchStoreBase with Store {
   bool isLoading = false;
 
   @observable
+  Object error;
+
+  @observable
   String query;
 
   @observable
@@ -23,9 +26,14 @@ abstract class SearchStoreBase with Store {
   @action
   Future searchQuery(String str) async {
     isLoading = true;
-    final list = await geniusService.search(str);
-    results =
-        List<SearchItem>.from(list.map((item) => SearchItem.fromJson(item)));
+
+    try {
+      final list = await geniusService.search(str);
+      results = SearchItem.fromJsonList(list);
+    } catch (err) {
+      error = err;
+    }
+
     isLoading = false;
   }
 }

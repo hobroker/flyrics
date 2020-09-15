@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/modules/provider/injection.dart';
+import 'package:flyrics/modules/provider/provider.dart';
 
 class NestedProvider extends StatelessWidget {
-  final List<PoviderFactory> factories;
+  final List<ProviderFactory> factories;
   final Widget child;
 
   const NestedProvider({

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flyrics/modules/provider/injection.dart';
+import 'package:flyrics/modules/provider/provider.dart';
 import 'package:flyrics/services/config.dart';
 import 'package:flyrics/services/genius.dart';
 import 'package:flyrics/services/http_client.dart';

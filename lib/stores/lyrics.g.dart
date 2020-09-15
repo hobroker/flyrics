@@ -9,6 +9,27 @@ part of 'lyrics.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$LyricsStore on LyricsStoreBase, Store {
+  Computed<bool> _$canShowComputed;
+
+  @override
+  bool get canShow => (_$canShowComputed ??=
+          Computed<bool>(() => super.canShow, name: 'LyricsStoreBase.canShow'))
+      .value;
+  Computed<SearchItem> _$selectedSearchItemComputed;
+
+  @override
+  SearchItem get selectedSearchItem => (_$selectedSearchItemComputed ??=
+          Computed<SearchItem>(() => super.selectedSearchItem,
+              name: 'LyricsStoreBase.selectedSearchItem'))
+      .value;
+  Computed<String> _$selectedSearchItemUrlComputed;
+
+  @override
+  String get selectedSearchItemUrl => (_$selectedSearchItemUrlComputed ??=
+          Computed<String>(() => super.selectedSearchItemUrl,
+              name: 'LyricsStoreBase.selectedSearchItemUrl'))
+      .value;
+
   final _$isLoadingAtom = Atom(name: 'LyricsStoreBase.isLoading');
 
   @override
@@ -54,6 +75,22 @@ mixin _$LyricsStore on LyricsStoreBase, Store {
     });
   }
 
+  final _$selectedSearchIdxAtom =
+      Atom(name: 'LyricsStoreBase.selectedSearchIdx');
+
+  @override
+  int get selectedSearchIdx {
+    _$selectedSearchIdxAtom.reportRead();
+    return super.selectedSearchIdx;
+  }
+
+  @override
+  set selectedSearchIdx(int value) {
+    _$selectedSearchIdxAtom.reportWrite(value, super.selectedSearchIdx, () {
+      super.selectedSearchIdx = value;
+    });
+  }
+
   final _$updateLyricsAsyncAction = AsyncAction('LyricsStoreBase.updateLyrics');
 
   @override
@@ -61,13 +98,22 @@ mixin _$LyricsStore on LyricsStoreBase, Store {
     return _$updateLyricsAsyncAction.run(() => super.updateLyrics(track));
   }
 
-  final _$fetchGeniusLyricsAsyncAction =
-      AsyncAction('LyricsStoreBase.fetchGeniusLyrics');
+  final _$_fetchGeniusLyricsAsyncAction =
+      AsyncAction('LyricsStoreBase._fetchGeniusLyrics');
 
   @override
-  Future<dynamic> fetchGeniusLyrics(String url) {
-    return _$fetchGeniusLyricsAsyncAction
-        .run(() => super.fetchGeniusLyrics(url));
+  Future<dynamic> _fetchGeniusLyrics(String url) {
+    return _$_fetchGeniusLyricsAsyncAction
+        .run(() => super._fetchGeniusLyrics(url));
+  }
+
+  final _$openSelectedItemInBrowserAsyncAction =
+      AsyncAction('LyricsStoreBase.openSelectedItemInBrowser');
+
+  @override
+  Future<dynamic> openSelectedItemInBrowser() {
+    return _$openSelectedItemInBrowserAsyncAction
+        .run(() => super.openSelectedItemInBrowser());
   }
 
   @override
@@ -75,7 +121,11 @@ mixin _$LyricsStore on LyricsStoreBase, Store {
     return '''
 isLoading: ${isLoading},
 error: ${error},
-text: ${text}
+text: ${text},
+selectedSearchIdx: ${selectedSearchIdx},
+canShow: ${canShow},
+selectedSearchItem: ${selectedSearchItem},
+selectedSearchItemUrl: ${selectedSearchItemUrl}
     ''';
   }
 }

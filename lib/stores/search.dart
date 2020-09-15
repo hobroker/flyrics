@@ -1,6 +1,5 @@
 import 'package:flyrics/models/search_item.dart';
 import 'package:flyrics/services/genius.dart';
-import 'package:flyrics/services/terminal.dart';
 import 'package:mobx/mobx.dart';
 
 part 'search.g.dart';
@@ -18,25 +17,15 @@ abstract class SearchStoreBase with Store {
   List<SearchItem> results = [];
 
   final GeniusService geniusService;
-  final TerminalService terminalService;
 
-  SearchStoreBase({this.geniusService, this.terminalService});
+  SearchStoreBase({this.geniusService});
 
   @action
   Future searchQuery(String str) async {
     isLoading = true;
-    results = [];
     final list = await geniusService.search(str);
     results =
         List<SearchItem>.from(list.map((item) => SearchItem.fromJson(item)));
     isLoading = false;
   }
-
-  @action
-  Future openActiveResultInBrowser() async {
-    await terminalService.openUrl(activeResultUrl);
-  }
-
-  @computed
-  String get activeResultUrl => results.isNotEmpty ? results.first.url : null;
 }

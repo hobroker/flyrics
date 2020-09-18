@@ -18,7 +18,7 @@ class TrackScreen extends HookWidget {
         children: [
           Flexible(
             child: TrackName(
-              name: _track.track.name,
+              text: _track.track.name,
               textColor: _color.textColor,
             ),
           ),

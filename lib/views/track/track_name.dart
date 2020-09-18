@@ -1,47 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flyrics/utils/painter.dart';
-import 'package:flyrics/views/text_ellipsis.dart';
+import 'package:marquee/marquee.dart';
 
 class TrackName extends StatelessWidget {
-  final String name;
+  final String text;
   final Color textColor;
 
   TrackName({
     Key key,
-    @required this.name,
+    @required this.text,
     this.textColor,
   }) : super(key: key);
 
-  TextStyle get _textStyle => TextStyle(color: textColor);
+  TextStyle get _style => TextStyle(
+        color: textColor,
+        fontSize: 15,
+        fontWeight: FontWeight.w500,
+      );
 
-  TextStyle get _nameTextStyle =>
-      _textStyle.copyWith(fontSize: 15, fontWeight: FontWeight.w500);
-
-  int _getNameMaxLines(constraints) {
-    var textPainter = paintText(
-      name,
-      _nameTextStyle,
-      constraints,
-      maxLines: 1,
-    );
-
-    return textPainter.didExceedMaxLines ? 2 : 1;
-  }
+  bool _fitsSingleLine(constraints) =>
+      textFitsSingleLine(text: text, style: _style, constraints: constraints);
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        var nameMaxLines = _getNameMaxLines(constraints);
-        if (nameMaxLines == 2 &&
-            constraints.maxHeight < _nameTextStyle.fontSize * 2) {
-          nameMaxLines = 1;
+        if (_fitsSingleLine(constraints)) {
+          return Text(
+            text,
+            style: _style,
+          );
         }
 
-        return TextEllipsis(
-          text: name,
-          maxLines: nameMaxLines,
-          style: _nameTextStyle,
+        return Marquee(
+          text: text,
+          style: _style,
+          startAfter: Duration(seconds: 2),
+          blankSpace: 50,
         );
       },
     );

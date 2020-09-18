@@ -2,8 +2,12 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-TextPainter paintText(String text, TextStyle style, BoxConstraints constraints,
-    {int maxLines}) {
+TextPainter paintText({
+  String text,
+  TextStyle style,
+  BoxConstraints constraints,
+  int maxLines,
+}) {
   final span = TextSpan(
     text: text,
     style: style,
@@ -16,4 +20,19 @@ TextPainter paintText(String text, TextStyle style, BoxConstraints constraints,
   textPainter.layout(maxWidth: constraints.maxWidth);
 
   return textPainter;
+}
+
+bool textFitsSingleLine({
+  String text,
+  TextStyle style,
+  BoxConstraints constraints,
+}) {
+  final textPainter = paintText(
+    text: text,
+    style: style,
+    constraints: constraints,
+    maxLines: 1,
+  );
+
+  return !textPainter.didExceedMaxLines;
 }

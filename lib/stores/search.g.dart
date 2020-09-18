@@ -24,6 +24,21 @@ mixin _$SearchStore on SearchStoreBase, Store {
     });
   }
 
+  final _$errorAtom = Atom(name: 'SearchStoreBase.error');
+
+  @override
+  Object get error {
+    _$errorAtom.reportRead();
+    return super.error;
+  }
+
+  @override
+  set error(Object value) {
+    _$errorAtom.reportWrite(value, super.error, () {
+      super.error = value;
+    });
+  }
+
   final _$queryAtom = Atom(name: 'SearchStoreBase.query');
 
   @override
@@ -65,6 +80,7 @@ mixin _$SearchStore on SearchStoreBase, Store {
   String toString() {
     return '''
 isLoading: ${isLoading},
+error: ${error},
 query: ${query},
 results: ${results}
     ''';

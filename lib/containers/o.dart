@@ -5,10 +5,8 @@ import 'package:flyrics/views/empty_widget.dart';
 typedef WidgetFn = Widget Function();
 typedef Predicate = bool Function();
 
-class O extends StatelessWidget {
-  final WidgetFn builder;
-
-  const O(this.builder, {Key key}) : super(key: key);
+class O extends Observer {
+  O([WidgetFn builder]) : super(builder: (_) => builder());
 
   factory O.branch(Predicate predicate, WidgetFn truthy, WidgetFn falsy) =>
       O(() => predicate() ? truthy() : falsy());
@@ -16,6 +14,6 @@ class O extends StatelessWidget {
   factory O.when(Predicate predicate, WidgetFn truthy) =>
       O(() => predicate() ? truthy() : EmptyWidget());
 
-  @override
-  Widget build(BuildContext context) => Observer(builder: (_) => builder());
+  factory O.unless(Predicate predicate, WidgetFn falsy) =>
+      O(() => !predicate() ? falsy() : EmptyWidget());
 }

@@ -6,35 +6,62 @@ import 'package:flyrics/hooks/injections.dart';
 class ArtworkGradient extends HookWidget {
   final Color color;
 
-  ArtworkGradient({
-    Key key,
-    this.color,
-  }) : super(key: key);
+  const ArtworkGradient({Key key, this.color}) : super(key: key);
+
+  Widget _buildGradient({
+    double height,
+    double width,
+    Duration duration,
+    Alignment begin,
+    Alignment end,
+  }) {
+    return Container(
+      height: height,
+      width: width,
+      child: AnimatedContainer(
+        duration: duration,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: begin,
+            end: end,
+            tileMode: TileMode.repeated,
+            colors: [
+              color.withOpacity(.9),
+              color.withOpacity(0),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     final ux = useUX();
 
     return LayoutBuilder(builder: (context, constraints) {
-      final height = constraints.maxHeight;
-      final shadeWidth = height * .1;
+      final size = constraints.maxHeight * .075;
 
-      return Container(
-        width: shadeWidth,
-        child: AnimatedContainer(
-          duration: ux.transitionDuration,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              tileMode: TileMode.repeated,
-              colors: [
-                color,
-                Colors.transparent,
-              ],
-            ),
+      return Stack(
+        children: [
+          _buildGradient(
+            height: constraints.maxHeight,
+            width: size,
+            duration: ux.transitionDuration,
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
           ),
-        ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: _buildGradient(
+              height: size,
+              width: constraints.maxHeight,
+              duration: ux.transitionDuration,
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
+            ),
+          )
+        ],
       );
     });
   }

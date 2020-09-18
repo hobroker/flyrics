@@ -55,6 +55,8 @@ abstract class LyricsStoreBase with Store {
     if (search.results.isNotEmpty) {
       selectedSearchIdx = 0;
       await _fetchGeniusLyrics(selectedSearchItemUrl);
+    } else {
+      selectedSearchIdx = null;
     }
 
     isLoading = false;

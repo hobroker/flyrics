@@ -6,16 +6,10 @@ import 'package:flyrics/hooks/injections.dart';
 import 'package:flyrics/views/artwork/artwork_gradient.dart';
 
 class ArtworkScreen extends HookWidget {
-  void _showImageDialog(context, child) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return Dialog(
-          child: child,
-        );
-      },
-    );
-  }
+  void _showImageDialog(context, child) => showDialog(
+        context: context,
+        builder: (BuildContext context) => Dialog(child: child),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +30,7 @@ class ArtworkScreen extends HookWidget {
             child: Stack(
               children: [
                 image,
-                ArtworkGradient(
-                  color: _color.dominantColor,
-                ),
+                ArtworkGradient(color: _color.dominantColor),
               ],
             ),
           );

@@ -1,54 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class HoverBuilder<Value> extends StatefulWidget {
-  final Value value;
-  final Function(Value) onEnter;
-  final Function(Value) onExit;
-  final Function(BuildContext, Value) builder;
+class HoverBuilder<T> extends HookWidget {
+  final Function(T) onEnter;
+  final Function(T) onExit;
+  final Function(BuildContext, T) builder;
+  final T initialState;
+  final T toggleTo;
 
   HoverBuilder({
     Key key,
-    @required this.value,
-    @required this.onEnter,
-    this.onExit,
+    @required this.initialState,
     @required this.builder,
+    this.toggleTo,
+    this.onEnter,
+    this.onExit,
   }) : super(key: key);
 
   @override
-  _HoverBuilderState<Value> createState() => _HoverBuilderState<Value>();
-}
-
-class _HoverBuilderState<Value> extends State<HoverBuilder<Value>> {
-  Value init;
-  Value state;
-
-  @override
-  void initState() {
-    super.initState();
-    init = widget.value;
-    state = init;
-  }
-
-  void _onExit(event) {
-    setState(() {
-      if (widget.onExit == null) {
-        state = init;
-      } else {
-        state = widget.onExit(state);
-      }
-    });
-  }
-
-  void _onEnter(event) {
-    setState(() => state = widget.onEnter(state));
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final state = useState<T>(initialState);
+
     return MouseRegion(
-      child: widget.builder(context, state),
-      onEnter: _onEnter,
-      onExit: _onExit,
+      child: builder(context, state.value),
+      onEnter: (event) {
+        if (onEnter == null) {
+          state.value = state.value == toggleTo ? initialState : toggleTo;
+        } else {
+          state.value = onEnter(state.value);
+        }
+      },
+      onExit: (event) {
+        if (onExit == null) {
+          state.value = initialState;
+        } else {
+          state.value = onExit(state.value);
+        }
+      },
     );
   }
 }

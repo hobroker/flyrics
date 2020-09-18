@@ -26,21 +26,21 @@ class ArtworkScreen extends HookWidget {
       cursor: SystemMouseCursors.click,
       child: O(
         () {
-          final child = Stack(
-            children: [
-              Image.memory(
-                _artwork.bytes,
-                fit: BoxFit.fill,
-              ),
-              ArtworkGradient(
-                color: _color.dominantColor,
-              ),
-            ],
+          final image = Image.memory(
+            _artwork.bytes,
+            fit: BoxFit.fill,
           );
 
           return GestureDetector(
-            onTap: () => _showImageDialog(context, child.children.first),
-            child: child,
+            onTap: () => _showImageDialog(context, image),
+            child: Stack(
+              children: [
+                image,
+                ArtworkGradient(
+                  color: _color.dominantColor,
+                ),
+              ],
+            ),
           );
         },
       ),

@@ -14,7 +14,7 @@ class GeniusRedirect extends HookWidget {
     final ux = useUX();
 
     return O.when(
-      () => isNotNull(_lyrics.search.activeResultUrl),
+      () => isNotNull(_lyrics.selectedSearchItemUrl),
       () => LayoutBuilder(builder: (context, constraints) {
         final size = constraints.maxHeight;
 
@@ -33,7 +33,7 @@ class GeniusRedirect extends HookWidget {
                     maxHeight: size,
                   ),
                   icon: GeniusIcon(),
-                  onPressed: _lyrics.search.openActiveResultInBrowser,
+                  onPressed: _lyrics.openSelectedItemInBrowser,
                 ),
               );
             },

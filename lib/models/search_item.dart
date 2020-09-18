@@ -18,6 +18,10 @@ class SearchItem {
 
   Map toJson() => _$SearchItemToJson(this);
 
+  static List<SearchItem> fromJsonList(List<Map> list) => List<SearchItem>.from(
+        list.map((item) => SearchItem.fromJson(item)),
+      );
+
   @override
   String toString() => 'SearchItem ${stringify(toJson(), true)}';
 }

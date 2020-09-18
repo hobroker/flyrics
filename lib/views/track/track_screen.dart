@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flyrics/containers/o.dart';
 import 'package:flyrics/hooks/injections.dart';
-import 'package:flyrics/views/text_ellipsis.dart';
-import 'package:flyrics/views/track/track_name.dart';
+import 'package:flyrics/views/marquee_text.dart';
 
 class TrackScreen extends HookWidget {
   @override
@@ -16,14 +15,16 @@ class TrackScreen extends HookWidget {
       () => Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Flexible(
-            child: TrackName(
-              text: _track.track.name,
-              textColor: _color.textColor,
+          MarqueeText(
+            text: _track.track.name,
+            style: TextStyle(
+              color: _color.textColor,
+              fontSize: 15,
+              fontWeight: FontWeight.w500,
             ),
           ),
           SizedBox(height: ux.spacingUnit),
-          TextEllipsis(
+          MarqueeText(
             text: _track.track.artist,
             style: TextStyle(
               color: _color.textColor,

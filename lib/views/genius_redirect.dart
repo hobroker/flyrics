@@ -20,8 +20,8 @@ class GeniusRedirect extends HookWidget {
 
         return GeniusRedirectTooltip(
           child: HoverBuilder<double>(
-            value: 0.5,
-            onEnter: (double opacity) => 1.0,
+            initialState: 0.5,
+            toggleTo: 1.0,
             builder: (BuildContext context, double opacity) {
               return AnimatedOpacity(
                 opacity: opacity,

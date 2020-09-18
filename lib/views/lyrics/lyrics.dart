@@ -8,10 +8,10 @@ import 'package:flyrics/views/lyrics/lyrics_screen.dart';
 class Lyrics extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    final _player = usePlayerStore();
+    final _lyrics = useLyricsStore();
 
     return O.branch(
-      () => _player.canShowLyrics,
+      () => _lyrics.canShow,
       () => LyricsScreen(),
       () => LyricsPlaceholder(),
     );

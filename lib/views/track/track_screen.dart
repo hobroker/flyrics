@@ -27,7 +27,7 @@ class TrackScreen extends HookWidget {
             text: _track.track.artist,
             style: TextStyle(
               color: _color.textColor,
-              fontSize: 15,
+              fontSize: 14,
             ),
           ),
         ],

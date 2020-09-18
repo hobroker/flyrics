@@ -15,7 +15,7 @@ class TrackName extends StatelessWidget {
   TextStyle get _textStyle => TextStyle(color: textColor);
 
   TextStyle get _nameTextStyle =>
-      _textStyle.copyWith(fontSize: 16, fontWeight: FontWeight.w500);
+      _textStyle.copyWith(fontSize: 15, fontWeight: FontWeight.w500);
 
   int _getNameMaxLines(constraints) {
     var textPainter = paintText(

@@ -1,6 +1,9 @@
+import 'package:flyrics/models/search_item.dart';
 import 'package:flyrics/models/track.dart';
 import 'package:flyrics/services/genius.dart';
+import 'package:flyrics/services/terminal.dart';
 import 'package:flyrics/stores/search.dart';
+import 'package:flyrics/utils/fp.dart';
 import 'package:mobx/mobx.dart';
 
 part 'lyrics.g.dart';
@@ -17,24 +20,47 @@ abstract class LyricsStoreBase with Store {
   @observable
   String text;
 
-  final GeniusService geniusService;
-  final SearchStore search;
+  @observable
+  int selectedSearchIdx;
 
-  LyricsStoreBase({this.geniusService, this.search});
+  final GeniusService geniusService;
+  final TerminalService terminalService;
+  SearchStore search;
+
+  LyricsStoreBase({this.geniusService, this.terminalService}) {
+    search = SearchStore(
+      geniusService: geniusService,
+    );
+  }
+
+  @computed
+  bool get canShow => !isLoading && isNotNull(text);
+
+  @computed
+  SearchItem get selectedSearchItem => selectedSearchIdx != null
+      ? search.results.elementAt(selectedSearchIdx)
+      : null;
+
+  @computed
+  String get selectedSearchItemUrl => selectedSearchItem?.url;
 
   @action
   Future updateLyrics(Track track) async {
     isLoading = true;
     final query = '${track.artist} ${track.name}';
 
+    selectedSearchIdx = null;
     await search.searchQuery(query);
-    await fetchGeniusLyrics(search.activeResultUrl);
+
+    // TODO check when there are no results (or relevant ones)
+    selectedSearchIdx = 0;
+    await _fetchGeniusLyrics(selectedSearchItemUrl);
 
     isLoading = false;
   }
 
   @action
-  Future fetchGeniusLyrics(String url) async {
+  Future _fetchGeniusLyrics(String url) async {
     isLoading = true;
     try {
       text = await geniusService.fetchLyrics(url);
@@ -42,5 +68,10 @@ abstract class LyricsStoreBase with Store {
       error = err;
     }
     isLoading = false;
+  }
+
+  @action
+  Future openSelectedItemInBrowser() async {
+    await terminalService.openUrl(selectedSearchItemUrl);
   }
 }

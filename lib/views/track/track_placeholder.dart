@@ -16,13 +16,13 @@ class TrackPlaceholder extends HookWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           PlaceholderShimmer(
-            height: 16.0,
+            height: 15.0,
             isAnimated: _track.isLoading,
             widthRatio: randomBetween(0.7, 0.9),
           ),
           SizedBox(height: ux.spacingUnit),
           PlaceholderShimmer(
-            height: 15,
+            height: 14,
             isAnimated: _track.isLoading,
             widthRatio: randomBetween(0.5, 0.6),
           ),

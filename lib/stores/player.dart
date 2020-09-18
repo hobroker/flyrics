@@ -8,9 +8,7 @@ import 'package:flyrics/services/ux.dart';
 import 'package:flyrics/stores/artwork.dart';
 import 'package:flyrics/stores/color.dart';
 import 'package:flyrics/stores/lyrics.dart';
-import 'package:flyrics/stores/search.dart';
 import 'package:flyrics/stores/track.dart';
-import 'package:flyrics/utils/fp.dart';
 import 'package:mobx/mobx.dart';
 
 part 'player.g.dart';
@@ -41,10 +39,7 @@ abstract class PlayerStoreBase with Store {
     artwork = ArtworkStore(spotifyService: spotifyService);
     lyrics = LyricsStore(
       geniusService: geniusService,
-      search: SearchStore(
-        geniusService: geniusService,
-        terminalService: terminalService,
-      ),
+      terminalService: terminalService,
     );
     color = ColorStore(ux: ux);
 
@@ -75,12 +70,6 @@ abstract class PlayerStoreBase with Store {
 
     _runRefreshFlow(now: true);
   }
-
-  @computed
-  bool get areLyricsLoading => lyrics.isLoading || lyrics.search.isLoading;
-
-  @computed
-  bool get canShowLyrics => !areLyricsLoading && isNotNull(lyrics.text);
 
   @action
   Future updateIsRunning() async {

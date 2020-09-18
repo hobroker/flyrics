@@ -17,7 +17,7 @@ class ArtworkGradient extends HookWidget {
 
     return LayoutBuilder(builder: (context, constraints) {
       final height = constraints.maxHeight;
-      final shadeWidth = height * .75;
+      final shadeWidth = height * .1;
 
       return Container(
         width: shadeWidth,
@@ -29,7 +29,7 @@ class ArtworkGradient extends HookWidget {
               end: Alignment.centerRight,
               tileMode: TileMode.repeated,
               colors: [
-                color.withOpacity(0.75),
+                color,
                 Colors.transparent,
               ],
             ),

@@ -52,9 +52,10 @@ abstract class LyricsStoreBase with Store {
     selectedSearchIdx = null;
     await search.searchQuery(query);
 
-    // TODO check when there are no results (or relevant ones)
-    selectedSearchIdx = 0;
-    await _fetchGeniusLyrics(selectedSearchItemUrl);
+    if (search.results.isNotEmpty) {
+      selectedSearchIdx = 0;
+      await _fetchGeniusLyrics(selectedSearchItemUrl);
+    }
 
     isLoading = false;
   }

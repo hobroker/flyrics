@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flyrics/modules/mobx/o.dart';
-import 'package:flyrics/hooks/injections.dart';
 import 'package:flyrics/views/placeholder_shimmer.dart';
 
-class ArtworkPlaceholder extends HookWidget {
+class ArtworkPlaceholder extends StatelessWidget {
+  final bool animated;
+
+  ArtworkPlaceholder({
+    this.animated = false,
+  });
+
   @override
   Widget build(BuildContext context) {
-    final _artwork = useArtworkStore();
-
     return LayoutBuilder(builder: (context, constraints) {
       final height = constraints.maxHeight;
       final size = height * 0.8;
@@ -16,12 +17,10 @@ class ArtworkPlaceholder extends HookWidget {
 
       return Container(
         margin: EdgeInsets.symmetric(horizontal: margin),
-        child: O(
-          () => PlaceholderShimmer(
-            height: size,
-            width: size,
-            isAnimated: _artwork.isLoading,
-          ),
+        child: PlaceholderShimmer(
+          height: size,
+          width: size,
+          isAnimated: animated,
         ),
       );
     });

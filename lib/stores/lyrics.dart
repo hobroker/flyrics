@@ -1,6 +1,6 @@
 import 'package:flyrics/models/search_item.dart';
 import 'package:flyrics/models/track.dart';
-import 'package:flyrics/modules/mobx/async.dart';
+import 'package:flyrics/modules/mobx/async_data.dart';
 import 'package:flyrics/services/api.dart';
 import 'package:flyrics/stores/search.dart';
 import 'package:mobx/mobx.dart';

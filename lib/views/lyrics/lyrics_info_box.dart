@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flyrics/modules/mobx/o.dart';
 import 'package:flyrics/hooks/injections.dart';
+import 'package:flyrics/modules/mobx/o.dart';
 
 class LyricsInfoBox extends HookWidget {
-  final Widget icon;
   final String text;
 
   LyricsInfoBox({
-    @required this.icon,
     @required this.text,
   });
 
@@ -22,8 +20,14 @@ class LyricsInfoBox extends HookWidget {
       child: Container(
         child: Column(
           children: [
-            SizedBox(height: ux.lyricsStatusIconSize),
-            icon,
+            SizedBox(height: ux.infoIconMaxSize),
+            O(
+              () => Icon(
+                Icons.error_outline,
+                color: _colors.textColor,
+                size: ux.infoIconMaxSize,
+              ),
+            ),
             SizedBox(height: ux.spacingUnit * 2),
             O(
               () => Text(

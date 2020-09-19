@@ -27,7 +27,8 @@ abstract class RunnerStoreBase with Store {
   RunnerStoreBase({
     this.player,
   }) {
-    _setupReactions();
+    reaction<bool>((_) => isWorking, _onIsWorkingChange);
+    reaction<Track>((_) => track.track, _onTrackChange);
   }
 
   TrackStore get track => player.track;
@@ -47,19 +48,9 @@ abstract class RunnerStoreBase with Store {
     _canRun = false;
   }
 
-  Future _fetchArtworkAndColors() async {
-    await artwork.fetch(track.track.artwork);
-    if (artwork.hasData) {
-      await color.fetchColors(artwork.data);
-    }
-  }
-
-  void _stopWorking() => isWorking = false;
-
   @action
   Future refreshFlow() async {
     isWorking = true;
-    await player.updateIsRunning();
     when((_) => !isWorking, _runRefreshFlow);
   }
 
@@ -75,6 +66,13 @@ abstract class RunnerStoreBase with Store {
     }
   }
 
+  Future _fetchArtworkAndColors() async {
+    await artwork.fetch(track.track.artwork);
+    if (artwork.hasData) {
+      await color.fetchColors(artwork.data);
+    }
+  }
+
   void _onTrackChange(track) {
     if (isNull(track)) {
       return;
@@ -83,13 +81,16 @@ abstract class RunnerStoreBase with Store {
     _fetchArtworkAndColors();
     lyrics.updateLyrics(track);
 
-    _stopWorking();
+    isWorking = false;
   }
 
   void _onIsWorkingChange(_isWorking) async {
     if (!_isWorking) {
-      _stopWorking();
+      return;
+    }
 
+    await player.updateIsRunning();
+    if (!player.isRunning) {
       return;
     }
 
@@ -97,19 +98,7 @@ abstract class RunnerStoreBase with Store {
     await track.fetchCurrentTrack();
 
     if (track.track?.id == oldId) {
-      _stopWorking();
+      isWorking = false;
     }
-  }
-
-  void _setupReactions() {
-    reaction<Track>(
-      (_) => track.track,
-      _onTrackChange,
-    );
-
-    reaction<bool>(
-      (_) => isWorking,
-      _onIsWorkingChange,
-    );
   }
 }

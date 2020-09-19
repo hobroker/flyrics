@@ -9,20 +9,12 @@ part of 'runner.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$RunnerStore on RunnerStoreBase, Store {
-  final _$isRunningAtom = Atom(name: 'RunnerStoreBase.isRunning');
+  Computed<Track> _$trackComputed;
 
   @override
-  bool get isRunning {
-    _$isRunningAtom.reportRead();
-    return super.isRunning;
-  }
-
-  @override
-  set isRunning(bool value) {
-    _$isRunningAtom.reportWrite(value, super.isRunning, () {
-      super.isRunning = value;
-    });
-  }
+  Track get track => (_$trackComputed ??=
+          Computed<Track>(() => super.track, name: 'RunnerStoreBase.track'))
+      .value;
 
   final _$isWorkingAtom = Atom(name: 'RunnerStoreBase.isWorking');
 
@@ -49,8 +41,8 @@ mixin _$RunnerStore on RunnerStoreBase, Store {
   @override
   String toString() {
     return '''
-isRunning: ${isRunning},
-isWorking: ${isWorking}
+isWorking: ${isWorking},
+track: ${track}
     ''';
   }
 }

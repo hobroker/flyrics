@@ -1,11 +1,10 @@
 import 'dart:async';
 
 import 'package:flyrics/models/track.dart';
+import 'package:flyrics/modules/mobx/async_data.dart';
 import 'package:flyrics/stores/artwork.dart';
 import 'package:flyrics/stores/color.dart';
-import 'package:flyrics/stores/lyrics.dart';
 import 'package:flyrics/stores/player.dart';
-import 'package:flyrics/stores/track.dart';
 import 'package:flyrics/utils/fp.dart';
 import 'package:mobx/mobx.dart';
 
@@ -15,52 +14,36 @@ class RunnerStore = RunnerStoreBase with _$RunnerStore;
 
 abstract class RunnerStoreBase with Store {
   @observable
-  bool isRunning = false;
-
-  @observable
   bool isWorking = false;
 
   bool _canRun = false;
 
   final PlayerStore player;
+  final ColorStore color = ColorStore();
 
   RunnerStoreBase({
     this.player,
   }) {
-    _setupReactions();
+    reaction<bool>((_) => isWorking, _onIsWorkingChange);
+    reaction<Track>((_) => track, _onTrackChange);
   }
 
-  TrackStore get track => player.track;
+  @computed
+  Track get track => player.track.track;
 
   ArtworkStore get artwork => player.artwork;
-
-  ColorStore get color => player.color;
-
-  LyricsStore get lyrics => player.lyrics;
-
-  void start() {
-    _canRun = true;
-    _runRefreshFlow(now: true);
-  }
-
-  void stop() {
-    _canRun = false;
-  }
-
-  Future _fetchArtworkAndColors() async {
-    await artwork.fetch(track.track.artwork);
-    if (artwork.hasData) {
-      await color.fetchColors(artwork.data);
-    }
-  }
-
-  void _stopWorking() => isWorking = false;
 
   @action
   Future refreshFlow() async {
     isWorking = true;
-    await player.updateIsRunning();
     when((_) => !isWorking, _runRefreshFlow);
+  }
+
+  void stop() => _canRun = false;
+
+  void start() {
+    _canRun = true;
+    _runRefreshFlow(now: true);
   }
 
   void _runRefreshFlow({bool now = false}) {
@@ -75,41 +58,43 @@ abstract class RunnerStoreBase with Store {
     }
   }
 
+  Future _fetchArtworkAndColors() async {
+    await artwork.fetch(track.artwork);
+    if (artwork.hasData) {
+      await color.fetch(artwork.data);
+
+      if (color.status == DataStatus.success) {
+        player.theme.setColors(color.data);
+      }
+    }
+  }
+
   void _onTrackChange(track) {
     if (isNull(track)) {
       return;
     }
 
     _fetchArtworkAndColors();
-    lyrics.updateLyrics(track);
+    player.lyrics.fetch(track);
 
-    _stopWorking();
+    isWorking = false;
   }
 
   void _onIsWorkingChange(_isWorking) async {
     if (!_isWorking) {
-      _stopWorking();
-
       return;
     }
 
-    final oldId = track.track?.id;
-    await track.fetchCurrentTrack();
-
-    if (track.track?.id == oldId) {
-      _stopWorking();
+    await player.updateIsRunning();
+    if (!player.isRunning) {
+      return;
     }
-  }
 
-  void _setupReactions() {
-    reaction<Track>(
-      (_) => track.track,
-      _onTrackChange,
-    );
+    final oldId = track?.id;
+    await player.track.fetchCurrentTrack();
 
-    reaction<bool>(
-      (_) => isWorking,
-      _onIsWorkingChange,
-    );
+    if (track?.id == oldId) {
+      isWorking = false;
+    }
   }
 }

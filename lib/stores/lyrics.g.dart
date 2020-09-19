@@ -46,21 +46,6 @@ mixin _$LyricsStore on LyricsStoreBase, Store {
     });
   }
 
-  final _$errorAtom = Atom(name: 'LyricsStoreBase.error');
-
-  @override
-  Object get error {
-    _$errorAtom.reportRead();
-    return super.error;
-  }
-
-  @override
-  set error(Object value) {
-    _$errorAtom.reportWrite(value, super.error, () {
-      super.error = value;
-    });
-  }
-
   final _$statusAtom = Atom(name: 'LyricsStoreBase.status');
 
   @override
@@ -73,6 +58,21 @@ mixin _$LyricsStore on LyricsStoreBase, Store {
   set status(DataStatus value) {
     _$statusAtom.reportWrite(value, super.status, () {
       super.status = value;
+    });
+  }
+
+  final _$errorAtom = Atom(name: 'LyricsStoreBase.error');
+
+  @override
+  Object get error {
+    _$errorAtom.reportRead();
+    return super.error;
+  }
+
+  @override
+  set error(Object value) {
+    _$errorAtom.reportWrite(value, super.error, () {
+      super.error = value;
     });
   }
 
@@ -92,11 +92,11 @@ mixin _$LyricsStore on LyricsStoreBase, Store {
     });
   }
 
-  final _$updateLyricsAsyncAction = AsyncAction('LyricsStoreBase.updateLyrics');
+  final _$fetchAsyncAction = AsyncAction('LyricsStoreBase.fetch');
 
   @override
-  Future<dynamic> updateLyrics(Track track) {
-    return _$updateLyricsAsyncAction.run(() => super.updateLyrics(track));
+  Future<dynamic> fetch(Track track) {
+    return _$fetchAsyncAction.run(() => super.fetch(track));
   }
 
   final _$_fetchGeniusLyricsAsyncAction =
@@ -121,8 +121,8 @@ mixin _$LyricsStore on LyricsStoreBase, Store {
   String toString() {
     return '''
 text: ${text},
-error: ${error},
 status: ${status},
+error: ${error},
 selectedSearchIdx: ${selectedSearchIdx},
 selectedSearchItem: ${selectedSearchItem},
 isLoading: ${isLoading},

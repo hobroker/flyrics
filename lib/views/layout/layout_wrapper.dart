@@ -24,7 +24,6 @@ class LayoutWrapper extends HookWidget {
     final ux = useUX();
 
     return Container(
-      padding: EdgeInsets.only(right: ux.spacingUnit),
       child: CupertinoScrollbar(
         thicknessWhileDragging: ux.spacingUnit * 2,
         thickness: ux.spacingUnit,

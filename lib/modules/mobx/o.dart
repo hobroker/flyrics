@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flyrics/utils/async_data.dart';
+import 'package:flyrics/modules/mobx/async_data.dart';
 import 'package:flyrics/views/empty_widget.dart';
 
 typedef WidgetFn = Widget Function();

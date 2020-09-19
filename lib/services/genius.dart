@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+import 'package:flyrics/constants/env.dart';
 import 'package:flyrics/services/config.dart';
 import 'package:flyrics/services/http_client.dart';
 import 'package:html/parser.dart';
@@ -18,7 +19,7 @@ class GeniusService {
     @required this.config,
   });
 
-  String get accessToken => config.get('GENIUS_API_KEY');
+  String get accessToken => config.get(GENIUS_API_KEY);
 
   Future<List<Map>> search(String query) async {
     final uri = Uri.https(baseUrl, 'search', {

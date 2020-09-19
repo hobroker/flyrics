@@ -3,9 +3,9 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 @immutable
 class ConfigService {
-  final Map env;
+  final Map _env;
 
-  const ConfigService(this.env);
+  const ConfigService(this._env);
 
   static Future<ConfigService> create([String filename = '.env']) async {
     final dotenv = DotEnv();
@@ -15,12 +15,10 @@ class ConfigService {
   }
 
   String get(String key) {
-    if (has(key)) {
-      return env[key];
+    if (_env.containsKey(key)) {
+      return _env[key];
     }
 
     throw Exception('no config value found for key "$key');
   }
-
-  bool has(String key) => env.containsKey(key);
 }

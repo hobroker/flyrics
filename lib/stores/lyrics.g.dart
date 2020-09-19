@@ -92,11 +92,11 @@ mixin _$LyricsStore on LyricsStoreBase, Store {
     });
   }
 
-  final _$updateLyricsAsyncAction = AsyncAction('LyricsStoreBase.updateLyrics');
+  final _$fetchAsyncAction = AsyncAction('LyricsStoreBase.fetch');
 
   @override
-  Future<dynamic> updateLyrics(Track track) {
-    return _$updateLyricsAsyncAction.run(() => super.updateLyrics(track));
+  Future<dynamic> fetch(Track track) {
+    return _$fetchAsyncAction.run(() => super.fetch(track));
   }
 
   final _$_fetchGeniusLyricsAsyncAction =

@@ -1,7 +1,6 @@
 import 'package:flyrics/hooks/use_injection.dart';
 import 'package:flyrics/services/ux.dart';
 import 'package:flyrics/stores/player.dart';
-import 'package:flyrics/stores/theme.dart';
 
 final useUX = () => useInjection<UX>();
 

@@ -41,7 +41,7 @@ abstract class LyricsStoreBase with Store {
   String get selectedSearchItemUrl => selectedSearchItem?.url;
 
   @action
-  Future updateLyrics(Track track) async {
+  Future fetch(Track track) async {
     status = DataStatus.loading;
     final query = '${track.artist} ${track.name}';
 

@@ -11,6 +11,8 @@ import 'package:flyrics/stores/track.dart';
 typedef Get = T Function<T>();
 typedef ProviderFactory<T extends Object> = T Function(Get get);
 
+final themeProvider = (Get get) => ThemeStore();
+
 final uxProvider = (Get get) => UX(theme: get());
 
 final playerProvider = (Get get) => PlayerStore(
@@ -20,8 +22,6 @@ final playerProvider = (Get get) => PlayerStore(
       lyrics: LyricsStore(api: get()),
       track: TrackStore(api: get()),
     );
-
-final themeProvider = (Get get) => ThemeStore();
 
 final apiProvider = (ConfigService config) => (Get get) => ApiService(
       config: config,

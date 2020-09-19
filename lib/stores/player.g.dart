@@ -9,13 +9,6 @@ part of 'player.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$PlayerStore on PlayerStoreBase, Store {
-  Computed<ThemeData> _$themeComputed;
-
-  @override
-  ThemeData get theme => (_$themeComputed ??=
-          Computed<ThemeData>(() => super.theme, name: 'PlayerStoreBase.theme'))
-      .value;
-
   final _$isRunningAtom = Atom(name: 'PlayerStoreBase.isRunning');
 
   @override
@@ -39,25 +32,10 @@ mixin _$PlayerStore on PlayerStoreBase, Store {
     return _$updateIsRunningAsyncAction.run(() => super.updateIsRunning());
   }
 
-  final _$PlayerStoreBaseActionController =
-      ActionController(name: 'PlayerStoreBase');
-
-  @override
-  void setThemeColors(List<Color> colors) {
-    final _$actionInfo = _$PlayerStoreBaseActionController.startAction(
-        name: 'PlayerStoreBase.setThemeColors');
-    try {
-      return super.setThemeColors(colors);
-    } finally {
-      _$PlayerStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
   @override
   String toString() {
     return '''
-isRunning: ${isRunning},
-theme: ${theme}
+isRunning: ${isRunning}
     ''';
   }
 }

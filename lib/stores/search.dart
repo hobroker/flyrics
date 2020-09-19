@@ -5,7 +5,7 @@ import 'package:flyrics/services/api.dart';
 class SearchStore extends AsyncDataStore<List<int>> {
   final ApiService _api;
 
-  SearchStore(ApiService api)
+  SearchStore({ApiService api})
       : _api = api,
         super(
           isEmpty: (data) => data.isEmpty,

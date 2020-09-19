@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flyrics/modules/mobx/o.dart';
 import 'package:flyrics/hooks/injections.dart';
 import 'package:flyrics/hooks/media.dart';
+import 'package:flyrics/modules/mobx/o.dart';
 import 'package:flyrics/utils/list.dart';
 import 'package:flyrics/utils/random.dart';
 import 'package:flyrics/views/placeholder_shimmer.dart';

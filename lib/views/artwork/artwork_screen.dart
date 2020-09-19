@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flyrics/modules/mobx/o.dart';
 import 'package:flyrics/hooks/injections.dart';
+import 'package:flyrics/modules/mobx/o.dart';
 import 'package:flyrics/views/artwork/artwork_gradient.dart';
 
 class ArtworkScreen extends HookWidget {
@@ -14,7 +14,7 @@ class ArtworkScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final _artwork = useArtworkStore();
-    final _color = useColorStore();
+    final ux = useUX();
 
     return MouseRegion(
       cursor: SystemMouseCursors.click,
@@ -30,7 +30,7 @@ class ArtworkScreen extends HookWidget {
             child: Stack(
               children: [
                 image,
-                ArtworkGradient(color: _color.dominantColor),
+                ArtworkGradient(color: ux.primaryColor),
               ],
             ),
           );

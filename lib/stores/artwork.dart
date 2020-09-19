@@ -4,7 +4,7 @@ import 'package:flyrics/services/api.dart';
 class ArtworkStore extends AsyncDataStore<List<int>> {
   final ApiService _api;
 
-  ArtworkStore(ApiService api)
+  ArtworkStore({ApiService api})
       : _api = api,
         super(
           isEmpty: (data) => data.isEmpty,

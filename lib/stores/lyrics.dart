@@ -27,7 +27,7 @@ abstract class LyricsStoreBase with Store {
 
   LyricsStoreBase({ApiService api})
       : _api = api,
-        search = SearchStore(api);
+        search = SearchStore(api: api);
 
   @computed
   SearchItem get selectedSearchItem => selectedSearchIdx != null

@@ -6,7 +6,7 @@ import 'package:flyrics/modules/mobx/o.dart';
 class ArtworkMissing extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    final _colors = useColorStore();
+    final ux = useUX();
 
     return LayoutBuilder(builder: (context, constraints) {
       final height = constraints.maxHeight;
@@ -18,7 +18,7 @@ class ArtworkMissing extends HookWidget {
         child: O(
           () => Icon(
             Icons.broken_image_outlined,
-            color: _colors.textColor,
+            color: ux.textColor,
             size: size,
           ),
         ),

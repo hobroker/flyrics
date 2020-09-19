@@ -9,15 +9,15 @@ import 'package:flyrics/views/placeholder_shimmer.dart';
 class TrackName extends HookWidget {
   @override
   Widget build(BuildContext context) {
+    final ux = useUX();
     final _track = useTrackStore();
-    final _color = useColorStore();
 
     return O.branch(
       () => _track.hasTrack,
       () => MarqueeText(
         text: _track.track.name,
         style: TextStyle(
-          color: _color.textColor,
+          color: ux.textColor,
           fontSize: 15,
           fontWeight: FontWeight.w500,
         ),

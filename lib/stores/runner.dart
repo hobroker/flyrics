@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flyrics/models/track.dart';
+import 'package:flyrics/modules/mobx/async_data.dart';
 import 'package:flyrics/stores/artwork.dart';
 import 'package:flyrics/stores/color.dart';
 import 'package:flyrics/stores/lyrics.dart';
@@ -23,6 +24,7 @@ abstract class RunnerStoreBase with Store {
   bool _canRun = false;
 
   final PlayerStore player;
+  final ColorStore color = ColorStore();
 
   RunnerStoreBase({
     this.player,
@@ -34,8 +36,6 @@ abstract class RunnerStoreBase with Store {
   TrackStore get track => player.track;
 
   ArtworkStore get artwork => player.artwork;
-
-  ColorStore get color => player.color;
 
   LyricsStore get lyrics => player.lyrics;
 
@@ -69,7 +69,11 @@ abstract class RunnerStoreBase with Store {
   Future _fetchArtworkAndColors() async {
     await artwork.fetch(track.track.artwork);
     if (artwork.hasData) {
-      await color.fetchColors(artwork.data);
+      await color.fetch(artwork.data);
+
+      if (color.status == DataStatus.success) {
+        player.setThemeColors(color.data);
+      }
     }
   }
 

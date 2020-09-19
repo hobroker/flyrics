@@ -10,14 +10,14 @@ class TrackArtist extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final _track = useTrackStore();
-    final _color = useColorStore();
+    final ux = useUX();
 
     return O.branch(
       () => _track.hasTrack,
       () => MarqueeText(
         text: _track.track.artist,
         style: TextStyle(
-          color: _color.textColor,
+          color: ux.textColor,
           fontSize: 14,
         ),
       ),

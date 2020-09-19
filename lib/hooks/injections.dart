@@ -1,19 +1,15 @@
 import 'package:flyrics/hooks/use_injection.dart';
 import 'package:flyrics/services/ux.dart';
-import 'package:flyrics/stores/artwork.dart';
-import 'package:flyrics/stores/color.dart';
-import 'package:flyrics/stores/lyrics.dart';
 import 'package:flyrics/stores/player.dart';
-import 'package:flyrics/stores/track.dart';
 
-UX useUX() => useInjection<UX>();
+final useUX = () => useInjection<UX>();
 
-PlayerStore usePlayerStore() => useInjection<PlayerStore>();
+final usePlayerStore = () => useInjection<PlayerStore>();
 
-TrackStore useTrackStore() => usePlayerStore().track;
+final useTrackStore = () => usePlayerStore().track;
 
-ArtworkStore useArtworkStore() => usePlayerStore().artwork;
+final useArtworkStore = () => usePlayerStore().artwork;
 
-ColorStore useColorStore() => usePlayerStore().color;
+final useColorStore = () => usePlayerStore().color;
 
-LyricsStore useLyricsStore() => usePlayerStore().lyrics;
+final useLyricsStore = () => usePlayerStore().lyrics;

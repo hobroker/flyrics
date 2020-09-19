@@ -12,7 +12,7 @@ Track _$TrackFromJson(Map json) {
     name: json['name'] as String,
     album: json['album'] as String,
     artist: json['artist'] as String,
-    artwork: json['artwork'] as String,
+    artwork: Track._parseArtwork(json['artwork'] as String),
   );
 }
 

@@ -13,7 +13,10 @@ class GeniusService {
   final HttpClient client;
   final ConfigService config;
 
-  GeniusService({this.client, this.config});
+  const GeniusService({
+    @required this.client,
+    @required this.config,
+  });
 
   String get accessToken => config.get('GENIUS_API_KEY');
 
@@ -33,7 +36,7 @@ class GeniusService {
     loop++;
 
     if (loop == _MAX_FETCH_LOOPS) {
-      throw Exception('loop limit reached');
+      throw Exception('no lyrics after ${_MAX_FETCH_LOOPS} tries');
     }
 
     try {
@@ -57,12 +60,8 @@ class GeniusService {
   }
 
   Future<String> fetchLyrics(String url) async {
-    try {
-      final result = await _fetchLyricsText(url);
+    final result = await _fetchLyricsText(url);
 
-      return result;
-    } catch (e) {
-      throw Exception('no lyrics after ${_MAX_FETCH_LOOPS} tries');
-    }
+    return result;
   }
 }

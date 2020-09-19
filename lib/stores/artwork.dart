@@ -1,35 +1,14 @@
-import 'package:flyrics/services/spotify.dart';
-import 'package:mobx/mobx.dart';
+import 'package:flyrics/services/api.dart';
+import 'package:flyrics/modules/mobx/async.dart';
 
-part 'artwork.g.dart';
+class ArtworkStore extends AsyncStore<List<int>> {
+  final ApiService _api;
 
-class ArtworkStore = ArtworkStoreBase with _$ArtworkStore;
+  ArtworkStore(ApiService api)
+      : _api = api,
+        super(
+          isEmpty: (data) => data.isEmpty,
+        );
 
-abstract class ArtworkStoreBase with Store {
-  @observable
-  bool isLoading = false;
-
-  @observable
-  Object error;
-
-  @observable
-  List<int> bytes;
-
-  final SpotifyService spotifyService;
-
-  ArtworkStoreBase({this.spotifyService});
-
-  @action
-  Future fetchBytes(String url) async {
-    isLoading = true;
-    try {
-      bytes = await spotifyService.getImageBytes(url);
-    } catch (err) {
-      error = err;
-    }
-    isLoading = false;
-  }
-
-  @computed
-  bool get canShow => !isLoading && bytes != null;
+  Future fetch(String url) => wait(_api.spotify.getImageBytes(url));
 }

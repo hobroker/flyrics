@@ -1,39 +1,16 @@
 import 'package:flyrics/models/search_item.dart';
-import 'package:flyrics/services/genius.dart';
-import 'package:mobx/mobx.dart';
+import 'package:flyrics/services/api.dart';
+import 'package:flyrics/modules/mobx/async.dart';
 
-part 'search.g.dart';
+class SearchStore extends AsyncStore<List<int>> {
+  final ApiService _api;
 
-class SearchStore = SearchStoreBase with _$SearchStore;
+  SearchStore(ApiService api)
+      : _api = api,
+        super(
+          isEmpty: (data) => data.isEmpty,
+          facade: (list) => SearchItem.fromJsonList(list),
+        );
 
-abstract class SearchStoreBase with Store {
-  @observable
-  bool isLoading = false;
-
-  @observable
-  Object error;
-
-  @observable
-  String query;
-
-  @observable
-  List<SearchItem> results = [];
-
-  final GeniusService geniusService;
-
-  SearchStoreBase({this.geniusService});
-
-  @action
-  Future searchQuery(String str) async {
-    isLoading = true;
-
-    try {
-      final list = await geniusService.search(str);
-      results = SearchItem.fromJsonList(list);
-    } catch (err) {
-      error = err;
-    }
-
-    isLoading = false;
-  }
+  Future fetch(String query) => wait(_api.genius.search(query));
 }

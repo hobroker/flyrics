@@ -9,12 +9,6 @@ part of 'lyrics.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$LyricsStore on LyricsStoreBase, Store {
-  Computed<bool> _$canShowComputed;
-
-  @override
-  bool get canShow => (_$canShowComputed ??=
-          Computed<bool>(() => super.canShow, name: 'LyricsStoreBase.canShow'))
-      .value;
   Computed<SearchItem> _$selectedSearchItemComputed;
 
   @override
@@ -22,6 +16,13 @@ mixin _$LyricsStore on LyricsStoreBase, Store {
           Computed<SearchItem>(() => super.selectedSearchItem,
               name: 'LyricsStoreBase.selectedSearchItem'))
       .value;
+  Computed<bool> _$isLoadingComputed;
+
+  @override
+  bool get isLoading =>
+      (_$isLoadingComputed ??= Computed<bool>(() => super.isLoading,
+              name: 'LyricsStoreBase.isLoading'))
+          .value;
   Computed<String> _$selectedSearchItemUrlComputed;
 
   @override
@@ -30,18 +31,18 @@ mixin _$LyricsStore on LyricsStoreBase, Store {
               name: 'LyricsStoreBase.selectedSearchItemUrl'))
       .value;
 
-  final _$isLoadingAtom = Atom(name: 'LyricsStoreBase.isLoading');
+  final _$textAtom = Atom(name: 'LyricsStoreBase.text');
 
   @override
-  bool get isLoading {
-    _$isLoadingAtom.reportRead();
-    return super.isLoading;
+  String get text {
+    _$textAtom.reportRead();
+    return super.text;
   }
 
   @override
-  set isLoading(bool value) {
-    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
-      super.isLoading = value;
+  set text(String value) {
+    _$textAtom.reportWrite(value, super.text, () {
+      super.text = value;
     });
   }
 
@@ -60,18 +61,18 @@ mixin _$LyricsStore on LyricsStoreBase, Store {
     });
   }
 
-  final _$textAtom = Atom(name: 'LyricsStoreBase.text');
+  final _$statusAtom = Atom(name: 'LyricsStoreBase.status');
 
   @override
-  String get text {
-    _$textAtom.reportRead();
-    return super.text;
+  DataStatus get status {
+    _$statusAtom.reportRead();
+    return super.status;
   }
 
   @override
-  set text(String value) {
-    _$textAtom.reportWrite(value, super.text, () {
-      super.text = value;
+  set status(DataStatus value) {
+    _$statusAtom.reportWrite(value, super.status, () {
+      super.status = value;
     });
   }
 
@@ -119,12 +120,12 @@ mixin _$LyricsStore on LyricsStoreBase, Store {
   @override
   String toString() {
     return '''
-isLoading: ${isLoading},
-error: ${error},
 text: ${text},
+error: ${error},
+status: ${status},
 selectedSearchIdx: ${selectedSearchIdx},
-canShow: ${canShow},
 selectedSearchItem: ${selectedSearchItem},
+isLoading: ${isLoading},
 selectedSearchItemUrl: ${selectedSearchItemUrl}
     ''';
   }

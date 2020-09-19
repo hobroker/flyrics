@@ -38,6 +38,8 @@ flutter:
   assets:
     - .env
     - assets/icons/genius.svg
+    - assets/icons/sad.svg
+    - assets/icons/error.svg
     - assets/i18n/en.json
 
 scripts:

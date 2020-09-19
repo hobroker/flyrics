@@ -16,9 +16,9 @@ abstract class ColorStoreBase with Store {
 
   @observable
   List<Color> colors;
-  final UX ux;
+  final UX _ux;
 
-  ColorStoreBase({this.ux}) {
+  ColorStoreBase({UX ux}) : _ux = ux {
     resetColors();
   }
 
@@ -38,7 +38,7 @@ abstract class ColorStoreBase with Store {
 
   @action
   void resetColors() {
-    colors = [ux.primaryColor, ux.primaryColorDark];
+    colors = [_ux.primaryColor, _ux.primaryColorDark];
   }
 
   @computed

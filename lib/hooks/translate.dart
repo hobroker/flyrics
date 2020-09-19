@@ -4,7 +4,7 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 Translate useI18n() {
   final context = useContext();
 
-  return (key, [params = const <String, String>{}]) {
+  return (String key, [Map<String, String> params = const {}]) {
     return FlutterI18n.translate(
       context,
       key,

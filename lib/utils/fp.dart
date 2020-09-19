@@ -8,7 +8,7 @@ bool Function(dynamic) isNotNull = (value) => value != null;
 
 bool Function(dynamic) isNull = (value) => value == null;
 
-Function(dynamic) identity = (value) => value;
+T identity<T>(T value) => value;
 
 dynamic Function(dynamic) Function(dynamic) apply =
     (fn) => (value) => fn(value);

@@ -19,10 +19,6 @@ class TerminalService {
     return result;
   }
 
-  Future openUrl(String url) async {
-    await _exec('open', [url]);
-  }
-
   Future<String> _exec(String cmd, List<String> args) async {
     try {
       var result = await Process.run(cmd, args);

@@ -9,10 +9,10 @@ import 'package:flyrics/views/artwork/artwork_screen.dart';
 class Artwork extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    final _artwork = useArtworkStore();
+    final artwork = useArtworkStore();
 
     return O.statusBranch(
-      () => _artwork.status,
+      () => artwork.status,
       placeholder: () => ArtworkPlaceholder(animated: false),
       loading: () => ArtworkPlaceholder(animated: true),
       error: () => ArtworkMissing(),

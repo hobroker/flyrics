@@ -13,7 +13,7 @@ class LyricsPlaceholder extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final ux = useUX();
-    final _lyrics = useLyricsStore();
+    final lyrics = useLyricsStore();
     final maxWidth = useMediaSize().width;
 
     return O(
@@ -25,7 +25,7 @@ class LyricsPlaceholder extends HookWidget {
             (idx) => _LyricsLine(
               index: idx,
               maxWidth: maxWidth,
-              isAnimated: _lyrics.isLoading,
+              isAnimated: lyrics.isLoading,
               bottomSpacing: ux.spacingUnit,
             ),
           ),

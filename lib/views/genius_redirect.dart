@@ -10,11 +10,11 @@ import 'package:flyrics/views/icons/genius_icon.dart';
 class GeniusRedirect extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    final _lyrics = useLyricsStore();
+    final lyrics = useLyricsStore();
     final ux = useUX();
 
     return O.when(
-      () => isNotNull(_lyrics.selectedSearchItemUrl),
+      () => isNotNull(lyrics.selectedSearchItemUrl),
       () => LayoutBuilder(builder: (context, constraints) {
         final size = constraints.maxHeight;
 
@@ -33,7 +33,7 @@ class GeniusRedirect extends HookWidget {
                     maxHeight: size,
                   ),
                   icon: GeniusIcon(),
-                  onPressed: _lyrics.openSelectedItemInBrowser,
+                  onPressed: lyrics.openSelectedItemInBrowser,
                 ),
               );
             },

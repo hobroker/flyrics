@@ -9,13 +9,13 @@ import 'package:flyrics/views/placeholder_shimmer.dart';
 class TrackArtist extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    final _track = useTrackStore();
+    final track = useTrackStore();
     final ux = useUX();
 
     return O.branch(
-      () => _track.hasTrack,
+      () => track.hasTrack,
       () => MarqueeText(
-        text: _track.track.artist,
+        text: track.track.artist,
         style: TextStyle(
           color: ux.textColor,
           fontSize: 14,
@@ -23,7 +23,7 @@ class TrackArtist extends HookWidget {
       ),
       () => PlaceholderShimmer(
         height: 14,
-        isAnimated: _track.isLoading,
+        isAnimated: track.isLoading,
         widthRatio: randomBetween(0.5, 0.6),
       ),
     );

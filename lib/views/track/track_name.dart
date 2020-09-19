@@ -10,12 +10,12 @@ class TrackName extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final ux = useUX();
-    final _track = useTrackStore();
+    final track = useTrackStore();
 
     return O.branch(
-      () => _track.hasTrack,
+      () => track.hasTrack,
       () => MarqueeText(
-        text: _track.track.name,
+        text: track.track.name,
         style: TextStyle(
           color: ux.textColor,
           fontSize: 15,
@@ -24,7 +24,7 @@ class TrackName extends HookWidget {
       ),
       () => PlaceholderShimmer(
         height: 15.0,
-        isAnimated: _track.isLoading,
+        isAnimated: track.isLoading,
         widthRatio: randomBetween(0.7, 0.9),
       ),
     );

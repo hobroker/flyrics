@@ -13,7 +13,7 @@ class ArtworkScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _artwork = useArtworkStore();
+    final artwork = useArtworkStore();
     final ux = useUX();
 
     return MouseRegion(
@@ -21,7 +21,7 @@ class ArtworkScreen extends HookWidget {
       child: O(
         () {
           final image = Image.memory(
-            _artwork.data,
+            artwork.data,
             fit: BoxFit.fill,
           );
 

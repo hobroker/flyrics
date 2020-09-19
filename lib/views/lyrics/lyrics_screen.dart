@@ -7,12 +7,12 @@ class LyricsScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final ux = useUX();
-    final _lyrics = useLyricsStore();
+    final lyrics = useLyricsStore();
 
     return Container(
       child: O(
         () => SelectableText(
-          _lyrics.text,
+          lyrics.text,
           textAlign: TextAlign.start,
           style: TextStyle(
             fontSize: 12,

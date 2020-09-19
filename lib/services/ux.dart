@@ -19,5 +19,5 @@ class UX {
   final double footerHeight = 20;
   final double headerMinHeight = 48;
   final double headerMaxHeight = 80;
-  final double lyricsStatusIconSize = 80;
+  final double infoIconMaxSize = 70;
 }

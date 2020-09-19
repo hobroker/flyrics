@@ -1,8 +1,8 @@
 import 'package:flyrics/models/search_item.dart';
+import 'package:flyrics/modules/mobx/async_data.dart';
 import 'package:flyrics/services/api.dart';
-import 'package:flyrics/modules/mobx/async.dart';
 
-class SearchStore extends AsyncStore<List<int>> {
+class SearchStore extends AsyncDataStore<List<int>> {
   final ApiService _api;
 
   SearchStore(ApiService api)

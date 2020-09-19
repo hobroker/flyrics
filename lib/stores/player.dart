@@ -16,9 +16,6 @@ abstract class PlayerStoreBase with Store {
   @observable
   bool isRunning = false;
 
-  @observable
-  bool isWorking = false;
-
   RunnerStore runner;
 
   final TrackStore track;

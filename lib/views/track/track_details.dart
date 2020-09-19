@@ -4,7 +4,7 @@ import 'package:flyrics/views/track/track_artist.dart';
 import 'package:flyrics/views/track/track_name.dart';
 import 'package:flyrics/views/track/track_wrapper.dart';
 
-class TrackDetails extends HookWidget {
+class TrackDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TrackWrapper(

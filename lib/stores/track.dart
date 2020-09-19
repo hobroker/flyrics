@@ -1,4 +1,5 @@
 import 'package:flyrics/models/track.dart';
+import 'package:flyrics/modules/mobx/async_data.dart';
 import 'package:flyrics/services/api.dart';
 import 'package:mobx/mobx.dart';
 
@@ -8,10 +9,10 @@ class TrackStore = TrackStoreBase with _$TrackStore;
 
 abstract class TrackStoreBase with Store {
   @observable
-  bool isLoading = false;
+  Track track;
 
   @observable
-  Track track;
+  DataStatus status = DataStatus.placeholder;
 
   @observable
   Object error;
@@ -25,7 +26,7 @@ abstract class TrackStoreBase with Store {
   @action
   Future fetchCurrentTrack() async {
     if (track == null) {
-      isLoading = true;
+      status = DataStatus.loading;
     }
 
     try {
@@ -36,12 +37,16 @@ abstract class TrackStoreBase with Store {
         track = Track.fromJson(json);
       }
 
-      isLoading = false;
+      status = DataStatus.success;
     } catch (err) {
       error = err;
+      status = DataStatus.error;
     }
   }
 
   @computed
   bool get hasTrack => track != null && !isLoading;
+
+  @computed
+  bool get isLoading => status == DataStatus.loading;
 }

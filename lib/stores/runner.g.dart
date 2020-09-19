@@ -16,21 +16,6 @@ mixin _$RunnerStore on RunnerStoreBase, Store {
           Computed<Track>(() => super.track, name: 'RunnerStoreBase.track'))
       .value;
 
-  final _$isRunningAtom = Atom(name: 'RunnerStoreBase.isRunning');
-
-  @override
-  bool get isRunning {
-    _$isRunningAtom.reportRead();
-    return super.isRunning;
-  }
-
-  @override
-  set isRunning(bool value) {
-    _$isRunningAtom.reportWrite(value, super.isRunning, () {
-      super.isRunning = value;
-    });
-  }
-
   final _$isWorkingAtom = Atom(name: 'RunnerStoreBase.isWorking');
 
   @override
@@ -56,7 +41,6 @@ mixin _$RunnerStore on RunnerStoreBase, Store {
   @override
   String toString() {
     return '''
-isRunning: ${isRunning},
 isWorking: ${isWorking},
 track: ${track}
     ''';

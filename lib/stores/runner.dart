@@ -14,9 +14,6 @@ class RunnerStore = RunnerStoreBase with _$RunnerStore;
 
 abstract class RunnerStoreBase with Store {
   @observable
-  bool isRunning = false;
-
-  @observable
   bool isWorking = false;
 
   bool _canRun = false;

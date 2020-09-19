@@ -14,10 +14,10 @@ abstract class LyricsStoreBase with Store {
   String text;
 
   @observable
-  Object error;
+  DataStatus status = DataStatus.placeholder;
 
   @observable
-  DataStatus status = DataStatus.placeholder;
+  Object error;
 
   @observable
   int selectedSearchIdx;

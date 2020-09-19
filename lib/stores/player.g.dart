@@ -24,21 +24,6 @@ mixin _$PlayerStore on PlayerStoreBase, Store {
     });
   }
 
-  final _$isWorkingAtom = Atom(name: 'PlayerStoreBase.isWorking');
-
-  @override
-  bool get isWorking {
-    _$isWorkingAtom.reportRead();
-    return super.isWorking;
-  }
-
-  @override
-  set isWorking(bool value) {
-    _$isWorkingAtom.reportWrite(value, super.isWorking, () {
-      super.isWorking = value;
-    });
-  }
-
   final _$updateIsRunningAsyncAction =
       AsyncAction('PlayerStoreBase.updateIsRunning');
 
@@ -50,8 +35,7 @@ mixin _$PlayerStore on PlayerStoreBase, Store {
   @override
   String toString() {
     return '''
-isRunning: ${isRunning},
-isWorking: ${isWorking}
+isRunning: ${isRunning}
     ''';
   }
 }

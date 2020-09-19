@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'async.dart';
+part of 'async_data.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,28 +8,28 @@ part of 'async.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$AsyncStore<T> on AsyncStoreBase<T>, Store {
+mixin _$AsyncDataStore<T> on AsyncDataStoreBase<T>, Store {
   Computed<bool> _$hasDataComputed;
 
   @override
-  bool get hasData => (_$hasDataComputed ??=
-          Computed<bool>(() => super.hasData, name: 'AsyncStoreBase.hasData'))
+  bool get hasData => (_$hasDataComputed ??= Computed<bool>(() => super.hasData,
+          name: 'AsyncDataStoreBase.hasData'))
       .value;
   Computed<bool> _$isLoadingComputed;
 
   @override
   bool get isLoading =>
       (_$isLoadingComputed ??= Computed<bool>(() => super.isLoading,
-              name: 'AsyncStoreBase.isLoading'))
+              name: 'AsyncDataStoreBase.isLoading'))
           .value;
   Computed<bool> _$isEmptyComputed;
 
   @override
-  bool get isEmpty => (_$isEmptyComputed ??=
-          Computed<bool>(() => super.isEmpty, name: 'AsyncStoreBase.isEmpty'))
+  bool get isEmpty => (_$isEmptyComputed ??= Computed<bool>(() => super.isEmpty,
+          name: 'AsyncDataStoreBase.isEmpty'))
       .value;
 
-  final _$statusAtom = Atom(name: 'AsyncStoreBase.status');
+  final _$statusAtom = Atom(name: 'AsyncDataStoreBase.status');
 
   @override
   DataStatus get status {
@@ -44,7 +44,7 @@ mixin _$AsyncStore<T> on AsyncStoreBase<T>, Store {
     });
   }
 
-  final _$errorAtom = Atom(name: 'AsyncStoreBase.error');
+  final _$errorAtom = Atom(name: 'AsyncDataStoreBase.error');
 
   @override
   Object get error {
@@ -59,7 +59,7 @@ mixin _$AsyncStore<T> on AsyncStoreBase<T>, Store {
     });
   }
 
-  final _$dataAtom = Atom(name: 'AsyncStoreBase.data');
+  final _$dataAtom = Atom(name: 'AsyncDataStoreBase.data');
 
   @override
   T get data {
@@ -74,7 +74,7 @@ mixin _$AsyncStore<T> on AsyncStoreBase<T>, Store {
     });
   }
 
-  final _$waitAsyncAction = AsyncAction('AsyncStoreBase.wait');
+  final _$waitAsyncAction = AsyncAction('AsyncDataStoreBase.wait');
 
   @override
   Future<dynamic> wait(Future<dynamic> future) {

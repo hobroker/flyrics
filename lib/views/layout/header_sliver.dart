@@ -16,6 +16,7 @@ class HeaderSliver extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final ux = useUX();
+
     return SliverPersistentHeader(
       pinned: true,
       delegate: SliverHeaderDelegate(

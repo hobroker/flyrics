@@ -5,7 +5,7 @@ import 'package:flyrics/services/http_client.dart';
 class ImageService {
   final HttpClient client;
 
-  ImageService({
+  const ImageService({
     @required this.client,
   });
 

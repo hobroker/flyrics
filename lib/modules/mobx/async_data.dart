@@ -1,7 +1,7 @@
 import 'package:flyrics/utils/fp.dart';
 import 'package:mobx/mobx.dart';
 
-part 'async.g.dart';
+part 'async_data.g.dart';
 
 enum DataStatus {
   placeholder,
@@ -15,9 +15,9 @@ typedef AsyncDataFn = Function(Function);
 typedef IsEmptyFn<DataT> = bool Function(DataT);
 typedef FacadeFn<DataT> = DataT Function(dynamic);
 
-class AsyncStore<T> = AsyncStoreBase with _$AsyncStore;
+class AsyncDataStore<T> = AsyncDataStoreBase with _$AsyncDataStore;
 
-abstract class AsyncStoreBase<T> with Store {
+abstract class AsyncDataStoreBase<T> with Store {
   @observable
   DataStatus status = DataStatus.placeholder;
 
@@ -39,7 +39,7 @@ abstract class AsyncStoreBase<T> with Store {
   final IsEmptyFn<T> _isEmpty;
   final FacadeFn<T> _facade;
 
-  AsyncStoreBase({
+  AsyncDataStoreBase({
     IsEmptyFn<T> isEmpty,
     FacadeFn<T> facade,
   })  : _isEmpty = isEmpty ?? isNotNull,

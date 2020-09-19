@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flyrics/modules/mobx/o.dart';
 import 'package:flyrics/hooks/injections.dart';
+import 'package:flyrics/modules/mobx/o.dart';
 
 class PrimaryContainer extends HookWidget {
   final Widget child;
@@ -17,7 +17,6 @@ class PrimaryContainer extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _color = useColorStore();
     final ux = useUX();
 
     return O(
@@ -25,9 +24,7 @@ class PrimaryContainer extends HookWidget {
         width: width,
         height: height,
         duration: ux.transitionDuration,
-        decoration: BoxDecoration(
-          color: _color.dominantColor,
-        ),
+        color: ux.primaryColor,
         child: child,
       ),
     );

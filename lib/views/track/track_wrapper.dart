@@ -3,11 +3,13 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flyrics/hooks/injections.dart';
 
 class TrackWrapper extends HookWidget {
-  final Widget child;
+  final Widget name;
+  final Widget artist;
 
   TrackWrapper({
     Key key,
-    this.child,
+    @required this.name,
+    @required this.artist,
   }) : super(key: key);
 
   @override
@@ -21,7 +23,14 @@ class TrackWrapper extends HookWidget {
           horizontal: ux.spacingUnit * 2,
         ),
         child: Container(
-          child: child,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              name,
+              SizedBox(height: ux.spacingUnit),
+              artist,
+            ],
+          ),
         ),
       ),
     );

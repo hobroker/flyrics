@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 class UX {
   final ThemeData theme;
 
-  UX({this.theme});
+  UX({
+    @required this.theme,
+  });
 
   Color get primaryColor => theme.primaryColor;
 
@@ -15,6 +17,7 @@ class UX {
 
   final double spacingUnit = 4;
   final double footerHeight = 20;
-  final double headerMinHeight = 50;
-  final double headerMaxHeight = 75;
+  final double headerMinHeight = 48;
+  final double headerMaxHeight = 80;
+  final double lyricsStatusIconSize = 80;
 }

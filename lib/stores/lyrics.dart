@@ -1,9 +1,8 @@
 import 'package:flyrics/models/search_item.dart';
 import 'package:flyrics/models/track.dart';
-import 'package:flyrics/services/genius.dart';
-import 'package:flyrics/services/terminal.dart';
+import 'package:flyrics/modules/mobx/async.dart';
+import 'package:flyrics/services/api.dart';
 import 'package:flyrics/stores/search.dart';
-import 'package:flyrics/utils/fp.dart';
 import 'package:mobx/mobx.dart';
 
 part 'lyrics.g.dart';
@@ -12,69 +11,64 @@ class LyricsStore = LyricsStoreBase with _$LyricsStore;
 
 abstract class LyricsStoreBase with Store {
   @observable
-  bool isLoading = false;
+  String text;
 
   @observable
   Object error;
 
   @observable
-  String text;
+  DataStatus status = DataStatus.placeholder;
 
   @observable
   int selectedSearchIdx;
 
-  final GeniusService geniusService;
-  final TerminalService terminalService;
-  SearchStore search;
+  final ApiService _api;
+  final SearchStore search;
 
-  LyricsStoreBase({this.geniusService, this.terminalService}) {
-    search = SearchStore(
-      geniusService: geniusService,
-    );
-  }
-
-  @computed
-  bool get canShow => !isLoading && isNotNull(text);
+  LyricsStoreBase({ApiService api})
+      : _api = api,
+        search = SearchStore(api);
 
   @computed
   SearchItem get selectedSearchItem => selectedSearchIdx != null
-      ? search.results.elementAt(selectedSearchIdx)
+      ? search.data.elementAt(selectedSearchIdx)
       : null;
+
+  @computed
+  bool get isLoading => status == DataStatus.loading;
 
   @computed
   String get selectedSearchItemUrl => selectedSearchItem?.url;
 
   @action
   Future updateLyrics(Track track) async {
-    isLoading = true;
+    status = DataStatus.loading;
     final query = '${track.artist} ${track.name}';
 
     selectedSearchIdx = null;
-    await search.searchQuery(query);
+    await search.fetch(query);
 
-    if (search.results.isNotEmpty) {
+    if (search.isEmpty) {
+      status = DataStatus.empty;
+    } else {
       selectedSearchIdx = 0;
       await _fetchGeniusLyrics(selectedSearchItemUrl);
-    } else {
-      selectedSearchIdx = null;
     }
-
-    isLoading = false;
   }
 
   @action
   Future _fetchGeniusLyrics(String url) async {
-    isLoading = true;
     try {
-      text = await geniusService.fetchLyrics(url);
+      text = await _api.genius.fetchLyrics(url);
+      status = DataStatus.success;
     } catch (err) {
       error = err;
+      status = DataStatus.error;
     }
-    isLoading = false;
   }
 
   @action
   Future openSelectedItemInBrowser() async {
-    await terminalService.openUrl(selectedSearchItemUrl);
+    await _api.native.openUrl(selectedSearchItemUrl);
   }
 }

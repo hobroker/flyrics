@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flyrics/containers/o.dart';
+import 'package:flyrics/modules/mobx/o.dart';
 import 'package:flyrics/hooks/injections.dart';
 import 'package:flyrics/views/artwork/artwork_gradient.dart';
 
@@ -21,7 +21,7 @@ class ArtworkScreen extends HookWidget {
       child: O(
         () {
           final image = Image.memory(
-            _artwork.bytes,
+            _artwork.data,
             fit: BoxFit.fill,
           );
 

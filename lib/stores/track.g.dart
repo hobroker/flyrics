@@ -31,21 +31,6 @@ mixin _$TrackStore on TrackStoreBase, Store {
     });
   }
 
-  final _$isNewTrackAtom = Atom(name: 'TrackStoreBase.isNewTrack');
-
-  @override
-  bool get isNewTrack {
-    _$isNewTrackAtom.reportRead();
-    return super.isNewTrack;
-  }
-
-  @override
-  set isNewTrack(bool value) {
-    _$isNewTrackAtom.reportWrite(value, super.isNewTrack, () {
-      super.isNewTrack = value;
-    });
-  }
-
   final _$trackAtom = Atom(name: 'TrackStoreBase.track');
 
   @override
@@ -88,7 +73,6 @@ mixin _$TrackStore on TrackStoreBase, Store {
   String toString() {
     return '''
 isLoading: ${isLoading},
-isNewTrack: ${isNewTrack},
 track: ${track},
 error: ${error},
 hasTrack: ${hasTrack}

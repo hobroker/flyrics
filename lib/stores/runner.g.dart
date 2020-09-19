@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'player.dart';
+part of 'runner.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,8 +8,8 @@ part of 'player.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$PlayerStore on PlayerStoreBase, Store {
-  final _$isRunningAtom = Atom(name: 'PlayerStoreBase.isRunning');
+mixin _$RunnerStore on RunnerStoreBase, Store {
+  final _$isRunningAtom = Atom(name: 'RunnerStoreBase.isRunning');
 
   @override
   bool get isRunning {
@@ -24,7 +24,7 @@ mixin _$PlayerStore on PlayerStoreBase, Store {
     });
   }
 
-  final _$isWorkingAtom = Atom(name: 'PlayerStoreBase.isWorking');
+  final _$isWorkingAtom = Atom(name: 'RunnerStoreBase.isWorking');
 
   @override
   bool get isWorking {
@@ -39,12 +39,11 @@ mixin _$PlayerStore on PlayerStoreBase, Store {
     });
   }
 
-  final _$updateIsRunningAsyncAction =
-      AsyncAction('PlayerStoreBase.updateIsRunning');
+  final _$refreshFlowAsyncAction = AsyncAction('RunnerStoreBase.refreshFlow');
 
   @override
-  Future<dynamic> updateIsRunning() {
-    return _$updateIsRunningAsyncAction.run(() => super.updateIsRunning());
+  Future<dynamic> refreshFlow() {
+    return _$refreshFlowAsyncAction.run(() => super.refreshFlow());
   }
 
   @override

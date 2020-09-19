@@ -1,5 +1,7 @@
 {
   "lyrics": {
-    "open_in_browser": "Open in browser"
+    "open_in_browser": "Open in browser",
+    "no_results": "Couldn't find any lyrics for this song",
+    "error": "Something went wrong"
   }
 }

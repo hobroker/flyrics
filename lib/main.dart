@@ -8,10 +8,7 @@ Future<void> main() async {
   final config = await ConfigService.create();
 
   Jab.provideForRoot([
-    httpClientFactory,
-    terminalFactory,
-    spotifyFactory,
-    geniusFactory(config),
+    apiFactory(config),
   ]);
 
   runApp(App());

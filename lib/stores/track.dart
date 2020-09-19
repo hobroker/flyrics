@@ -1,5 +1,5 @@
 import 'package:flyrics/models/track.dart';
-import 'package:flyrics/services/spotify.dart';
+import 'package:flyrics/services/api.dart';
 import 'package:mobx/mobx.dart';
 
 part 'track.g.dart';
@@ -11,17 +11,16 @@ abstract class TrackStoreBase with Store {
   bool isLoading = false;
 
   @observable
-  bool isNewTrack = false;
-
-  @observable
   Track track;
 
   @observable
   Object error;
 
-  final SpotifyService spotifyService;
+  final ApiService _api;
 
-  TrackStoreBase({this.spotifyService});
+  TrackStoreBase({ApiService api}) : _api = api {
+    autorun((_) => print(track));
+  }
 
   @action
   Future fetchCurrentTrack() async {
@@ -30,7 +29,7 @@ abstract class TrackStoreBase with Store {
     }
 
     try {
-      final json = await spotifyService.fetchCurrentTrack();
+      final json = await _api.spotify.fetchCurrentTrack();
       final isNewTrack = track == null || json['id'] != track.id;
 
       if (isNewTrack) {

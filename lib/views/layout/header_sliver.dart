@@ -20,8 +20,8 @@ class HeaderSliver extends HookWidget {
     return SliverPersistentHeader(
       pinned: true,
       delegate: SliverHeaderDelegate(
-        minHeight: ux.headerMinHeight,
-        maxHeight: ux.headerMaxHeight,
+        minHeight: ux.header.minHeight,
+        maxHeight: ux.header.maxHeight,
         child: PrimaryContainer(
           child: child,
         ),

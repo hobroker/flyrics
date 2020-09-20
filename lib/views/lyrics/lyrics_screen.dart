@@ -14,11 +14,7 @@ class LyricsScreen extends HookWidget {
         () => SelectableText(
           lyrics.text,
           textAlign: TextAlign.start,
-          style: TextStyle(
-            fontSize: 12,
-            color: ux.textColor,
-            height: 1.3,
-          ),
+          style: ux.body.lyricsTextStyle.copyWith(color: ux.textColor),
         ),
       ),
     );

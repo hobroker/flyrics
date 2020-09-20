@@ -38,13 +38,6 @@ mixin _$RunnerStore on RunnerStoreBase, Store {
     return _$refreshFlowAsyncAction.run(() => super.refreshFlow());
   }
 
-  final _$refreshFlowAsyncAction = AsyncAction('RunnerStoreBase.refreshFlow');
-
-  @override
-  Future<dynamic> refreshFlow() {
-    return _$refreshFlowAsyncAction.run(() => super.refreshFlow());
-  }
-
   @override
   String toString() {
     return '''

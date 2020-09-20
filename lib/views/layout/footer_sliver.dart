@@ -20,7 +20,7 @@ class FooterSliver extends HookWidget {
       fillOverscroll: false,
       child: Container(
         child: child,
-        height: ux.footerHeight,
+        height: ux.footer.height,
         margin: EdgeInsets.all(ux.spacingUnit * 2),
       ),
     );

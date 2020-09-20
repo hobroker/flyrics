@@ -19,12 +19,12 @@ class LyricsInfoBox extends HookWidget {
       child: Container(
         child: Column(
           children: [
-            SizedBox(height: ux.infoIconSize),
+            SizedBox(height: ux.body.infoIconSize),
             O(
               () => Icon(
                 Icons.error_outline,
                 color: ux.textColor,
-                size: ux.infoIconSize,
+                size: ux.body.infoIconSize,
               ),
             ),
             SizedBox(height: ux.spacingUnit * 2),

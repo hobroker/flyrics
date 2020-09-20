@@ -15,21 +15,13 @@ mixin _$TrackStore on TrackStoreBase, Store {
   bool get hasTrack => (_$hasTrackComputed ??=
           Computed<bool>(() => super.hasTrack, name: 'TrackStoreBase.hasTrack'))
       .value;
-
-  final _$isLoadingAtom = Atom(name: 'TrackStoreBase.isLoading');
-
-  @override
-  bool get isLoading {
-    _$isLoadingAtom.reportRead();
-    return super.isLoading;
-  }
+  Computed<bool> _$isLoadingComputed;
 
   @override
-  set isLoading(bool value) {
-    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
-      super.isLoading = value;
-    });
-  }
+  bool get isLoading =>
+      (_$isLoadingComputed ??= Computed<bool>(() => super.isLoading,
+              name: 'TrackStoreBase.isLoading'))
+          .value;
 
   final _$trackAtom = Atom(name: 'TrackStoreBase.track');
 
@@ -43,6 +35,21 @@ mixin _$TrackStore on TrackStoreBase, Store {
   set track(Track value) {
     _$trackAtom.reportWrite(value, super.track, () {
       super.track = value;
+    });
+  }
+
+  final _$statusAtom = Atom(name: 'TrackStoreBase.status');
+
+  @override
+  DataStatus get status {
+    _$statusAtom.reportRead();
+    return super.status;
+  }
+
+  @override
+  set status(DataStatus value) {
+    _$statusAtom.reportWrite(value, super.status, () {
+      super.status = value;
     });
   }
 
@@ -72,10 +79,11 @@ mixin _$TrackStore on TrackStoreBase, Store {
   @override
   String toString() {
     return '''
-isLoading: ${isLoading},
 track: ${track},
+status: ${status},
 error: ${error},
-hasTrack: ${hasTrack}
+hasTrack: ${hasTrack},
+isLoading: ${isLoading}
     ''';
   }
 }

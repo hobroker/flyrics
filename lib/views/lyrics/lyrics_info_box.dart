@@ -12,7 +12,6 @@ class LyricsInfoBox extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _colors = useColorStore();
     final ux = useUX();
 
     return FractionallySizedBox(
@@ -20,12 +19,12 @@ class LyricsInfoBox extends HookWidget {
       child: Container(
         child: Column(
           children: [
-            SizedBox(height: ux.infoIconMaxSize),
+            SizedBox(height: ux.infoIconSize),
             O(
               () => Icon(
                 Icons.error_outline,
-                color: _colors.textColor,
-                size: ux.infoIconMaxSize,
+                color: ux.textColor,
+                size: ux.infoIconSize,
               ),
             ),
             SizedBox(height: ux.spacingUnit * 2),
@@ -34,7 +33,7 @@ class LyricsInfoBox extends HookWidget {
                 text,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: _colors.textColor,
+                  color: ux.textColor,
                   fontWeight: FontWeight.w500,
                   fontSize: 15,
                 ),

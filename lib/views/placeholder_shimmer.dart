@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flyrics/modules/mobx/o.dart';
 import 'package:flyrics/hooks/injections.dart';
+import 'package:flyrics/modules/mobx/o.dart';
 import 'package:shimmer/shimmer.dart';
 
 class PlaceholderShimmer extends HookWidget {
@@ -51,12 +51,11 @@ class PlaceholderShimmer extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _color = useColorStore();
     final ux = useUX();
 
     return O(() {
-      final bg = _color.placeholderBgColor;
-      final fg = _color.placeholderFgColor;
+      final fg = ux.primaryColor;
+      final bg = ux.theme.primaryColorDark;
 
       return _wrapper(
         (width, height) => Shimmer.fromColors(

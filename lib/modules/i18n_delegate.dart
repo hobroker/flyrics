@@ -1,5 +1,5 @@
 import 'package:flutter_i18n/flutter_i18n.dart';
-import 'package:flyrics/constants/asset_constants.dart';
+import 'package:flyrics/constants/asset.dart';
 import 'package:flyrics/utils/debug.dart';
 
 final i18nDelegate = FlutterI18nDelegate(

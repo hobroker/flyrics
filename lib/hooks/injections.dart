@@ -10,6 +10,4 @@ final useTrackStore = () => usePlayerStore().track;
 
 final useArtworkStore = () => usePlayerStore().artwork;
 
-final useColorStore = () => usePlayerStore().color;
-
 final useLyricsStore = () => usePlayerStore().lyrics;

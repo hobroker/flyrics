@@ -21,24 +21,36 @@ extension ColorLuminanceExtension on Color {
   }
 
   Color get opposite {
-    var luminance = computeLuminance();
+    final luminance = computeLuminance();
 
-    if (luminance < 0.5) {
+    if (luminance < .5) {
       return _lighten(0.75);
     }
 
-    var amount = luminance > 0.75 ? luminance : 0.5;
+    final amount = luminance > .75 ? luminance : .5;
 
     return _darken(amount);
   }
 
   Color get autoDarkened {
-    var luminance = computeLuminance();
-    if (luminance > 0.6) {
+    final luminance = computeLuminance();
+
+    if (luminance > .6) {
       return _darken(0.35);
     }
-    if (luminance > 0.3) {
+    if (luminance > .3) {
       return _darken(0.2);
+    }
+
+    return this;
+  }
+
+  Color darkenRelativeTo(Color color) {
+    final diff = (color.computeLuminance() - computeLuminance()).abs();
+    print('diff: ${diff}');
+
+    if (diff < .15) {
+      return _darken(0.3);
     }
 
     return this;

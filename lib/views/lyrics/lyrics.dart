@@ -15,8 +15,8 @@ class Lyrics extends HookWidget {
 
     return O.statusBranch(
       () => lyrics.status,
-      placeholder: () => LyricsPlaceholder(),
-      loading: () => LyricsPlaceholder(),
+      placeholder: () => LyricsPlaceholder(animated: false),
+      loading: () => LyricsPlaceholder(animated: true),
       error: () => LyricsInfoBox(text: t('lyrics.error')),
       empty: () => LyricsInfoBox(text: t('lyrics.no_results')),
       success: () => LyricsScreen(),

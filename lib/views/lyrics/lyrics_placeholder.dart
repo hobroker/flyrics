@@ -9,11 +9,13 @@ import 'package:flyrics/views/placeholder_shimmer.dart';
 
 class LyricsPlaceholder extends HookWidget {
   final int _linesCount = 14;
+  final bool animated;
+
+  LyricsPlaceholder({this.animated});
 
   @override
   Widget build(BuildContext context) {
     final ux = useUX();
-    final lyrics = useLyricsStore();
     final maxWidth = useMediaSize().width;
 
     return O(
@@ -25,7 +27,7 @@ class LyricsPlaceholder extends HookWidget {
             (idx) => _LyricsLine(
               index: idx,
               maxWidth: maxWidth,
-              isAnimated: lyrics.isLoading,
+              animated: animated,
               bottomSpacing: ux.spacingUnit,
             ),
           ),
@@ -38,7 +40,7 @@ class LyricsPlaceholder extends HookWidget {
 class _LyricsLine extends StatelessWidget {
   final int index;
   final double bottomSpacing;
-  final bool isAnimated;
+  final bool animated;
   final double maxWidth;
   final double _height = 12;
 
@@ -46,7 +48,7 @@ class _LyricsLine extends StatelessWidget {
     Key key,
     this.index,
     this.bottomSpacing,
-    this.isAnimated,
+    this.animated,
     this.maxWidth,
   }) : super(key: key);
 
@@ -60,7 +62,7 @@ class _LyricsLine extends StatelessWidget {
       margin: EdgeInsets.only(bottom: bottomSpacing),
       child: PlaceholderShimmer(
         height: _height,
-        isAnimated: isAnimated,
+        isAnimated: animated,
         width: maxWidth * randomBetween(0.6, 0.8),
       ),
     );

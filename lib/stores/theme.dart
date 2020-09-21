@@ -15,12 +15,13 @@ abstract class ThemeStoreBase with Store {
 
   @action
   void setColors(List<Color> colors) {
-    final primaryColor = colors.first.autoDarkened;
+    final primaryColor = colors.first;
+    final primaryColorDark = colors[1].darkenRelativeTo(primaryColor);
 
     theme = theme.copyWith(
       primaryColor: primaryColor,
       primaryColorLight: primaryColor.opposite,
-      primaryColorDark: colors[1],
+      primaryColorDark: primaryColorDark,
     );
   }
 

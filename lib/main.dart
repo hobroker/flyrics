@@ -4,7 +4,7 @@ import 'package:flyrics/providers.dart';
 import 'package:flyrics/services/config.dart';
 import 'package:jab/jab.dart';
 
-Future<void> main() async {
+Future main() async {
   final config = await ConfigService.create();
 
   Jab.provideForRoot([

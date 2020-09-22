@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flyrics/hooks/injections.dart';
 import 'package:flyrics/modules/mobx/o.dart';
-import 'package:flyrics/views/row_spacer.dart';
 
 class LyricsInfoBox extends HookWidget {
   final String text;
@@ -31,7 +30,7 @@ class LyricsInfoBox extends HookWidget {
                 size: ux.body.infoIconSize,
               ),
             ),
-            RowSpacer(count: 2),
+            SizedBox(height: ux.spacingUnit * 2),
             O(
               () => Text(
                 text,

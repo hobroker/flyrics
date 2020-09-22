@@ -17,10 +17,9 @@ class ArtworkPlaceholder extends StatelessWidget {
 
       return Container(
         margin: EdgeInsets.symmetric(horizontal: margin),
-        child: PlaceholderShimmer(
-          height: size,
-          width: size,
-          isAnimated: animated,
+        child: PlaceholderShimmer.square(
+          size,
+          animated: animated,
         ),
       );
     });

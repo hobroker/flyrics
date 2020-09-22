@@ -19,7 +19,7 @@ class Lyrics extends HookWidget {
       loading: () => LyricsPlaceholder(animated: true),
       error: () => LyricsInfoBox(text: t('lyrics.error')),
       empty: () => LyricsInfoBox(text: t('lyrics.no_results')),
-      success: () => LyricsScreen(),
+      success: () => LyricsPlaceholder(animated: true,),
     );
   }
 }

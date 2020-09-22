@@ -20,6 +20,12 @@ extension ColorLuminanceExtension on Color {
     return hslLight.toColor();
   }
 
+  Color _dynamicLuminance([double amount = .1]) {
+    final luminance = computeLuminance();
+
+    return luminance < .2 ? _lighten(amount) : _darken(amount);
+  }
+
   Color get opposite {
     final luminance = computeLuminance();
 
@@ -46,11 +52,11 @@ extension ColorLuminanceExtension on Color {
   }
 
   Color darkenRelativeTo(Color color) {
-    final diff = (color.computeLuminance() - computeLuminance()).abs();
-    print('diff: ${diff}');
+    final luminance = computeLuminance();
+    final diff = (color.computeLuminance() - luminance).abs();
 
     if (diff < .15) {
-      return _darken(0.3);
+      return _dynamicLuminance(diff);
     }
 
     return this;

@@ -1,78 +1,79 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flyrics/hooks/injections.dart';
-import 'package:flyrics/modules/mobx/o.dart';
+import 'package:flyrics/utils/random.dart';
 import 'package:shimmer/shimmer.dart';
 
+typedef ComputeSize = Size Function(BoxConstraints constraints);
+
 class PlaceholderShimmer extends HookWidget {
-  final double height;
-  final double width;
-  final double widthRatio;
-  final double heightRatio;
-  final Color backgroundColor;
-  final Color shineColor;
-  final bool isAnimated;
-  final bool align;
+  final Size size;
+  final bool animated;
+  final ComputeSize compute;
 
   PlaceholderShimmer({
     Key key,
-    this.height = 0,
-    this.width = 0,
-    this.widthRatio = 1,
-    this.heightRatio = 1,
-    this.backgroundColor,
-    this.shineColor,
-    this.align = false,
-    this.isAnimated = true,
+    this.size,
+    this.compute,
+    this.animated = true,
   }) : super(key: key);
 
-  Widget _wrapper(Widget Function(double, double) builder) {
-    var child;
-    if (width > 0 && height > 0) {
-      child = builder(width, height);
-    } else {
-      child = LayoutBuilder(builder: (context, constraints) {
-        return builder(
-          width > 0 ? width : constraints.maxWidth * widthRatio,
-          height > 0 ? height : constraints.maxHeight * widthRatio,
-        );
-      });
-    }
-
-    if (align) {
-      return Align(
-        alignment: Alignment.topLeft,
-        child: Container(child: child),
+  factory PlaceholderShimmer.square(
+    double size, {
+    bool animated = true,
+  }) =>
+      PlaceholderShimmer(
+        animated: animated,
+        size: Size(size, size),
       );
-    }
 
-    return child;
+  factory PlaceholderShimmer.fractionalWidth(
+    List<double> range, {
+    double height,
+    bool animated = true,
+  }) =>
+      PlaceholderShimmer(
+        animated: animated,
+        compute: (constraints) =>
+            Size(constraints.maxWidth * randomInRange(range), height),
+      );
+
+  Widget _buildPlaceholder({
+    Size size,
+    Color background,
+    Color foreground,
+    Duration transition,
+  }) {
+    return Shimmer.fromColors(
+      baseColor: background,
+      highlightColor: foreground,
+      enabled: animated,
+      child: AnimatedContainer(
+        width: size.width,
+        height: size.height,
+        duration: transition,
+        decoration: BoxDecoration(
+          color: foreground,
+          borderRadius: BorderRadius.circular(2),
+        ),
+      ),
+    );
   }
+
+  Widget _withLayoutBuilder(Widget Function(Size) builder) => LayoutBuilder(
+        builder: (context, constraints) => builder(compute(constraints)),
+      );
 
   @override
   Widget build(BuildContext context) {
     final ux = useUX();
+    final _build = (size) => _buildPlaceholder(
+          size: size,
+          background: ux.theme.primaryColorDark,
+          foreground: ux.theme.primaryColor,
+          transition: ux.transitionDuration,
+        );
 
-    return O(() {
-      final fg = ux.primaryColor;
-      final bg = ux.theme.primaryColorDark;
-
-      return _wrapper(
-        (width, height) => Shimmer.fromColors(
-          baseColor: bg,
-          highlightColor: fg,
-          enabled: isAnimated,
-          child: AnimatedContainer(
-            width: width,
-            height: height,
-            duration: ux.transitionDuration,
-            decoration: BoxDecoration(
-              color: fg,
-              borderRadius: BorderRadius.circular(2),
-            ),
-          ),
-        ),
-      );
-    });
+    return size != null ? _build(size) : _withLayoutBuilder(_build);
   }
 }

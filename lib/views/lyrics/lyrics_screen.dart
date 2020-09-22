@@ -4,7 +4,7 @@ import 'package:flyrics/hooks/injections.dart';
 import 'package:flyrics/modules/mobx/o.dart';
 
 class LyricsScreen extends HookWidget {
-  TextStyle get lyricsTextStyle => TextStyle(
+  TextStyle get _lyricsTextStyle => TextStyle(
         fontSize: 12,
         height: 1.3,
       );
@@ -19,7 +19,7 @@ class LyricsScreen extends HookWidget {
         () => SelectableText(
           lyrics.text,
           textAlign: TextAlign.start,
-          style: lyricsTextStyle.copyWith(color: ux.textColor),
+          style: _lyricsTextStyle.copyWith(color: ux.textColor),
         ),
       ),
     );

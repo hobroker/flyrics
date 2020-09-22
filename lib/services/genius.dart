@@ -15,8 +15,8 @@ class GeniusService {
   final ConfigService config;
 
   const GeniusService({
-    @required this.client,
     @required this.config,
+    this.client = const HttpClient(),
   });
 
   String get accessToken => config.get(GENIUS_API_KEY);

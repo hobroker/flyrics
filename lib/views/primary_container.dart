@@ -19,8 +19,8 @@ class PrimaryContainer extends HookWidget {
 
     return O(
       () => AnimatedContainer(
-        width: constraints.maxWidth,
-        height: constraints.maxHeight,
+        width: constraints?.maxWidth,
+        height: constraints?.maxHeight,
         duration: ux.transitionDuration,
         color: ux.primaryColor,
         child: child,

@@ -6,10 +6,10 @@ import 'package:flyrics/views/text_with_placeholder.dart';
 import 'package:flyrics/views/track/track_wrapper.dart';
 
 class TrackDetails extends HookWidget {
-  TextStyle get nameTextStyle =>
+  TextStyle get _nameTextStyle =>
       TextStyle(fontSize: 15, fontWeight: FontWeight.w500, height: 1);
 
-  TextStyle get artistTextStyle => TextStyle(fontSize: 14, height: 1);
+  TextStyle get _artistTextStyle => TextStyle(fontSize: 14, height: 1);
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +22,13 @@ class TrackDetails extends HookWidget {
           PlaceholderMarqueeText(
             text: track.track?.name,
             isLoading: track.isLoading,
-            style: nameTextStyle.copyWith(color: ux.textColor),
+            style: _nameTextStyle.copyWith(color: ux.textColor),
             widthRange: [0.7, 0.9],
           ),
           PlaceholderMarqueeText(
             text: track.track?.artist,
             isLoading: track.isLoading,
-            style: artistTextStyle.copyWith(color: ux.textColor),
+            style: _artistTextStyle.copyWith(color: ux.textColor),
             widthRange: [0.5, 0.6],
           ),
         ],

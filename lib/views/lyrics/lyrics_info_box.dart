@@ -10,7 +10,7 @@ class LyricsInfoBox extends HookWidget {
     @required this.text,
   });
 
-  TextStyle get infoBoxTextStyle =>
+  TextStyle get _infoBoxTextStyle =>
       TextStyle(fontSize: 15, fontWeight: FontWeight.w500);
 
   @override
@@ -20,25 +20,23 @@ class LyricsInfoBox extends HookWidget {
     return FractionallySizedBox(
       widthFactor: .6,
       child: Container(
-        child: Column(
-          children: [
-            SizedBox(height: ux.body.infoIconSize),
-            O(
-              () => Icon(
+        child: O(
+          () => Column(
+            children: [
+              SizedBox(height: ux.body.infoIconSize),
+              Icon(
                 Icons.error_outline,
                 color: ux.textColor,
                 size: ux.body.infoIconSize,
               ),
-            ),
-            SizedBox(height: ux.spacingUnit * 2),
-            O(
-              () => Text(
+              SizedBox(height: ux.spacingUnit * 2),
+              Text(
                 text,
                 textAlign: TextAlign.center,
-                style: infoBoxTextStyle.copyWith(color: ux.textColor),
+                style: _infoBoxTextStyle.copyWith(color: ux.textColor),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

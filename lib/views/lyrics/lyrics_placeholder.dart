@@ -7,20 +7,12 @@ import 'package:flyrics/views/placeholder_shimmer.dart';
 
 class LyricsPlaceholder extends HookWidget {
   final int _linesCount = 14;
-  final double _height = 12;
+  final double _lineHeight = 12;
   final bool animated;
 
   LyricsPlaceholder({
     this.animated = false,
   });
-
-  Widget get _line => PlaceholderShimmer.fractionalWidth(
-        [0.6, 0.8],
-        height: _height,
-        animated: animated,
-      );
-
-  Widget get _spacer => SizedBox(height: _height);
 
   bool _isEmpty(idx) => idx % 5 == 0;
 
@@ -35,10 +27,14 @@ class LyricsPlaceholder extends HookWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: generateListOf<Widget>(
           _linesCount,
-          (idx) => Container(
-            margin: EdgeInsets.only(bottom: ux.spacingUnit),
-            child: _isEmpty(idx) ? _spacer : _line,
-          ),
+          (idx) => _isEmpty(idx)
+              ? SizedBox(height: _lineHeight)
+              : PlaceholderShimmer.fractionalWidth(
+                  [0.6, 0.8],
+                  height: _lineHeight,
+                  animated: animated,
+                  padding: EdgeInsets.only(bottom: ux.spacingUnit),
+                ),
         ),
       ),
     );

@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flyrics/utils/debug.dart';
-import 'package:flyrics/utils/fp.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'track.g.dart';
@@ -25,5 +24,5 @@ class Track {
   String toString() => 'Track ${stringify(toJson(), true)}';
 
   static String _parseArtwork(String url) =>
-      isNotNull(url) && url != 'missing value' ? url : null;
+      url != null && url != 'missing value' ? url : null;
 }

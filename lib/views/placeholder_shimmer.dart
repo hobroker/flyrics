@@ -8,13 +8,15 @@ typedef ComputeSize = Size Function(BoxConstraints constraints);
 
 class PlaceholderShimmer extends HookWidget {
   final Size size;
-  final bool animated;
   final ComputeSize compute;
+  final bool animated;
+  final EdgeInsets padding;
 
   PlaceholderShimmer({
     Key key,
     this.size,
     this.compute,
+    this.padding,
     this.animated = true,
   }) : super(key: key);
 
@@ -30,10 +32,12 @@ class PlaceholderShimmer extends HookWidget {
   factory PlaceholderShimmer.fractionalWidth(
     List<double> range, {
     double height,
+    EdgeInsets padding,
     bool animated = true,
   }) =>
       PlaceholderShimmer(
         animated: animated,
+        padding: padding,
         compute: (constraints) =>
             Size(constraints.maxWidth * randomInRange(range), height),
       );
@@ -44,17 +48,20 @@ class PlaceholderShimmer extends HookWidget {
     Color highlightColor,
     Duration transition,
   }) {
-    return Shimmer.fromColors(
-      baseColor: baseColor,
-      highlightColor: highlightColor,
-      enabled: animated,
-      child: AnimatedContainer(
-        width: size.width,
-        height: size.height,
-        duration: transition,
-        decoration: BoxDecoration(
-          color: highlightColor,
-          borderRadius: BorderRadius.circular(2),
+    return Container(
+      padding: padding,
+      child: Shimmer.fromColors(
+        baseColor: baseColor,
+        highlightColor: highlightColor,
+        enabled: animated,
+        child: AnimatedContainer(
+          width: size.width,
+          height: size.height,
+          duration: transition,
+          decoration: BoxDecoration(
+            color: highlightColor,
+            borderRadius: BorderRadius.circular(2),
+          ),
         ),
       ),
     );

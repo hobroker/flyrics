@@ -6,11 +6,15 @@ import 'package:jab/jab.dart';
 
 Future main() async {
   final config = await ConfigService.create();
+  final configProvider = (_) => config;
 
   Jab.provideForRoot([
-    apiProvider(config),
+    configProvider,
+    terminalProvider,
     themeProvider,
     uxProvider,
+    spotifyProvider,
+    apiProvider,
     playerProvider,
   ]);
 

@@ -16,9 +16,6 @@ class O extends Observer {
   factory O.when(Predicate predicate, WidgetFn truthy) =>
       O(() => predicate() ? truthy() : EmptyWidget());
 
-  factory O.unless(Predicate predicate, WidgetFn falsy) =>
-      O(() => !predicate() ? falsy() : EmptyWidget());
-
   factory O.statusBranch(
     DataStatusPredicate getStatus, {
     @required WidgetFn placeholder,

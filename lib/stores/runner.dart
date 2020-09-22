@@ -70,7 +70,7 @@ abstract class RunnerStoreBase with Store {
   }
 
   void _onTrackChange(track) {
-    if (isNull(track)) {
+    if (track == null) {
       return;
     }
 

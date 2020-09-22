@@ -16,26 +16,22 @@ class ArtworkScreen extends HookWidget {
     final artwork = useArtworkStore();
     final ux = useUX();
 
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: O(
-        () {
-          final image = Image.memory(
-            artwork.data,
-            fit: BoxFit.fill,
-          );
+    return O(
+      () {
+        final image = Image.memory(artwork.data, fit: BoxFit.fill);
 
-          return GestureDetector(
-            onTap: () => _showImageDialog(context, image),
-            child: Stack(
-              children: [
-                image,
-                ArtworkGradient(color: ux.primaryColor),
-              ],
-            ),
-          );
-        },
-      ),
+        return MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: () => _showImageDialog(context, image),
+              child: Stack(
+                children: [
+                  image,
+                  ArtworkGradient(color: ux.primaryColor),
+                ],
+              ),
+            ));
+      },
     );
   }
 }

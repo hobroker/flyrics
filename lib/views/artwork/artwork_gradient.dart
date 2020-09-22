@@ -40,12 +40,13 @@ class ArtworkGradient extends HookWidget {
     final ux = useUX();
 
     return LayoutBuilder(builder: (context, constraints) {
-      final size = constraints.maxHeight * .075;
+      final maxSize = constraints.maxHeight;
+      final size = maxSize * .075;
 
       return Stack(
         children: [
           _buildGradient(
-            height: constraints.maxHeight,
+            height: maxSize,
             width: size,
             duration: ux.transitionDuration,
             begin: Alignment.centerLeft,
@@ -55,7 +56,7 @@ class ArtworkGradient extends HookWidget {
             alignment: Alignment.bottomCenter,
             child: _buildGradient(
               height: size,
-              width: constraints.maxHeight,
+              width: maxSize,
               duration: ux.transitionDuration,
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter,

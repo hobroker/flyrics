@@ -10,8 +10,8 @@ import 'package:flyrics/views/lyrics/lyrics_screen.dart';
 class Lyrics extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    final lyrics = useLyricsStore();
     final t = useI18n();
+    final lyrics = useLyricsStore();
 
     return O.statusBranch(
       () => lyrics.status,
@@ -19,7 +19,7 @@ class Lyrics extends HookWidget {
       loading: () => LyricsPlaceholder(animated: true),
       error: () => LyricsInfoBox(text: t('lyrics.error')),
       empty: () => LyricsInfoBox(text: t('lyrics.no_results')),
-      success: () => LyricsPlaceholder(animated: true,),
+      success: () => LyricsScreen(),
     );
   }
 }

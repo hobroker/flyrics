@@ -6,16 +6,27 @@ class HoverBuilder<T> extends HookWidget {
   final Function(T) onExit;
   final Function(BuildContext, T) builder;
   final T initialState;
-  final T toggleTo;
 
   HoverBuilder({
     Key key,
     @required this.initialState,
     @required this.builder,
-    this.toggleTo,
     this.onEnter,
     this.onExit,
   }) : super(key: key);
+
+  factory HoverBuilder.toggle({
+    Key key,
+    T initialState,
+    T toggleTo,
+    Function(BuildContext, T) builder,
+  }) =>
+      HoverBuilder(
+        initialState: initialState,
+        builder: builder,
+        onEnter: (value) => toggleTo,
+        onExit: (value) => initialState,
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -23,20 +34,8 @@ class HoverBuilder<T> extends HookWidget {
 
     return MouseRegion(
       child: builder(context, state.value),
-      onEnter: (event) {
-        if (onEnter == null) {
-          state.value = state.value == toggleTo ? initialState : toggleTo;
-        } else {
-          state.value = onEnter(state.value);
-        }
-      },
-      onExit: (event) {
-        if (onExit == null) {
-          state.value = initialState;
-        } else {
-          state.value = onExit(state.value);
-        }
-      },
+      onEnter: (event) => state.value = onEnter(state.value),
+      onExit: (event) => state.value = onExit(state.value),
     );
   }
 }

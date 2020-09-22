@@ -16,7 +16,7 @@ class MarqueeText extends StatelessWidget {
   TextPainter _textPainter(constraints) => paintText(
       text: text, style: style, constraints: constraints, maxLines: 1);
 
-  Widget get _marqueeText => HoverBuilder(
+  Widget get _marqueeText => HoverBuilder<bool>.toggle(
         initialState: false,
         toggleTo: true,
         builder: (context, isHover) {

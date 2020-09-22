@@ -17,11 +17,11 @@ class PlaceholderMarqueeText extends StatelessWidget {
     this.widthRange,
   }) : super(key: key);
 
-  double get placeholderHeight => isNotNull(style) ? style.fontSize : 12.0;
+  double get placeholderHeight => style?.fontSize ?? 12.0;
 
   @override
   Widget build(BuildContext context) {
-    if (!isLoading && isNotNull(text)) {
+    if (!isLoading && text != null) {
       return MarqueeText(
         text: text,
         style: style,

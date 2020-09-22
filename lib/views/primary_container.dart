@@ -5,14 +5,12 @@ import 'package:flyrics/modules/mobx/o.dart';
 
 class PrimaryContainer extends HookWidget {
   final Widget child;
-  final double width;
-  final double height;
+  final BoxConstraints constraints;
 
   PrimaryContainer({
     Key key,
     @required this.child,
-    this.width,
-    this.height,
+    this.constraints,
   }) : super(key: key);
 
   @override
@@ -21,8 +19,8 @@ class PrimaryContainer extends HookWidget {
 
     return O(
       () => AnimatedContainer(
-        width: width,
-        height: height,
+        width: constraints.maxWidth,
+        height: constraints.maxHeight,
         duration: ux.transitionDuration,
         color: ux.primaryColor,
         child: child,

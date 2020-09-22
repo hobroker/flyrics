@@ -8,8 +8,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: LayoutBuilder(builder: (context, constraints) {
         return PrimaryContainer(
-          width: constraints.maxWidth,
-          height: constraints.maxHeight,
+          constraints: constraints,
           child: LayoutScreeen(),
         );
       }),

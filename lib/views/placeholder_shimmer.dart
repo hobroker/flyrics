@@ -40,20 +40,20 @@ class PlaceholderShimmer extends HookWidget {
 
   Widget _buildPlaceholder({
     Size size,
-    Color background,
-    Color foreground,
+    Color baseColor,
+    Color highlightColor,
     Duration transition,
   }) {
     return Shimmer.fromColors(
-      baseColor: background,
-      highlightColor: foreground,
+      baseColor: baseColor,
+      highlightColor: highlightColor,
       enabled: animated,
       child: AnimatedContainer(
         width: size.width,
         height: size.height,
         duration: transition,
         decoration: BoxDecoration(
-          color: foreground,
+          color: highlightColor,
           borderRadius: BorderRadius.circular(2),
         ),
       ),
@@ -69,8 +69,8 @@ class PlaceholderShimmer extends HookWidget {
     final ux = useUX();
     final _build = (size) => _buildPlaceholder(
           size: size,
-          background: ux.theme.primaryColorDark,
-          foreground: ux.theme.primaryColor,
+          baseColor: ux.theme.primaryColorDark,
+          highlightColor: ux.theme.primaryColor,
           transition: ux.transitionDuration,
         );
 
